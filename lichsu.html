@@ -66,6 +66,24 @@
         .timer-warning {
             animation: pulse-fast 1.2s infinite;
         }
+        /* Highlighting for BOLD correct answers in Study Mode & Submitted Mode */
+        .correct-bold-answer {
+            font-weight: 800 !important;
+            color: #b45309;
+        }
+        .dark .correct-bold-answer {
+            color: #fbbf24;
+        }
+        .correct-bold-badge {
+            font-weight: 800 !important;
+            border-width: 2px !important;
+            border-color: #f59e0b !important;
+            background-color: rgba(245, 158, 11, 0.18) !important;
+            color: #92400e !important;
+        }
+        .dark .correct-bold-badge {
+            color: #fde68a !important;
+        }
     </style>
 </head>
 <body class="bg-slate-100 dark:bg-slate-950 text-slate-800 dark:text-slate-100 min-h-screen flex flex-col transition-colors duration-200">
@@ -83,14 +101,14 @@
                         <h1 class="font-bold text-sm sm:text-base tracking-tight text-white line-clamp-1">LỊCH SỬ 12 - GIỮA KỲ 1 (2026 - 2027)</h1>
                         <span class="hidden md:inline-block text-[11px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-300 border border-amber-400/30">Chuẩn Bộ GD&ĐT 2026</span>
                     </div>
-                    <p id="headerSubtitle" class="text-xs text-slate-300 line-clamp-1">Hệ thống tự động đảo câu hỏi & đảo phương án A, B, C, D</p>
+                    <p id="headerSubtitle" class="text-xs text-slate-300 line-clamp-1">Đảo câu hỏi & Đảo A, B, C, D • <strong class="text-amber-300 font-extrabold">IN ĐẬM</strong> đáp án đúng & các ý Đúng</p>
                 </div>
             </div>
 
             <!-- Active Exam Controls (Hidden on Setup Screen) -->
-            <div id="examHeaderControls" class="hidden items-center gap-2 sm:gap-4">
+            <div id="examHeaderControls" class="hidden items-center gap-2 sm:gap-3">
                 <!-- Progress Pill -->
-                <div class="hidden lg:flex items-center gap-2 bg-white/10 px-3 py-1.5 rounded-xl text-xs font-medium">
+                <div class="hidden xl:flex items-center gap-2 bg-white/10 px-3 py-1.5 rounded-xl text-xs font-medium">
                     <i class="fa-solid fa-list-check text-amber-400"></i>
                     <span>Đã làm: <strong id="headerProgressText" class="text-amber-300">0/28</strong></span>
                 </div>
@@ -100,6 +118,12 @@
                     <i class="fa-regular fa-clock"></i>
                     <span id="timerDisplay">40:00</span>
                 </div>
+
+                <!-- Quick Toggle Study Bold Mode Button -->
+                <button id="headerStudyBoldBtn" onclick="toggleStudyBoldMode()" class="flex items-center gap-1.5 bg-white/10 hover:bg-white/20 text-white text-xs sm:text-sm font-semibold px-2.5 sm:px-3 py-2 rounded-xl border border-white/15 transition" title="Bật/Tắt chế độ Ôn tập: In đậm sẵn đáp án đúng">
+                    <i class="fa-solid fa-highlighter text-amber-400"></i>
+                    <span id="headerStudyBoldText" class="hidden md:inline">Ôn tập (In đậm): Tắt</span>
+                </button>
 
                 <!-- Mobile Palette Button -->
                 <button onclick="toggleMobilePalette()" class="lg:hidden p-2 rounded-xl bg-white/10 hover:bg-white/20 text-white relative" title="Bảng câu hỏi">
@@ -296,7 +320,7 @@
                     <!-- Shuffle & Anti-rote Options -->
                     <div class="space-y-2.5">
                         <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300">
-                            <i class="fa-solid fa-shuffle text-amber-500 mr-1"></i> 4. Chế độ trộn đề thông minh:
+                            <i class="fa-solid fa-shuffle text-amber-500 mr-1"></i> 4. Chế độ trộn đề & Ôn tập in đậm đáp án:
                         </label>
                         <div class="space-y-2 text-xs">
                             <label class="flex items-center gap-2.5 p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 cursor-pointer">
@@ -310,6 +334,10 @@
                             <label class="flex items-center gap-2.5 p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 cursor-pointer">
                                 <input type="checkbox" id="shuffleSubItemsCb" checked class="w-4 h-4 accent-amber-600 rounded">
                                 <span><strong>Đảo thứ tự 4 ý a), b), c), d)</strong> ở Phần II (Đúng/Sai)</span>
+                            </label>
+                            <label class="flex items-center gap-2.5 p-2.5 rounded-xl bg-amber-50/80 dark:bg-amber-950/30 border border-amber-300 dark:border-amber-700/70 cursor-pointer">
+                                <input type="checkbox" id="showBoldHintCb" class="w-4 h-4 accent-amber-600 rounded">
+                                <span><strong>Chế độ Ôn tập: In đậm sẵn đáp án đúng và các ý Đúng (khi tắt sẽ chỉ in đậm đáp án đúng sau khi nộp bài)</strong></span>
                             </label>
                         </div>
                     </div>
@@ -330,6 +358,7 @@
                                 <span class="px-2 py-0.5 rounded bg-emerald-500/15 text-emerald-700 dark:text-emerald-300 border border-emerald-500/30 font-bold">Đúng cả 4 ý: <strong>1,0đ</strong></span>
                             </span>
                         </li>
+                        <li><strong>Chế độ Ôn tập (In đậm):</strong> Khi bật Chế độ Ôn tập hoặc sau khi Nộp bài, phương án đúng ở Phần I và các mệnh đề có đáp án <strong>ĐÚNG</strong> ở Phần II sẽ được <strong>IN ĐẬM toàn bộ chữ cái và nội dung</strong>.</li>
                     </ul>
                 </div>
 
@@ -424,7 +453,7 @@
                             <div>
                                 <p class="text-sm font-extrabold uppercase text-navy-800 dark:text-amber-400">Môn: LỊCH SỬ LỚP 12</p>
                                 <p class="text-xs font-medium text-slate-600 dark:text-slate-300" id="paperSubInfo">Thời gian làm bài: 40 phút (không kể thời gian phát đề)</p>
-                                <p class="text-[11px] text-emerald-600 dark:text-emerald-400 font-semibold mt-0.5"><i class="fa-solid fa-check-double mr-1"></i>Đã đảo vị trí câu hỏi & phương án A, B, C, D</p>
+                                <p class="text-[11px] text-emerald-600 dark:text-emerald-400 font-semibold mt-0.5"><i class="fa-solid fa-bold mr-1"></i>Đáp án đúng & các mệnh đề Đúng được <strong>IN ĐẬM</strong> khi bật Ôn tập hoặc sau khi Nộp bài</p>
                             </div>
                         </div>
 
@@ -961,6 +990,7 @@
             remainingSeconds: 2400,
             elapsedSeconds: 0,
             timerInterval: null,
+            showBoldHint: false,
             part1Questions: [], // Đã đảo câu & đảo đáp án A,B,C,D
             part2Questions: [], // Đã đảo câu & đảo ý a,b,c,d
             answersP1: {},      // { qIndex: selectedOptionIndex (0..3) }
@@ -1096,6 +1126,7 @@
             const doShuffleQuestions = document.getElementById('shuffleQuestionsCb').checked;
             const doShuffleOptions = document.getElementById('shuffleOptionsCb').checked;
             const doShuffleSubItems = document.getElementById('shuffleSubItemsCb').checked;
+            const showBoldHint = document.getElementById('showBoldHintCb').checked;
 
             // 1. Chọn & Đảo câu hỏi Phần I + Đảo thứ tự A, B, C, D
             const selectedRawP1 = (doShuffleQuestions ? shuffleArray(poolP1) : [...poolP1]).slice(0, countP1);
@@ -1139,6 +1170,7 @@
                 remainingSeconds: durationMinutes * 60,
                 elapsedSeconds: 0,
                 timerInterval: null,
+                showBoldHint: showBoldHint,
                 part1Questions: preparedP1,
                 part2Questions: preparedP2,
                 answersP1: {},
@@ -1162,8 +1194,9 @@
             // Cập nhật thông tin tờ đề
             document.getElementById('examCodeDisplay').textContent = examState.examCode;
             document.getElementById('paperSubInfo').textContent = `Thời gian làm bài: ${durationMinutes} phút • Gồm ${preparedP1.length} câu Phần I & ${preparedP2.length} câu Phần II`;
-            document.getElementById('part1InstructionText').textContent = `Thí sinh trả lời từ câu 1 đến câu ${preparedP1.length}. Mỗi câu hỏi thí sinh chỉ chọn một phương án đúng (0,25 điểm/câu).`;
+            document.getElementById('part1InstructionText').innerHTML = `Thí sinh trả lời từ câu 1 đến câu ${preparedP1.length}. Mỗi câu hỏi thí sinh chỉ chọn một phương án đúng (0,25 điểm/câu). Phương án đúng được <strong>IN ĐẬM</strong> toàn bộ chữ cái và nội dung.`;
 
+            updateStudyBoldButtonUI();
             renderAllQuestions();
             renderQuestionPalette();
             updateProgressCounters();
@@ -1171,8 +1204,29 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
+        function toggleStudyBoldMode() {
+            examState.showBoldHint = !examState.showBoldHint;
+            const setupCb = document.getElementById('showBoldHintCb');
+            if (setupCb) setupCb.checked = examState.showBoldHint;
+            updateStudyBoldButtonUI();
+            renderAllQuestions();
+        }
+
+        function updateStudyBoldButtonUI() {
+            const btn = document.getElementById('headerStudyBoldBtn');
+            const txt = document.getElementById('headerStudyBoldText');
+            if (!btn || !txt) return;
+            if (examState.showBoldHint) {
+                btn.className = "flex items-center gap-1.5 bg-amber-500/25 hover:bg-amber-500/35 text-amber-200 text-xs sm:text-sm font-bold px-2.5 sm:px-3 py-2 rounded-xl border border-amber-400/50 transition";
+                txt.textContent = "Ôn tập (In đậm): Bật";
+            } else {
+                btn.className = "flex items-center gap-1.5 bg-white/10 hover:bg-white/20 text-white text-xs sm:text-sm font-semibold px-2.5 sm:px-3 py-2 rounded-xl border border-white/15 transition";
+                txt.textContent = "Ôn tập (In đậm): Tắt";
+            }
+        }
+
         /**************************************************************************
-         * 6. HIỂN THỊ DANH SÁCH CÂU HỎI PHẦN I VÀ PHẦN II
+         * 6. HIỂN THỊ DANH SÁCH CÂU HỎI PHẦN I VÀ PHẦN II (CÓ IN ĐẬM ĐÁP ÁN ĐÚNG)
          **************************************************************************/
         const OPTION_LABELS = ['A', 'B', 'C', 'D'];
         const SUB_ITEM_LABELS = ['a)', 'b)', 'c)', 'd)'];
@@ -1190,11 +1244,13 @@
             p1Wrapper.classList.toggle('hidden', examState.part1Questions.length === 0);
             p2Wrapper.classList.toggle('hidden', examState.part2Questions.length === 0);
 
+            const isSubmitted = examState.isSubmitted;
+            const showBold = isSubmitted || examState.showBoldHint;
+
             // Render Phần I
             examState.part1Questions.forEach((qObj, qIndex) => {
                 const userSelected = examState.answersP1[qIndex];
                 const isFlagged = !!examState.flaggedP1[qIndex];
-                const isSubmitted = examState.isSubmitted;
                 const correctIndex = qObj.options.findIndex(o => o.isCorrect);
                 const isQuestionCorrect = isSubmitted && userSelected === correctIndex;
 
@@ -1217,21 +1273,28 @@
 
                 const optionsHTML = qObj.options.map((opt, optIdx) => {
                     const isThisSelected = userSelected === optIdx;
-                    let btnStyle = "border-slate-200 dark:border-slate-700 bg-slate-50/70 dark:bg-slate-800/50 hover:border-amber-400 dark:hover:border-amber-500 text-slate-800 dark:text-slate-200";
-                    let badgeStyle = "bg-white dark:bg-slate-700 text-slate-700 dark:text-slate-200 border border-slate-300 dark:border-slate-600";
+                    let btnStyle = "border-slate-200 dark:border-slate-700 bg-slate-50/70 dark:bg-slate-800/50 hover:border-amber-400 dark:hover:border-amber-500 text-slate-700 dark:text-slate-200 font-normal";
+                    let badgeStyle = "bg-white dark:bg-slate-700 text-slate-700 dark:text-slate-200 border border-slate-300 dark:border-slate-600 font-medium";
                     let feedbackNote = "";
+
+                    // Khi bật Chế độ Ôn tập hoặc sau khi Nộp bài: IN ĐẬM toàn bộ chữ cái A,B,C,D và nội dung đáp án đúng
+                    const isBoldAnswer = showBold && opt.isCorrect;
+                    const textWeightClass = isBoldAnswer ? "correct-bold-answer" : "font-normal";
+                    const badgeBoldClass = isBoldAnswer && !isSubmitted && !isThisSelected ? "correct-bold-badge" : "";
 
                     if (!isSubmitted) {
                         if (isThisSelected) {
                             btnStyle = "border-2 border-amber-500 bg-amber-50 dark:bg-amber-950/30 text-navy-900 dark:text-amber-200 font-semibold shadow-xs";
                             badgeStyle = "bg-amber-500 text-navy-900 font-extrabold border-amber-500";
+                        } else if (isBoldAnswer) {
+                            btnStyle = "border-2 border-amber-500/50 bg-amber-50/40 dark:bg-amber-950/20";
                         }
                     } else {
                         // Đã nộp bài: tô màu đáp án đúng và đáp án học sinh chọn
                         if (opt.isCorrect) {
-                            btnStyle = "border-2 border-emerald-500 bg-emerald-50/80 dark:bg-emerald-950/30 text-emerald-950 dark:text-emerald-200 font-semibold";
+                            btnStyle = "border-2 border-emerald-500 bg-emerald-50/80 dark:bg-emerald-950/30 text-emerald-950 dark:text-emerald-200";
                             badgeStyle = "bg-emerald-500 text-white font-extrabold border-emerald-500";
-                            feedbackNote = `<span class="ml-auto text-xs font-bold text-emerald-600 dark:text-emerald-400 shrink-0"><i class="fa-solid fa-circle-check mr-1"></i>Đáp án đúng</span>`;
+                            feedbackNote = `<span class="ml-auto text-xs font-extrabold text-emerald-600 dark:text-emerald-400 shrink-0"><i class="fa-solid fa-circle-check mr-1"></i>Đáp án đúng</span>`;
                         } else if (isThisSelected && !opt.isCorrect) {
                             btnStyle = "border-2 border-rose-500 bg-rose-50/80 dark:bg-rose-950/30 text-rose-950 dark:text-rose-200 line-through decoration-rose-500/60";
                             badgeStyle = "bg-rose-500 text-white font-extrabold border-rose-500";
@@ -1245,10 +1308,10 @@
                         <button type="button"
                             ${isSubmitted ? 'disabled' : `onclick="selectPart1Answer(${qIndex}, ${optIdx})"`}
                             class="w-full text-left p-3.5 rounded-xl border transition flex items-center gap-3 ${btnStyle}">
-                            <span class="w-8 h-8 rounded-lg flex items-center justify-center text-sm font-bold shrink-0 ${badgeStyle}">
-                                ${OPTION_LABELS[optIdx]}
+                            <span class="min-w-[2.25rem] h-8 px-1.5 rounded-lg flex items-center justify-center text-sm shrink-0 ${badgeStyle} ${badgeBoldClass} ${isBoldAnswer ? 'font-extrabold' : ''}">
+                                ${OPTION_LABELS[optIdx]}.
                             </span>
-                            <span class="text-sm leading-snug flex-1">${opt.text}</span>
+                            <span class="text-sm leading-snug flex-1 ${textWeightClass}">${opt.text}</span>
                             ${feedbackNote}
                         </button>
                     `;
@@ -1299,7 +1362,6 @@
             examState.part2Questions.forEach((qObj, qIndex) => {
                 const userSubAnswers = examState.answersP2[qIndex] || {};
                 const isFlagged = !!examState.flaggedP2[qIndex];
-                const isSubmitted = examState.isSubmitted;
 
                 // Tính số ý đúng và điểm câu này nếu đã nộp bài
                 let correctSubCount = 0;
@@ -1331,6 +1393,15 @@
                     const userChoice = userSubAnswers[sIdx]; // true | false | undefined
                     const isSubCorrect = userChoice === subItem.answer;
 
+                    // Khi bật Chế độ Ôn tập hoặc sau khi Nộp bài: Mệnh đề ĐÚNG được IN ĐẬM toàn bộ từ chữ cái a), b), c), d) đến hết câu
+                    const isBoldStatement = showBold && subItem.answer === true;
+                    const statementTextClass = isBoldStatement
+                        ? "correct-bold-answer"
+                        : "font-normal text-slate-800 dark:text-slate-100";
+                    const labelClass = isBoldStatement
+                        ? "correct-bold-answer mr-1.5"
+                        : "font-semibold text-navy-800 dark:text-amber-400 mr-1.5";
+
                     let trueBtnClass = "border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:border-emerald-500";
                     let falseBtnClass = "border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:border-rose-500";
                     let resultInfoHTML = "";
@@ -1353,7 +1424,7 @@
                                 : "border-2 border-rose-600 bg-rose-500 text-white font-extrabold";
                         }
 
-                        const correctText = subItem.answer ? 'ĐÚNG' : 'SAI';
+                        const correctText = subItem.answer ? 'ĐÚNG (In đậm)' : 'SAI';
                         if (userChoice === undefined) {
                             resultInfoHTML = `<div class="text-xs font-bold text-rose-500 mt-1"><i class="fa-solid fa-circle-exclamation mr-1"></i>Chưa chọn • Đáp án chuẩn: <span class="underline">${correctText}</span></div>`;
                         } else if (isSubCorrect) {
@@ -1367,24 +1438,24 @@
                         <div class="p-3.5 rounded-xl border ${
                             isSubmitted
                                 ? (isSubCorrect ? 'border-emerald-500/40 bg-emerald-50/30 dark:bg-emerald-950/15' : 'border-rose-500/40 bg-rose-50/30 dark:bg-rose-950/15')
-                                : 'border-slate-200 dark:border-slate-700/80 bg-slate-50/60 dark:bg-slate-800/40'
+                                : (isBoldStatement ? 'border-amber-500/45 bg-amber-50/40 dark:bg-amber-950/20' : 'border-slate-200 dark:border-slate-700/80 bg-slate-50/60 dark:bg-slate-800/40')
                         } flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                             <div class="space-y-1 flex-1">
-                                <div class="text-sm text-slate-800 dark:text-slate-100 leading-relaxed">
-                                    <strong class="text-navy-800 dark:text-amber-400 mr-1">${SUB_ITEM_LABELS[sIdx]}</strong>
-                                    <span>${subItem.text}</span>
+                                <div class="text-sm leading-relaxed">
+                                    <span class="${labelClass}">${SUB_ITEM_LABELS[sIdx]}</span>
+                                    <span class="${statementTextClass}">${subItem.text}</span>
                                 </div>
                                 ${resultInfoHTML}
                             </div>
                             <div class="flex items-center gap-2 shrink-0 self-end sm:self-center">
                                 <button type="button"
                                     ${isSubmitted ? 'disabled' : `onclick="selectPart2Answer(${qIndex}, ${sIdx}, true)"`}
-                                    class="px-4 py-2 rounded-xl border text-xs sm:text-sm font-semibold transition min-w-[78px] ${trueBtnClass}">
+                                    class="px-4 py-2 rounded-xl border text-xs sm:text-sm font-semibold transition min-w-[78px] ${trueBtnClass} ${showBold && subItem.answer ? 'font-extrabold ring-2 ring-amber-500/40' : ''}">
                                     Đúng
                                 </button>
                                 <button type="button"
                                     ${isSubmitted ? 'disabled' : `onclick="selectPart2Answer(${qIndex}, ${sIdx}, false)"`}
-                                    class="px-4 py-2 rounded-xl border text-xs sm:text-sm font-semibold transition min-w-[78px] ${falseBtnClass}">
+                                    class="px-4 py-2 rounded-xl border text-xs sm:text-sm font-semibold transition min-w-[78px] ${falseBtnClass} ${showBold && !subItem.answer ? 'font-extrabold ring-2 ring-slate-400/40' : ''}">
                                     Sai
                                 </button>
                             </div>
