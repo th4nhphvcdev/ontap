@@ -1,19 +1,16 @@
-# ⚡ Ontap Hub
+# 📚 Academic Revision Hub
 
-> *"Code vì đam mê, ôn tập vì tương lai."* 🚀
+Kho lưu trữ tài liệu ôn tập, được xây dựng và phát triển nhằm phục vụ cho quá trình chuẩn bị các kỳ thi quan trọng.
 
-Kho này được tạo ra để ôn tập, hoàn toàn được xây dựng bằng **vibe code** và những đêm trằn trọc. Nơi lưu giữ tài liệu sống còn để vượt vũ môn!
+## 📂 Cấu trúc tài liệu
 
-## 📚 Danh sách môn học
-* 💻 [Tin học](./tinhoc.html)
-* 🌍 [Địa lý](./dia.html)
-* 📜 [Lịch sử](./lichsu.html)
+- **[Tin học](./tinhoc.html)**: Tổng hợp kiến thức, mã nguồn và bài tập ôn luyện.
+- **[Địa lý](./dia.html)**: Hệ thống hóa kiến thức và số liệu địa lý.
+- **[Lịch sử](./lichsu.html)**: Tóm tắt mốc thời gian và sự kiện lịch sử trọng tâm.
 
----
+> **Trạng thái:** Dự án đang trong quá trình cập nhật và bổ sung nội dung thường xuyên.
 
 ## 📬 Liên hệ
-Mọi vấn đề thắc mắc, góp ý hay cần chia sẻ thêm, cứ liên hệ qua:
-* **GitHub:** [@th4nhphvcdev](https://github.com/th4nhphvcdev)
 
----
-*✨ "Học không chơi đánh rơi tuổi trẻ, mà học có vibe thì điểm cao bất ngờ!"*
+Mọi đóng góp, thắc mắc hoặc phản hồi về tài liệu, vui lòng liên hệ qua:
+- **GitHub:** [@th4nhphvcdev](https://github.com/th4nhphvcdev)
