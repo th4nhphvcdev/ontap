@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<title>Phiêu Lưu Trí Tuệ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Press+Start+2P&display=swap" rel="stylesheet">
+<style>
+  :root{--gold:#ffd34d;--brown:#7a3b0a;--navy:#14123f;--ink:#3b1d00}
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+  body{
+    min-height:100vh;font-family:'Baloo 2','Segoe UI',Arial,sans-serif;color:#fff;
+    background:
+      radial-gradient(circle at 20% 20%,rgba(255,255,255,.10) 0 2px,transparent 3px) 0 0/44px 44px,
+      radial-gradient(circle at 70% 60%,rgba(255,255,255,.07) 0 2px,transparent 3px) 0 0/58px 58px,
+      linear-gradient(180deg,#2b1f7a,#6a2a9a 55%,#d6407a) fixed;
+    display:flex;justify-content:center;padding:18px 14px 30px;user-select:none;-webkit-user-select:none;
+  }
+  .wrap{width:100%;max-width:1280px}
+  .box{background:var(--navy);border-radius:14px;box-shadow:0 0 0 4px var(--gold),0 0 0 8px var(--brown),0 12px 0 8px rgba(0,0,0,.28)}
+  .hidden{display:none!important}
+  .num{font-family:'Press Start 2P',monospace;font-size:.72rem}
+
+  /* HUD */
+  .hud{display:flex;gap:10px;flex-wrap:wrap;justify-content:space-between;margin:6px 4px 18px}
+  .chip{background:var(--navy);border-radius:10px;padding:6px 14px;font-weight:800;box-shadow:0 0 0 3px var(--gold),0 5px 0 3px var(--brown);display:flex;align-items:center;gap:6px;font-size:1rem}
+  .chip button{background:none;border:none;font-size:1.2rem;cursor:pointer;color:#fff}
+
+  /* Câu hỏi */
+  .qcard{padding:14px 18px;margin:0 4px 20px}
+  .tag{display:inline-block;background:var(--gold);color:var(--ink);padding:1px 12px;border-radius:99px;font-size:.82rem;font-weight:800;margin-bottom:4px}
+  .qtext{font-size:1.2rem;line-height:1.35;font-weight:700;white-space:pre-line;margin-bottom:10px}
+  .olist{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .o{display:flex;gap:10px;align-items:flex-start;background:rgba(255,255,255,.08);border-radius:10px;padding:7px 10px;line-height:1.25;border:3px solid transparent;font-size:1rem}
+  .o i{flex:0 0 30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-style:normal;font-family:'Press Start 2P',monospace;font-size:.8rem;color:#fff;text-shadow:2px 2px 0 rgba(0,0,0,.4)}
+  .o:nth-child(1) i{background:#f45b5b}.o:nth-child(2) i{background:#3b82f6}.o:nth-child(3) i{background:#22c55e}.o:nth-child(4) i{background:#f5b014}
+  .o.ok{border-color:#4ade80;background:rgba(34,197,94,.25)}
+  .o.no{border-color:#f87171;background:rgba(239,68,68,.25)}
+  .timer{height:12px;background:rgba(0,0,0,.4);border-radius:99px;overflow:hidden;margin:0 6px 20px;box-shadow:0 0 0 3px var(--gold)}
+  .timer div{height:100%;width:100%;background:linear-gradient(90deg,#34d399,#fde047);transform-origin:left}
+
+  /* Màn chơi */
+  .stage{position:relative;border-radius:10px;overflow:hidden;box-shadow:0 0 0 4px var(--gold),0 0 0 8px var(--brown),0 12px 0 8px rgba(0,0,0,.28);margin:0 4px 22px;background:#0b1030}
+  canvas{display:block;width:100%;height:auto;image-rendering:pixelated}
+  .overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(10,8,45,.6);padding:12px;overflow:auto}
+  .card{padding:22px 32px;text-align:center;width:min(620px,100%);margin:8px}
+  @media(min-width:1100px){
+    .qtext{font-size:1.4rem}
+    .o{font-size:1.1rem;padding:9px 12px}
+    .chip{font-size:1.1rem}
+  }
+  h1{font-weight:800;font-size:clamp(1.9rem,6vw,3rem);line-height:1;color:var(--gold);letter-spacing:1px;
+     text-shadow:0 3px 0 #e08a00,0 6px 0 #a04a00,0 9px 0 #5d2600,0 12px 14px rgba(0,0,0,.5);margin:8px 0 18px}
+  h1 small{display:block;font-size:.5em;color:#fff;text-shadow:0 3px 0 #1d4ed8,0 5px 0 #14123f;letter-spacing:3px;margin-bottom:4px}
+  .sub{opacity:.92;margin-bottom:12px;line-height:1.35}
+  input[type=text]{width:100%;padding:11px;border-radius:12px;border:4px solid var(--gold);background:#0b0a2c;color:#fff;font-size:1.1rem;text-align:center;outline:none;font-family:inherit;font-weight:700}
+  input::placeholder{color:rgba(255,255,255,.5)}
+  .hint{text-align:left;background:rgba(255,255,255,.08);border-radius:12px;padding:10px 14px;margin:12px 0 4px;font-size:.95rem;line-height:1.55}
+  .hint b{color:var(--gold)}
+  .kbd{display:inline-block;background:#fff;color:#14123f;border-radius:5px;padding:0 6px;font-size:.78rem;font-weight:800;box-shadow:0 2px 0 #9ca3af}
+  .btn{display:block;width:100%;padding:12px;margin-top:12px;border:none;border-radius:14px;cursor:pointer;font-size:1.25rem;font-weight:800;color:var(--ink);background:linear-gradient(#ffe98a,var(--gold));box-shadow:0 6px 0 #b45309,0 8px 12px rgba(0,0,0,.3);transition:.08s;font-family:inherit}
+  .btn:hover{filter:brightness(1.08)}
+  .btn:active{transform:translateY(5px);box-shadow:0 1px 0 #b45309}
+  .explain{position:absolute;left:14px;right:14px;bottom:14px;padding:12px 16px;line-height:1.35;white-space:pre-line;animation:up .3s;z-index:2;font-size:1.02rem;text-align:left}
+  .explain .btn{margin-top:8px;padding:8px;font-size:1.1rem}
+  .explain .head{font-weight:800;font-size:1.2rem;margin-bottom:2px}
+  @keyframes up{from{transform:translateY(24px);opacity:0}to{transform:none;opacity:1}}
+  .rank{font-size:1.5rem;font-weight:800;color:var(--gold);margin:4px 0}
+  .stats{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:10px 0}
+  .stat{background:rgba(255,255,255,.1);border-radius:12px;padding:6px 14px}
+  .stat b{display:block;font-family:'Press Start 2P',monospace;font-size:1.1rem;color:var(--gold);margin-top:2px}
+  .board{margin-top:10px;background:rgba(255,255,255,.08);border-radius:12px;padding:8px 14px;text-align:left;font-size:.95rem}
+  .board h3{margin-bottom:4px}
+  .board div{display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px dashed rgba(255,255,255,.2)}
+  .board div:last-child{border:none}
+
+  /* Nút cảm ứng */
+  .ctrl{display:none;gap:12px;margin:6px 4px 0}
+  .ctrl button{flex:1;padding:20px 0;font-size:1.5rem;border:none;border-radius:16px;background:linear-gradient(#ffe98a,var(--gold));color:var(--ink);font-weight:800;box-shadow:0 6px 0 #b45309;touch-action:none;font-family:inherit}
+  .ctrl button:active{transform:translateY(5px);box-shadow:0 1px 0 #b45309}
+  @media (pointer:coarse){.ctrl{display:flex}}
+
+  @media(max-width:700px){
+    .olist{grid-template-columns:1fr}
+    .qtext{font-size:1.05rem}
+    .overlay{position:static;background:#0b1030;padding:6px 0}
+    .explain{position:static;margin:10px;animation:none}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="hud hidden" id="hud">
+    <span class="chip">👤 <span id="hWho"></span></span>
+    <span class="chip">🚩 <span class="num" id="hStage">1/20</span></span>
+    <span class="chip" id="hHearts"></span>
+    <span class="chip">🪙 <span class="num" id="hScore">0</span></span>
+    <span class="chip">🔥 <span class="num" id="hStreak">0</span></span>
+    <span class="chip"><button id="musicBtn" title="Bật/tắt nhạc">🔊</button></span>
+  </div>
+
+  <div class="qcard box hidden" id="qcard">
+    <span class="tag" id="tag"></span>
+    <div class="qtext" id="qtext"></div>
+    <div class="olist" id="olist"></div>
+  </div>
+  <div class="timer hidden" id="timerWrap"><div id="timerBar"></div></div>
+
+  <div class="stage" id="stage">
+    <canvas id="cv" width="1280" height="560"></canvas>
+
+    <div class="overlay" id="start">
+      <div class="card box">
+        <h1><small>★ ĐẤU TRƯỜNG ★</small>PHIÊU LƯU<br>TRÍ TUỆ</h1>
+        <p class="sub">20 màn thử thách • nhảy đội đầu vào khối để chọn đáp án!</p>
+        <input type="text" id="name" placeholder="Nhập tên người chơi hoặc tên đội..." maxlength="14">
+        <div class="hint">
+          🎮 Chạy: <span class="kbd">←</span> <span class="kbd">→</span> hoặc <span class="kbd">A</span> <span class="kbd">D</span> &nbsp; Nhảy: <span class="kbd">Space</span> <span class="kbd">↑</span><br>
+          📦 Nhảy <b>đội đầu</b> vào khối A, B, C hoặc D<br>
+          ❤️ 5 mạng, sai mất 1 mạng • 🪙 nhanh và đúng liên tiếp thì nhiều xu
+        </div>
+        <button class="btn" id="startBtn">▶ BẮT ĐẦU</button>
+        <div class="board hidden" id="boardStart"></div>
+      </div>
+    </div>
+
+    <div class="explain box hidden" id="explain">
+      <div class="head" id="exHead"></div><div id="exText"></div>
+      <button class="btn" id="nextBtn">Tiếp tục ➜</button>
+    </div>
+
+    <div class="overlay hidden" id="result">
+      <div class="card box">
+        <div style="font-size:3rem" id="rEmoji">🏆</div>
+        <h1 id="rTitle" style="font-size:clamp(1.6rem,5vw,2.4rem);margin-bottom:8px">HOÀN THÀNH!</h1>
+        <div class="rank" id="rank"></div>
+        <p class="sub" id="rMsg"></p>
+        <div class="stats">
+          <div class="stat">Đúng<b id="rCorrect">0</b></div>
+          <div class="stat">Xu 🪙<b id="rScore">0</b></div>
+          <div class="stat">Chuỗi 🔥<b id="rBest">0</b></div>
+        </div>
+        <div class="board hidden" id="boardEnd"></div>
+        <button class="btn" id="againBtn">🔄 CHƠI LẠI / NGƯỜI TIẾP THEO</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="ctrl"><button id="bL">◀</button><button id="bJ">⤒ NHẢY</button><button id="bR">▶</button></div>
+</div>
+
+<script>
+/* ===== CÂU HỎI =====  a: 0=A, 1=B, 2=C, 3=D  (sửa số a nếu muốn đổi đáp án đúng) */
+const QUESTIONS = [
+ {tag:"😂 Vui lớp mình", q:"Lê Đăng Khoa cứ 8g tối là vào nhóm gửi những con cá trê lên nhóm, con cá trê đó được câu từ đâu?",
+  o:["Đìa nuôi của người ta","Câu trộm","Chích điện","Câu cá bán tự nhiên"], a:1, e:"Đáp án do lớp quyết định 😆"},
+ {tag:"😂 Vui lớp mình", q:"Gia Hưng (Ba Lượng) hay được ae nhắc đến bằng tên thay thế nào?",
+  o:["Ông Trời Cha","Ông nội nhỏ","Ông Trời Con","Ba Lượng là bương lạ"], a:2, e:"Ông Trời Con! ☁️"},
+ {tag:"😂 Vui lớp mình", q:"Có một cô gái đi chơi và đi đến một thôn lạ mà cô ấy chưa từng biết đến, hỏi cô gái ấy được người dân trong thôn gọi là gì?",
+  o:["Cô bé nhầm đường","Cô bé nhầm làng","Cô bé lầm thôn","Cô bé tí hon"], a:2, e:"Cô bé lầm thôn 🏘️"},
+ {tag:"🧠 Toán mẹo", q:"Một người cha hiện tại 40 tuổi, con trai 10 tuổi. Hỏi sau bao nhiêu năm nữa, tuổi người cha sẽ gấp đôi tuổi con trai?",
+  o:["10 năm","15 năm","20 năm","25 năm"], a:2, e:"Gọi x là số năm: 40 + x = 2(10 + x) ⇒ x = 20.\nKhi đó cha 60 tuổi, con 30 tuổi."},
+ {tag:"🧠 Quy luật", q:"Tìm số tiếp theo trong dãy:  2 – 6 – 12 – 20 – 30 – ?",
+  o:["36","40","42","44"], a:2, e:"Các số là 1×2, 2×3, 3×4, 4×5, 5×6 nên số tiếp theo là 6×7 = 42."},
+ {tag:"🧠 Câu đố mẹo", q:"Trong một cuộc đua, bạn vượt qua người đang đứng ở vị trí thứ hai. Hỏi lúc này bạn đứng ở vị trí thứ mấy?",
+  o:["Thứ nhất","Thứ hai","Thứ ba","Không xác định được"], a:1, e:"Vượt người thứ hai thì bạn thế chỗ họ, tức là thứ hai (chưa vượt được người thứ nhất)."},
+ {tag:"🧠 Toán mẹo", q:"Một con gà đẻ 1 quả trứng trong 2 ngày. Hỏi 6 con gà, với năng suất như nhau, sẽ đẻ được bao nhiêu quả trứng trong 6 ngày?",
+  o:["12 quả","15 quả","18 quả","36 quả"], a:2, e:"1 con gà đẻ 6 ÷ 2 = 3 quả trong 6 ngày.\n6 con gà ⇒ 6 × 3 = 18 quả."},
+ {tag:"🧠 Câu đố nổi tiếng", q:"3 người mua bánh 30.000đ, mỗi người góp 10.000đ. Bánh thật ra 25.000đ nên người bán trả lại 5.000đ. Người giao bánh giữ 2.000đ, trả mỗi người 1.000đ. Mỗi người trả 9.000đ ⇒ 27.000đ, cộng 2.000đ người giao giữ = 29.000đ. Vậy 1.000đ còn lại đã đi đâu?",
+  o:["Người bán bánh giữ","Người giao bánh lấy","Không mất đâu cả, phép cộng bị sai logic","Rơi mất trên đường"], a:2,
+  e:"27.000đ (tiền thực trả) đã gồm 25.000đ tiền bánh + 2.000đ người giao giữ.\nCộng thêm 2.000 nữa là sai. Phải là 27.000 + 3.000 (tiền trả lại) = 30.000."},
+ {tag:"🧠 Quy luật", q:"Tìm số còn thiếu:  1 – 4 – 9 – 16 – 25 – ?",
+  o:["30","35","36","49"], a:2, e:"Dãy bình phương: 1², 2², 3², 4², 5² nên số tiếp theo là 6² = 36."},
+ {tag:"🍎 Câu đố mẹo", q:"Có 1 trái táo nhưng có 5 vị sếp lớn đến chơi, bạn chỉ được cắt 2 nhát dao. Làm sao chia cho 5 người?",
+  o:["Cắt 2 nhát ra 5 miếng bằng nhau","Cắt đôi, chồng 2 nửa lên nhau cắt tiếp được 4 miếng, ai ăn nhanh thì có, ai chậm thì nhịn","Cắt 2 nhát ra 6 miếng cho dư","Không cần cắt, đưa nguyên trái"], a:1,
+  e:"Nhát 1: cắt đôi. Nhát 2: chồng hai nửa lên nhau rồi cắt ngang ⇒ 4 miếng.\nChỉ có 4 miếng thôi, ai ăn nhanh thì còn, chậm thì nhịn nhé! 😂"},
+ {tag:"🇬🇧 English", q:"Choose the word whose ending -ed is pronounced differently from the others.",
+  o:["hoped","played","cleaned","opened"], a:0, e:"“hoped” tận cùng âm /t/ (sau âm vô thanh /p/). Các từ còn lại đọc /d/."},
+ {tag:"🇬🇧 English", q:"Choose the word that has a different stress pattern.",
+  o:["develop","consider","family","continue"], a:2, e:"“family” nhấn âm 1 (FA-mi-ly). Còn lại nhấn âm 2: de-VEL-op, con-SI-der, con-TIN-ue."},
+ {tag:"🇬🇧 English", q:"If I __________ enough money, I would buy a new laptop.",
+  o:["have","had","will have","am having"], a:1, e:"Câu điều kiện loại 2: If + quá khứ đơn, would + V ⇒ had."},
+ {tag:"🇬🇧 English", q:"By the time we arrived, the movie __________.",
+  o:["starts","has started","had started","was starting"], a:2, e:"“By the time + quá khứ đơn” ⇒ mệnh đề chính dùng quá khứ hoàn thành: had started."},
+ {tag:"🇬🇧 English", q:"Students should take responsibility __________ their own learning.",
+  o:["for","on","at","with"], a:0, e:"take responsibility for something = chịu trách nhiệm về điều gì."},
+ {tag:"🧪 Hóa học", q:"Có 3 lọ dung dịch mất nhãn chứa HCl, NaOH và NaCl. Dùng quỳ tím có thể nhận biết các dung dịch trên như thế nào?",
+  o:["HCl hóa đỏ, NaOH hóa xanh, NaCl không đổi màu","HCl hóa xanh, NaOH hóa đỏ, NaCl không đổi màu","HCl và NaCl hóa đỏ, NaOH hóa xanh","Cả 3 đều không đổi màu quỳ tím"], a:0,
+  e:"Axit làm quỳ tím hóa đỏ, bazơ làm quỳ tím hóa xanh, muối trung tính (NaCl) không đổi màu."},
+ {tag:"🧪 Hóa học", q:"Có 3 lọ dung dịch mất nhãn chứa H₂SO₄, KOH và KCl. Khi dùng quỳ tím, hiện tượng nào sau đây đúng?",
+  o:["H₂SO₄ hóa xanh, KOH hóa đỏ, KCl không đổi màu","H₂SO₄ hóa đỏ, KOH hóa xanh, KCl không đổi màu","H₂SO₄ và KCl hóa xanh, KOH hóa đỏ","Cả 3 dung dịch đều hóa đỏ"], a:1,
+  e:"H₂SO₄ là axit ⇒ đỏ; KOH là bazơ ⇒ xanh; KCl là muối trung tính ⇒ không đổi màu."},
+ {tag:"🧪 Hóa học", q:"Có 4 lọ dung dịch mất nhãn chứa HCl, NaOH, Na₂SO₄ và Ba(OH)₂. Dùng quỳ tím, có thể xác định được nhóm dung dịch nào?",
+  o:["HCl đỏ; NaOH và Ba(OH)₂ xanh; Na₂SO₄ không đổi màu","HCl xanh; NaOH đỏ; Na₂SO₄ và Ba(OH)₂ không đổi màu","HCl và Na₂SO₄ đỏ; NaOH và Ba(OH)₂ không đổi màu","Cả 4 dung dịch đều làm quỳ tím hóa đỏ"], a:0,
+  e:"Quỳ tím chia được 3 nhóm: axit (đỏ), bazơ (xanh), muối trung tính (không đổi). Muốn phân biệt NaOH với Ba(OH)₂ cần thêm thuốc thử."},
+ {tag:"🧪 Hóa học", q:"Có 3 lọ dung dịch mất nhãn chứa HNO₃, Ca(OH)₂ và NaNO₃. Dùng quỳ tím, cách nhận biết nào sau đây đúng?",
+  o:["HNO₃ hóa xanh; Ca(OH)₂ hóa đỏ; NaNO₃ không đổi màu","HNO₃ hóa đỏ; Ca(OH)₂ hóa xanh; NaNO₃ không đổi màu","HNO₃ và NaNO₃ hóa xanh; Ca(OH)₂ hóa đỏ","Cả 3 dung dịch đều không đổi màu"], a:1,
+  e:"HNO₃ là axit ⇒ đỏ; Ca(OH)₂ là bazơ ⇒ xanh; NaNO₃ là muối trung tính ⇒ không đổi màu."},
+ {tag:"🧪 Hóa học", q:"Có 4 lọ dung dịch mất nhãn chứa HCl, H₂SO₄, NaOH và NaCl. Chỉ dùng quỳ tím, ta có thể kết luận điều gì?",
+  o:["Phân biệt được cả 4 dung dịch hoàn toàn","Nhận biết được nhóm axit, bazơ, trung tính nhưng không phân biệt được HCl với H₂SO₄","Chỉ nhận biết được NaOH","Không thể nhận biết được dung dịch nào"], a:1,
+  e:"HCl và H₂SO₄ đều là axit nên cùng làm quỳ tím hóa đỏ, cần thuốc thử khác (như BaCl₂) để phân biệt."}
+];
+
+const TIME_PER_Q = 45;   // giây mỗi màn (đặt 0 để tắt đếm giờ)
+const LIVES = 5;         // số mạng
+const L = ["A","B","C","D"];
+
+/* ================= Thiết lập canvas pixel ================= */
+const $ = id => document.getElementById(id);
+const cv=$("cv"), ctx=cv.getContext("2d");
+const LW=320, LH=140, SC=4, GROUND=116;
+const buf=document.createElement("canvas"); buf.width=LW; buf.height=LH;
+const g=buf.getContext("2d");
+ctx.imageSmoothingEnabled=false; g.imageSmoothingEnabled=false;
+const R=(x,y,w,h,c)=>{g.fillStyle=c;g.fillRect(Math.round(x),Math.round(y),w,h)};
+
+let state="menu", idx=0, correct=0, pts=0, streak=0, best=0, hearts=LIVES, player="";
+let tLeft=0, frameN=0, bgOff=0, shake=0, flash=0, flashCol="#fff";
+const hero={x:20,y:GROUND-16,vy:0,on:true,face:1};
+let blocks=[], particles=[];
+const clouds=[{x:20,y:14,s:.10},{x:110,y:30,s:.06},{x:190,y:10,s:.12},{x:270,y:36,s:.08}];
+const keys={l:0,r:0,j:0};
+
+/* ================= Nhân vật pixel (thiết kế riêng) ================= */
+const PAL={o:"#1f2937",b:"#3b82f6",B:"#1e40af",y:"#fde047",h:"#7c3f12",s:"#ffd3a1",k:"#111827",r:"#fb8fa0",m:"#c0392b",g:"#f97316",p:"#92400e"};
+const BODY=[
+"....oooooo....",
+"..oobbbbbboo..",
+".obbbbyybbbbo.",
+".obbbbyybbbbo.",
+".oBBBBBBBBBBo.",
+"..ohsssssssho.",
+"..osskssskso..",
+"..osrsssssrso.",
+"...osssmmsso..",
+"...oogggggoo..",
+"..ogggggggggo.",
+".osgggggggggso",
+"..ogggggggggo.",
+"..oppppppppo.."];
+const LEGS=[
+ ["..oppo..oppo..","..oooo..oooo.."],
+ ["...oppo.oppo..","..oooo.oooo..."],
+ ["..opo....opo..",".ooo......ooo."]];
+function drawHero(x,y,face,leg){
+  const rows=BODY.concat(LEGS[leg]);
+  x=Math.round(x); y=Math.round(y);
+  rows.forEach((row,j)=>{
+    for(let i=0;i<14;i++){
+      const c=row[i]; if(c==="."||c===undefined) continue;
+      const px=face>0?i:13-i;
+      R(x+px,y+j,1,1,PAL[c]);
+    }
+  });
+}
+
+/* ================= Khối đáp án ================= */
+const BLK=[
+ {f:"#f45b5b",h:"#ff9f9f",s:"#b02a2a"},{f:"#3b82f6",h:"#93bcff",s:"#1d4ed8"},
+ {f:"#22c55e",h:"#86efac",s:"#15803d"},{f:"#f5b014",h:"#ffe08a",s:"#b45309"}];
+const BRIGHT={f:"#22c55e",h:"#86efac",s:"#15803d"}, BAD={f:"#ef4444",h:"#fca5a5",s:"#991b1b"}, DIM={f:"#9ca3af",h:"#d1d5db",s:"#4b5563"};
+function initBlocks(){blocks=[0,1,2,3].map(i=>({x:62+i*58,y:58,w:19,h:19,i,bounce:0,st:"idle"}))}
+function drawBlock(b){
+  const c=b.st==="right"?BRIGHT:b.st==="wrong"?BAD:b.st==="dim"?DIM:BLK[b.i];
+  const y=b.y-b.bounce;
+  R(b.x-1,y-1,b.w+2,b.h+2,"#2a1006");
+  R(b.x,y,b.w,b.h,c.f);
+  R(b.x,y,b.w,2,c.h);R(b.x,y,2,b.h,c.h);
+  R(b.x,y+b.h-2,b.w,2,c.s);R(b.x+b.w-2,y,2,b.h,c.s);
+  [[3,3],[b.w-5,3],[3,b.h-5],[b.w-5,b.h-5]].forEach(([dx,dy])=>R(b.x+dx,y+dy,2,2,c.s));
+  if(b.st==="idle"&&(state==="play")){ // xu lơ lửng
+    const w=Math.round(Math.abs(Math.cos(frameN/14+b.i))*4)+1, cy=b.y-13+Math.round(Math.sin(frameN/10+b.i)*2);
+    R(b.x+9-w/2-0.5,cy,w+1,7,"#b45309");R(b.x+9-w/2,cy+1,w,5,"#fde047");
+  }
+}
+
+/* ================= Vẽ nền ================= */
+const SKY=["#3d7ff0","#5191f3","#65a3f6","#7bb5f8","#93c6fa","#addafc","#c8e9fd"];
+function pixelCloud(x,y){
+  R(x+3,y+5,22,6,"#fff");R(x+7,y+2,13,5,"#fff");R(x+13,y-1,8,5,"#fff");R(x,y+7,28,4,"#fff");
+  R(x+3,y+10,22,2,"#cfe6fb");R(x,y+10,3,1,"#cfe6fb");
+}
+function drawBackground(off){
+  const bh=Math.ceil(GROUND/SKY.length);
+  SKY.forEach((c,i)=>R(0,i*bh,LW,bh+1,c));
+  // mặt trời
+  for(let dy=-8;dy<=8;dy++){const w=Math.round(Math.sqrt(64-dy*dy));R(268-w,28+dy,w*2,1,"#fde047")}
+  R(264,24,6,3,"#fff7b0");
+  clouds.forEach(c=>pixelCloud(c.x,c.y));
+  // đồi xa
+  for(let x=0;x<LW;x++){
+    const o=off*0.2, h=28+Math.round(9*Math.sin((x+o)/30)+4*Math.sin((x+o)/11));
+    R(x,GROUND-h,1,h,"#92dcb6");
+  }
+  // đồi gần
+  for(let x=0;x<LW;x++){
+    const o=off*0.45, h=15+Math.round(7*Math.sin((x+o)/20+1.7)+2*Math.sin((x+o)/7));
+    R(x,GROUND-h,1,h,"#46c58a");R(x,GROUND-h,1,1,"#86efb4");
+  }
+  // bụi cây
+  [18,110,205,300,380].forEach(p=>{
+    const bx=((p-off*0.8)%420+420)%420-30;
+    R(bx,GROUND-6,22,6,"#15803d");R(bx+3,GROUND-9,16,4,"#22a14f");R(bx+7,GROUND-11,8,3,"#4ade80");
+    R(bx+4,GROUND-8,2,1,"#86efac");R(bx+12,GROUND-6,2,1,"#4ade80");
+  });
+  // ống xanh
+  R(6,GROUND-28,26,28,"#16a34a");R(3,GROUND-34,32,8,"#22c55e");
+  R(9,GROUND-28,4,28,"#4ade80");R(6,GROUND-34,4,8,"#86efac");
+  R(28,GROUND-28,4,28,"#15803d");R(31,GROUND-34,4,8,"#15803d");
+  R(3,GROUND-35,32,1,"#0f3d1c");R(3,GROUND-27,32,1,"#0f3d1c");
+  // cờ cuối màn
+  R(303,40,2,GROUND-40,"#e5e7eb");R(302,36,4,4,"#fde047");
+  const fw=Math.round(Math.sin(frameN/12)*1.5);
+  for(let i=0;i<9;i++) R(305,42+i,Math.max(2,Math.round(15-i*1.5)+fw),1,"#ef4444");
+  // đất
+  R(0,GROUND,LW,4,"#58d96f");R(0,GROUND+4,LW,2,"#23a847");
+  for(let x=0;x<LW;x+=6) R(x,GROUND-1,2,1,"#58d96f");
+  R(0,GROUND+6,LW,LH-GROUND,"#c2602a");
+  const so=Math.round(off*1);
+  for(let row=0,y=GROUND+6;y<LH;row++,y+=10){
+    R(0,y,LW,1,"#8a3b12");R(0,y+1,LW,1,"#dc7c3f");
+    for(let k=-1;k<18;k++){
+      const x=k*20+(row%2)*10-(so%20);
+      R(x,y,1,10,"#8a3b12");
+    }
+  }
+}
+
+/* ================= Bảng xếp hạng ================= */
+function getBoard(){try{return JSON.parse(localStorage.getItem("pl2Board")||"[]")}catch(e){return[]}}
+function saveBoard(n,p,c){try{const b=getBoard();b.push({n,p,c});b.sort((x,y)=>y.p-x.p);localStorage.setItem("pl2Board",JSON.stringify(b.slice(0,8)))}catch(e){}}
+function renderBoard(el){
+  const b=getBoard(); if(!b.length){el.classList.add("hidden");return}
+  el.classList.remove("hidden"); const m=["🥇","🥈","🥉"];
+  el.innerHTML="<h3>🏅 Bảng xếp hạng</h3>"+b.map((r,i)=>`<div><span>${m[i]||(i+1)+"."} ${r.n.replace(/</g,"&lt;")}</span><span>${r.p} xu • ${r.c}/20</span></div>`).join("");
+}
+
+/* ================= Âm thanh & nhạc ================= */
+let ac=null, musicOn=true, musicTimer=null, step=0;
+function actx(){try{ac=ac||new (window.AudioContext||window.webkitAudioContext)();if(ac.state==="suspended")ac.resume()}catch(e){}return ac}
+function tone(seq,type="square",d=.09,vol=.06){
+  const a=actx(); if(!a) return;
+  seq.forEach((f,i)=>{const o=a.createOscillator(),gn=a.createGain();o.type=type;o.frequency.value=f;o.connect(gn);gn.connect(a.destination);
+    const t=a.currentTime+i*d;gn.gain.setValueAtTime(vol,t);gn.gain.exponentialRampToValueAtTime(.001,t+d);o.start(t);o.stop(t+d)});
+}
+const sJump=()=>tone([330,520],"square",.07),sBump=()=>tone([160,120],"square",.07),
+      sCoin=()=>tone([988,1319],"square",.09),sBad=()=>tone([220,165,110],"sawtooth",.14),
+      sWin=()=>tone([523,659,784,1047,1319],"square",.12);
+const MEL=[523,0,659,784,0,659,587,0, 698,0,880,698,0,587,523,0, 392,0,494,587,0,494,440,0, 523,659,784,1047,784,659,523,0];
+function startMusic(){
+  stopMusic(); if(!musicOn) return;
+  musicTimer=setInterval(()=>{
+    const n=MEL[step%MEL.length]; if(n) tone([n],"triangle",.17,.035);
+    if(step%4===0) tone([n? n/2:131],"square",.2,.02);
+    step++;
+  },190);
+}
+function stopMusic(){clearInterval(musicTimer);musicTimer=null}
+$("musicBtn").onclick=()=>{musicOn=!musicOn;$("musicBtn").textContent=musicOn?"🔊":"🔇";musicOn?startMusic():stopMusic()};
+
+/* ================= Luồng game ================= */
+function hudUpdate(){
+  $("hScore").textContent=pts;$("hStreak").textContent=streak;
+  $("hStage").textContent=(idx+1)+"/"+QUESTIONS.length;
+  $("hHearts").textContent="❤️".repeat(hearts)+"🖤".repeat(LIVES-hearts);
+}
+function showGameUI(on){["hud","qcard","timerWrap"].forEach(id=>$(id).classList.toggle("hidden",!on))}
+function loadQ(){
+  const q=QUESTIONS[idx]; initBlocks(); particles=[];
+  $("tag").textContent=q.tag;$("qtext").textContent=q.q;
+  $("olist").innerHTML=q.o.map((t,i)=>`<div class="o"><i>${L[i]}</i><span>${t}</span></div>`).join("");
+  $("explain").classList.add("hidden");
+  tLeft=TIME_PER_Q; $("timerWrap").classList.toggle("hidden",!TIME_PER_Q);
+  $("timerBar").style.transform="scaleX(1)"; $("timerBar").style.background="";
+  hudUpdate(); hero.x=-18;hero.y=GROUND-16;hero.vy=0;hero.on=true;hero.face=1; state="entering";
+}
+function startGame(){
+  actx(); player=$("name").value.trim()||"Bạn nhỏ";
+  idx=0;correct=0;pts=0;streak=0;best=0;hearts=LIVES;
+  $("hWho").textContent=player;
+  $("start").classList.add("hidden");$("result").classList.add("hidden");
+  showGameUI(true); loadQ(); startMusic();
+}
+function choose(i){
+  if(state!=="play") return; state="answered";
+  const q=QUESTIONS[idx], ok=(i===q.a);
+  blocks.forEach(b=>b.st=b.i===q.a?"right":(b.i===i?"wrong":"dim"));
+  const opts=[...document.querySelectorAll(".o")];
+  opts[q.a].classList.add("ok"); if(!ok&&i>=0) opts[i].classList.add("no");
+  let head;
+  if(ok){
+    correct++;streak++;best=Math.max(best,streak);
+    const bonus=TIME_PER_Q?Math.round(Math.max(tLeft,0)/TIME_PER_Q*50):0;
+    const gain=100+bonus+(streak>=3?20:0); pts+=gain;
+    sCoin(); flash=12;flashCol="#fde047";
+    const src=blocks[q.a];
+    for(let k=0;k<10;k++) particles.push({t:"coin",x:src.x+9,y:src.y,vx:(Math.random()-.5)*2.2,vy:-2.6-Math.random()*1.6,life:70});
+    for(let k=0;k<26;k++) particles.push({t:"sp",x:src.x+9,y:src.y+9,vx:(Math.random()-.5)*4,vy:-Math.random()*3.5,life:50,c:["#fde047","#f472b6","#60a5fa","#4ade80"][k%4]});
+    particles.push({t:"txt",x:src.x+9,y:src.y-6,vy:-.4,life:80,s:"+"+gain});
+    head="🎉 CHÍNH XÁC!  +"+gain+" xu"+(streak>=3?"  🔥 chuỗi x"+streak:"");
+  }else{
+    streak=0;hearts--;sBad();shake=14;flash=14;flashCol="#ef4444";
+    head=(i<0?"⏰ HẾT GIỜ!":"💥 SAI RỒI!")+"  Mất 1 mạng";
+  }
+  hudUpdate();
+  $("exHead").textContent=head;
+  $("exText").textContent="Đáp án đúng: "+L[q.a]+"\n"+q.e;
+  const last=idx===QUESTIONS.length-1,dead=hearts<=0;
+  $("nextBtn").textContent=dead?"💀 Hết mạng - Xem kết quả":(last?"🏁 Xem kết quả":"Tiếp tục ➜");
+  $("explain").classList.remove("hidden");
+}
+function next(){
+  if(state!=="answered") return;
+  if(hearts<=0||idx===QUESTIONS.length-1){finish(hearts<=0);return}
+  $("explain").classList.add("hidden"); state="exiting";
+}
+function finish(dead){
+  state="result"; saveBoard(player,pts,correct);
+  $("explain").classList.add("hidden"); showGameUI(false);
+  $("result").classList.remove("hidden");
+  const pct=correct/QUESTIONS.length;
+  $("rEmoji").textContent=dead?"💀":(pct>=.7?"🏆":"🎉");
+  $("rTitle").textContent=dead?"HẾT MẠNG RỒI!":"HOÀN THÀNH!";
+  $("rCorrect").textContent=correct+"/20";$("rScore").textContent=pts;$("rBest").textContent=best;
+  let r,m;
+  if(pct>=.9){r="👑 Vua phiêu lưu!";m="Quá đỉnh, cả lớp vỗ tay nào!"}
+  else if(pct>=.7){r="🌟 Cao thủ!";m="Rất giỏi, gần như hoàn hảo."}
+  else if(pct>=.5){r="👍 Khá ổn!";m="Cố thêm chút nữa là lên top."}
+  else{r="😅 Cần luyện thêm";m="Không sao, chơi lại là giỏi liền!"}
+  $("rank").textContent=r;$("rMsg").textContent=m;
+  renderBoard($("boardEnd")); sWin(); stopMusic();
+  for(let k=0;k<60;k++) particles.push({t:"sp",x:Math.random()*LW,y:-5,vx:(Math.random()-.5)*1.2,vy:Math.random()*1.5+.5,life:160,c:["#fde047","#f472b6","#60a5fa","#4ade80"][k%4]});
+}
+function again(){
+  $("name").value="";renderBoard($("boardStart"));
+  $("result").classList.add("hidden");$("start").classList.remove("hidden");
+  state="menu";hero.x=-18;initBlocks();particles=[];
+}
+
+/* ================= Cập nhật ================= */
+function update(){
+  frameN++;
+  clouds.forEach(c=>{c.x-=c.s;if(c.x<-30)c.x=LW+10});
+  particles.forEach(p=>{
+    if(p.t==="coin"){p.x+=p.vx;p.y+=p.vy;p.vy+=.12}
+    else if(p.t==="sp"){p.x+=p.vx;p.y+=p.vy;p.vy+=.08}
+    else p.y+=p.vy; p.life--;
+  });
+  particles=particles.filter(p=>p.life>0);
+  blocks.forEach(b=>{if(b.bounce>0)b.bounce-=.8; if(b.bounce<0)b.bounce=0});
+  if(shake>0)shake--; if(flash>0)flash--;
+
+  if(state==="result") return;
+  if(state==="play"&&TIME_PER_Q){
+    tLeft-=1/60;
+    $("timerBar").style.transform=`scaleX(${Math.max(tLeft/TIME_PER_Q,0)})`;
+    if(tLeft<10)$("timerBar").style.background="#ef4444";
+    if(tLeft<=0) choose(-1);
+  }
+  const playing=(state==="play"||state==="answered");
+  let vx=0;
+  if(playing) vx=(keys.r-keys.l)*1.15;
+  else vx={menu:.8,entering:.9,exiting:1.7}[state]||0;
+  if(vx) hero.face=vx>0?1:-1;
+  if(!playing) bgOff+=vx;
+  if(state==="menu"&&hero.on&&frameN%110===0){hero.vy=-3.9;hero.on=false}
+  if(playing&&keys.j&&hero.on){hero.vy=-3.9;hero.on=false;sJump()}
+  hero.x+=vx;
+  if(playing) hero.x=Math.max(-2,Math.min(LW-12,hero.x));
+  if(state==="entering"&&hero.x>=34) state="play";
+  if(state==="menu"&&hero.x>LW+10) hero.x=-18;
+  if(state==="exiting"&&hero.x>LW+8){idx++;loadQ();return}
+
+  const prevTop=hero.y;
+  hero.vy+=.17; hero.y+=hero.vy;
+  if(playing){
+    for(const b of blocks){
+      const ov=hero.x+12>b.x+1&&hero.x+2<b.x+b.w-1;
+      if(ov&&hero.vy<0&&prevTop>=b.y+b.h-1&&hero.y<b.y+b.h){
+        hero.y=b.y+b.h;hero.vy=.6;b.bounce=4;sBump();
+        if(state==="play") choose(b.i);
+      }
+    }
+  }
+  if(hero.y>=GROUND-16){hero.y=GROUND-16;hero.vy=0;hero.on=true}
+}
+
+/* ================= Vẽ ================= */
+function draw(){
+  const off=bgOff+((state==="play"||state==="answered")?hero.x*0.25:0);
+  drawBackground(off);
+  blocks.forEach(drawBlock);
+  // bóng + nhân vật
+  R(hero.x+1,GROUND,12,2,"rgba(0,0,0,.25)");
+  const leg=hero.on?((Math.abs(hero.x-(draw.px||0))>0.05||state==="entering"||state==="exiting"||state==="menu")?(Math.floor(frameN/6)%2):0):2;
+  draw.px=hero.x;
+  drawHero(hero.x,hero.y,hero.face,leg);
+  // hạt pixel
+  particles.forEach(p=>{
+    if(p.t==="coin"){const w=Math.round(Math.abs(Math.cos(p.life/4))*3)+1;R(p.x-w/2-.5,p.y,w+1,7,"#b45309");R(p.x-w/2,p.y+1,w,5,"#fde047")}
+    else if(p.t==="sp"){R(p.x,p.y,2,2,p.c)}
+  });
+
+  // ra canvas thật
+  ctx.save(); ctx.clearRect(0,0,cv.width,cv.height);
+  if(shake>0) ctx.translate((Math.random()-.5)*shake,(Math.random()-.5)*shake);
+  ctx.imageSmoothingEnabled=false;
+  ctx.drawImage(buf,0,0,LW*SC,LH*SC);
+
+  // chữ trên khối
+  ctx.textAlign="center";ctx.textBaseline="middle";
+  blocks.forEach(b=>{
+    const cx=(b.x+b.w/2)*SC, cy=(b.y-b.bounce+b.h/2)*SC+3;
+    ctx.font="26px 'Press Start 2P',monospace";
+    ctx.fillStyle="rgba(0,0,0,.4)";ctx.fillText(L[b.i],cx+3,cy+3);
+    ctx.fillStyle="#fff";ctx.fillText(L[b.i],cx,cy);
+    if(b.st==="idle"&&state==="play"){ // mũi tên gợi ý
+      const ay=(b.y+b.h)*SC+14+Math.sin(frameN/8)*4;
+      ctx.fillStyle="#fff";ctx.beginPath();ctx.moveTo(cx,ay);ctx.lineTo(cx-9,ay+12);ctx.lineTo(cx+9,ay+12);ctx.fill();
+    }
+  });
+  // tên người chơi
+  if(player&&state!=="menu"&&state!=="result"){
+    ctx.font="800 22px 'Baloo 2',Arial";ctx.textBaseline="alphabetic";
+    const nx=(hero.x+7)*SC, ny=(hero.y-3)*SC;
+    ctx.lineWidth=6;ctx.strokeStyle="rgba(20,18,63,.9)";ctx.lineJoin="round";ctx.strokeText(player,nx,ny);
+    ctx.fillStyle="#fff";ctx.fillText(player,nx,ny);
+  }
+  // chữ điểm bay
+  particles.forEach(p=>{
+    if(p.t==="txt"){
+      ctx.font="26px 'Press Start 2P',monospace";ctx.textBaseline="alphabetic";
+      ctx.lineWidth=7;ctx.strokeStyle="#7a3b0a";ctx.strokeText(p.s,p.x*SC,p.y*SC);
+      ctx.fillStyle="#fde047";ctx.fillText(p.s,p.x*SC,p.y*SC);
+    }
+  });
+  ctx.restore();
+  // hiệu ứng nháy màu
+  if(flash>0){ctx.fillStyle=flashCol;ctx.globalAlpha=flash/40;ctx.fillRect(0,0,cv.width,cv.height);ctx.globalAlpha=1}
+  // mờ dần khi chuyển màn
+  let fa=0;
+  if(state==="entering") fa=1-Math.min(Math.max((hero.x+18)/46,0),1);
+  if(state==="exiting") fa=Math.min(Math.max((hero.x-200)/90,0),1);
+  if(fa>0){ctx.fillStyle="#0b1030";ctx.globalAlpha=fa;ctx.fillRect(0,0,cv.width,cv.height);ctx.globalAlpha=1}
+}
+
+/* ================= Vòng lặp 60 FPS ================= */
+let last=0,acc=0;
+function loop(t){
+  acc+=Math.min(t-last,100);last=t;
+  while(acc>=1000/60){update();acc-=1000/60}
+  draw();requestAnimationFrame(loop);
+}
+initBlocks();requestAnimationFrame(t=>{last=t;loop(t)});
+
+/* ================= Điều khiển ================= */
+const MAP={ArrowLeft:"l",a:"l",A:"l",ArrowRight:"r",d:"r",D:"r",ArrowUp:"j",w:"j",W:"j"," ":"j"};
+addEventListener("keydown",e=>{
+  if(e.target.tagName==="INPUT"){if(e.key==="Enter")startGame();return}
+  if(MAP[e.key]){keys[MAP[e.key]]=1;e.preventDefault()}
+  if(e.key==="Enter"&&state==="answered") next();
+});
+addEventListener("keyup",e=>{if(MAP[e.key])keys[MAP[e.key]]=0});
+function hold(id,k){
+  const el=$(id);
+  ["pointerdown","pointerenter"].forEach(ev=>el.addEventListener(ev,e=>{if(ev==="pointerenter"&&e.buttons===0)return;keys[k]=1;e.preventDefault()}));
+  ["pointerup","pointerleave","pointercancel"].forEach(ev=>el.addEventListener(ev,()=>keys[k]=0));
+}
+hold("bL","l");hold("bR","r");hold("bJ","j");
+document.addEventListener("contextmenu",e=>e.preventDefault());
+$("startBtn").onclick=startGame;$("nextBtn").onclick=next;$("againBtn").onclick=again;
+renderBoard($("boardStart"));
+</script>
+</body>
+</html>
