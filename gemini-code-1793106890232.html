@@ -1,0 +1,2492 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kiểm Tra & Ôn Đúng/Sai Vô Hạn Tin Học 12 - Chuẩn Bộ GD&ĐT 2026</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter & JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        cyber: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            800: '#075985',
+                            900: '#0c4a6e',
+                            950: '#082f49',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: rgba(0, 0, 0, 0.04); }
+        ::-webkit-scrollbar-thumb { background: #0ea5e9; border-radius: 9999px; }
+        .dark ::-webkit-scrollbar-thumb { background: #0284c7; }
+
+        .cyber-header-bg {
+            background-color: #0f172a;
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(14, 165, 233, 0.22) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(99, 102, 241, 0.22) 0px, transparent 50%),
+                linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px);
+            background-size: 100% 100%, 100% 100%, 28px 28px, 28px 28px;
+        }
+        @keyframes pulse-fast {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.45; }
+        }
+        .timer-warning { animation: pulse-fast 1.2s infinite; }
+
+        .correct-bold-answer {
+            font-weight: 800 !important;
+            color: #047857;
+        }
+        .dark .correct-bold-answer {
+            color: #34d399;
+        }
+        .correct-bold-badge {
+            font-weight: 800 !important;
+            border-width: 2px !important;
+            border-color: #10b981 !important;
+            background-color: rgba(16, 185, 129, 0.15) !important;
+            color: #065f46 !important;
+        }
+        .dark .correct-bold-badge {
+            color: #6ee7b7 !important;
+        }
+        .kw-pill {
+            display: inline-block;
+            padding: 1px 8px;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 0.75rem;
+            background: rgba(14, 165, 233, 0.15);
+            color: #0369a1;
+            border: 1px solid rgba(14, 165, 233, 0.35);
+        }
+        .dark .kw-pill {
+            background: rgba(56, 189, 248, 0.15);
+            color: #7dd3fc;
+            border-color: rgba(56, 189, 248, 0.35);
+        }
+        .trap-pill {
+            display: inline-block;
+            padding: 1px 8px;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 0.75rem;
+            background: rgba(244, 63, 94, 0.15);
+            color: #be123c;
+            border: 1px solid rgba(244, 63, 94, 0.35);
+            text-decoration: line-through;
+        }
+        .dark .trap-pill {
+            background: rgba(251, 113, 133, 0.15);
+            color: #fda4af;
+            border-color: rgba(251, 113, 133, 0.35);
+        }
+    </style>
+</head>
+<body class="bg-slate-100 dark:bg-slate-950 text-slate-800 dark:text-slate-100 min-h-screen flex flex-col transition-colors duration-200">
+
+    <!-- STICKY HEADER -->
+    <header class="sticky top-0 z-40 cyber-header-bg text-white shadow-lg border-b border-cyan-500/30">
+        <div class="max-w-7xl mx-auto px-3 sm:px-6 h-16 flex items-center justify-between gap-2">
+            <!-- Brand / Title -->
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-400 via-sky-500 to-indigo-600 flex items-center justify-center text-slate-950 font-extrabold text-lg shadow-md shadow-cyan-500/20 shrink-0">
+                    <i class="fa-solid fa-microchip"></i>
+                </div>
+                <div>
+                    <div class="flex items-center gap-2">
+                        <h1 class="font-bold text-sm sm:text-base tracking-tight text-white line-clamp-1">TIN HỌC 12 - ÔN ĐÚNG/SAI VÔ HẠN & MẸO TỪ KHÓA</h1>
+                        <span class="hidden md:inline-block text-[11px] font-mono font-semibold uppercase tracking-wider px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-300 border border-amber-400/30">SIÊU DỄ HIỂU</span>
+                    </div>
+                    <p class="text-xs text-slate-300 line-clamp-1">Tạo câu Đúng/Sai vô hạn • Mẹo bắt từ khóa 3 giây • Giải thích cho người mất gốc</p>
+                </div>
+            </div>
+
+            <!-- Active Exam Controls -->
+            <div id="examHeaderControls" class="hidden items-center gap-2 sm:gap-3">
+                <div class="hidden xl:flex items-center gap-2 bg-white/10 px-3 py-1.5 rounded-xl text-xs font-medium border border-white/10">
+                    <i class="fa-solid fa-terminal text-cyan-400"></i>
+                    <span>Đã làm: <strong id="headerProgressText" class="text-cyan-300 font-mono">0/28</strong></span>
+                </div>
+
+                <div id="timerContainer" class="flex items-center gap-2 bg-slate-950/80 border border-cyan-500/40 px-3 py-1.5 rounded-xl font-mono font-bold text-sm sm:text-base text-cyan-300 shadow-inner">
+                    <i class="fa-regular fa-clock"></i>
+                    <span id="timerDisplay">40:00</span>
+                </div>
+
+                <button onclick="toggleMobilePalette()" class="lg:hidden p-2 rounded-xl bg-white/10 hover:bg-white/20 text-white relative" title="Bảng câu hỏi">
+                    <i class="fa-solid fa-table-cells"></i>
+                    <span id="mobileProgressBadge" class="absolute -top-1 -right-1 bg-cyan-400 text-slate-950 text-[10px] font-bold px-1.5 rounded-full">0</span>
+                </button>
+
+                <button onclick="confirmReshuffle()" class="hidden sm:flex items-center gap-1.5 bg-white/10 hover:bg-white/20 text-white text-xs sm:text-sm font-medium px-3 py-2 rounded-xl transition" title="Tạo đề mới đảo câu hỏi và đáp án">
+                    <i class="fa-solid fa-shuffle text-cyan-300"></i>
+                    <span class="hidden md:inline">Đảo đề mới</span>
+                </button>
+
+                <button id="headerSubmitBtn" onclick="openSubmitModal()" class="flex items-center gap-1.5 bg-gradient-to-r from-cyan-400 to-sky-500 hover:from-cyan-500 hover:to-sky-600 text-slate-950 font-extrabold text-xs sm:text-sm px-3.5 py-2 rounded-xl shadow-md transition transform active:scale-95">
+                    <i class="fa-solid fa-paper-plane"></i>
+                    <span>Nộp bài</span>
+                </button>
+            </div>
+
+            <!-- Right Actions (Cheat Sheet, Binary Tool, Home, Theme) -->
+            <div class="flex items-center gap-2">
+                <!-- Cheat Sheet Button (Always Visible) -->
+                <button onclick="toggleCheatSheetModal()" class="px-2.5 py-2 rounded-xl bg-amber-500/20 hover:bg-amber-500/30 border border-amber-400/40 text-amber-300 text-xs font-extrabold flex items-center gap-1.5 transition" title="Mẹo 8 Từ Khóa Bất Bại Chống Bẫy Đúng/Sai">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    <span class="hidden sm:inline">Mẹo 8 Từ Khóa</span>
+                </button>
+
+                <!-- IPv4 Binary Tool Button -->
+                <button onclick="toggleBinaryTool()" class="p-2 sm:px-2.5 sm:py-2 rounded-xl bg-white/10 hover:bg-white/20 text-cyan-200 text-xs font-semibold flex items-center gap-1 transition" title="Công cụ đổi Nhị phân ↔ Thập phân (IPv4)">
+                    <i class="fa-solid fa-binary"></i>
+                    <span class="hidden lg:inline font-mono">IP</span>
+                </button>
+
+                <button id="backToConfigBtn" onclick="confirmExitToSetup()" class="hidden items-center gap-1.5 text-xs sm:text-sm bg-white/10 hover:bg-white/20 px-3 py-2 rounded-xl transition" title="Quay về màn hình chính">
+                    <i class="fa-solid fa-house"></i>
+                    <span class="hidden sm:inline">Trang chính</span>
+                </button>
+
+                <button onclick="toggleDarkMode()" class="w-9 h-9 rounded-xl bg-white/10 hover:bg-white/20 flex items-center justify-center text-cyan-300 transition" title="Đổi giao diện Sáng/Tối">
+                    <i id="themeIcon" class="fa-solid fa-moon"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT CONTAINER -->
+    <main class="flex-1 max-w-7xl w-full mx-auto px-3 sm:px-6 py-6">
+
+        <!-- ================= VIEW 1: SETUP & CONFIGURATION SCREEN ================= -->
+        <section id="setupScreen" class="max-w-4xl mx-auto space-y-6">
+            <!-- Hero Banner -->
+            <div class="cyber-header-bg rounded-2xl p-6 sm:p-8 text-white shadow-xl border border-cyan-500/30 relative overflow-hidden">
+                <div class="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
+                    <div class="space-y-3 max-w-2xl">
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/20 border border-amber-400/30 text-amber-300 text-xs font-mono font-semibold">
+                            <i class="fa-solid fa-bolt"></i> Đề Cương Giữa Kỳ 1 + Trình Tạo Đúng/Sai Vô Hạn
+                        </div>
+                        <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight">Hệ Thống Luyện Thi & Chuyên Gia Trị Câu Đúng/Sai</h2>
+                        <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+                            Không còn nỗi sợ học vẹt hay bị lừa khi đề thi đổi câu chữ! Hệ thống tích hợp <strong>Mẹo Bắt Cặp Từ Khóa 3 Giây</strong>, giải thích siêu bình dân cho người mất gốc và <strong>Trình Sinh Câu Hỏi Đúng/Sai Vô Hạn</strong> với hàng trăm bối cảnh mới.
+                        </p>
+                    </div>
+                    <div class="grid grid-cols-2 gap-3 shrink-0">
+                        <div class="bg-white/10 backdrop-blur-xs border border-cyan-400/20 rounded-2xl p-4 text-center">
+                            <div class="text-2xl sm:text-3xl font-mono font-extrabold text-cyan-300">48+9</div>
+                            <div class="text-xs text-slate-300 mt-1">Câu Gốc Đề Cương</div>
+                        </div>
+                        <div class="bg-amber-500/20 backdrop-blur-xs border border-amber-400/40 rounded-2xl p-4 text-center">
+                            <div class="text-2xl sm:text-3xl font-mono font-extrabold text-amber-300">∞</div>
+                            <div class="text-xs text-amber-100 mt-1">Đúng/Sai Vô Hạn</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- QUICK LAUNCH: INFINITE TRUE/FALSE MASTER WORKSPACE -->
+            <div class="bg-gradient-to-r from-indigo-900 via-purple-900 to-slate-900 rounded-2xl p-5 sm:p-6 text-white shadow-xl border-2 border-amber-400/60 flex flex-col sm:flex-row items-center justify-between gap-5">
+                <div class="space-y-2">
+                    <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-amber-400 text-slate-950 font-extrabold text-xs uppercase">
+                        <i class="fa-solid fa-fire"></i> Tính năng mới đặc biệt
+                    </div>
+                    <h3 class="text-lg sm:text-xl font-extrabold text-white">Phòng Luyện Đúng/Sai Vô Hạn + Mẹo Từ Khóa Siêu Tốc</h3>
+                    <p class="text-xs sm:text-sm text-indigo-100 leading-relaxed">
+                        Ôn riêng Phần II (Đúng/Sai) với chế độ chấm từng ý ngay lập tức, tự động gạch chân <strong>[Từ khóa Đúng]</strong> và <strong>[Từ khóa Bẫy Sai]</strong>, giải thích bằng ví dụ đời thường dễ hiểu nhất và bấm nút <strong>sinh ra vô hạn câu hỏi mới</strong> để thử thách khả năng nhận diện đề lạ!
+                    </p>
+                </div>
+                <button type="button" onclick="openInfiniteTFTrainer()" class="shrink-0 w-full sm:w-auto px-6 py-4 rounded-2xl bg-gradient-to-r from-amber-400 to-orange-500 hover:from-amber-500 hover:to-orange-600 text-slate-950 font-black text-sm sm:text-base shadow-lg shadow-amber-500/25 flex items-center justify-center gap-2.5 transition transform active:scale-95">
+                    <i class="fa-solid fa-infinity text-lg"></i>
+                    <span>VÀO ÔN ĐÚNG/SAI VÔ HẠN NGAY</span>
+                </button>
+            </div>
+
+            <!-- Configuration Card -->
+            <div class="bg-white dark:bg-slate-900 rounded-2xl shadow-md border border-slate-200 dark:border-slate-800 p-5 sm:p-7 space-y-6">
+                <h3 class="text-lg font-bold flex items-center gap-2 text-slate-900 dark:text-cyan-400 border-b border-slate-200 dark:border-slate-800 pb-3">
+                    <i class="fa-solid fa-laptop-code text-cyan-500"></i> Hoặc Thiết Lập Đề Thi Tổng Hợp (Phần I + Phần II)
+                </h3>
+
+                <!-- 1. Exam Mode Selection -->
+                <div class="space-y-3">
+                    <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300">1. Chọn chế độ làm bài:</label>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3.5">
+                        <!-- Mode 1: Standard MOET 2026 -->
+                        <label id="modeCardStandard" onclick="selectExamMode('standard')" class="cursor-pointer rounded-2xl border-2 border-cyan-500 bg-cyan-50/50 dark:bg-cyan-950/20 p-4 transition flex flex-col justify-between gap-2">
+                            <div class="flex items-start gap-2.5">
+                                <input type="radio" name="examMode" value="standard" checked class="mt-1 accent-cyan-600 w-4 h-4">
+                                <div>
+                                    <div class="font-bold text-slate-900 dark:text-white text-sm flex items-center gap-1.5 flex-wrap">
+                                        <span>Đề Chuẩn Bộ (28 câu)</span>
+                                    </div>
+                                    <p class="text-xs text-slate-600 dark:text-slate-400 mt-1 leading-relaxed">
+                                        <strong>24 câu Phần I</strong> + <strong>4 câu Phần II</strong> (Có thể kèm câu sinh mới).
+                                    </p>
+                                </div>
+                            </div>
+                        </label>
+
+                        <!-- Mode 2: Full Outline -->
+                        <label id="modeCardFull" onclick="selectExamMode('full')" class="cursor-pointer rounded-2xl border-2 border-slate-200 dark:border-slate-700 hover:border-cyan-400 p-4 transition flex flex-col justify-between gap-2">
+                            <div class="flex items-start gap-2.5">
+                                <input type="radio" name="examMode" value="full" class="mt-1 accent-cyan-600 w-4 h-4">
+                                <div>
+                                    <div class="font-bold text-slate-900 dark:text-white text-sm">Full Đề Cương (57 câu)</div>
+                                    <p class="text-xs text-slate-600 dark:text-slate-400 mt-1 leading-relaxed">
+                                        Làm toàn bộ <strong>48 câu Phần I</strong> + <strong>9 câu Phần II gốc</strong>.
+                                    </p>
+                                </div>
+                            </div>
+                        </label>
+
+                        <!-- Mode 3: Only Part II + Infinite -->
+                        <label id="modeCardOnlyP2" onclick="selectExamMode('onlyp2')" class="cursor-pointer rounded-2xl border-2 border-slate-200 dark:border-slate-700 hover:border-cyan-400 p-4 transition flex flex-col justify-between gap-2">
+                            <div class="flex items-start gap-2.5">
+                                <input type="radio" name="examMode" value="onlyp2" class="mt-1 accent-cyan-600 w-4 h-4">
+                                <div>
+                                    <div class="font-bold text-indigo-600 dark:text-indigo-400 text-sm">Chuyên Đúng/Sai (9 gốc + 6 mới)</div>
+                                    <p class="text-xs text-slate-600 dark:text-slate-400 mt-1 leading-relaxed">
+                                        Luyện <strong>15 câu Đúng/Sai</strong> (9 câu đề cương + 6 câu tự sinh mới).
+                                    </p>
+                                </div>
+                            </div>
+                        </label>
+
+                        <!-- Mode 4: Custom -->
+                        <label id="modeCardCustom" onclick="selectExamMode('custom')" class="cursor-pointer rounded-2xl border-2 border-slate-200 dark:border-slate-700 hover:border-cyan-400 p-4 transition flex flex-col justify-between gap-2">
+                            <div class="flex items-start gap-2.5">
+                                <input type="radio" name="examMode" value="custom" class="mt-1 accent-cyan-600 w-4 h-4">
+                                <div>
+                                    <div class="font-bold text-slate-900 dark:text-white text-sm">Tùy Chỉnh Số Lượng</div>
+                                    <p class="text-xs text-slate-600 dark:text-slate-400 mt-1 leading-relaxed">
+                                        Tự chọn số câu Phần I, Phần II gốc và số câu Đúng/Sai sinh mới.
+                                    </p>
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- 2. Topic Filter Selection -->
+                <div class="space-y-3">
+                    <div class="flex items-center justify-between">
+                        <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300">2. Chủ đề kiến thức:</label>
+                        <button type="button" onclick="toggleAllTopics()" class="text-xs font-semibold text-cyan-600 dark:text-cyan-400 hover:underline">
+                            Chọn / Bỏ chọn tất cả
+                        </button>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                        <label class="flex items-center gap-3 p-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/60 cursor-pointer hover:border-cyan-400 transition">
+                            <input type="checkbox" value="AI" checked onchange="updateAvailableCounts()" class="topic-cb w-4 h-4 accent-cyan-600 rounded">
+                            <div class="text-xs">
+                                <div class="font-bold text-slate-800 dark:text-slate-100">Chủ đề A: Trí tuệ nhân tạo (AI)</div>
+                                <div class="text-slate-500 dark:text-slate-400">24 câu Phần I + Đúng/Sai AI sinh mới</div>
+                            </div>
+                        </label>
+                        <label class="flex items-center gap-3 p-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/60 cursor-pointer hover:border-cyan-400 transition">
+                            <input type="checkbox" value="NET" checked onchange="updateAvailableCounts()" class="topic-cb w-4 h-4 accent-cyan-600 rounded">
+                            <div class="text-xs">
+                                <div class="font-bold text-slate-800 dark:text-slate-100">Chủ đề B: Mạng máy tính & Internet</div>
+                                <div class="text-slate-500 dark:text-slate-400">13 câu P1 • 9 câu P2 gốc + Vô hạn câu mới</div>
+                            </div>
+                        </label>
+                        <label class="flex items-center gap-3 p-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/60 cursor-pointer hover:border-cyan-400 transition">
+                            <input type="checkbox" value="ETHICS" checked onchange="updateAvailableCounts()" class="topic-cb w-4 h-4 accent-cyan-600 rounded">
+                            <div class="text-xs">
+                                <div class="font-bold text-slate-800 dark:text-slate-100">Chủ đề F: Văn hóa & Ứng xử số</div>
+                                <div class="text-slate-500 dark:text-slate-400">11 câu Phần I + Đúng/Sai Ứng xử sinh mới</div>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Custom Question Count Controls -->
+                <div id="customCountControls" class="hidden grid-cols-1 sm:grid-cols-3 gap-4 p-4 rounded-2xl bg-cyan-50/50 dark:bg-slate-800/50 border border-cyan-200 dark:border-slate-700">
+                    <div>
+                        <div class="flex justify-between text-xs font-semibold mb-1.5">
+                            <span>Số câu Phần I (A,B,C,D):</span>
+                            <span class="text-cyan-600 dark:text-cyan-400">Tối đa: <strong id="maxP1Label">48</strong></span>
+                        </div>
+                        <input type="number" id="customP1Input" min="0" max="48" value="24" class="w-full px-3 py-2 rounded-xl border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900 text-sm font-bold font-mono">
+                    </div>
+                    <div>
+                        <div class="flex justify-between text-xs font-semibold mb-1.5">
+                            <span>Số câu Đúng/Sai Gốc:</span>
+                            <span class="text-cyan-600 dark:text-cyan-400">Tối đa: <strong id="maxP2Label">9</strong></span>
+                        </div>
+                        <input type="number" id="customP2Input" min="0" max="9" value="9" class="w-full px-3 py-2 rounded-xl border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900 text-sm font-bold font-mono">
+                    </div>
+                    <div>
+                        <div class="flex justify-between text-xs font-semibold mb-1.5">
+                            <span>Số câu Đúng/Sai Sinh Mới (∞):</span>
+                            <span class="text-amber-600 dark:text-amber-400">Tự động tạo</span>
+                        </div>
+                        <input type="number" id="customInfiniteP2Input" min="0" max="100" value="5" class="w-full px-3 py-2 rounded-xl border border-amber-400 dark:border-amber-600 bg-white dark:bg-slate-900 text-sm font-bold font-mono">
+                    </div>
+                </div>
+
+                <!-- 3. Time Limit & Study Options -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
+                    <div class="space-y-2.5">
+                        <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300">
+                            <i class="fa-regular fa-clock text-cyan-500 mr-1"></i> 3. Thời gian làm bài (phút):
+                        </label>
+                        <div class="flex flex-wrap gap-2">
+                            <button type="button" onclick="setDuration(15)" class="time-preset px-3 py-1.5 rounded-xl text-xs font-semibold border border-slate-200 dark:border-slate-700">15p</button>
+                            <button type="button" onclick="setDuration(30)" class="time-preset px-3 py-1.5 rounded-xl text-xs font-semibold border border-slate-200 dark:border-slate-700">30p</button>
+                            <button type="button" onclick="setDuration(40)" class="time-preset px-3 py-1.5 rounded-xl text-xs font-bold border-2 border-cyan-500 bg-cyan-500/10 text-cyan-700 dark:text-cyan-300">40p (Chuẩn)</button>
+                            <button type="button" onclick="setDuration(60)" class="time-preset px-3 py-1.5 rounded-xl text-xs font-semibold border border-slate-200 dark:border-slate-700">60p</button>
+                        </div>
+                        <div class="flex items-center gap-2 pt-1">
+                            <span class="text-xs text-slate-500">Hoặc nhập số phút:</span>
+                            <input type="number" id="durationInput" min="1" max="300" value="40" class="w-24 px-3 py-1.5 rounded-xl border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-sm font-mono font-bold text-center">
+                        </div>
+                    </div>
+
+                    <div class="space-y-2.5">
+                        <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300">
+                            <i class="fa-solid fa-wand-magic-sparkles text-cyan-500 mr-1"></i> 4. Tùy chọn Trộn đề & Hiển thị Mẹo Từ Khóa:
+                        </label>
+                        <div class="space-y-2 text-xs">
+                            <label class="flex items-center gap-2.5 p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 cursor-pointer">
+                                <input type="checkbox" id="shuffleQuestionsCb" checked class="w-4 h-4 accent-cyan-600 rounded">
+                                <span><strong>Đảo vị trí câu hỏi & Đảo thứ tự A,B,C,D / a,b,c,d</strong></span>
+                            </label>
+                            <label class="flex items-center gap-2.5 p-2.5 rounded-xl bg-amber-50/80 dark:bg-amber-950/30 border border-amber-300 dark:border-amber-700/60 cursor-pointer">
+                                <input type="checkbox" id="showTipsInExamCb" checked class="w-4 h-4 accent-amber-600 rounded">
+                                <span><strong>Hiển thị Mẹo Từ Khóa & Giải thích siêu dễ hiểu</strong> (Xem ngay hoặc sau khi nộp)</span>
+                            </label>
+                            <label class="flex items-center gap-2.5 p-2.5 rounded-xl bg-cyan-50/70 dark:bg-cyan-950/30 border border-cyan-200 dark:border-cyan-800/60 cursor-pointer">
+                                <input type="checkbox" id="showBoldHintCb" class="w-4 h-4 accent-cyan-600 rounded">
+                                <span><strong>Chế độ Học Nhanh: In đậm sẵn đáp án đúng ngay khi đang làm</strong></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="setupErrorBox" class="hidden p-3 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-600 dark:text-rose-400 text-xs font-semibold"></div>
+
+                <div class="pt-2">
+                    <button type="button" onclick="startExam()" class="w-full py-4 px-6 rounded-2xl bg-gradient-to-r from-cyan-500 via-sky-500 to-indigo-600 hover:from-cyan-600 hover:to-indigo-700 text-white font-extrabold text-base shadow-lg shadow-cyan-500/20 flex items-center justify-center gap-3 transition transform active:scale-[0.99]">
+                        <i class="fa-solid fa-play"></i>
+                        <span>BẮT ĐẦU LÀM ĐỀ KIỂM TRA</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= VIEW 2: INFINITE TRUE/FALSE MASTER TRAINER ================= -->
+        <section id="infiniteTrainerScreen" class="hidden space-y-6">
+            <!-- Top Control Banner -->
+            <div class="bg-gradient-to-r from-indigo-950 via-slate-900 to-cyan-950 rounded-2xl p-5 sm:p-6 text-white shadow-xl border border-indigo-500/40">
+                <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+                    <div class="space-y-1.5">
+                        <div class="inline-flex items-center gap-2 px-3 py-0.5 rounded-full bg-amber-400/20 text-amber-300 border border-amber-400/30 text-xs font-mono font-bold">
+                            <i class="fa-solid fa-graduation-cap"></i> CHẾ ĐỘ CHUYÊN TRỊ CÂU ĐÚNG / SAI (NGƯỜI MẤT GỐC CŨNG HIỂU)
+                        </div>
+                        <h2 class="text-xl sm:text-2xl font-extrabold">Luyện Phản Xạ Bắt Từ Khóa & Sinh Đề Vô Hạn</h2>
+                        <p class="text-xs sm:text-sm text-slate-300">
+                            Bấm chọn <strong>Đúng</strong> hoặc <strong>Sai</strong> ở từng ý để máy chấm và bung ngay <strong>Từ khóa tử huyệt + Giải thích đời thường</strong>. Hết câu cũ chỉ cần bấm nút <strong>"Sinh Thêm Câu Hỏi Mới"</strong>!
+                        </p>
+                    </div>
+                    <div class="flex flex-wrap items-center gap-2.5 shrink-0">
+                        <button onclick="generateMoreInfiniteTF(5)" class="px-4 py-3 rounded-xl bg-gradient-to-r from-amber-400 to-orange-500 hover:from-amber-500 hover:to-orange-600 text-slate-950 font-black text-xs sm:text-sm shadow-lg flex items-center gap-2 transition transform active:scale-95">
+                            <i class="fa-solid fa-wand-magic-sparkles"></i>
+                            <span>+ Sinh Thêm 5 Câu Mới (Vô Hạn)</span>
+                        </button>
+                        <button onclick="shuffleTrainerList()" class="px-3.5 py-3 rounded-xl bg-white/10 hover:bg-white/20 text-white font-bold text-xs sm:text-sm flex items-center gap-1.5 border border-white/15 transition">
+                            <i class="fa-solid fa-shuffle text-cyan-300"></i>
+                            <span>Trộn Đảo Toàn Bộ</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Trainer Filter & Toggle Bar -->
+                <div class="mt-5 pt-4 border-t border-white/10 flex flex-wrap items-center justify-between gap-3 text-xs">
+                    <div class="flex flex-wrap items-center gap-2">
+                        <span class="text-slate-300 font-semibold">Nguồn câu hỏi:</span>
+                        <button onclick="setTrainerMode('all')" id="trBtnAll" class="px-3 py-1.5 rounded-lg bg-cyan-500 text-slate-950 font-extrabold">Tất cả (Gốc + Vô hạn)</button>
+                        <button onclick="setTrainerMode('original')" id="trBtnOrig" class="px-3 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-white font-semibold">9 Câu Gốc Đề Cương</button>
+                        <button onclick="setTrainerMode('infinite')" id="trBtnInf" class="px-3 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-amber-300 font-semibold">Chỉ Câu Sinh Mới (Đề Lạ)</button>
+                    </div>
+                    <div class="flex flex-wrap items-center gap-3">
+                        <label class="flex items-center gap-2 cursor-pointer bg-white/10 px-3 py-1.5 rounded-lg border border-white/15">
+                            <input type="checkbox" id="trainerAlwaysShowTipsCb" checked onchange="renderInfiniteTrainerCards()" class="accent-amber-400 w-4 h-4 rounded">
+                            <span class="font-bold text-amber-300">Luôn hiện Mẹo Từ Khóa & Giải thích trước khi bấm</span>
+                        </label>
+                        <label class="flex items-center gap-2 cursor-pointer bg-white/10 px-3 py-1.5 rounded-lg border border-white/15">
+                            <input type="checkbox" id="trainerBoldTrueCb" onchange="renderInfiniteTrainerCards()" class="accent-emerald-400 w-4 h-4 rounded">
+                            <span class="font-bold text-emerald-300">In đậm sẵn các ý ĐÚNG</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick 5 Golden Rules Collapsible Card -->
+            <div class="bg-amber-50/90 dark:bg-amber-950/25 border-2 border-amber-400/60 rounded-2xl p-4 sm:p-5">
+                <div class="flex items-center justify-between cursor-pointer" onclick="document.getElementById('quickRulesBody').classList.toggle('hidden')">
+                    <div class="flex items-center gap-2.5 font-extrabold text-amber-900 dark:text-amber-300 text-sm sm:text-base">
+                        <i class="fa-solid fa-key text-amber-500 text-lg"></i>
+                        <span>5 Khẩu Quyết "Nhìn Từ Khóa Khoanh Ngay Trong 3 Giây" (Dành cho người không biết gì) — Bấm để ẩn/hiện</span>
+                    </div>
+                    <i class="fa-solid fa-chevron-down text-amber-600"></i>
+                </div>
+                <div id="quickRulesBody" class="mt-3 pt-3 border-t border-amber-300/60 dark:border-amber-800/60 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 text-xs leading-relaxed">
+                    <div class="p-3 rounded-xl bg-white dark:bg-slate-900 border border-amber-200 dark:border-slate-800">
+                        <div class="font-extrabold text-cyan-700 dark:text-cyan-400 mb-1">1. SWITCH vs. ROUTER (Hay bẫy nhất!)</div>
+                        <p>• <strong>Switch (Bộ chuyển mạch):</strong> Giống như "ổ cắm nối dài" nối các máy <strong>trong cùng 1 phòng (LAN)</strong> để gửi file/in ấn. Mất Internet vẫn gửi file nội bộ được.<br>• <strong>Router (Bộ định tuyến):</strong> Là "cổng ra thế giới" để <strong>vào Internet</strong> và <strong>nối các phòng khác nhau</strong>. <span class="text-rose-600 dark:text-rose-400 font-bold">Bẫy: Dùng Switch để ra Internet hoặc thay Switch bằng Router → SAI!</span></p>
+                    </div>
+                    <div class="p-3 rounded-xl bg-white dark:bg-slate-900 border border-amber-200 dark:border-slate-800">
+                        <div class="font-extrabold text-cyan-700 dark:text-cyan-400 mb-1">2. SWITCH vs. HUB (Cứ khen Hub là SAI)</div>
+                        <p>• <strong>Switch:</strong> Thông minh, gửi dữ liệu đúng người nhận → <strong>Nhanh</strong>.<br>• <strong>Hub:</strong> Ngốc nghếch, ai gửi gì cũng loa lên cho cả phòng nghe → <strong>Chậm & nghẽn</strong>.<br><span class="text-rose-600 dark:text-rose-400 font-bold">Bẫy: Lắp thêm Hub để mạng nhanh hơn/hiệu quả hơn Switch → Auto SAI!</span></p>
+                    </div>
+                    <div class="p-3 rounded-xl bg-white dark:bg-slate-900 border border-amber-200 dark:border-slate-800">
+                        <div class="font-extrabold text-cyan-700 dark:text-cyan-400 mb-1">3. CÁP QUANG vs. CÁP XOẮN ĐÔI vs. WI-FI</div>
+                        <p>• Đi xa, cực nhanh (nối các tòa nhà): <strong>Cáp quang</strong>.<br>• Nối máy tính trong phòng vào Switch: <strong>Cáp xoắn đôi (RJ45)</strong>.<br>• Tốc độ & ổn định: <strong>Cáp quang > Cáp xoắn đôi > Wi-Fi</strong>.<br><span class="text-rose-600 dark:text-rose-400 font-bold">Bẫy: Cáp xoắn đôi đi xa tốt hơn cáp quang, hoặc Wi-Fi nhanh hơn cắm dây → SAI!</span></p>
+                    </div>
+                    <div class="p-3 rounded-xl bg-white dark:bg-slate-900 border border-amber-200 dark:border-slate-800">
+                        <div class="font-extrabold text-cyan-700 dark:text-cyan-400 mb-1">4. ACCESS POINT (Wi-Fi) vs. MODEM</div>
+                        <p>• <strong>Access Point (AP):</strong> Cục phát sóng Wi-Fi cho điện thoại/laptop. Đứng xa, phòng rộng, tường dày hoặc <strong>nhiều người bắt chung thì mạng chậm đi</strong>.<br><span class="text-rose-600 dark:text-rose-400 font-bold">Bẫy: Nhiều người truy cập không ảnh hưởng tốc độ, hoặc nâng cấp Modem để tăng sóng Wi-Fi → SAI!</span></p>
+                    </div>
+                    <div class="p-3 rounded-xl bg-white dark:bg-slate-900 border border-amber-200 dark:border-slate-800">
+                        <div class="font-extrabold text-cyan-700 dark:text-cyan-400 mb-1">5. ĐỊA CHỈ IP & CHIA SẺ MÁY IN</div>
+                        <p>• <strong>Địa chỉ IP:</strong> Như số Căn cước công dân — mỗi máy trong mạng phải <strong>riêng và duy nhất</strong>. <strong>Router</strong> là người tìm đường, không phải máy gửi.<br>• <strong>Máy in cắm vào máy giáo viên:</strong> Máy giáo viên tắt = cả phòng nghỉ in. Ai bấm in trước thì in trước, <strong>không ưu tiên số thứ tự máy</strong>.</p>
+                    </div>
+                    <div class="p-3 rounded-xl bg-emerald-50 dark:bg-emerald-950/30 border border-emerald-300 dark:border-emerald-800 flex flex-col justify-between">
+                        <div class="font-extrabold text-emerald-800 dark:text-emerald-300 mb-1"><i class="fa-solid fa-lightbulb mr-1"></i>Mẹo đọc câu lạ ở ngoài:</div>
+                        <p class="text-emerald-900 dark:text-emerald-200">Đừng đọc cả câu dài! Chỉ cần tìm <strong>[Tên Thiết Bị]</strong> + <strong>[Hành Động]</strong>. Nếu ghép sai cặp (ví dụ: <em>Modem + phát Wi-Fi</em>, <em>Switch + ra Internet</em>) là khoanh <strong>SAI</strong> ngay!</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Trainer Cards Container -->
+            <div id="infiniteTrainerList" class="space-y-6"></div>
+
+            <!-- Bottom Generate More Button -->
+            <div class="text-center py-4">
+                <button onclick="generateMoreInfiniteTF(5)" class="px-6 py-4 rounded-2xl bg-gradient-to-r from-amber-400 via-orange-500 to-rose-500 text-slate-950 font-black text-base shadow-xl hover:scale-[1.01] transition inline-flex items-center gap-2.5">
+                    <i class="fa-solid fa-plus-circle text-lg"></i>
+                    <span>SINH THÊM 5 CÂU ĐÚNG/SAI MỚI TINH (KHÔNG GIỚI HẠN)</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- ================= VIEW 3: EXAM & REVIEW WORKSPACE ================= -->
+        <section id="examWorkspace" class="hidden">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+
+                <!-- LEFT / MAIN COLUMN: RESULT BANNER + QUESTIONS -->
+                <div class="lg:col-span-8 xl:col-span-9 space-y-6">
+
+                    <!-- RESULT DASHBOARD (SHOWN AFTER SUBMIT) -->
+                    <div id="resultSummaryPanel" class="hidden bg-white dark:bg-slate-900 rounded-2xl shadow-xl border-2 border-cyan-500 overflow-hidden">
+                        <div class="cyber-header-bg p-6 text-white flex flex-col sm:flex-row items-center justify-between gap-4">
+                            <div class="space-y-1 text-center sm:text-left">
+                                <span class="text-xs font-mono uppercase tracking-widest text-cyan-300 font-bold">KẾT QUẢ BÀI KIỂM TRA TIN HỌC 12</span>
+                                <h2 class="text-2xl font-extrabold" id="resultTitleText">Hoàn thành bài thi!</h2>
+                                <p class="text-xs text-slate-300" id="resultTimeSpentText">Thời gian làm bài: 00 phút 00 giây</p>
+                            </div>
+                            <div class="flex items-center gap-4">
+                                <div class="bg-white/10 backdrop-blur-md border border-cyan-400/40 rounded-2xl px-6 py-3 text-center">
+                                    <div class="text-xs text-cyan-200 uppercase font-semibold">Tổng Điểm (Thang 10)</div>
+                                    <div id="finalScore10Display" class="text-4xl font-mono font-black text-cyan-300 mt-0.5">0,00</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="p-5 sm:p-6 space-y-5">
+                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                                <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/70 border border-slate-200 dark:border-slate-700">
+                                    <div class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">PHẦN I (4 phương án A,B,C,D)</div>
+                                    <div class="text-2xl font-mono font-extrabold text-slate-900 dark:text-white mt-1" id="part1ScoreDisplay">0,00 / 6,00đ</div>
+                                    <div class="text-xs text-emerald-600 dark:text-emerald-400 font-semibold mt-1" id="part1CorrectCountDisplay">Đúng 0/24 câu</div>
+                                </div>
+
+                                <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/70 border border-slate-200 dark:border-slate-700">
+                                    <div class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">PHẦN II (Đúng / Sai lũy tiến)</div>
+                                    <div class="text-2xl font-mono font-extrabold text-slate-900 dark:text-white mt-1" id="part2ScoreDisplay">0,00 / 4,00đ</div>
+                                    <div class="text-xs text-cyan-600 dark:text-cyan-400 font-semibold mt-1" id="part2SubCountDisplay">Đúng 0/16 ý a,b,c,d</div>
+                                </div>
+
+                                <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/70 border border-slate-200 dark:border-slate-700 text-xs space-y-1">
+                                    <div class="font-bold text-slate-500 dark:text-slate-400 uppercase mb-1">Chi tiết lũy tiến Phần II:</div>
+                                    <div class="flex justify-between"><span>Đúng 4 ý (+1,00đ):</span><strong id="stat4Sub" class="text-emerald-600 dark:text-emerald-400 font-mono">0 câu</strong></div>
+                                    <div class="flex justify-between"><span>Đúng 3 ý (+0,50đ):</span><strong id="stat3Sub" class="text-cyan-600 dark:text-cyan-400 font-mono">0 câu</strong></div>
+                                    <div class="flex justify-between"><span>Đúng 2 ý (+0,25đ):</span><strong id="stat2Sub" class="text-amber-600 dark:text-amber-400 font-mono">0 câu</strong></div>
+                                    <div class="flex justify-between"><span>Đúng 1 ý (+0,10đ):</span><strong id="stat1Sub" class="text-rose-600 dark:text-rose-400 font-mono">0 câu</strong></div>
+                                </div>
+                            </div>
+
+                            <div class="flex flex-wrap items-center justify-between gap-3 pt-3 border-t border-slate-200 dark:border-slate-800">
+                                <div class="flex flex-wrap items-center gap-2">
+                                    <span class="text-xs font-bold text-slate-500 mr-1"><i class="fa-solid fa-filter mr-1"></i>Lọc xem lại:</span>
+                                    <button onclick="setReviewFilter('all')" id="filterBtnAll" class="px-3 py-1.5 rounded-xl text-xs font-bold bg-cyan-600 text-white">Tất cả câu</button>
+                                    <button onclick="setReviewFilter('wrong')" id="filterBtnWrong" class="px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-rose-600 dark:text-rose-400 border border-slate-200 dark:border-slate-700">Câu sai / Chưa tối đa</button>
+                                    <button onclick="setReviewFilter('flagged')" id="filterBtnFlagged" class="px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-amber-600 dark:text-amber-400 border border-slate-200 dark:border-slate-700">Câu đánh dấu</button>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <button onclick="reshuffleAndRestart()" class="px-4 py-2 rounded-xl bg-gradient-to-r from-cyan-500 to-indigo-600 hover:from-cyan-600 hover:to-indigo-700 text-white font-bold text-xs sm:text-sm flex items-center gap-2 shadow transition">
+                                        <i class="fa-solid fa-rotate"></i> Làm đề mới (Đảo câu & Sinh câu mới)
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- OFFICIAL EXAM PAPER HEADER -->
+                    <div class="bg-white dark:bg-slate-900 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 p-4 sm:p-6">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-center border-b border-slate-200 dark:border-slate-800 pb-4">
+                            <div>
+                                <p class="text-xs uppercase font-semibold text-slate-500 dark:text-slate-400">BỘ GIÁO DỤC VÀ ĐÀO TẠO</p>
+                                <p class="text-sm font-bold text-slate-900 dark:text-white">ĐỀ KIỂM TRA GIỮA KỲ 1 (CHUẨN 2026)</p>
+                                <p class="text-[11px] text-slate-500 mt-0.5">Mã đề trộn: <strong id="examCodeDisplay" class="font-mono text-cyan-600 dark:text-cyan-400">IT2026</strong></p>
+                            </div>
+                            <div>
+                                <p class="text-sm font-extrabold uppercase text-cyan-700 dark:text-cyan-400">Môn thi: TIN HỌC 12</p>
+                                <p class="text-xs font-medium text-slate-600 dark:text-slate-300" id="paperSubInfo">Thời gian làm bài: 40 phút</p>
+                                <div class="mt-1 flex items-center justify-center gap-2">
+                                    <button type="button" onclick="toggleExamTipsLive()" id="liveTipsToggleBtn" class="px-2.5 py-1 rounded-lg bg-amber-500/15 text-amber-700 dark:text-amber-300 border border-amber-400/40 text-[11px] font-extrabold">
+                                        <i class="fa-solid fa-lightbulb mr-1"></i>Bật/Tắt Mẹo Từ Khóa & Giải Thích
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- PART I SECTION CONTAINER -->
+                        <div id="part1SectionWrapper" class="mt-6 space-y-5">
+                            <div class="bg-cyan-50/80 dark:bg-slate-800/90 border-l-4 border-cyan-500 p-4 rounded-r-xl">
+                                <h3 class="font-extrabold text-sm sm:text-base text-slate-900 dark:text-cyan-400 uppercase">
+                                    PHẦN I. Câu trắc nghiệm nhiều phương án lựa chọn
+                                </h3>
+                                <p class="text-xs text-slate-600 dark:text-slate-300 mt-1" id="part1InstructionText">
+                                    Mỗi câu hỏi thí sinh chỉ chọn một phương án đúng (0,25 điểm/câu).
+                                </p>
+                            </div>
+                            <div id="part1QuestionsList" class="space-y-4"></div>
+                        </div>
+
+                        <!-- PART II SECTION CONTAINER -->
+                        <div id="part2SectionWrapper" class="mt-10 space-y-5">
+                            <div class="bg-indigo-50/80 dark:bg-slate-800/90 border-l-4 border-indigo-500 p-4 rounded-r-xl flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                                <div>
+                                    <h3 class="font-extrabold text-sm sm:text-base text-slate-900 dark:text-indigo-400 uppercase">
+                                        PHẦN II. Câu trắc nghiệm đúng sai (Kèm Mẹo Từ Khóa & Sinh Đề Vô Hạn)
+                                    </h3>
+                                    <p class="text-xs text-slate-600 dark:text-slate-300 mt-1">
+                                        Chọn <strong>Đúng</strong> hoặc <strong>Sai</strong> cho từng ý a), b), c), d). Có giải thích cực dễ hiểu cho từng mệnh đề!
+                                    </p>
+                                </div>
+                                <button type="button" onclick="appendInfiniteQuestionToActiveExam()" class="shrink-0 px-3.5 py-2 rounded-xl bg-amber-500 hover:bg-amber-600 text-slate-950 font-extrabold text-xs shadow flex items-center gap-1.5">
+                                    <i class="fa-solid fa-plus"></i> Thêm 1 Câu Đúng/Sai Mới Vào Đề
+                                </button>
+                            </div>
+                            <div id="part2QuestionsList" class="space-y-6"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- RIGHT SIDEBAR: QUESTION PALETTE -->
+                <aside class="hidden lg:block lg:col-span-4 xl:col-span-3 sticky top-20">
+                    <div class="bg-white dark:bg-slate-900 rounded-2xl shadow-md border border-slate-200 dark:border-slate-800 p-4 space-y-4 max-h-[calc(100vh-6rem)] flex flex-col">
+                        <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-3">
+                            <h4 class="font-bold text-sm flex items-center gap-2 text-slate-900 dark:text-white">
+                                <i class="fa-solid fa-table-cells text-cyan-500"></i> Phiếu Trả Lời
+                            </h4>
+                            <span id="sidebarProgressBadge" class="text-xs font-mono font-bold px-2.5 py-0.5 rounded-full bg-cyan-500/15 text-cyan-700 dark:text-cyan-300">0/28</span>
+                        </div>
+
+                        <div class="overflow-y-auto space-y-4 pr-1 flex-1">
+                            <div id="palettePart1Container" class="space-y-1.5">
+                                <div class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">Phần I (Nhiều lựa chọn)</div>
+                                <div id="palettePart1Grid" class="grid grid-cols-6 gap-1.5"></div>
+                            </div>
+                            <div id="palettePart2Container" class="space-y-1.5">
+                                <div class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">Phần II (Đúng / Sai)</div>
+                                <div id="palettePart2Grid" class="grid grid-cols-4 gap-2"></div>
+                            </div>
+                        </div>
+
+                        <div class="pt-3 border-t border-slate-200 dark:border-slate-800 space-y-2">
+                            <button id="sidebarSubmitBtn" onclick="openSubmitModal()" class="w-full py-2.5 px-4 rounded-xl bg-gradient-to-r from-cyan-500 to-indigo-600 hover:from-cyan-600 hover:to-indigo-700 text-white font-extrabold text-sm shadow flex items-center justify-center gap-2 transition">
+                                <i class="fa-solid fa-paper-plane"></i> Nộp Bài & Chấm Điểm
+                            </button>
+                            <button onclick="confirmReshuffle()" class="w-full py-2 px-4 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 font-semibold text-xs flex items-center justify-center gap-2 transition">
+                                <i class="fa-solid fa-shuffle text-cyan-500"></i> Đảo Đề Mới Ngay
+                            </button>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </section>
+    </main>
+
+    <!-- MODAL SỔ TAY 8 CẶP TỪ KHÓA BẤT BẠI CHỐNG BẪY ĐÚNG/SAI -->
+    <div id="cheatSheetModal" class="fixed inset-0 z-50 hidden bg-black/70 backdrop-blur-xs flex items-center justify-center p-3 sm:p-6">
+        <div class="bg-white dark:bg-slate-900 rounded-2xl max-w-4xl w-full max-h-[88vh] flex flex-col shadow-2xl border-2 border-amber-400 overflow-hidden">
+            <div class="cyber-header-bg px-5 py-4 text-white flex items-center justify-between border-b border-amber-400/30">
+                <div class="flex items-center gap-2.5">
+                    <i class="fa-solid fa-wand-magic-sparkles text-amber-400 text-xl"></i>
+                    <div>
+                        <h3 class="font-extrabold text-base sm:text-lg">Sổ Tay 8 Cặp Từ Khóa "Bất Bại" (Dành Cho Người Không Biết Gì)</h3>
+                        <p class="text-xs text-slate-300">Chỉ cần nhìn 2 từ trong câu: Khớp cột Xanh là ĐÚNG • Dính cột Đỏ là SAI!</p>
+                    </div>
+                </div>
+                <button onclick="toggleCheatSheetModal()" class="w-8 h-8 rounded-xl bg-white/10 hover:bg-white/20 flex items-center justify-center text-white">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <div class="p-4 sm:p-6 overflow-y-auto space-y-4 text-xs sm:text-sm">
+                <div class="overflow-x-auto rounded-xl border border-slate-200 dark:border-slate-700">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 font-extrabold text-xs uppercase">
+                                <th class="p-3 border-b border-slate-200 dark:border-slate-700">Thiết bị / Khái niệm (Ví dụ đời thường)</th>
+                                <th class="p-3 border-b border-slate-200 dark:border-slate-700 text-emerald-700 dark:text-emerald-400">Từ khóa ĐÚNG đi kèm (Thấy là ĐÚNG)</th>
+                                <th class="p-3 border-b border-slate-200 dark:border-slate-700 text-rose-600 dark:text-rose-400">Bẫy hay lừa trong đề (Thấy là SAI ngay)</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-200 dark:divide-slate-800">
+                            <tr>
+                                <td class="p-3 font-bold">1. Switch<br><span class="font-normal text-xs text-slate-500">(Như ổ cắm chia nhiều lỗ trong 1 phòng)</span></td>
+                                <td class="p-3 text-emerald-700 dark:text-emerald-300 font-medium">Nối các máy <strong>trong cùng 1 phòng (mạng LAN)</strong>, chia sẻ file/máy in nội bộ, <strong>mở rộng thêm cổng cắm</strong> máy tính. Mất Internet vẫn gửi file cho nhau được.</td>
+                                <td class="p-3 text-rose-600 dark:text-rose-400 font-medium">Bắt buộc có Switch mới ra được Internet; dùng Switch nối nhiều phòng khác nhau; phát sóng Wi-Fi.</td>
+                            </tr>
+                            <tr>
+                                <td class="p-3 font-bold">2. Router<br><span class="font-normal text-xs text-slate-500">(Như bác bảo vệ cổng chính & chỉ đường)</span></td>
+                                <td class="p-3 text-emerald-700 dark:text-emerald-300 font-medium"><strong>Đưa mạng ra Internet</strong>, nối <strong>các mạng LAN của các phòng khác nhau</strong>, <strong>tìm đường (định tuyến)</strong> gói tin, nâng cấp băng thông cao giúp nhiều máy chạy mượt.</td>
+                                <td class="p-3 text-rose-600 dark:text-rose-400 font-medium">Dùng Router thay thế Switch để cắm 20-30 máy trong phòng cho nhanh.</td>
+                            </tr>
+                            <tr>
+                                <td class="p-3 font-bold">3. Hub<br><span class="font-normal text-xs text-slate-500">(Như cái loa phóng thanh cũ kỹ)</span></td>
+                                <td class="p-3 text-emerald-700 dark:text-emerald-300 font-medium">Gửi dữ liệu tràn lan tới mọi máy, dễ nghẽn mạng, chậm hơn Switch.</td>
+                                <td class="p-3 text-rose-600 dark:text-rose-400 font-medium">Dùng Hub <strong>nhanh hơn / hiệu quả hơn / cải thiện tốc độ</strong> so với Switch (100% SAI).</td>
+                            </tr>
+                            <tr>
+                                <td class="p-3 font-bold">4. Access Point (AP)<br><span class="font-normal text-xs text-slate-500">(Cục phát sóng Wi-Fi)</span></td>
+                                <td class="p-3 text-emerald-700 dark:text-emerald-300 font-medium">Cung cấp <strong>kết nối không dây (Wi-Fi)</strong> cho điện thoại/laptop. Đứng <strong>xa hoặc phòng rộng/tường dày</strong> thì sóng yếu. <strong>Nhiều người dùng chung</strong> thì mạng chậm.</td>
+                                <td class="p-3 text-rose-600 dark:text-rose-400 font-medium">Số lượng thiết bị <strong>không ảnh hưởng</strong> tốc độ; lắp thêm AP làm tăng tốc độ cho <strong>tất cả</strong> máy (kể cả máy cắm dây).</td>
+                            </tr>
+                            <tr>
+                                <td class="p-3 font-bold">5. Modem<br><span class="font-normal text-xs text-slate-500">(Cục dịch tín hiệu nhà mạng)</span></td>
+                                <td class="p-3 text-emerald-700 dark:text-emerald-300 font-medium">Chuyển đổi tín hiệu từ nhà mạng Internet vào nhà (phù hợp kết nối đơn giản cho 1 máy).</td>
+                                <td class="p-3 text-rose-600 dark:text-rose-400 font-medium">Nâng cấp Modem giúp <strong>tăng vùng phủ sóng Wi-Fi</strong> (Phải lắp thêm Access Point mới đúng).</td>
+                            </tr>
+                            <tr>
+                                <td class="p-3 font-bold">6. Cáp quang vs. Cáp xoắn đôi vs. Wi-Fi</td>
+                                <td class="p-3 text-emerald-700 dark:text-emerald-300 font-medium">Đi xa (giữa các tòa nhà) dùng <strong>Cáp quang</strong>. Trong phòng nối máy vào Switch dùng <strong>Cáp xoắn đôi (RJ45)</strong>. Cắm dây luôn nhanh & ổn định hơn Wi-Fi.</td>
+                                <td class="p-3 text-rose-600 dark:text-rose-400 font-medium">Cáp xoắn đôi truyền đi xa hiệu quả hơn cáp quang; Mạng không dây (Wi-Fi) chia sẻ file nhanh hơn cáp xoắn đôi.</td>
+                            </tr>
+                            <tr>
+                                <td class="p-3 font-bold">7. Địa chỉ IP & Giao thức TCP/IP</td>
+                                <td class="p-3 text-emerald-700 dark:text-emerald-300 font-medium">Mọi máy vào Internet phải tuân theo IP. Mỗi máy có 1 địa chỉ IP <strong>riêng và duy nhất</strong>. IP là 1 phần của bộ TCP/IP. <strong>Router</strong> tìm đường dựa vào IP.</td>
+                                <td class="p-3 text-rose-600 dark:text-rose-400 font-medium">Hai máy dùng chung 1 IP; IP là viết tắt của TCP/IP; <strong>Trạm gửi</strong> tự tìm tuyến đường (sai vì Router mới tìm đường).</td>
+                            </tr>
+                            <tr>
+                                <td class="p-3 font-bold">8. Chia sẻ máy in trong phòng máy</td>
+                                <td class="p-3 text-emerald-700 dark:text-emerald-300 font-medium">Chia sẻ được qua cả mạng LAN có dây và không dây (Wi-Fi). Ai bấm lệnh in trước thì in trước.</td>
+                                <td class="p-3 text-rose-600 dark:text-rose-400 font-medium">Không thể chia sẻ máy in qua LAN; Ưu tiên in theo <strong>số thứ tự máy</strong>; Máy giáo viên (cắm máy in) tắt thì máy khác vẫn in được.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="p-4 border-t border-slate-200 dark:border-slate-800 flex justify-end">
+                <button onclick="toggleCheatSheetModal()" class="px-5 py-2.5 rounded-xl bg-cyan-600 text-white font-bold text-sm">Đã hiểu! Đóng bảng mẹo</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- FLOATING IPV4 BINARY <-> DECIMAL CONVERTER -->
+    <div id="binaryWidget" class="fixed bottom-4 right-4 z-50 hidden w-80 bg-white dark:bg-slate-900 rounded-2xl shadow-2xl border-2 border-cyan-500 overflow-hidden">
+        <div class="cyber-header-bg px-4 py-2.5 text-white flex items-center justify-between">
+            <span class="text-xs font-mono font-bold flex items-center gap-2"><i class="fa-solid fa-network-wired text-cyan-400"></i> Đổi IP Nhị Phân ↔ Thập Phân</span>
+            <button onclick="toggleBinaryTool()" class="text-white/80 hover:text-white"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="p-4 space-y-3 text-xs">
+            <div>
+                <label class="font-bold text-slate-700 dark:text-slate-300 block mb-1">Nhập dãy nhị phân (8 bit / 32 bit IPv4):</label>
+                <input type="text" id="binInput" oninput="convertBinToDec()" value="11000000 10101000 11111111 00000111" class="w-full px-3 py-2 rounded-xl font-mono text-xs bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700">
+            </div>
+            <div class="p-2.5 rounded-xl bg-cyan-50 dark:bg-cyan-950/40 border border-cyan-500/30 flex items-center justify-between">
+                <span class="text-slate-600 dark:text-slate-300 font-semibold">Kết quả thập phân:</span>
+                <strong id="decOutput" class="font-mono text-sm text-cyan-700 dark:text-cyan-300">192.168.255.7</strong>
+            </div>
+            <div class="text-[11px] text-slate-500 dark:text-slate-400 font-mono">
+                Bảng bit: 128 | 64 | 32 | 16 | 8 | 4 | 2 | 1
+            </div>
+        </div>
+    </div>
+
+    <!-- MOBILE QUESTION PALETTE DRAWER -->
+    <div id="mobilePaletteModal" class="fixed inset-0 z-50 hidden bg-black/60 backdrop-blur-xs flex items-end sm:items-center justify-center p-0 sm:p-4">
+        <div class="bg-white dark:bg-slate-900 w-full sm:max-w-md rounded-t-3xl sm:rounded-2xl max-h-[82vh] flex flex-col p-5 shadow-2xl border border-slate-200 dark:border-slate-800">
+            <div class="flex items-center justify-between pb-3 border-b border-slate-200 dark:border-slate-800">
+                <h4 class="font-bold text-base flex items-center gap-2">
+                    <i class="fa-solid fa-table-cells text-cyan-500"></i> Phiếu trả lời trắc nghiệm
+                </h4>
+                <button onclick="toggleMobilePalette()" class="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <div class="overflow-y-auto py-4 space-y-4 flex-1">
+                <div>
+                    <div class="text-xs font-bold text-slate-500 uppercase mb-2">Phần I (Nhiều phương án)</div>
+                    <div id="mobilePalettePart1Grid" class="grid grid-cols-6 gap-2"></div>
+                </div>
+                <div>
+                    <div class="text-xs font-bold text-slate-500 uppercase mb-2">Phần II (Đúng / Sai)</div>
+                    <div id="mobilePalettePart2Grid" class="grid grid-cols-4 gap-2"></div>
+                </div>
+            </div>
+            <div class="pt-3 border-t border-slate-200 dark:border-slate-800 flex gap-2">
+                <button onclick="toggleMobilePalette(); openSubmitModal();" class="flex-1 py-2.5 rounded-xl bg-cyan-600 text-white font-bold text-sm">
+                    Nộp bài ngay
+                </button>
+                <button onclick="toggleMobilePalette()" class="px-4 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 font-semibold text-sm">
+                    Đóng
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- CUSTOM CONFIRMATION / SUBMIT MODAL -->
+    <div id="customModal" class="fixed inset-0 z-50 hidden bg-black/60 backdrop-blur-xs flex items-center justify-center p-4">
+        <div class="bg-white dark:bg-slate-900 rounded-2xl max-w-md w-full p-6 shadow-2xl border border-slate-200 dark:border-slate-800 space-y-4">
+            <div class="flex items-center gap-3">
+                <div class="w-11 h-11 rounded-2xl bg-cyan-500/20 text-cyan-600 dark:text-cyan-400 flex items-center justify-center text-xl shrink-0">
+                    <i class="fa-solid fa-circle-question"></i>
+                </div>
+                <div>
+                    <h3 id="modalTitle" class="font-extrabold text-lg text-slate-900 dark:text-white">Xác nhận nộp bài</h3>
+                    <p id="modalSubtitle" class="text-xs text-slate-500 dark:text-slate-400">Kiểm tra kỹ trước khi kết thúc bài thi</p>
+                </div>
+            </div>
+            <div id="modalBody" class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed bg-slate-50 dark:bg-slate-800/60 p-4 rounded-xl border border-slate-200 dark:border-slate-700"></div>
+            <div class="flex items-center justify-end gap-3 pt-2">
+                <button onclick="closeCustomModal()" class="px-4 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-semibold text-sm transition">
+                    Quay lại
+                </button>
+                <button id="modalConfirmBtn" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-cyan-500 to-indigo-600 hover:from-cyan-600 hover:to-indigo-700 text-white font-bold text-sm shadow transition">
+                    Đồng ý
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= APPLICATION JAVASCRIPT ================= -->
+    <script>
+        /**************************************************************************
+         * 1. NGÂN HÀNG CÂU HỎI GỐC (48 CÂU PHẦN I + 9 CÂU PHẦN II CÓ MẸO SIÊU DỄ HIỂU)
+         **************************************************************************/
+        const CS_QUESTION_BANK = {
+            part1: [
+                { id: "P1_01", topic: "AI", topicName: "Chủ đề A: Trí tuệ nhân tạo (AI)", q: "AI (Trí tuệ nhân tạo) là gì?", correct: "Khả năng của máy tính thực hiện các công việc mang tính trí tuệ của con người.", distractors: ["Hệ thống tự động.", "Phần mềm diệt virus.", "Ứng dụng điện thoại thông minh."] },
+                { id: "P1_02", topic: "AI", topicName: "Chủ đề A: Trí tuệ nhân tạo (AI)", q: "Mục đích chính của AI là gì?", correct: "Xây dựng các phần mềm giúp máy tính có năng lực trí tuệ tương tự con người.", distractors: ["Xây dựng các phần mềm diệt virus.", "Tạo ra các ứng dụng giải trí.", "Phát triển các trò chơi điện tử."] },
+                { id: "P1_03", topic: "AI", topicName: "Chủ đề A: Trí tuệ nhân tạo (AI)", q: "Một máy tính được xem là có trí tuệ nhân tạo nếu vượt qua bài kiểm tra nào sau đây?", correct: "Turing Test.", distractors: ["Machine Test.", "Computer Test.", "Alan Test."] },
+                { id: "P1_04", topic: "AI", topicName: "Chủ đề A: Trí tuệ nhân tạo (AI)", q: "AI khác biệt so với tự động hóa như thế nào?", correct: "AI yêu cầu sự kết hợp của nhiều đặc trưng trí tuệ để thực hiện các nhiệm vụ phức tạp.", distractors: ["AI chỉ thực hiện được một nhiệm vụ duy nhất.", "Tự động hóa không yêu cầu sự can thiệp của con người.", "Tự động hóa chỉ áp dụng trong lĩnh vực công nghiệp."] },
+                { id: "P1_05", topic: "AI", topicName: "Chủ đề A: Trí tuệ nhân tạo (AI)", q: "AI có thể ảnh hưởng đến lĩnh vực tài chính như thế nào?", correct: "Phân tích hành vi tài chính để phát hiện gian lận.", distractors: ["Tạo ra sản phẩm mới.", "Quản lý quỹ đầu tư.", "Điều hành ngân hàng."] },
+                { id: "P1_06", topic: "AI", topicName: "Chủ đề A: Trí tuệ nhân tạo (AI)", q: "Giải pháp nào cần thiết để giám sát và đảm bảo an toàn trong phát triển AI?", correct: "Tăng cường sự minh bạch.", distractors: ["Giảm thiểu chi phí phát triển.", "Hạn chế nghiên cứu AI.", "Tăng cường sự phát triển của công nghệ."] },
+                { id: "P1_07", topic: "AI", topicName: "Chủ đề A: Trí tuệ nhân tạo (AI)", q: "ChatGPT được phát triển bởi:", correct: "OpenAI.", distractors: ["Apple.", "Microsoft.", "Meta."] },
+                { id: "P1_08", topic: "AI", topicName: "Chủ đề A: Trí tuệ nhân tạo (AI)", q: "Sự kết hợp IoT và AI (AIoT) giúp ích cho các nhà khoa học như thế nào?", correct: "Giúp giám sát môi trường tự nhiên và theo dõi tình hình biến đổi khí hậu.", distractors: ["Hỗ trợ quyết định đầu tư, phát hiện và ngăn chặn gian lận, nâng cao trải nghiệm khách hàng trong lĩnh vực tài chính, ngân hàng.", "Cải thiện hiệu suất, hiệu quả của các lĩnh vực sản xuất.", "Phát triển các nền tảng học trực tuyến thông minh."] },
+                { id: "P1_09", topic: "AI", topicName: "Chủ đề A: Trí tuệ nhân tạo (AI)", q: "Trong lĩnh vực sản xuất công nghiệp, robot AI được sử dụng để thực hiện các công việc lặp đi lặp lại hoặc nguy hiểm. Lợi ích chính của việc sử dụng robot AI trong sản xuất là gì?", correct: "Tăng năng suất, giảm thiểu sai sót, và cải thiện điều kiện làm việc an toàn hơn.", distractors: ["Giảm chi phí đầu tư ban đầu vào máy móc và thiết bị.", "Tạo ra nhiều việc làm mới cho công nhân lành nghề.", "Đơn giản hóa quy trình quản lý và vận hành nhà máy."] },
+                { id: "P1_10", topic: "AI", topicName: "Chủ đề A: Trí tuệ nhân tạo (AI)", q: "Phương án nào sau đây nêu ĐÚNG về khả năng học của AI?", correct: "Nắm bắt thông tin từ dữ liệu và điều chỉnh hành vi dựa trên thông tin mới.", distractors: ["Vận dụng logic và tri thức để đưa ra quyết định hoặc kết luận.", "Cảm nhận và hiểu biết môi trường thông qua các cảm biến và dữ liệu đầu vào.", "Tìm ra cách giải quyết các tình huống phức tạp dựa trên thông tin và tri thức."] },
+                { id: "P1_11", topic: "AI", topicName: "Chủ đề A: Trí tuệ nhân tạo (AI)", q: "Phương án nào sau đây nêu ĐÚNG về khả năng nhận thức của AI?", correct: "Cảm nhận và hiểu biết môi trường thông qua các cảm biến và dữ liệu đầu vào.", distractors: ["Nắm bắt thông tin từ dữ liệu và điều chỉnh hành vi dựa trên thông tin mới.", "Vận dụng logic và tri thức để đưa ra quyết định hoặc kết luận.", "Tìm ra cách giải quyết các tình huống phức tạp dựa trên thông tin và tri thức."] },
+                { id: "P1_12", topic: "AI", topicName: "Chủ đề A: Trí tuệ nhân tạo (AI)", q: "Phát biểu nào sau đây là SAI khi nói về AI (trí tuệ nhân tạo)?", correct: "Thông tin phản hồi luôn chính xác.", distractors: ["Được ứng dụng trên nhiều lĩnh vực.", "Thay thế một số nghề trong tương lai.", "Dễ bị lạm dụng vào mục đích xấu."] },
+                { id: "P1_13", topic: "AI", topicName: "Chủ đề A: Trí tuệ nhân tạo (AI)", q: "Hệ chuyên gia MYCIN là hệ chuyên gia thuộc lĩnh vực:", correct: "Y học.", distractors: ["Viễn thông.", "Sản xuất.", "Giáo dục."] },
+                { id: "P1_14", topic: "AI", topicName: "Chủ đề A: Trí tuệ nhân tạo (AI)", q: "Các máy tính tìm kiếm thông tin trên Internet như Google, Bing có thể hiểu yêu cầu tra cứu của người dùng được đưa vào bằng văn bản hay bằng tiếng nói. Đây là một trong những đặc trưng cơ bản của AI có khả năng?", correct: "Hiểu ngôn ngữ.", distractors: ["Suy luận.", "Nhận thức.", "Giải quyết vấn đề."] },
+                { id: "P1_15", topic: "AI", topicName: "Chủ đề A: Trí tuệ nhân tạo (AI)", q: "Nhận dạng khuôn mặt KHÔNG thể hiện được ứng dụng trong những lĩnh vực nào sau đây?", correct: "Chẩn đoán chính xác bệnh tật dựa trên sắc diện gương mặt bệnh nhân.", distractors: ["An ninh, xã hội.", "Xác định danh tính.", "Theo dõi khách hàng trong kinh doanh."] },
+                { id: "P1_16", topic: "AI", topicName: "Chủ đề A: Trí tuệ nhân tạo (AI)", q: "Hệ thống nào sau đây là ví dụ về khả năng suy luận của AI?", correct: "Hệ thống chẩn đoán y tế.", distractors: ["Hệ thống khuyến nghị YouTube.", "Máy tính điều khiển xe tự lái.", "Công cụ tìm kiếm Google."] },
+                { id: "P1_17", topic: "AI", topicName: "Chủ đề A: Trí tuệ nhân tạo (AI)", q: "Hệ thống AI nào sau đây có thể hiểu ngôn ngữ tự nhiên?", correct: "Trợ lí ảo Siri.", distractors: ["Phần mềm chơi cờ AlphaGo.", "Robot hút bụi.", "Xe tự lái."] },
+                { id: "P1_18", topic: "AI", topicName: "Chủ đề A: Trí tuệ nhân tạo (AI)", q: "Ứng dụng nào sau đây KHÔNG là ví dụ của AI hẹp?", correct: "Quản lí điểm của học sinh bằng số điểm điện tử.", distractors: ["Chương trình chơi cờ AlphaGo.", "Máy chấm công bằng nhận diện khuôn mặt.", "Hệ chuyên gia MYCIN tư vấn trong lĩnh vực y tế."] },
+                { id: "P1_19", topic: "AI", topicName: "Chủ đề A: Trí tuệ nhân tạo (AI)", q: "Trong lĩnh vực y tế, thành tựu nào sau đây dựa trên sự phát triển của AI?", correct: "Phần mềm hỗ trợ phân tích hình ảnh X-quang để phát hiện bất thường.", distractors: ["Đặt lịch khám với chuyên gia bằng sử dụng ứng dụng của bệnh viện trên điện thoại di động.", "Tra cứu hồ sơ điện tử của bệnh nhân bằng số căn cước công dân.", "Thanh toán viện phí bằng hình thức chuyển khoản."] },
+                { id: "P1_20", topic: "AI", topicName: "Chủ đề A: Trí tuệ nhân tạo (AI)", q: "Một số hệ thống được tích hợp AI, ví dụ: (1) Trợ lí ảo trên điện thoại; (2) Đề xuất nghe nhạc trực tuyến; (3) Phân loại loài thực vật; (4) Kiểm duyệt nội dung bình luận; (5) Kiểm duyệt nội dung trong video; (6) Hệ chuyên gia y tế MYCIN. Khả năng hiểu ngôn ngữ được thể hiện trong các hệ thống nào sau đây?", correct: "1, 4, 5.", distractactors_fix: true, distractors: ["1, 2, 4.", "3, 4, 5.", "1, 3, 6."] },
+                { id: "P1_21", topic: "AI", topicName: "Chủ đề A: Trí tuệ nhân tạo (AI)", q: "Thiết bị nào sau đây được xem là một ứng dụng của AI?", correct: "Máy nghe nhạc có thể tự tạo danh sách bài hát dựa trên lịch sử nghe nhạc.", distractors: ["Máy ghi âm có thể lọc bỏ tạp âm, xuất âm thanh dưới nhiều định dạng.", "Máy hút bụi có thể tự di chuyển, tự hoạt động theo thời gian đã thiết lập.", "Máy điều hòa có khả năng tự điều chỉnh nhiệt độ dựa vào nhiệt độ thực tế."] },
+                { id: "P1_22", topic: "AI", topicName: "Chủ đề A: Trí tuệ nhân tạo (AI)", q: "Robot tự hành, như xe tự lái hoặc robot hút bụi thông minh, chủ yếu dựa vào khả năng nào của AI để có thể nhận biết và tương tác với môi trường xung quanh?", correct: "Khả năng nhận thức.", distractors: ["Khả năng lập kế hoạch.", "Khả năng học.", "Khả năng hiểu ngôn ngữ."] },
+                { id: "P1_23", topic: "AI", topicName: "Chủ đề A: Trí tuệ nhân tạo (AI)", q: "Một hệ thống đề xuất sản phẩm trực tuyến (ví dụ: gợi ý phim trên Netflix, sản phẩm trên Amazon) hoạt động dựa trên khả năng nào của AI?", correct: "Khả năng học.", distractors: ["Khả năng hiểu ngôn ngữ tự nhiên.", "Khả năng nhận thức.", "Khả năng giải quyết vấn đề."] },
+                { id: "P1_24", topic: "AI", topicName: "Chủ đề A: Trí tuệ nhân tạo (AI)", q: "Trong các ứng dụng sau, ứng dụng nào thể hiện khả năng “hiểu ngôn ngữ tự nhiên” của AI?", correct: "Công cụ dịch thuật trực tuyến như Google Dịch.", distractors: ["Hệ thống nhận dạng khuôn mặt.", "Phần mềm diệt virus tự động cập nhật.", "Robot phẫu thuật được điều khiển từ xa."] },
+                { id: "P1_25", topic: "NET", topicName: "Chủ đề B: Mạng máy tính & Internet", q: "Thiết bị nào sau đây có chức năng cung cấp kết nối không dây cho các thành phần trong một mạng?", correct: "Access Point.", distractors: ["Hub.", "Switch.", "Router."] },
+                { id: "P1_26", topic: "NET", topicName: "Chủ đề B: Mạng máy tính & Internet", q: "Chức năng chính của Access Point là gì?", correct: "Mở rộng vùng phủ sóng Wi-fi cho mạng LAN.", distractors: ["Chia sẻ file và thư mục giữa các máy tính trong mạng.", "Kết nối các thiết bị mạng với nhau.", "Cung cấp dịch vụ DHCP để cấp địa chỉ IP cho các thiết bị."] },
+                { id: "P1_27", topic: "NET", topicName: "Chủ đề B: Mạng máy tính & Internet", q: "Giao thức mạng là gì?", correct: "Tập hợp các quy tắc và quy định về cách thức giao tiếp để truyền dữ liệu giữa các thiết bị trong mạng.", distractors: ["Phần mềm giúp máy tính kết nối với Internet.", "Loại cáp mạng được sử dụng để kết nối các thiết bị trong mạng.", "Thiết bị được sử dụng để kết nối các thiết bị trong mạng."] },
+                { id: "P1_28", topic: "NET", topicName: "Chủ đề B: Mạng máy tính & Internet", q: "Thiết bị nào sau đây được sử dụng để kết nối các mạng LAN với nhau?", correct: "Router.", distractors: ["Firewall.", "Switch.", "Access Point."] },
+                { id: "P1_29", topic: "NET", topicName: "Chủ đề B: Mạng máy tính & Internet", q: "Nếu bạn chỉ cần một thiết bị để kết nối Internet cho một máy tính duy nhất, thiết bị nào là lựa chọn đơn giản và hiệu quả nhất?", correct: "Modem.", distractors: ["Hub.", "Switch.", "Wireless Access Point."] },
+                { id: "P1_30", topic: "NET", topicName: "Chủ đề B: Mạng máy tính & Internet", q: "Phát biểu nào sau đây là SAI khi nói về mạng máy tính?", correct: "Mạng máy tính không bao gồm các thiết bị phần cứng.", distractors: ["Mạng máy tính là một tập hợp các thiết bị điện tử được kết nối với nhau để truyền thông tin.", "Mạng máy tính bao gồm các loại mạng như LAN (Local Area Network) và WAN (Wide Area Network).", "Mạng máy tính sử dụng các giao thức như TCP/IP để truyền dữ liệu giữa các thiết bị trong mạng."] },
+                { id: "P1_31", topic: "NET", topicName: "Chủ đề B: Mạng máy tính & Internet", q: "Phát biểu nào sau đây là SAI về mạng LAN?", correct: "Mạng LAN không thể kết nối được với Internet.", distractors: ["Mạng LAN (Local Area Network) là một mạng máy tính mà các thiết bị kết nối với nhau trong phạm vi hạn chế như một văn phòng, một toà nhà hoặc một căn hộ.", "Mạng LAN có thể sử dụng kĩ thuật truyền dẫn dây cáp để kết nối.", "Mạng LAN có thể bao gồm các dịch vụ như chia sẻ tập tin, máy in và kết nối Internet chung."] },
+                { id: "P1_32", topic: "NET", topicName: "Chủ đề B: Mạng máy tính & Internet", q: "Phát biểu nào sau đây là KHÔNG đúng khi chia sẻ tệp trên mạng LAN?", correct: "Chia sẻ tệp trên mạng LAN không bao gồm việc sử dụng mật khẩu hoặc quản lí truy cập vào các tệp đã được chia sẻ.", distractors: ["Chia sẻ tệp trên mạng LAN cho phép nhiều người dùng trong mạng truy cập và sử dụng các tệp từ các máy tính khác nhau trong mạng.", "Chia sẻ tệp trên mạng LAN thường được thực hiện thông qua việc thiết lập quyền truy cập cho các tệp và thư mục.", "Việc chia sẻ tệp trên mạng LAN không đòi hỏi sử dụng phần mềm đặc biệt, hệ điều hành máy tính có thể cung cấp các tính năng chia sẻ tệp tích hợp."] },
+                { id: "P1_33", topic: "NET", topicName: "Chủ đề B: Mạng máy tính & Internet", q: "Trong một phòng máy tính của trường học, bạn cần kết nối máy tính của mình với switch để có thể truy cập Internet và chia sẻ tài nguyên. Bạn sẽ sử dụng loại dây nào sau đây để thực hiện kết nối này?", correct: "Dây cáp mạng Ethernet.", distractors: ["Dây cáp quang.", "Dây cáp HDMI.", "Dây cáp USB."] },
+                { id: "P1_34", topic: "NET", topicName: "Chủ đề B: Mạng máy tính & Internet", q: "Em cùng gia đình đi du lịch. Tại đó, em cần kết nối điện thoại thông minh (chạy hệ điều hành Android) của mình với Access Point của khách sạn để có thể truy cập được vào mạng Internet. Quy trình nào sau đây em cần làm để thực hiện công việc trên?", correct: "Bật chức năng Wi-fi trên điện thoại → Tìm và chọn mạng Wi-fi tương ứng với Access Point → Nhập mật khẩu (nếu có) → Nhấn chọn Kết nối.", distractors: ["Bật Bluetooth trên điện thoại → Tìm và chọn thiết bị → Nhập mã PIN (nếu có) → Nhấn chọn Kết nối.", "Bật NFC → Đặt điện thoại gần với thiết bị → Xác nhận việc kết nối và chờ kết nối.", "Bật 3G/4G trên điện thoại → Tìm và chọn mạng di động → Nhập mật khẩu (nếu có) → Kích hoạt dịch vụ."] },
+                { id: "P1_35", topic: "NET", topicName: "Chủ đề B: Mạng máy tính & Internet", q: "Hệ thống thiết bị nào dưới đây là mạng máy tính?", correct: "Hai máy tính cá nhân của một người dùng, một chiếc ở cơ quan, chiếc còn lại ở nhà riêng của người đó. Hai máy tính đó được kết nối với nhau để truyền dữ liệu.", distractors: ["Các chiếc loa của một trường học, được gắn ở sân trường và được kết với chiếc micro đặt ở phòng giám hiệu. Khi giáo viên thông báo vào micro, học sinh ở sân trường đều nghe được.", "Các thiết bị điện gia dụng trong một toà nhà, bao gồm: máy tính cá nhân, máy tính để bàn, bếp từ, lò vi sóng và các đèn điện.", "Các máy tính của một cơ quan trong đó dữ liệu được truyền từ máy này sang máy khác bằng cách sao chép qua thiết bị nhớ Flash (USB)."] },
+                { id: "P1_36", topic: "NET", topicName: "Chủ đề B: Mạng máy tính & Internet", q: "Các máy trạm trong mạng thường kết nối với Switch bằng thiết bị hay phương tiện nào sau đây?", correct: "Cáp xoắn với đầu giắc cắm RJ-45.", distractors: ["Sóng Wi-Fi.", "Sóng điện tử.", "Cáp quang."] },
+                { id: "P1_37", topic: "NET", topicName: "Chủ đề B: Mạng máy tính & Internet", q: "Địa chỉ IP: <code class='px-2 py-0.5 rounded bg-slate-200 dark:bg-slate-800 font-mono text-cyan-700 dark:text-cyan-300'>11000000 10101000 11111111 00000111</code> dưới dạng thập phân là?", correct: "192.168.255.7.", distractors: ["193.168.255.7.", "192.168.252.7.", "192.168.255.5."] },
+                { id: "P1_38", topic: "ETHICS", topicName: "Chủ đề F: Văn hóa & Ứng xử số", q: "Không gian mạng được định nghĩa chủ yếu dựa trên yếu tố nào sau đây?", correct: "Hệ thống các mạng máy tính kết nối toàn cầu.", distractors: ["Các mối quan hệ xã hội hình thành trực tuyến.", "Văn hóa và phong tục tập quán trên Internet.", "Luật pháp và quy định quản lý hoạt động trực tuyến."] },
+                { id: "P1_39", topic: "ETHICS", topicName: "Chủ đề F: Văn hóa & Ứng xử số", q: "Ưu điểm nổi bật nhất của giao tiếp trong không gian mạng so với giao tiếp truyền thống là gì?", correct: "Mở rộng phạm vi và vượt qua rào cản địa lý.", distractors: ["Đảm bảo sự chân thực và tin cậy tuyệt đối.", "Tăng cường khả năng biểu đạt cảm xúc cá nhân.", "Giảm thiểu nguy cơ hiểu lầm do khác biệt ngôn ngữ."] },
+                { id: "P1_40", topic: "ETHICS", topicName: "Chủ đề F: Văn hóa & Ứng xử số", q: "Nhược điểm chính của việc giao tiếp trực tuyến, đặc biệt khi xây dựng mối quan hệ, xuất phát từ đâu?", correct: "Thiếu các tín hiệu phi ngôn ngữ và ngữ cảnh trực tiếp.", distractors: ["Chi phí thiết bị và kết nối Internet còn cao.", "Sự phức tạp trong việc sử dụng các công cụ giao tiếp.", "Nguy cơ bị lộ thông tin cá nhân và quyền riêng tư."] },
+                { id: "P1_41", topic: "ETHICS", topicName: "Chủ đề F: Văn hóa & Ứng xử số", q: "Tại sao việc xác minh tính xác thực của thông tin trước khi chia sẻ lại đặc biệt quan trọng trong không gian mạng?", correct: "Để ngăn chặn tác động tiêu cực do thông tin sai lệch gây ra.", distractors: ["Để thể hiện sự am hiểu và kiến thức sâu rộng của bản thân.", "Để tăng độ tin cậy cho trang cá nhân và thu hút nhiều người theo dõi.", "Để tránh vi phạm bản quyền và các vấn đề pháp lý liên quan đến thông tin."] },
+                { id: "P1_42", topic: "ETHICS", topicName: "Chủ đề F: Văn hóa & Ứng xử số", q: "Trong tình huống giao tiếp trực tuyến phát sinh mâu thuẫn, thái độ ứng xử nào được xem là phù hợp và mang tính xây dựng nhất?", correct: "Bình tĩnh lắng nghe, phân tích vấn đề và tìm giải pháp hòa giải.", distractors: ["Im lặng và bỏ qua mọi phản hồi để tránh làm phức tạp thêm.", "Phản ứng gay gắt và đáp trả ngay lập tức để bảo vệ quan điểm.", "Kêu gọi sự ủng hộ từ đám đông để gây áp lực lên đối phương."] },
+                { id: "P1_43", topic: "ETHICS", topicName: "Chủ đề F: Văn hóa & Ứng xử số", q: "Trong môi trường học tập trực tuyến, việc tuân thủ “văn hóa ứng xử trực tuyến” có vai trò như thế nào?", correct: "Đảm bảo môi trường học tập hiệu quả, tôn trọng và hợp tác.", distractors: ["Không có vai trò quan trọng vì đây chỉ là môi trường ảo.", "Chỉ cần thiết đối với giáo viên, không quan trọng với học sinh.", "Làm mất tự do cá nhân và hạn chế sự sáng tạo trong học tập."] },
+                { id: "P1_44", topic: "ETHICS", topicName: "Chủ đề F: Văn hóa & Ứng xử số", q: "Khi tham gia vào các diễn đàn hoặc nhóm trực tuyến, điều gì quan trọng nhất để duy trì một cộng đồng văn minh và tích cực?", correct: "Tôn trọng quy tắc chung và ứng xử lịch sự với mọi thành viên.", distractors: ["Tự do thể hiện quan điểm cá nhân mà không cần quan tâm đến người khác.", "Cạnh tranh và thể hiện sự vượt trội so với các thành viên khác.", "Tập trung vào mục tiêu cá nhân và ít tương tác với cộng đồng."] },
+                { id: "P1_45", topic: "ETHICS", topicName: "Chủ đề F: Văn hóa & Ứng xử số", q: "Bạn nhận được một tin nhắn từ người lạ với nội dung đe dọa và quấy rối. Phản ứng đầu tiên nào sau đây là phù hợp nhất?", correct: "Không trả lời, chặn người gửi và báo cáo hành vi quấy rối.", distractors: ["Trả lời tin nhắn và cố gắng thuyết phục người đó dừng lại.", "Chia sẻ tin nhắn cho bạn bè và người thân để nhận được lời khuyên.", "Tìm hiểu thông tin về người gửi và lên kế hoạch trả đũa."] },
+                { id: "P1_46", topic: "ETHICS", topicName: "Chủ đề F: Văn hóa & Ứng xử số", q: "Việc sử dụng \"nick ảo\" hoặc \"tài khoản ẩn danh\" trong không gian mạng có thể dẫn đến hệ quả tiêu cực nào về mặt giao tiếp và ứng xử?", correct: "Giảm trách nhiệm cá nhân và dễ dẫn đến hành vi tiêu cực.", distractors: ["Tăng cường tính bảo mật và an toàn cho người dùng.", "Giúp mọi người tự tin thể hiện quan điểm cá nhân hơn.", "Tạo ra môi trường giao tiếp cởi mở và thân thiện hơn."] },
+                { id: "P1_47", topic: "ETHICS", topicName: "Chủ đề F: Văn hóa & Ứng xử số", q: "Bạn vô tình chứng kiến một hành vi bắt nạt trực tuyến. Hành động nào sau đây thể hiện vai trò \"công dân số tích cực\"?", correct: "Báo cáo hành vi bắt nạt với quản trị viên nền tảng hoặc cơ quan chức năng.", distractors: ["Im lặng và không can thiệp để tránh liên lụy đến bản thân.", "Tham gia vào hành vi bắt nạt để thể hiện sự ủng hộ nhóm.", "Chia sẻ thông tin về vụ việc cho nhiều người để tăng tính lan tỏa."] },
+                { id: "P1_48", topic: "ETHICS", topicName: "Chủ đề F: Văn hóa & Ứng xử số", q: "Hình thức giao tiếp trực tuyến nào sau đây có thể gây ra nhiều hiểu lầm nhất do thiếu ngữ cảnh và tín hiệu phi ngôn ngữ?", correct: "Tin nhắn văn bản ngắn (SMS, chat).", distractors: ["Thư điện tử (Email).", "Cuộc gọi video trực tuyến.", "Mạng xã hội (bài đăng kèm hình ảnh, video)."] }
+            ],
+
+            // PHẦN II: 9 CÂU GỐC ĐỀ CƯƠNG KÈM TỪ KHÓA & GIẢI THÍCH CHO NGƯỜI MẤT GỐC
+            part2: [
+                {
+                    id: "P2_01", isOriginal: true, topic: "NET", topicName: "Chủ đề B: Thiết kế & Lắp đặt mạng LAN (Nhà bạn Kiên)",
+                    passage: "Gia đình bạn Kiên cần lắp đặt hệ thống mạng Internet để các thành viên trong nhà (diện tích 70 m²) có nhu cầu sử dụng bao gồm 03 máy tính để bàn và một số điện thoại thông minh. Ngoài ra, 03 máy tính này cần được kết nối với nhau để có thể truyền dữ liệu ngay cả khi không có Internet. Sau đây là một số nhận xét của bạn Kiên sau khi hệ thống đã được lắp đặt:",
+                    items: [
+                        {
+                            text: "Có thể sử dụng cáp xoắn đôi để kết nối các máy tính thành một mạng LAN.",
+                            answer: true,
+                            keyword: "Cáp xoắn đôi ↔ Nối máy tính thành mạng LAN",
+                            easyExplain: "Cáp xoắn đôi chính là sợi dây mạng LAN cắm ở tiệm net. Nối 3 máy tính để bàn trong nhà (70m²) bằng dây này là chuẩn bài nhất!"
+                        },
+                        {
+                            text: "Sử dụng một Wireless Access Point để cho phép truy cập Internet không dây.",
+                            answer: true,
+                            keyword: "Wireless Access Point ↔ Truy cập không dây (Wi-Fi)",
+                            easyExplain: "Điện thoại thông minh không có lỗ cắm dây mạng nên bắt buộc phải có cục phát Wi-Fi (Access Point) mới lên mạng không dây được."
+                        },
+                        {
+                            text: "Sử dụng mạng không dây sẽ có tốc độ nhanh hơn sử dụng cáp xoắn đôi khi thực hiện chia sẻ các tệp trong trường hợp không có Internet.",
+                            answer: false,
+                            keyword: "Bẫy: Không dây nhanh hơn cáp xoắn đôi",
+                            easyExplain: "SAI! Truyền bằng dây đồng trực tiếp (cáp xoắn đôi) luôn nhanh và ổn định hơn truyền qua sóng không khí (Wi-Fi)."
+                        },
+                        {
+                            text: "Để kết nối giữa các máy tính với nhau và giữa các máy tính với Internet có thể sử dụng một Switch.",
+                            answer: false,
+                            keyword: "Bẫy: Dùng Switch để kết nối với Internet",
+                            easyExplain: "SAI ở vế 'với Internet'! Switch chỉ giống như ổ cắm nối 3 máy tính với nhau trong nhà thôi. Muốn ra ngoài Internet bắt buộc phải có Router/Modem."
+                        }
+                    ]
+                },
+                {
+                    id: "P2_02", isOriginal: true, topic: "NET", topicName: "Chủ đề B: Chia sẻ tài nguyên mạng LAN (Máy in phòng máy)",
+                    passage: "Trong phòng máy của trường có 30 máy tính được kết nối với nhau bằng Switch tạo thành một mạng LAN. Giáo viên thực hiện kết nối máy in và máy tính của giáo viên để có thể cung cấp dịch vụ in cho các máy tính khác trong phòng máy. Sau đây là một số nhận xét về hệ thống mạng trên:",
+                    items: [
+                        {
+                            text: "Không thể chia sẻ máy in qua mạng LAN.",
+                            answer: false,
+                            keyword: "Bẫy: Không thể chia sẻ máy in qua LAN",
+                            easyExplain: "SAI! Mục đích lớn nhất của mạng LAN trong văn phòng/trường học là để dùng chung 1 chiếc máy in cho tiết kiệm tiền."
+                        },
+                        {
+                            text: "Có thể thực hiện chia sẻ máy in qua mạng LAN kết nối không dây (Wi-fi).",
+                            answer: true,
+                            keyword: "Chia sẻ máy in ↔ Qua mạng LAN không dây (Wi-Fi)",
+                            easyExplain: "ĐÚNG! Miễn là cùng chung một mạng nội bộ (dù cắm dây hay bắt Wi-Fi) thì đều gửi lệnh in sang máy in được."
+                        },
+                        {
+                            text: "Khi chia sẻ máy in, lệnh in từ các máy tính được chia sẻ sẽ được ưu tiên theo số thứ tự máy ở trong phòng.",
+                            answer: false,
+                            keyword: "Bẫy: Ưu tiên theo số thứ tự máy",
+                            easyExplain: "SAI! Máy in giống như xếp hàng mua trà sữa: ai bấm lệnh in trước thì được in trước (FIFO), chứ không có chuyện máy số 1 bấm sau mà được in trước máy số 30."
+                        },
+                        {
+                            text: "Nếu máy giáo viên tắt, các máy khác sẽ vẫn có thể sử dụng máy in.",
+                            answer: false,
+                            keyword: "Bẫy: Máy giáo viên tắt vẫn in được",
+                            easyExplain: "SAI! Vì dây máy in đang cắm trực tiếp vào máy tính của giáo viên (làm máy chủ trung gian). Máy giáo viên tắt nguồn thì đường truyền tới máy in bị đứt luôn!"
+                        }
+                    ]
+                },
+                {
+                    id: "P2_03", isOriginal: true, topic: "NET", topicName: "Chủ đề B: Giao thức mạng IP & TCP/IP",
+                    passage: "IP là giao thức định tuyến trên mạng, giúp tìm ra tuyến đường tốt nhất để truyền gói tin tới đích. IP là một phần của TCP/IP, bộ giao thức chính của Internet. Địa chỉ IP giúp định danh các máy trạm, nhờ đó các gói tin có thể được vận chuyển tới đúng trạm nhận. Trong mạng LAN, mỗi máy trạm hay Router đều được gắn một địa chỉ IP riêng và duy nhất. Trước khi gửi đi một gói tin qua mạng, trạm gửi bắt buộc phải ghi rõ địa chỉ IP của trạm gửi và trạm nhận trong phần tiêu đề (Header) của gói tin. Dựa vào địa chỉ này, Router sẽ tìm ra tuyến đường để chuyển gói tin tới đích. Sau khi đọc nhận xét trên, một số bạn học sinh đưa ra các ý kiến sau:",
+                    items: [
+                        {
+                            text: "IP là giao thức mà mọi máy trạm phải tuân theo nếu muốn truy cập Internet.",
+                            answer: true,
+                            keyword: "Mọi máy trạm vào Internet ↔ Phải tuân theo IP",
+                            easyExplain: "ĐÚNG! Giống như muốn gửi thư qua bưu điện thì bắt buộc phải ghi địa chỉ nhà theo chuẩn bưu điện (giao thức IP)."
+                        },
+                        {
+                            text: "IP là tên viết tắt của giao thức TCP/IP.",
+                            answer: false,
+                            keyword: "Bẫy: IP là viết tắt của TCP/IP",
+                            easyExplain: "SAI! Ngay câu thứ 2 của đề đã ghi: 'IP là một phần của TCP/IP', chứ không phải tên viết tắt của cả cụm TCP/IP."
+                        },
+                        {
+                            text: "Khi liên lạc với nhau, hai máy trạm trong mạng LAN có thể dùng chung một địa chỉ IP.",
+                            answer: false,
+                            keyword: "Bẫy: Dùng chung một địa chỉ IP",
+                            easyExplain: "SAI! Địa chỉ IP giống như số Căn cước công dân hoặc số điện thoại. Hai máy trùng IP nhau là mạng bị đụng độ (xung đột IP) mất mạng ngay."
+                        },
+                        {
+                            text: "Dựa vào địa chỉ IP của trạm nhận, trạm gửi có nhiệm vụ tìm ra tuyến đường để chuyển gói tin của mình tới đích.",
+                            answer: false,
+                            keyword: "Bẫy: Trạm gửi có nhiệm vụ tìm tuyến đường",
+                            easyExplain: "SAI! Bạn (trạm gửi) chỉ việc ghi địa chỉ người nhận lên phong bì. Còn việc tìm đường đi nào nhanh nhất là nhiệm vụ của bác bưu tá (Router)!"
+                        }
+                    ]
+                },
+                {
+                    id: "P2_04", isOriginal: true, topic: "NET", topicName: "Chủ đề B: Hệ thống mạng nội bộ doanh nghiệp (Công ty kiến trúc)",
+                    passage: "Tại một công ty kiến trúc, phòng thiết kế có 30 máy tính để bàn (không hỗ trợ kết nối không dây) và được thiết lập thành một hệ thống mạng nội bộ với các đặc điểm sau: Các máy tính đều có thể chia sẻ dữ liệu với nhau và truy cập Internet; Một bộ phát Wi-Fi được lắp đặt để cung cấp kết nối cho các thiết bị di động trong phòng; Tất cả các máy tính và bộ phát Wi-Fi đều được kết nối thông qua một switch; Một dây cáp mạng Internet được kết nối từ bộ định tuyến vào phòng thiết kế. Sau đây là các nhận xét về hệ thống mạng này:",
+                    items: [
+                        {
+                            text: "Tất cả các máy tính trong phòng sử dụng cáp mạng để kết nối.",
+                            answer: true,
+                            keyword: "Không hỗ trợ không dây ↔ Bắt buộc dùng cáp mạng",
+                            easyExplain: "ĐÚNG! Đề mở ngoặc rất rõ: '30 máy tính để bàn (không hỗ trợ kết nối không dây)' nên 100% phải cắm dây cáp mạng."
+                        },
+                        {
+                            text: "Nếu hệ thống không được kết nối Internet, mạng giữa các máy tính trong phòng sẽ trở thành mạng LAN.",
+                            answer: true,
+                            keyword: "Không có Internet ↔ Vẫn là mạng nội bộ (LAN)",
+                            easyExplain: "ĐÚNG! Các máy nối chung vào Switch trong 1 phòng mà không ra ngoài Internet thì chính là mạng cục bộ (LAN) thuần túy."
+                        },
+                        {
+                            text: "Sử dụng hub sẽ hiệu quả hơn switch trong cấu hình này.",
+                            answer: false,
+                            keyword: "Bẫy kinh điển: Hub hiệu quả hơn Switch",
+                            easyExplain: "SAI! Khẩu quyết số 2: Cứ thấy khen Hub tốt hơn/nhanh hơn/hiệu quả hơn Switch là khoanh SAI ngay lập tức!"
+                        },
+                        {
+                            text: "Dây cáp mạng Internet được kết nối trực tiếp với bộ phát Wi-Fi.",
+                            answer: false,
+                            keyword: "Bẫy: Nối trực tiếp với bộ phát Wi-Fi",
+                            easyExplain: "SAI! Đề ghi: 'Tất cả máy tính và bộ phát Wi-Fi đều kết nối thông qua một switch'. Tức là dây mạng từ ngoài vào sẽ cắm vào Switch trung tâm, rồi từ Switch mới chia ra cho 30 máy và cục Wi-Fi."
+                        }
+                    ]
+                },
+                {
+                    id: "P2_05", isOriginal: true, topic: "NET", topicName: "Chủ đề B: Nâng cấp hạ tầng mạng trường đại học",
+                    passage: "Tại một trường đại học, hệ thống mạng hiện tại chỉ có một switch để kết nối các máy tính trong mạng nội bộ và một router để kết nối với Internet. Do nhu cầu phát triển, nhà trường muốn nâng cấp hệ thống mạng để đáp ứng tốt hơn cho giảng dạy trực tuyến và kết nối nhiều thiết bị. Hãy đánh giá những nhận định sau:",
+                    items: [
+                        {
+                            text: "Nên dùng thêm switch để mở rộng số lượng kết nối cho các phòng học có nhiều máy tính.",
+                            answer: true,
+                            keyword: "Thêm Switch ↔ Mở rộng số lượng cổng cắm máy tính",
+                            easyExplain: "ĐÚNG! Nhiều máy tính hơn tức là thiếu lỗ cắm dây mạng. Mua thêm Switch (ổ chia cổng mạng) là chuẩn xác nhất."
+                        },
+                        {
+                            text: "Lắp đặt thêm một Access Point sẽ cải thiện tốc độ truy cập Internet của tất cả các thiết bị trong mạng.",
+                            answer: false,
+                            keyword: "Bẫy: Cải thiện tốc độ của TẤT CẢ thiết bị",
+                            easyExplain: "SAI! Access Point chỉ phát sóng Wi-Fi cho điện thoại/laptop ở gần nó thôi, chứ các máy tính bàn đang cắm dây vào Switch thì tốc độ chẳng tăng lên chút nào."
+                        },
+                        {
+                            text: "Thay router hiện tại bằng một router có băng thông cao hơn sẽ giúp mạng hoạt động hiệu quả hơn với nhiều thiết bị cùng kết nối.",
+                            answer: true,
+                            keyword: "Router băng thông cao ↔ Chịu tải nhiều thiết bị ra Internet",
+                            easyExplain: "ĐÚNG! Router là cánh cổng chính ra Internet. Thay cổng lớn hơn (băng thông cao hơn) thì nhiều người đi qua cùng lúc sẽ không bị kẹt xe."
+                        },
+                        {
+                            text: "Việc nâng cấp modem sẽ giúp tăng vùng phủ sóng Wi-Fi trong khuôn viên trường học.",
+                            answer: false,
+                            keyword: "Bẫy: Nâng cấp Modem để tăng phủ sóng Wi-Fi",
+                            easyExplain: "SAI! Muốn sóng Wi-Fi phủ rộng khắp trường thì phải lắp thêm nhiều cục phát Wi-Fi (Access Point), chứ đổi cục Modem trong phòng kỹ thuật không làm sóng bay xa hơn được."
+                        }
+                    ]
+                },
+                {
+                    id: "P2_06", isOriginal: true, topic: "NET", topicName: "Chủ đề B: Mạng LAN phòng thực hành Tin học THPT",
+                    passage: "Tại một trường THPT, hệ thống mạng trong phòng thực hành được kết nối thông qua một switch trung tâm. Các máy tính trong phòng thực hành có thể chia sẻ tệp qua mạng LAN và truy cập Internet thông qua một router chính. Hãy đánh giá những nhận xét sau:",
+                    items: [
+                        {
+                            text: "Thiết bị bắt buộc phải có để các máy tính trong phòng thực hành truy cập Internet là switch.",
+                            answer: false,
+                            keyword: "Bẫy: Truy cập Internet bắt buộc là Switch",
+                            easyExplain: "SAI! Thiết bị bắt buộc để ra Internet là Router/Modem. Switch chỉ dùng để nối nội bộ trong phòng."
+                        },
+                        {
+                            text: "Các máy tính trong phòng thực hành có thể chia sẻ tệp với nhau qua mạng LAN mà không cần kết nối Internet.",
+                            answer: true,
+                            keyword: "Chia sẻ tệp qua LAN ↔ Không cần Internet",
+                            easyExplain: "ĐÚNG! Các máy trong phòng đã nối với nhau qua Switch nên dù trường bị cắt mạng Internet thì các máy vẫn gửi bài tập cho nhau bình thường."
+                        },
+                        {
+                            text: "Nếu switch bị ngắt, các máy tính sẽ không thể kết nối với nhau để chia sẻ tệp.",
+                            answer: true,
+                            keyword: "Ngắt Switch trung tâm ↔ Mất kết nối giữa các máy",
+                            easyExplain: "ĐÚNG! Tất cả dây mạng của các máy đều chụm vào Switch trung tâm. Rút điện Switch ra thì các máy bị cô lập hoàn toàn."
+                        },
+                        {
+                            text: "Sử dụng thêm một hub trong mạng sẽ cải thiện tốc độ kết nối giữa các máy tính so với việc chỉ sử dụng switch.",
+                            answer: false,
+                            keyword: "Bẫy kinh điển: Dùng Hub cải thiện tốc độ so với Switch",
+                            easyExplain: "SAI! Lại là bẫy khen Hub nhanh hơn Switch. Hub luôn chậm hơn Switch!"
+                        }
+                    ]
+                },
+                {
+                    id: "P2_07", isOriginal: true, topic: "NET", topicName: "Chủ đề B: Thiết bị mạng Switch, Router & Wi-Fi (Văn phòng 20 máy)",
+                    passage: "Tại văn phòng một công ty, có một mạng nội bộ với các đặc điểm sau: Có 20 máy tính được kết nối với một switch; Switch được kết nối với một router để ra Internet; Một cáp Ethernet nối router với bộ phát Wi-Fi. Hãy đánh giá những thông tin sau:",
+                    items: [
+                        {
+                            text: "Bộ switch chịu trách nhiệm phân phối dữ liệu giữa các máy tính trong văn phòng.",
+                            answer: true,
+                            keyword: "Switch ↔ Phân phối dữ liệu giữa các máy trong văn phòng",
+                            easyExplain: "ĐÚNG! 20 máy tính cắm chung vào Switch nên gửi file từ máy 1 sang máy 2 là do Switch chuyển giúp."
+                        },
+                        {
+                            text: "Nếu bộ phát Wi-Fi bị ngắt, các máy tính kết nối với switch vẫn có thể truy cập Internet.",
+                            answer: true,
+                            keyword: "Tắt Wi-Fi ↔ Máy cắm dây vào Switch vẫn có Internet",
+                            easyExplain: "ĐÚNG! Nhìn sơ đồ: 20 máy → Switch → Router (Internet). Cục Wi-Fi chỉ là một nhánh rẽ khác cắm vào Router. Tắt cục Wi-Fi chỉ làm điện thoại mất mạng, còn 20 máy tính cắm dây vẫn lên mạng vù vù."
+                        },
+                        {
+                            text: "Tất cả các máy tính trong văn phòng phải kết nối qua bộ phát Wi-Fi để truy cập Internet.",
+                            answer: false,
+                            keyword: "Bẫy: Tất cả máy tính phải qua Wi-Fi",
+                            easyExplain: "SAI! Đề nói rõ 20 máy tính kết nối thẳng với Switch rồi ra Router, không hề đi qua cục phát Wi-Fi."
+                        },
+                        {
+                            text: "Sử dụng thêm một router thay cho switch sẽ giúp mạng hoạt động nhanh hơn khi nhiều máy tính sử dụng cùng lúc.",
+                            answer: false,
+                            keyword: "Bẫy: Dùng Router thay cho Switch để nhanh hơn",
+                            easyExplain: "SAI! Router chỉ có vài cổng và chuyên dùng để nối ra ngoài Internet, không ai lấy Router thay cho Switch 24 cổng để nối 20 máy nội bộ cả."
+                        }
+                    ]
+                },
+                {
+                    id: "P2_08", isOriginal: true, topic: "NET", topicName: "Chủ đề B: Triển khai mạng đa phòng ban trường học",
+                    passage: "Một chuyên viên IT được giao nhiệm vụ lắp đặt một hệ thống mạng mới cho một trường học. Hệ thống này cần cung cấp kết nối mạng cho các phòng học, văn phòng quản lí, thư viện và phòng học trực tuyến. Sau đây là một số nhận xét về hệ thống mạng trên sau khi được lắp đặt:",
+                    items: [
+                        {
+                            text: "Các máy tính trong cùng một phòng có thể kết nối với nhau qua mạng LAN thông qua Switch.",
+                            answer: true,
+                            keyword: "Cùng 1 phòng ↔ Nối LAN qua Switch",
+                            easyExplain: "ĐÚNG! Cứ thấy 'trong cùng 1 phòng' đi với 'Switch' là cặp đôi hoàn hảo."
+                        },
+                        {
+                            text: "Cáp xoắn đôi sẽ hiệu quả hơn khi truyền dữ liệu đi xa so với cáp quang.",
+                            answer: false,
+                            keyword: "Bẫy: Cáp xoắn đôi đi xa tốt hơn cáp quang",
+                            easyExplain: "SAI! Cáp xoắn đôi chỉ truyền tốt dưới 100 mét. Truyền đi xa giữa các dãy nhà phải dùng Cáp quang (truyền bằng ánh sáng)."
+                        },
+                        {
+                            text: "Để kết nối các mạng LAN ở các phòng với nhau cần sử dụng Router.",
+                            answer: true,
+                            keyword: "Kết nối các mạng LAN khác nhau ↔ Dùng Router",
+                            easyExplain: "ĐÚNG! Trong 1 phòng dùng Switch, còn nối nhiều mạng LAN của các phòng/khu khác nhau lại thì dùng Router."
+                        },
+                        {
+                            text: "Vùng phủ sóng của Wi-fi phụ thuộc vào kích thước phòng lắp đặt thiết bị phát sóng.",
+                            answer: true,
+                            keyword: "Vùng phủ sóng Wi-Fi ↔ Phụ thuộc kích thước/vật cản phòng",
+                            easyExplain: "ĐÚNG! Phòng quá rộng hoặc nhiều tường bê tông chắn sẽ làm sóng Wi-Fi yếu đi ở các góc xa."
+                        }
+                    ]
+                },
+                {
+                    id: "P2_09", isOriginal: true, topic: "NET", topicName: "Chủ đề B: Thiết kế mạng LAN & Access Point (4 phòng ban)",
+                    passage: "Một công ty thực hiện thiết lập hệ thống mạng cho 04 phòng ban, mỗi phòng ban có 30 máy tính và có từ 20 đến 30 thiết bị thông minh không dây. Công ty đã thiết lập các máy tính và Access Point ở mỗi phòng sẽ được kết nối với một Switch. Hệ thống trên hỗ trợ kết nối giữa các máy tính trong phòng ban với nhau và kết nối với Internet. Sau đây là một số nhận xét về phương án thiết kế mạng trên:",
+                    items: [
+                        {
+                            text: "Access Point đóng vai trò cung cấp kết nối mạng không dây trong mỗi phòng ban.",
+                            answer: true,
+                            keyword: "Access Point ↔ Cung cấp kết nối không dây",
+                            easyExplain: "ĐÚNG! Access Point dịch ra tiếng Việt chính là 'Điểm truy cập không dây' (bộ phát Wi-Fi)."
+                        },
+                        {
+                            text: "Số lượng các thiết bị thông minh truy cập vào mạng sẽ không làm ảnh hưởng đến tốc độ mạng.",
+                            answer: false,
+                            keyword: "Bẫy: Số lượng thiết bị KHÔNG làm ảnh hưởng tốc độ",
+                            easyExplain: "SAI! Giống như 1 bình nước mà 30 người cùng hút chung một lúc thì mỗi người sẽ hút được ít nước hơn (mạng chậm đi)."
+                        },
+                        {
+                            text: "Khi kết nối Switch ở các phòng ban với Router, các máy tính ở các phòng ban có thể thực hiện chia sẻ thư mục với nhau qua mạng LAN.",
+                            answer: true,
+                            keyword: "Nối các Switch vào Router ↔ Các phòng chia sẻ thư mục được",
+                            easyExplain: "ĐÚNG! Khi các Switch của 4 phòng cùng nối về 1 Router trung tâm, các phòng có thể nhìn thấy nhau và gửi thư mục qua lại."
+                        },
+                        {
+                            text: "Khoảng cách giữa các thiết bị không dây và Access Point ảnh hưởng đến tốc độ truy cập Internet.",
+                            answer: true,
+                            keyword: "Khoảng cách tới Access Point ↔ Ảnh hưởng tốc độ mạng",
+                            easyExplain: "ĐÚNG! Cầm điện thoại đứng sát cục Wi-Fi thì vạch sóng căng đét, đi ra xa 30 mét thì sóng tụt còn 1 vạch, mạng quay vòng vòng."
+                        }
+                    ]
+                }
+            ]
+        };
+
+        /**************************************************************************
+         * 2. ĐỘNG CƠ SINH CÂU HỎI ĐÚNG/SAI VÔ HẠN (INFINITE GENERATOR ENGINE)
+         * Tự động tạo ra hàng nghìn câu Đúng/Sai mới với bối cảnh lạ + giải thích dễ hiểu
+         **************************************************************************/
+        let infiniteCounter = 1;
+
+        function pickRandom(arr) {
+            return arr[Math.floor(Math.random() * arr.length)];
+        }
+
+        function shuffleArray(arr) {
+            const copy = [...arr];
+            for (let i = copy.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [copy[i], copy[j]] = [copy[j], copy[i]];
+            }
+            return copy;
+        }
+
+        function generateSingleInfiniteTFQuestion(allowedTopics = ['NET', 'AI', 'ETHICS']) {
+            const serial = infiniteCounter++;
+            // Ưu tiên chủ đề Mạng (NET) vì Phần II đề cương trọng tâm là Mạng LAN/Internet, nhưng cũng hỗ trợ AI & Ứng xử số
+            const poolTypes = [];
+            if (allowedTopics.includes('NET')) poolTypes.push('NET_LAN', 'NET_IP', 'NET_PRINTER', 'NET_UPGRADE');
+            if (allowedTopics.includes('AI')) poolTypes.push('AI_SYSTEM');
+            if (allowedTopics.includes('ETHICS')) poolTypes.push('ETHICS_CASE');
+            if (poolTypes.length === 0) poolTypes.push('NET_LAN');
+
+            const chosenType = pickRandom(poolTypes);
+
+            // MẪU 1: THIẾT KẾ MẠNG LAN, SWITCH, ROUTER, WI-FI CHO ĐỊA ĐIỂM MỚI
+            if (chosenType === 'NET_LAN') {
+                const places = [
+                    { name: "Quán Cafe Gaming CyberCore", room: "khu vực thi đấu", pcCount: 40, mobileCount: 25, area: "150 m²" },
+                    { name: "Thư viện Số Trường Đại học Bách Khoa", room: "phòng tra cứu", pcCount: 25, mobileCount: 50, area: "200 m²" },
+                    { name: "Phòng Kế toán - Tài chính Ngân hàng", room: "văn phòng giao dịch", pcCount: 18, mobileCount: 15, area: "90 m²" },
+                    { name: "Trung tâm Anh ngữ Quốc tế", room: "phòng Lab luyện nghe", pcCount: 32, mobileCount: 20, area: "110 m²" },
+                    { name: "Bệnh viện Đa khoa Tỉnh", room: "khu hành chính tiếp nhận", pcCount: 22, mobileCount: 35, area: "140 m²" },
+                    { name: "Siêu thị Điện máy Xanh", room: "quầy thu ngân và kho", pcCount: 15, mobileCount: 30, area: "300 m²" }
+                ];
+                const p = pickRandom(places);
+
+                const truePool = [
+                    {
+                        text: `Bộ Switch tại ${p.room} đóng vai trò kết nối và phân phối dữ liệu nội bộ giữa ${p.pcCount} máy tính để bàn.`,
+                        answer: true,
+                        keyword: "Switch ↔ Phân phối dữ liệu nội bộ giữa các máy",
+                        easyExplain: `ĐÚNG! ${p.pcCount} máy tính cắm chung vào Switch nên Switch chính là cầu nối giúp các máy gửi dữ liệu cho nhau.`
+                    },
+                    {
+                        text: `Nếu đường truyền Internet từ nhà mạng bị đứt, ${p.pcCount} máy tính nối qua Switch vẫn có thể chia sẻ tệp tin cho nhau qua mạng LAN.`,
+                        answer: true,
+                        keyword: "Mất Internet ↔ Mạng LAN (qua Switch) vẫn gửi file được",
+                        easyExplain: "ĐÚNG! Gửi file nội bộ trong phòng chỉ đi qua dây cáp và Switch, không cần ra ngoài Internet nên mất mạng vẫn gửi được bình thường."
+                    },
+                    {
+                        text: `Sử dụng cáp xoắn đôi (cáp Ethernet RJ-45) để nối ${p.pcCount} máy tính vào Switch sẽ cho tốc độ ổn định hơn so với dùng Wi-Fi.`,
+                        answer: true,
+                        keyword: "Cáp xoắn đôi ↔ Ổn định và nhanh hơn Wi-Fi",
+                        easyExplain: "ĐÚNG! Truyền qua dây đồng trực tiếp không bị tường chắn hay nhiễu sóng như Wi-Fi nên luôn nhanh và ổn định hơn."
+                    },
+                    {
+                        text: `Nếu bộ phát Wi-Fi (Access Point) bị rút nguồn điện, ${p.pcCount} máy tính để bàn cắm dây vào Switch vẫn truy cập Internet bình thường.`,
+                        answer: true,
+                        keyword: "Tắt Wi-Fi ↔ Máy cắm dây vào Switch không bị ảnh hưởng",
+                        easyExplain: "ĐÚNG! Máy bàn đi đường dây riêng qua Switch ra Router. Cục Wi-Fi chỉ phục vụ điện thoại nên tắt Wi-Fi thì máy bàn vẫn có mạng."
+                    },
+                    {
+                        text: `Khoảng cách từ ${p.mobileCount} thiết bị di động tới bộ phát Access Point trong diện tích ${p.area} sẽ ảnh hưởng trực tiếp đến tốc độ mạng không dây.`,
+                        answer: true,
+                        keyword: "Khoảng cách tới Access Point ↔ Ảnh hưởng tốc độ Wi-Fi",
+                        easyExplain: "ĐÚNG! Đứng càng xa cục phát Wi-Fi hoặc bị tường chắn thì sóng càng yếu, tốc độ mạng giảm xuống."
+                    }
+                ];
+
+                const falsePool = [
+                    {
+                        text: `Thay thế bộ Switch hiện tại bằng một bộ Hub sẽ giúp ${p.pcCount} máy tính truyền dữ liệu nhanh hơn và chống nghẽn mạng.`,
+                        answer: false,
+                        keyword: "Bẫy: Thay Switch bằng Hub giúp mạng nhanh hơn",
+                        easyExplain: "SAI! Khẩu quyết bất bại: Hub là thiết bị đời cũ gửi dữ liệu tràn lan, luôn chậm hơn Switch. Cứ khen Hub nhanh hơn Switch là SAI!"
+                    },
+                    {
+                        text: `Tất cả ${p.pcCount} máy tính để bàn (đã cắm cáp vào Switch) bắt buộc phải bật kết nối qua bộ phát Wi-Fi mới vào được Internet.`,
+                        answer: false,
+                        keyword: "Bẫy: Máy cắm dây vào Switch vẫn phải qua Wi-Fi",
+                        easyExplain: "SAI! Máy bàn đã có dây mạng cắm vào Switch nối ra Router rồi, không cần đi qua cục phát Wi-Fi nữa."
+                    },
+                    {
+                        text: `Để kết nối trực tiếp ${p.pcCount} máy tính với nhau và tự kết nối ra Internet mà không cần Router hay Modem, chỉ cần duy nhất một bộ Switch.`,
+                        answer: false,
+                        keyword: "Bẫy: Chỉ dùng Switch để tự ra Internet",
+                        easyExplain: "SAI! Switch chỉ nối các máy trong phòng với nhau. Muốn bước ra ngoài Internet bắt buộc phải có Router/Modem."
+                    },
+                    {
+                        text: `Khi cả ${p.mobileCount} thiết bị không dây cùng tải video nặng một lúc qua 1 Access Point, tốc độ mạng của từng máy hoàn toàn không bị ảnh hưởng.`,
+                        answer: false,
+                        keyword: "Bẫy: Nhiều máy truy cập không ảnh hưởng tốc độ",
+                        easyExplain: "SAI! Nhiều điện thoại dùng chung 1 cục phát Wi-Fi thì băng thông bị chia nhỏ, chắc chắn mạng sẽ chậm đi."
+                    },
+                    {
+                        text: `Để kéo đường truyền mạng từ ${p.name} sang chi nhánh khác cách đó 2 km, dùng cáp xoắn đôi sẽ hiệu quả và ít suy hao hơn cáp quang.`,
+                        answer: false,
+                        keyword: "Bẫy: Cáp xoắn đôi đi xa tốt hơn cáp quang",
+                        easyExplain: "SAI! Cáp xoắn đôi chỉ đi được dưới 100m. Khoảng cách xa (hàng trăm mét đến vài km) bắt buộc phải dùng Cáp quang."
+                    }
+                ];
+
+                const chosenItems = shuffleArray([
+                    ...shuffleArray(truePool).slice(0, 2),
+                    ...shuffleArray(falsePool).slice(0, 2)
+                ]);
+
+                return {
+                    id: `INF_NET_${serial}`,
+                    isOriginal: false,
+                    topic: "NET",
+                    topicName: `Đề Sinh Mới #${serial}: Mạng LAN tại ${p.name}`,
+                    passage: `[Tình huống thực tế mới #${serial}] Tại ${p.name} (diện tích ${p.area}), kỹ thuật viên thiết lập một mạng nội bộ tại ${p.room} gồm: ${p.pcCount} máy tính để bàn (không có card thu không dây) được nối bằng cáp mạng vào một bộ Switch trung tâm; Switch này nối với một Router để ra Internet; ngoài ra có 01 Access Point nối vào hệ thống để phát Wi-Fi cho khoảng ${p.mobileCount} điện thoại thông minh. Hãy đánh giá các nhận định sau:`,
+                    items: chosenItems
+                };
+            }
+
+            // MẪU 2: GIAO THỨC IP, TCP/IP & ĐỊA CHỈ IP NHỊ PHÂN MỚI
+            if (chosenType === 'NET_IP') {
+                const lastOctet = Math.floor(Math.random() * 200) + 10;
+                const binLast = lastOctet.toString(2).padStart(8, '0');
+                const wrongOctet = lastOctet + 2;
+
+                const items = shuffleArray([
+                    {
+                        text: `Địa chỉ IP nhị phân 11000000.10101000.00000001.${binLast} khi đổi sang dạng thập phân là 192.168.1.${lastOctet}.`,
+                        answer: true,
+                        keyword: `Đổi nhị phân sang thập phân: ${binLast} = ${lastOctet}`,
+                        easyExplain: `ĐÚNG! 11000000 = 192; 10101000 = 168; 00000001 = 1; và cụm cuối ${binLast} = ${lastOctet}.`
+                    },
+                    {
+                        text: "Trong cùng một mạng LAN, mỗi máy trạm phải được cấp một địa chỉ IP riêng biệt, không được trùng nhau.",
+                        answer: true,
+                        keyword: "Mỗi máy trạm ↔ Một địa chỉ IP duy nhất",
+                        easyExplain: "ĐÚNG! Địa chỉ IP như biển số xe hoặc số nhà, nếu 2 máy trùng nhau thì gói tin sẽ không biết gửi cho ai (báo lỗi xung đột IP)."
+                    },
+                    {
+                        text: "Khi truyền dữ liệu qua Internet, máy tính gửi (trạm gửi) có nhiệm vụ tự tính toán và quyết định toàn bộ tuyến đường đi qua các trạm trung gian.",
+                        answer: false,
+                        keyword: "Bẫy: Trạm gửi tự tìm tuyến đường",
+                        easyExplain: "SAI! Trạm gửi chỉ gắn địa chỉ IP người gửi và người nhận vào đầu gói tin. Việc tìm tuyến đường đi tốt nhất là nhiệm vụ của Router (bộ định tuyến)!"
+                    },
+                    {
+                        text: "Để tiết kiệm tài nguyên, 5 máy tính trong cùng một phòng ban có thể dùng chung một địa chỉ IPv4 giống hệt nhau khi trao đổi dữ liệu nội bộ.",
+                        answer: false,
+                        keyword: "Bẫy: Nhiều máy dùng chung 1 địa chỉ IP",
+                        easyExplain: "SAI! Trong cùng một mạng LAN, hai máy không bao giờ được phép dùng chung một địa chỉ IP."
+                    }
+                ]);
+
+                return {
+                    id: `INF_IP_${serial}`,
+                    isOriginal: false,
+                    topic: "NET",
+                    topicName: `Đề Sinh Mới #${serial}: Giao thức IP & Định tuyến gói tin`,
+                    passage: `[Tình huống thực tế mới #${serial}] Quản trị viên mạng đang cấu hình bộ giao thức TCP/IP cho phòng máy của công ty. Một máy trạm trong phòng được gán địa chỉ IPv4 ở dạng nhị phân là 11000000.10101000.00000001.${binLast}. Các gói tin từ máy này trước khi gửi đi đều được đóng gói kèm địa chỉ IP nguồn và đích ở phần Header. Hãy xác định tính Đúng/Sai của các phát biểu sau:`,
+                    items
+                };
+            }
+
+            // MẪU 3: CHIA SẺ MÁY IN & TÀI NGUYÊN NỘI BỘ
+            if (chosenType === 'NET_PRINTER') {
+                const roomNames = ["Văn phòng Công chứng", "Phòng Giáo vụ Trường THPT", "Phòng Hành chính Nhân sự", "Khoa Khám bệnh"];
+                const rName = pickRandom(roomNames);
+                const numPC = Math.floor(Math.random() * 15) + 12;
+
+                const items = shuffleArray([
+                    {
+                        text: `Các nhân viên dùng laptop kết nối qua Wi-Fi (cùng mạng LAN của ${rName}) hoàn toàn có thể gửi lệnh in tới máy in được chia sẻ.`,
+                        answer: true,
+                        keyword: "Cùng mạng LAN (kể cả Wi-Fi) ↔ In chung được",
+                        easyExplain: "ĐÚNG! Chỉ cần nằm chung trong một mạng nội bộ (cắm dây hay bắt Wi-Fi đều được) là sử dụng được máy in chia sẻ."
+                    },
+                    {
+                        text: "Khi chia sẻ thư mục tài liệu trên mạng LAN, người quản trị có thể đặt mật khẩu và phân quyền chỉ đọc hoặc được phép chỉnh sửa.",
+                        answer: true,
+                        keyword: "Chia sẻ LAN ↔ Đặt mật khẩu & phân quyền truy cập",
+                        easyExplain: "ĐÚNG! Hệ điều hành cho phép cài đặt ai được xem, ai được sửa hoặc khóa mật khẩu để bảo mật tài liệu."
+                    },
+                    {
+                        text: `Nếu máy tính chủ (máy đang cắm trực tiếp cáp USB với máy in) bị tắt nguồn để bảo trì, ${numPC - 1} máy còn lại vẫn in được bình thường nhờ có Switch.`,
+                        answer: false,
+                        keyword: "Bẫy: Máy cắm máy in bị tắt mà máy khác vẫn in được",
+                        easyExplain: "SAI! Máy tính cắm dây trực tiếp vào máy in đóng vai trò cầu nối. Máy đó tắt nguồn thì các máy khác không thể liên lạc với máy in được nữa."
+                    },
+                    {
+                        text: `Khi nhiều người bấm in cùng lúc, máy in sẽ tự động ưu tiên in tài liệu của máy có số thứ tự IP nhỏ hơn trước.`,
+                        answer: false,
+                        keyword: "Bẫy: Ưu tiên in theo số thứ tự máy / IP",
+                        easyExplain: "SAI! Hàng đợi máy in hoạt động theo nguyên tắc 'Ai gửi lệnh trước thì in trước' (FIFO), không phân biệt số thứ tự máy."
+                    }
+                ]);
+
+                return {
+                    id: `INF_PRT_${serial}`,
+                    isOriginal: false,
+                    topic: "NET",
+                    topicName: `Đề Sinh Mới #${serial}: Chia sẻ máy in & thư mục tại ${rName}`,
+                    passage: `[Tình huống thực tế mới #${serial}] Tại ${rName}, có ${numPC} máy tính được nối vào chung một Switch và 01 bộ phát Wi-Fi tạo thành mạng LAN. Do chỉ có 01 chiếc máy in cổng USB, kỹ thuật viên đã cắm máy in này vào máy tính của Trưởng phòng và bật chế độ chia sẻ máy in (Printer Sharing) cho toàn bộ nhân viên trong phòng. Hãy đánh giá các nhận xét sau:`,
+                    items
+                };
+            }
+
+            // MẪU 4: NÂNG CẤP HẠ TẦNG MẠNG ĐA TẦNG / ĐA PHÒNG BAN
+            if (chosenType === 'NET_UPGRADE') {
+                const building = pickRandom(["Tòa nhà Khởi nghiệp 5 tầng", "Trường Quốc tế Liên cấp", "Khu ký túc xá sinh viên", "Trung tâm Thương mại"]);
+                const items = shuffleArray([
+                    {
+                        text: "Để mở rộng thêm cổng cắm cáp mạng cho các phòng mới lắp thêm nhiều máy tính để bàn, giải pháp đúng là trang bị thêm Switch.",
+                        answer: true,
+                        keyword: "Thêm nhiều máy cắm dây ↔ Lắp thêm Switch",
+                        easyExplain: "ĐÚNG! Switch dùng để chia thêm nhiều cổng cắm mạng LAN cho các máy tính trong phòng."
+                    },
+                    {
+                        text: "Để kết nối các mạng LAN độc lập giữa các tầng/khu vực và định tuyến đường ra Internet chung, cần sử dụng Router.",
+                        answer: true,
+                        keyword: "Nối các mạng LAN & ra Internet ↔ Dùng Router",
+                        easyExplain: "ĐÚNG! Router chuyên làm nhiệm vụ nối các mạng LAN khác nhau và dẫn đường ra Internet."
+                    },
+                    {
+                        text: `Việc thay thế chiếc Modem nhà mạng bằng một Modem đắt tiền hơn sẽ tự động giúp sóng Wi-Fi phủ kín mọi góc khuất ở tất cả các tầng của ${building}.`,
+                        answer: false,
+                        keyword: "Bẫy: Nâng cấp Modem giúp tăng phủ sóng Wi-Fi",
+                        easyExplain: "SAI! Modem chỉ chuyển đổi tín hiệu nhà mạng. Muốn phủ sóng Wi-Fi kín các tầng phải lắp thêm các bộ phát Access Point ở từng tầng!"
+                    },
+                    {
+                        text: "Lắp thêm một bộ phát Access Point ở tầng 1 sẽ giúp các máy tính để bàn đang cắm dây cáp mạng ở tầng 3 tăng gấp đôi tốc độ tải dữ liệu.",
+                        answer: false,
+                        keyword: "Bẫy: Lắp Access Point làm tăng tốc độ máy cắm dây",
+                        easyExplain: "SAI! Access Point chỉ phát Wi-Fi cho thiết bị không dây đứng gần nó, không làm tăng tốc độ cho máy tính cắm dây cáp."
+                    }
+                ]);
+
+                return {
+                    id: `INF_UPG_${serial}`,
+                    isOriginal: false,
+                    topic: "NET",
+                    topicName: `Đề Sinh Mới #${serial}: Nâng cấp mạng tại ${building}`,
+                    passage: `[Tình huống thực tế mới #${serial}] Ban quản lý ${building} muốn nâng cấp hệ thống mạng vì số lượng máy tính để bàn ở các phòng làm việc và lượng điện thoại thông minh truy cập Wi-Fi tăng gấp 3 lần so với trước đây, nhiều góc phòng bị mất sóng Wi-Fi. Hãy đánh giá các đề xuất kỹ thuật sau:`,
+                    items
+                };
+            }
+
+            // MẪU 5: TRÍ TUỆ NHÂN TẠO (AI) ĐÚNG/SAI SINH MỚI
+            if (chosenType === 'AI_SYSTEM') {
+                const items = shuffleArray([
+                    {
+                        text: "Tính năng hiểu câu lệnh bằng giọng nói tiếng Việt của trợ lý ảo thể hiện đặc trưng 'Khả năng hiểu ngôn ngữ tự nhiên' của AI.",
+                        answer: true,
+                        keyword: "Giọng nói / Văn bản / Dịch thuật ↔ Hiểu ngôn ngữ tự nhiên",
+                        easyExplain: "ĐÚNG! Cứ thấy máy hiểu được tiếng nói, chữ viết của con người (như Siri, Google Dịch, ChatGPT) là khả năng hiểu ngôn ngữ."
+                    },
+                    {
+                        text: "Việc hệ thống tự động gợi ý đúng bộ phim hoặc món hàng mà người dùng thích dựa trên lịch sử xem trước đó thể hiện 'Khả năng học' của AI.",
+                        answer: true,
+                        keyword: "Gợi ý theo lịch sử dữ liệu ↔ Khả năng học",
+                        easyExplain: "ĐÚNG! Máy thu thập dữ liệu thói quen của bạn rồi tự rút kinh nghiệm để gợi ý chuẩn hơn — đó chính là khả năng học (Machine Learning)."
+                    },
+                    {
+                        text: "Mọi thông tin và lời khuyên do các hệ thống AI tạo sinh (như ChatGPT) đưa ra đều luôn luôn chính xác tuyệt đối 100%.",
+                        answer: false,
+                        keyword: "Bẫy: AI luôn chính xác tuyệt đối",
+                        easyExplain: "SAI! AI vẫn có thể bị 'ảo giác' (bịa thông tin sai lệch) nên con người luôn phải kiểm chứng lại."
+                    },
+                    {
+                        text: "Phần mềm quản lý điểm học sinh chỉ thực hiện cộng trừ nhân chia điểm trung bình theo công thức cố định cũng được gọi là một hệ thống AI.",
+                        answer: false,
+                        keyword: "Bẫy: Phần mềm tính toán cố định là AI",
+                        easyExplain: "SAI! Tính điểm theo công thức có sẵn chỉ là lập trình tự động hóa thông thường, không có khả năng tự học hay suy luận như AI."
+                    }
+                ]);
+
+                return {
+                    id: `INF_AI_${serial}`,
+                    isOriginal: false,
+                    topic: "AI",
+                    topicName: `Đề Sinh Mới #${serial}: Ứng dụng & Đặc trưng của Trí tuệ nhân tạo (AI)`,
+                    passage: `[Tình huống thực tế mới #${serial}] Một tập đoàn bán lẻ và công nghệ triển khai hệ thống thông minh gồm: Chatbot tư vấn khách hàng bằng tiếng Việt tự nhiên, thuật toán gợi ý sản phẩm theo lịch sử mua sắm, và phần mềm kế toán tính tiền tự động theo công thức. Hãy đánh giá các nhận định sau:`,
+                    items
+                };
+            }
+
+            // MẪU 6: VĂN HÓA & ỨNG XỬ TRONG MÔI TRƯỜNG SỐ
+            const items = shuffleArray([
+                {
+                    text: "Khi nhận được tin nhắn đe dọa hoặc bắt nạt trên mạng, hành động đúng đắn nhất là không trả lời, chụp màn hình làm bằng chứng, chặn và báo cáo (Report).",
+                    answer: true,
+                    keyword: "Bị bắt nạt/đe dọa ↔ Không trả lời + Chặn + Báo cáo",
+                    easyExplain: "ĐÚNG! Đôi co hay chửi lại chỉ làm tình hình tệ hơn. Chặn và báo cáo cho quản trị viên/cơ quan chức năng là chuẩn công dân số."
+                },
+                {
+                    text: "Giao tiếp qua tin nhắn văn bản ngắn (SMS, chat) dễ gây hiểu lầm hơn gọi video vì thiếu ngữ điệu giọng nói và biểu cảm khuôn mặt (tín hiệu phi ngôn ngữ).",
+                    answer: true,
+                    keyword: "Tin nhắn văn bản ↔ Thiếu tín hiệu phi ngôn ngữ nên dễ hiểu lầm",
+                    easyExplain: "ĐÚNG! Nhắn một chữ 'Ừ' qua tin nhắn người đọc không biết bạn đang vui hay đang giận vì không nhìn thấy nét mặt."
+                },
+                {
+                    text: "Khi dùng tài khoản ẩn danh (nick ảo) trên mạng xã hội, người dùng hoàn toàn không phải chịu bất kỳ trách nhiệm pháp lý nào khi tung tin sai sự thật.",
+                    answer: false,
+                    keyword: "Bẫy: Dùng nick ảo không phải chịu trách nhiệm",
+                    easyExplain: "SAI! Dùng nick ảo làm giảm ý thức trách nhiệm cá nhân nhưng cơ quan chức năng vẫn truy ra địa chỉ IP và xử lý theo pháp luật."
+                },
+                {
+                    text: "Thấy một thông tin giật gân chưa rõ nguồn gốc trên mạng, nên chia sẻ ngay lập tức lên trang cá nhân để cảnh báo bạn bè càng nhanh càng tốt.",
+                    answer: false,
+                    keyword: "Bẫy: Chia sẻ ngay thông tin chưa kiểm chứng",
+                    easyExplain: "SAI! Phải xác minh tính xác thực từ nguồn chính thống trước khi bấm nút Chia sẻ để tránh tiếp tay cho tin giả (Fake News)."
+                }
+            ]);
+
+            return {
+                id: `INF_ETH_${serial}`,
+                isOriginal: false,
+                topic: "ETHICS",
+                topicName: `Đề Sinh Mới #${serial}: Văn hóa & Ứng xử an toàn trên không gian mạng`,
+                passage: `[Tình huống thực tế mới #${serial}] Trong nhóm học tập trực tuyến của trường, một số tài khoản ẩn danh đăng bài tung tin đồn thất thiệt và nhắn tin trêu chọc một bạn học sinh. Hãy đánh giá cách ứng xử của các thành viên trong tình huống này:`,
+                items
+            };
+        }
+
+        /**************************************************************************
+         * 3. QUẢN LÝ PHÒNG LUYỆN ĐÚNG/SAI VÔ HẠN (INFINITE TRAINER STATE)
+         **************************************************************************/
+        let trainerQuestions = [];
+        let trainerAnswers = {}; // { qId: { 0: bool, 1: bool, 2: bool, 3: bool } }
+        let trainerFilterMode = 'all'; // 'all' | 'original' | 'infinite'
+
+        function initTrainerPool() {
+            const originals = CS_QUESTION_BANK.part2.map(q => ({
+                ...q,
+                items: q.items.map(it => ({ ...it }))
+            }));
+            const initialInfinites = [];
+            for (let i = 0; i < 4; i++) {
+                initialInfinites.push(generateSingleInfiniteTFQuestion(['NET']));
+            }
+            trainerQuestions = [...originals, ...initialInfinites];
+        }
+
+        function openInfiniteTFTrainer() {
+            if (examState.timerInterval) clearInterval(examState.timerInterval);
+            if (trainerQuestions.length === 0) initTrainerPool();
+
+            document.getElementById('setupScreen').classList.add('hidden');
+            document.getElementById('examWorkspace').classList.add('hidden');
+            document.getElementById('examHeaderControls').classList.add('hidden');
+            document.getElementById('examHeaderControls').classList.remove('flex');
+            document.getElementById('backToConfigBtn').classList.remove('hidden');
+            document.getElementById('backToConfigBtn').classList.add('flex');
+            document.getElementById('infiniteTrainerScreen').classList.remove('hidden');
+
+            renderInfiniteTrainerCards();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function setTrainerMode(mode) {
+            trainerFilterMode = mode;
+            const activeClass = "px-3 py-1.5 rounded-lg bg-cyan-500 text-slate-950 font-extrabold";
+            const inactiveClass = "px-3 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-white font-semibold";
+            document.getElementById('trBtnAll').className = mode === 'all' ? activeClass : inactiveClass;
+            document.getElementById('trBtnOrig').className = mode === 'original' ? activeClass : inactiveClass;
+            document.getElementById('trBtnInf').className = mode === 'infinite' ? activeClass : inactiveClass;
+            renderInfiniteTrainerCards();
+        }
+
+        function generateMoreInfiniteTF(count = 5) {
+            const newBatch = [];
+            for (let i = 0; i < count; i++) {
+                newBatch.push(generateSingleInfiniteTFQuestion(['NET', 'AI', 'ETHICS']));
+            }
+            trainerQuestions = [...newBatch, ...trainerQuestions];
+            if (trainerFilterMode === 'original') trainerFilterMode = 'all';
+            setTrainerMode(trainerFilterMode);
+        }
+
+        function shuffleTrainerList() {
+            trainerQuestions = shuffleArray(trainerQuestions).map(q => ({
+                ...q,
+                items: shuffleArray(q.items)
+            }));
+            trainerAnswers = {};
+            renderInfiniteTrainerCards();
+        }
+
+        function selectTrainerSubAnswer(qId, sIdx, val) {
+            if (!trainerAnswers[qId]) trainerAnswers[qId] = {};
+            trainerAnswers[qId][sIdx] = val;
+            renderInfiniteTrainerCards();
+        }
+
+        function renderInfiniteTrainerCards() {
+            const container = document.getElementById('infiniteTrainerList');
+            const alwaysShowTips = document.getElementById('trainerAlwaysShowTipsCb').checked;
+            const boldTrue = document.getElementById('trainerBoldTrueCb').checked;
+
+            const filtered = trainerQuestions.filter(q => {
+                if (trainerFilterMode === 'original') return q.isOriginal;
+                if (trainerFilterMode === 'infinite') return !q.isOriginal;
+                return true;
+            });
+
+            container.innerHTML = filtered.map((qObj, idx) => {
+                const ansMap = trainerAnswers[qObj.id] || {};
+                const subHtml = qObj.items.map((sub, sIdx) => {
+                    const userChoice = ansMap[sIdx];
+                    const hasAnswered = userChoice !== undefined;
+                    const isSubCorrect = hasAnswered && userChoice === sub.answer;
+                    const showExplain = alwaysShowTips || hasAnswered;
+
+                    const isBoldTrue = (boldTrue || hasAnswered) && sub.answer === true;
+                    const textClass = isBoldTrue ? "correct-bold-answer" : "text-slate-800 dark:text-slate-100 font-medium";
+
+                    let boxBorder = "border-slate-200 dark:border-slate-700 bg-slate-50/70 dark:bg-slate-800/50";
+                    if (hasAnswered) {
+                        boxBorder = isSubCorrect
+                            ? "border-2 border-emerald-500 bg-emerald-50/40 dark:bg-emerald-950/20"
+                            : "border-2 border-rose-500 bg-rose-50/40 dark:bg-rose-950/20";
+                    }
+
+                    const trueBtnStyle = (hasAnswered && userChoice === true)
+                        ? (isSubCorrect ? "bg-emerald-600 text-white border-emerald-600 font-extrabold" : "bg-rose-600 text-white border-rose-600 font-extrabold")
+                        : "bg-white dark:bg-slate-800 border-slate-300 dark:border-slate-600 hover:border-emerald-500";
+
+                    const falseBtnStyle = (hasAnswered && userChoice === false)
+                        ? (isSubCorrect ? "bg-emerald-600 text-white border-emerald-600 font-extrabold" : "bg-rose-600 text-white border-rose-600 font-extrabold")
+                        : "bg-white dark:bg-slate-800 border-slate-300 dark:border-slate-600 hover:border-rose-500";
+
+                    const kwPillHtml = sub.answer
+                        ? `<span class="kw-pill"><i class="fa-solid fa-key mr-1"></i>Từ khóa ĐÚNG: ${sub.keyword || 'Khớp quy tắc chuẩn'}</span>`
+                        : `<span class="trap-pill"><i class="fa-solid fa-skull-crossbones mr-1"></i>${sub.keyword || 'Từ khóa bẫy SAI'}</span>`;
+
+                    return `
+                        <div class="p-4 rounded-xl border ${boxBorder} space-y-2.5 transition">
+                            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                                <div class="text-sm leading-relaxed flex-1">
+                                    <span class="font-mono font-bold text-indigo-600 dark:text-cyan-400 mr-1.5">${['a)', 'b)', 'c)', 'd)'][sIdx]}</span>
+                                    <span class="${textClass}">${sub.text}</span>
+                                </div>
+                                <div class="flex items-center gap-2 shrink-0 self-end sm:self-center">
+                                    <button type="button" onclick="selectTrainerSubAnswer('${qObj.id}', ${sIdx}, true)"
+                                        class="px-4 py-2 rounded-xl border text-xs sm:text-sm font-bold min-w-[80px] transition ${trueBtnStyle}">
+                                        Đúng
+                                    </button>
+                                    <button type="button" onclick="selectTrainerSubAnswer('${qObj.id}', ${sIdx}, false)"
+                                        class="px-4 py-2 rounded-xl border text-xs sm:text-sm font-bold min-w-[80px] transition ${falseBtnStyle}">
+                                        Sai
+                                    </button>
+                                </div>
+                            </div>
+
+                            ${hasAnswered ? `
+                                <div class="text-xs font-extrabold ${isSubCorrect ? 'text-emerald-600 dark:text-emerald-400' : 'text-rose-600 dark:text-rose-400'}">
+                                    <i class="fa-solid ${isSubCorrect ? 'fa-circle-check' : 'fa-circle-xmark'} mr-1"></i>
+                                    ${isSubCorrect ? 'CHÍNH XÁC!' : 'BỊ LỪA RỒI!'} Đáp án chuẩn là: <span class="underline font-mono">${sub.answer ? 'ĐÚNG' : 'SAI'}</span>
+                                </div>
+                            ` : ''}
+
+                            ${showExplain ? `
+                                <div class="p-3 rounded-xl bg-amber-50/90 dark:bg-slate-900/90 border border-amber-300/70 dark:border-slate-700 text-xs space-y-1.5">
+                                    <div class="flex flex-wrap items-center gap-2">
+                                        ${kwPillHtml}
+                                        <span class="px-2 py-0.5 rounded bg-slate-200 dark:bg-slate-800 font-mono font-bold text-[11px]">
+                                            Chốt: ${sub.answer ? 'ĐÚNG' : 'SAI'}
+                                        </span>
+                                    </div>
+                                    <p class="text-slate-700 dark:text-slate-300 leading-relaxed">
+                                        <strong class="text-amber-700 dark:text-amber-400"><i class="fa-solid fa-lightbulb mr-1"></i>Giải thích dễ hiểu:</strong> ${sub.easyExplain}
+                                    </p>
+                                </div>
+                            ` : ''}
+                        </div>
+                    `;
+                }).join('');
+
+                const badgeType = qObj.isOriginal
+                    ? `<span class="px-2.5 py-1 rounded-lg bg-emerald-500/15 text-emerald-700 dark:text-emerald-300 border border-emerald-500/30 text-xs font-bold">Câu Gốc Đề Cương</span>`
+                    : `<span class="px-2.5 py-1 rounded-lg bg-amber-500/20 text-amber-700 dark:text-amber-300 border border-amber-500/40 text-xs font-extrabold"><i class="fa-solid fa-wand-magic-sparkles mr-1"></i>Câu Sinh Mới (Đề Lạ)</span>`;
+
+                return `
+                    <div class="bg-white dark:bg-slate-900 rounded-2xl shadow-md border border-slate-200 dark:border-slate-800 p-4 sm:p-6 space-y-4">
+                        <div class="flex flex-wrap items-center justify-between gap-2">
+                            <div class="flex items-center gap-2 flex-wrap">
+                                <span class="px-3 py-1 rounded-lg bg-indigo-600 text-white font-mono font-extrabold text-xs sm:text-sm">
+                                    Câu Đúng/Sai #${idx + 1}
+                                </span>
+                                ${badgeType}
+                                <span class="text-xs font-semibold text-slate-500 dark:text-slate-400">
+                                    ${qObj.topicName}
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/90 border-l-4 border-indigo-500 text-slate-800 dark:text-slate-200 text-sm leading-relaxed">
+                            ${qObj.passage}
+                        </div>
+
+                        <div class="space-y-3">
+                            ${subHtml}
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        /**************************************************************************
+         * 4. QUẢN LÝ TRẠNG THÁI BÀI THI TỔNG HỢP (PHẦN I + PHẦN II)
+         **************************************************************************/
+        let currentMode = 'standard'; // 'standard' | 'full' | 'onlyp2' | 'custom'
+        let examState = {
+            isActive: false,
+            isSubmitted: false,
+            examCode: 'IT2026',
+            durationMinutes: 40,
+            remainingSeconds: 2400,
+            elapsedSeconds: 0,
+            timerInterval: null,
+            showBoldHint: false,
+            showTipsLive: false,
+            part1Questions: [],
+            part2Questions: [],
+            answersP1: {},
+            answersP2: {},
+            flaggedP1: {},
+            flaggedP2: {},
+            reviewFilter: 'all'
+        };
+
+        function generateRandomExamCode() {
+            return 'IT' + String(Math.floor(1000 + Math.random() * 9000));
+        }
+
+        function selectExamMode(mode) {
+            currentMode = mode;
+            const cards = {
+                standard: document.getElementById('modeCardStandard'),
+                full: document.getElementById('modeCardFull'),
+                onlyp2: document.getElementById('modeCardOnlyP2'),
+                custom: document.getElementById('modeCardCustom')
+            };
+            const activeStyle = "cursor-pointer rounded-2xl border-2 border-cyan-500 bg-cyan-50/50 dark:bg-cyan-950/20 p-4 transition flex flex-col justify-between gap-2";
+            const inactiveStyle = "cursor-pointer rounded-2xl border-2 border-slate-200 dark:border-slate-700 hover:border-cyan-400 p-4 transition flex flex-col justify-between gap-2";
+
+            Object.keys(cards).forEach(k => {
+                cards[k].className = (k === mode) ? activeStyle : inactiveStyle;
+                cards[k].querySelector('input').checked = (k === mode);
+            });
+
+            const customControls = document.getElementById('customCountControls');
+            if (mode === 'custom') {
+                customControls.classList.remove('hidden');
+                customControls.classList.add('grid');
+                updateAvailableCounts();
+            } else {
+                customControls.classList.add('hidden');
+                customControls.classList.remove('grid');
+            }
+        }
+
+        function getSelectedTopics() {
+            const cbs = document.querySelectorAll('.topic-cb:checked');
+            return Array.from(cbs).map(cb => cb.value);
+        }
+
+        function toggleAllTopics() {
+            const allCbs = document.querySelectorAll('.topic-cb');
+            const allChecked = Array.from(allCbs).every(cb => cb.checked);
+            allCbs.forEach(cb => cb.checked = !allChecked);
+            updateAvailableCounts();
+        }
+
+        function updateAvailableCounts() {
+            const topics = getSelectedTopics();
+            const availP1 = CS_QUESTION_BANK.part1.filter(q => topics.includes(q.topic)).length;
+            const availP2 = CS_QUESTION_BANK.part2.filter(q => topics.includes(q.topic)).length;
+
+            document.getElementById('maxP1Label').textContent = availP1;
+            document.getElementById('maxP2Label').textContent = availP2;
+        }
+
+        function setDuration(minutes) {
+            document.getElementById('durationInput').value = minutes;
+            document.querySelectorAll('.time-preset').forEach(btn => {
+                if (btn.textContent.startsWith(minutes + 'p')) {
+                    btn.className = "time-preset px-3 py-1.5 rounded-xl text-xs font-bold border-2 border-cyan-500 bg-cyan-500/10 text-cyan-700 dark:text-cyan-300";
+                } else {
+                    btn.className = "time-preset px-3 py-1.5 rounded-xl text-xs font-semibold border border-slate-200 dark:border-slate-700";
+                }
+            });
+        }
+
+        function startExam() {
+            const errorBox = document.getElementById('setupErrorBox');
+            errorBox.classList.add('hidden');
+
+            const selectedTopics = getSelectedTopics();
+            if (selectedTopics.length === 0) {
+                errorBox.textContent = "Vui lòng chọn ít nhất 1 chủ đề kiến thức để tạo đề kiểm tra!";
+                errorBox.classList.remove('hidden');
+                return;
+            }
+
+            const poolP1 = CS_QUESTION_BANK.part1.filter(q => selectedTopics.includes(q.topic));
+            const poolP2 = CS_QUESTION_BANK.part2.filter(q => selectedTopics.includes(q.topic));
+
+            let countP1 = 24, countP2Orig = 4, countP2Inf = 0;
+            if (currentMode === 'standard') {
+                countP1 = Math.min(24, poolP1.length);
+                countP2Orig = Math.min(4, poolP2.length);
+                if (countP2Orig < 4) countP2Inf = 4 - countP2Orig;
+            } else if (currentMode === 'full') {
+                countP1 = poolP1.length;
+                countP2Orig = poolP2.length;
+            } else if (currentMode === 'onlyp2') {
+                countP1 = 0;
+                countP2Orig = poolP2.length;
+                countP2Inf = 6;
+            } else {
+                countP1 = Math.min(Math.max(0, parseInt(document.getElementById('customP1Input').value || 0, 10)), poolP1.length);
+                countP2Orig = Math.min(Math.max(0, parseInt(document.getElementById('customP2Input').value || 0, 10)), poolP2.length);
+                countP2Inf = Math.max(0, parseInt(document.getElementById('customInfiniteP2Input').value || 0, 10));
+            }
+
+            const durationMinutes = Math.max(1, parseInt(document.getElementById('durationInput').value || 40, 10));
+            const doShuffle = document.getElementById('shuffleQuestionsCb').checked;
+            const showBoldHint = document.getElementById('showBoldHintCb').checked;
+            const showTipsLive = document.getElementById('showTipsInExamCb').checked;
+
+            const rawP1 = (doShuffle ? shuffleArray(poolP1) : [...poolP1]).slice(0, countP1);
+            const preparedP1 = rawP1.map(item => {
+                const opts = [
+                    { text: item.correct, isCorrect: true },
+                    ...item.distractors.map(d => ({ text: d, isCorrect: false }))
+                ];
+                return {
+                    id: item.id,
+                    topic: item.topic,
+                    topicName: item.topicName,
+                    q: item.q,
+                    options: doShuffle ? shuffleArray(opts) : opts
+                };
+            });
+
+            const rawP2Orig = (doShuffle ? shuffleArray(poolP2) : [...poolP2]).slice(0, countP2Orig);
+            const generatedP2 = [];
+            for (let i = 0; i < countP2Inf; i++) {
+                generatedP2.push(generateSingleInfiniteTFQuestion(selectedTopics));
+            }
+
+            const combinedP2 = [...rawP2Orig, ...generatedP2];
+            const preparedP2 = combinedP2.map(item => {
+                const subItems = item.items.map(s => ({ ...s }));
+                return {
+                    id: item.id,
+                    isOriginal: item.isOriginal,
+                    topic: item.topic,
+                    topicName: item.topicName,
+                    passage: item.passage,
+                    items: doShuffle ? shuffleArray(subItems) : subItems
+                };
+            });
+
+            if (examState.timerInterval) clearInterval(examState.timerInterval);
+            examState = {
+                isActive: true,
+                isSubmitted: false,
+                examCode: generateRandomExamCode(),
+                durationMinutes,
+                remainingSeconds: durationMinutes * 60,
+                elapsedSeconds: 0,
+                timerInterval: null,
+                showBoldHint,
+                showTipsLive,
+                part1Questions: preparedP1,
+                part2Questions: preparedP2,
+                answersP1: {},
+                answersP2: {},
+                flaggedP1: {},
+                flaggedP2: {},
+                reviewFilter: 'all'
+            };
+
+            document.getElementById('setupScreen').classList.add('hidden');
+            document.getElementById('infiniteTrainerScreen').classList.add('hidden');
+            document.getElementById('examWorkspace').classList.remove('hidden');
+            document.getElementById('resultSummaryPanel').classList.add('hidden');
+            document.getElementById('examHeaderControls').classList.remove('hidden');
+            document.getElementById('examHeaderControls').classList.add('flex');
+            document.getElementById('backToConfigBtn').classList.remove('hidden');
+            document.getElementById('backToConfigBtn').classList.add('flex');
+            document.getElementById('headerSubmitBtn').classList.remove('hidden');
+            document.getElementById('sidebarSubmitBtn').classList.remove('hidden');
+
+            document.getElementById('examCodeDisplay').textContent = examState.examCode;
+            document.getElementById('paperSubInfo').textContent = `Thời gian: ${durationMinutes} phút • Gồm ${preparedP1.length} câu Phần I & ${preparedP2.length} câu Phần II`;
+
+            renderAllQuestions();
+            renderQuestionPalette();
+            updateProgressCounters();
+            startTimer();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function appendInfiniteQuestionToActiveExam() {
+            const newQ = generateSingleInfiniteTFQuestion(['NET', 'AI', 'ETHICS']);
+            examState.part2Questions.push(newQ);
+            renderAllQuestions();
+            renderQuestionPalette();
+            updateProgressCounters();
+            const newIdx = examState.part2Questions.length - 1;
+            const el = document.getElementById(`question_p2_${newIdx}`);
+            if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        function toggleExamTipsLive() {
+            examState.showTipsLive = !examState.showTipsLive;
+            renderAllQuestions();
+        }
+
+        /**************************************************************************
+         * 5. HIỂN THỊ CÂU HỎI PHẦN I VÀ PHẦN II (KÈM MẸO TỪ KHÓA & GIẢI THÍCH)
+         **************************************************************************/
+        const OPTION_LABELS = ['A', 'B', 'C', 'D'];
+        const SUB_ITEM_LABELS = ['a)', 'b)', 'c)', 'd)'];
+
+        function renderAllQuestions() {
+            const p1Wrapper = document.getElementById('part1SectionWrapper');
+            const p2Wrapper = document.getElementById('part2SectionWrapper');
+            const p1List = document.getElementById('part1QuestionsList');
+            const p2List = document.getElementById('part2QuestionsList');
+
+            p1List.innerHTML = '';
+            p2List.innerHTML = '';
+
+            p1Wrapper.classList.toggle('hidden', examState.part1Questions.length === 0);
+            p2Wrapper.classList.toggle('hidden', examState.part2Questions.length === 0);
+
+            const isSubmitted = examState.isSubmitted;
+            const showBold = isSubmitted || examState.showBoldHint;
+            const showTips = isSubmitted || examState.showTipsLive;
+
+            // RENDER PHẦN I
+            examState.part1Questions.forEach((qObj, qIndex) => {
+                const userSelected = examState.answersP1[qIndex];
+                const isFlagged = !!examState.flaggedP1[qIndex];
+                const correctIndex = qObj.options.findIndex(o => o.isCorrect);
+                const isCorrect = isSubmitted && userSelected === correctIndex;
+
+                if (isSubmitted) {
+                    if (examState.reviewFilter === 'wrong' && isCorrect) return;
+                    if (examState.reviewFilter === 'flagged' && !isFlagged) return;
+                }
+
+                let statusBadge = '';
+                if (isSubmitted) {
+                    if (userSelected === undefined) {
+                        statusBadge = `<span class="px-2.5 py-1 rounded-lg bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 text-xs font-bold">Chưa chọn (0đ)</span>`;
+                    } else if (isCorrect) {
+                        statusBadge = `<span class="px-2.5 py-1 rounded-lg bg-emerald-500/15 text-emerald-700 dark:text-emerald-300 border border-emerald-500/30 text-xs font-bold"><i class="fa-solid fa-check mr-1"></i>Đúng (+0,25đ)</span>`;
+                    } else {
+                        statusBadge = `<span class="px-2.5 py-1 rounded-lg bg-rose-500/15 text-rose-700 dark:text-rose-300 border border-rose-500/30 text-xs font-bold"><i class="fa-solid fa-xmark mr-1"></i>Sai (0đ)</span>`;
+                    }
+                }
+
+                const optionsHTML = qObj.options.map((opt, optIdx) => {
+                    const isThisSelected = userSelected === optIdx;
+                    let btnStyle = "border-slate-200 dark:border-slate-700 bg-slate-50/70 dark:bg-slate-800/50 hover:border-cyan-400 text-slate-700 dark:text-slate-300 font-normal";
+                    let badgeStyle = "bg-white dark:bg-slate-700 text-slate-700 dark:text-slate-200 border border-slate-300 dark:border-slate-600 font-medium";
+                    let feedbackTag = "";
+
+                    const isBoldAnswer = showBold && opt.isCorrect;
+                    const textWeightClass = isBoldAnswer ? "correct-bold-answer" : "font-normal";
+                    const badgeBoldClass = isBoldAnswer && !isSubmitted && !isThisSelected ? "correct-bold-badge" : "";
+
+                    if (!isSubmitted) {
+                        if (isThisSelected) {
+                            btnStyle = "border-2 border-cyan-500 bg-cyan-50/90 dark:bg-cyan-950/40 text-slate-950 dark:text-cyan-200 shadow-xs";
+                            badgeStyle = "bg-cyan-600 text-white font-extrabold border-cyan-600";
+                        } else if (isBoldAnswer) {
+                            btnStyle = "border-2 border-emerald-500/60 bg-emerald-50/50 dark:bg-emerald-950/20";
+                        }
+                    } else {
+                        if (opt.isCorrect) {
+                            btnStyle = "border-2 border-emerald-500 bg-emerald-50/90 dark:bg-emerald-950/35 text-emerald-950 dark:text-emerald-200";
+                            badgeStyle = "bg-emerald-600 text-white font-extrabold border-emerald-600";
+                            feedbackTag = `<span class="ml-auto text-xs font-mono font-extrabold text-emerald-600 dark:text-emerald-400 shrink-0"><i class="fa-solid fa-circle-check mr-1"></i>Đáp án đúng</span>`;
+                        } else if (isThisSelected && !opt.isCorrect) {
+                            btnStyle = "border-2 border-rose-500 bg-rose-50/80 dark:bg-rose-950/30 text-rose-950 dark:text-rose-200";
+                            badgeStyle = "bg-rose-500 text-white font-extrabold border-rose-500";
+                            feedbackTag = `<span class="ml-auto text-xs font-bold text-rose-600 dark:text-rose-400 shrink-0"><i class="fa-solid fa-circle-xmark mr-1"></i>Bạn chọn</span>`;
+                        } else {
+                            btnStyle = "border-slate-200 dark:border-slate-800 bg-slate-50/40 dark:bg-slate-900/40 opacity-65";
+                        }
+                    }
+
+                    return `
+                        <button type="button"
+                            ${isSubmitted ? 'disabled' : `onclick="selectPart1Answer(${qIndex}, ${optIdx})"`}
+                            class="w-full text-left p-3.5 rounded-xl border transition flex items-center gap-3 ${btnStyle}">
+                            <span class="min-w-[2.25rem] h-8 px-1.5 rounded-lg flex items-center justify-center text-sm font-mono shrink-0 ${badgeStyle} ${badgeBoldClass} ${isBoldAnswer ? 'font-extrabold' : ''}">
+                                ${OPTION_LABELS[optIdx]}.
+                            </span>
+                            <span class="text-sm leading-snug flex-1 ${textWeightClass}">${opt.text}</span>
+                            ${feedbackTag}
+                        </button>
+                    `;
+                }).join('');
+
+                const card = document.createElement('div');
+                card.id = `question_p1_${qIndex}`;
+                card.className = `scroll-mt-24 rounded-2xl border p-4 sm:p-5 bg-white dark:bg-slate-900 transition ${
+                    isSubmitted
+                        ? (isCorrect ? 'border-emerald-500/40' : 'border-rose-500/40')
+                        : 'border-slate-200 dark:border-slate-800'
+                }`;
+
+                card.innerHTML = `
+                    <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+                        <div class="flex items-center gap-2">
+                            <span class="px-3 py-1 rounded-lg bg-cyan-600 text-white font-mono font-extrabold text-xs sm:text-sm">
+                                Câu ${qIndex + 1}
+                            </span>
+                            <span class="text-xs font-medium text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-slate-800 px-2.5 py-1 rounded-lg">
+                                ${qObj.topicName}
+                            </span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            ${statusBadge}
+                            <button type="button" onclick="toggleFlag('p1', ${qIndex})"
+                                class="px-2.5 py-1 rounded-lg text-xs font-semibold border transition flex items-center gap-1 ${
+                                    isFlagged
+                                        ? 'bg-rose-500/15 text-rose-600 dark:text-rose-400 border-rose-500/40'
+                                        : 'bg-slate-100 dark:bg-slate-800 text-slate-500 border-slate-200 dark:border-slate-700 hover:text-rose-500'
+                                }">
+                                <i class="fa-${isFlagged ? 'solid' : 'regular'} fa-flag"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="font-semibold text-slate-900 dark:text-white text-sm sm:text-base mb-4 leading-relaxed">
+                        ${qObj.q}
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-2.5">
+                        ${optionsHTML}
+                    </div>
+                `;
+                p1List.appendChild(card);
+            });
+
+            // RENDER PHẦN II (CÓ TỪ KHÓA & GIẢI THÍCH SIÊU DỄ HIỂU)
+            examState.part2Questions.forEach((qObj, qIndex) => {
+                const userSubAnswers = examState.answersP2[qIndex] || {};
+                const isFlagged = !!examState.flaggedP2[qIndex];
+
+                let correctSubCount = 0;
+                qObj.items.forEach((sub, sIdx) => {
+                    if (userSubAnswers[sIdx] === sub.answer) correctSubCount++;
+                });
+                const earnedPoints = getPart2QuestionScore(correctSubCount);
+
+                if (isSubmitted) {
+                    if (examState.reviewFilter === 'wrong' && correctSubCount === 4) return;
+                    if (examState.reviewFilter === 'flagged' && !isFlagged) return;
+                }
+
+                let scoreBadge = '';
+                if (isSubmitted) {
+                    const color = correctSubCount === 4
+                        ? 'bg-emerald-500/15 text-emerald-700 dark:text-emerald-300 border-emerald-500/30'
+                        : (correctSubCount > 0 ? 'bg-amber-500/15 text-amber-700 dark:text-amber-300 border-amber-500/30' : 'bg-rose-500/15 text-rose-700 dark:text-rose-300 border-rose-500/30');
+                    scoreBadge = `
+                        <span class="px-2.5 py-1 rounded-lg border text-xs font-mono font-extrabold ${color}">
+                            Đúng ${correctSubCount}/4 ý (+${earnedPoints.toFixed(2).replace('.', ',')}đ)
+                        </span>
+                    `;
+                }
+
+                const subRowsHTML = qObj.items.map((subItem, sIdx) => {
+                    const userChoice = userSubAnswers[sIdx];
+                    const isSubCorrect = userChoice === subItem.answer;
+
+                    const isBoldStatement = showBold && subItem.answer === true;
+                    const statementTextClass = isBoldStatement
+                        ? "correct-bold-answer"
+                        : "font-normal text-slate-700 dark:text-slate-200";
+                    const labelClass = isBoldStatement
+                        ? "correct-bold-answer font-mono mr-1.5"
+                        : "font-medium font-mono text-indigo-700 dark:text-cyan-400 mr-1.5";
+
+                    let trueBtnClass = "border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:border-emerald-500";
+                    let falseBtnClass = "border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:border-rose-500";
+                    let resultInfoHTML = "";
+
+                    if (!isSubmitted) {
+                        if (userChoice === true) {
+                            trueBtnClass = "border-2 border-emerald-600 bg-emerald-600 text-white font-extrabold shadow-xs";
+                        } else if (userChoice === false) {
+                            falseBtnClass = "border-2 border-rose-600 bg-rose-500 text-white font-extrabold shadow-xs";
+                        }
+                    } else {
+                        if (userChoice === true) {
+                            trueBtnClass = isSubCorrect
+                                ? "border-2 border-emerald-600 bg-emerald-600 text-white font-extrabold"
+                                : "border-2 border-rose-600 bg-rose-500 text-white font-extrabold";
+                        } else if (userChoice === false) {
+                            falseBtnClass = isSubCorrect
+                                ? "border-2 border-emerald-600 bg-emerald-600 text-white font-extrabold"
+                                : "border-2 border-rose-600 bg-rose-500 text-white font-extrabold";
+                        }
+
+                        const correctLabel = subItem.answer ? 'ĐÚNG (In đậm)' : 'SAI';
+                        if (userChoice === undefined) {
+                            resultInfoHTML = `<div class="text-xs font-bold text-rose-500 mt-1"><i class="fa-solid fa-circle-exclamation mr-1"></i>Chưa chọn • Đáp án chuẩn: <span class="underline font-mono">${correctLabel}</span></div>`;
+                        } else if (isSubCorrect) {
+                            resultInfoHTML = `<div class="text-xs font-bold text-emerald-600 dark:text-emerald-400 mt-1"><i class="fa-solid fa-check mr-1"></i>Chính xác • Đáp án chuẩn: <span class="underline font-mono">${correctLabel}</span></div>`;
+                        } else {
+                            resultInfoHTML = `<div class="text-xs font-bold text-rose-600 dark:text-rose-400 mt-1"><i class="fa-solid fa-xmark mr-1"></i>Sai • Đáp án chuẩn: <span class="underline font-mono">${correctLabel}</span></div>`;
+                        }
+                    }
+
+                    const kwPill = subItem.answer
+                        ? `<span class="kw-pill"><i class="fa-solid fa-key mr-1"></i>Từ khóa Đúng: ${subItem.keyword || ''}</span>`
+                        : `<span class="trap-pill"><i class="fa-solid fa-skull-crossbones mr-1"></i>${subItem.keyword || ''}</span>`;
+
+                    const tipBoxHTML = (showTips && subItem.easyExplain) ? `
+                        <div class="mt-2 p-2.5 rounded-xl bg-amber-50/90 dark:bg-slate-900/90 border border-amber-300/60 dark:border-slate-700 text-xs space-y-1">
+                            <div class="flex flex-wrap items-center gap-2">${kwPill}</div>
+                            <div class="text-slate-700 dark:text-slate-300"><strong class="text-amber-700 dark:text-amber-400">Mẹo hiểu nhanh:</strong> ${subItem.easyExplain}</div>
+                        </div>
+                    ` : '';
+
+                    return `
+                        <div class="p-3.5 rounded-xl border ${
+                            isSubmitted
+                                ? (isSubCorrect ? 'border-emerald-500/40 bg-emerald-50/30 dark:bg-emerald-950/15' : 'border-rose-500/40 bg-rose-50/30 dark:bg-rose-950/15')
+                                : (isBoldStatement ? 'border-emerald-500/40 bg-emerald-50/30 dark:bg-emerald-950/15' : 'border-slate-200 dark:border-slate-700/80 bg-slate-50/60 dark:bg-slate-800/40')
+                        } flex flex-col gap-2">
+                            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                                <div class="space-y-1 flex-1">
+                                    <div class="text-sm leading-relaxed">
+                                        <span class="${labelClass}">${SUB_ITEM_LABELS[sIdx]}</span>
+                                        <span class="${statementTextClass}">${subItem.text}</span>
+                                    </div>
+                                    ${resultInfoHTML}
+                                </div>
+                                <div class="flex items-center gap-2 shrink-0 self-end sm:self-center">
+                                    <button type="button"
+                                        ${isSubmitted ? 'disabled' : `onclick="selectPart2Answer(${qIndex}, ${sIdx}, true)"`}
+                                        class="px-4 py-2 rounded-xl border text-xs sm:text-sm font-semibold transition min-w-[82px] ${trueBtnClass} ${showBold && subItem.answer ? 'font-extrabold ring-2 ring-emerald-500/40' : ''}">
+                                        Đúng
+                                    </button>
+                                    <button type="button"
+                                        ${isSubmitted ? 'disabled' : `onclick="selectPart2Answer(${qIndex}, ${sIdx}, false)"`}
+                                        class="px-4 py-2 rounded-xl border text-xs sm:text-sm font-semibold transition min-w-[82px] ${falseBtnClass}">
+                                        Sai
+                                    </button>
+                                </div>
+                            </div>
+                            ${tipBoxHTML}
+                        </div>
+                    `;
+                }).join('');
+
+                const card = document.createElement('div');
+                card.id = `question_p2_${qIndex}`;
+                card.className = `scroll-mt-24 rounded-2xl border p-4 sm:p-6 bg-white dark:bg-slate-900 transition ${
+                    isSubmitted
+                        ? (correctSubCount === 4 ? 'border-emerald-500/50' : 'border-amber-500/50')
+                        : 'border-slate-200 dark:border-slate-800'
+                }`;
+
+                card.innerHTML = `
+                    <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+                        <div class="flex items-center gap-2 flex-wrap">
+                            <span class="px-3 py-1 rounded-lg bg-indigo-600 text-white font-mono font-extrabold text-xs sm:text-sm">
+                                Câu ${qIndex + 1} (Phần II)
+                            </span>
+                            ${qObj.isOriginal === false ? `<span class="px-2 py-0.5 rounded bg-amber-500/20 text-amber-700 dark:text-amber-300 text-xs font-extrabold">Đề Sinh Mới</span>` : ''}
+                            <span class="text-xs font-medium text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-slate-800 px-2.5 py-1 rounded-lg">
+                                ${qObj.topicName}
+                            </span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            ${scoreBadge}
+                            <button type="button" onclick="toggleFlag('p2', ${qIndex})"
+                                class="px-2.5 py-1 rounded-lg text-xs font-semibold border transition flex items-center gap-1 ${
+                                    isFlagged
+                                        ? 'bg-rose-500/15 text-rose-600 dark:text-rose-400 border-rose-500/40'
+                                        : 'bg-slate-100 dark:bg-slate-800 text-slate-500 border-slate-200 dark:border-slate-700 hover:text-rose-500'
+                                }">
+                                <i class="fa-${isFlagged ? 'solid' : 'regular'} fa-flag"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/90 border-l-4 border-indigo-500 text-slate-800 dark:text-slate-200 text-sm leading-relaxed mb-4">
+                        ${qObj.passage}
+                    </div>
+
+                    <div class="space-y-2.5">
+                        ${subRowsHTML}
+                    </div>
+                `;
+                p2List.appendChild(card);
+            });
+        }
+
+        /**************************************************************************
+         * 6. XỬ LÝ CHỌN ĐÁP ÁN, PALETTE & CHẤM ĐIỂM
+         **************************************************************************/
+        function selectPart1Answer(qIndex, optIndex) {
+            if (examState.isSubmitted) return;
+            examState.answersP1[qIndex] = optIndex;
+            renderAllQuestions();
+            renderQuestionPalette();
+            updateProgressCounters();
+        }
+
+        function selectPart2Answer(qIndex, subIndex, booleanVal) {
+            if (examState.isSubmitted) return;
+            if (!examState.answersP2[qIndex]) examState.answersP2[qIndex] = {};
+            examState.answersP2[qIndex][subIndex] = booleanVal;
+            renderAllQuestions();
+            renderQuestionPalette();
+            updateProgressCounters();
+        }
+
+        function toggleFlag(part, qIndex) {
+            if (part === 'p1') examState.flaggedP1[qIndex] = !examState.flaggedP1[qIndex];
+            else examState.flaggedP2[qIndex] = !examState.flaggedP2[qIndex];
+            renderAllQuestions();
+            renderQuestionPalette();
+        }
+
+        function renderQuestionPalette() {
+            const buildP1 = (isMob) => examState.part1Questions.map((qObj, idx) => {
+                const answered = examState.answersP1[idx] !== undefined;
+                const flagged = !!examState.flaggedP1[idx];
+                let color = "bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-300 dark:border-slate-700 hover:border-cyan-500";
+
+                if (!examState.isSubmitted) {
+                    if (answered) color = "bg-cyan-600 text-white font-extrabold border-cyan-600";
+                } else {
+                    const correctIdx = qObj.options.findIndex(o => o.isCorrect);
+                    color = (examState.answersP1[idx] === correctIdx)
+                        ? "bg-emerald-600 text-white font-extrabold border-emerald-600"
+                        : "bg-rose-500 text-white font-extrabold border-rose-500";
+                }
+
+                const ring = flagged ? "ring-2 ring-rose-500 ring-offset-1 dark:ring-offset-slate-900" : "";
+                const letter = answered ? OPTION_LABELS[examState.answersP1[idx]] : '';
+                return `<button type="button" onclick="scrollToQuestion('p1', ${idx}, ${isMob})" class="h-9 rounded-lg text-xs font-mono font-bold flex items-center justify-center transition ${color} ${ring}">${idx + 1}${letter ? `<sub class="ml-0.5 text-[10px]">${letter}</sub>` : ''}</button>`;
+            }).join('');
+
+            const buildP2 = (isMob) => examState.part2Questions.map((qObj, idx) => {
+                const subAns = examState.answersP2[idx] || {};
+                const count = Object.keys(subAns).length;
+                const flagged = !!examState.flaggedP2[idx];
+                let color = "bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-300 dark:border-slate-700 hover:border-cyan-500";
+
+                if (!examState.isSubmitted) {
+                    if (count === 4) color = "bg-cyan-600 text-white font-extrabold border-cyan-600";
+                    else if (count > 0) color = "bg-amber-300 dark:bg-amber-700 text-slate-900 dark:text-white font-bold border-amber-400";
+                } else {
+                    let c = 0;
+                    qObj.items.forEach((s, sIdx) => { if (subAns[sIdx] === s.answer) c++; });
+                    if (c === 4) color = "bg-emerald-600 text-white font-extrabold border-emerald-600";
+                    else if (c > 0) color = "bg-amber-500 text-slate-950 font-extrabold border-amber-500";
+                    else color = "bg-rose-500 text-white font-extrabold border-rose-500";
+                }
+
+                const ring = flagged ? "ring-2 ring-rose-500 ring-offset-1 dark:ring-offset-slate-900" : "";
+                return `<button type="button" onclick="scrollToQuestion('p2', ${idx}, ${isMob})" class="h-10 rounded-lg text-xs font-mono font-bold flex flex-col items-center justify-center leading-tight transition ${color} ${ring}"><span>C.${idx + 1}</span><span class="text-[10px] opacity-85">${count}/4</span></button>`;
+            }).join('');
+
+            document.getElementById('palettePart1Grid').innerHTML = buildP1(false);
+            document.getElementById('palettePart2Grid').innerHTML = buildP2(false);
+            document.getElementById('mobilePalettePart1Grid').innerHTML = buildP1(true);
+            document.getElementById('mobilePalettePart2Grid').innerHTML = buildP2(true);
+        }
+
+        function scrollToQuestion(part, index, closeMobile) {
+            if (closeMobile) toggleMobilePalette();
+            const el = document.getElementById(`question_${part}_${index}`);
+            if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        function updateProgressCounters() {
+            const total = examState.part1Questions.length + examState.part2Questions.length;
+            const doneP1 = Object.keys(examState.answersP1).length;
+            let doneP2 = 0;
+            examState.part2Questions.forEach((_, idx) => {
+                if (examState.answersP2[idx] && Object.keys(examState.answersP2[idx]).length === 4) doneP2++;
+            });
+            const doneTotal = doneP1 + doneP2;
+
+            document.getElementById('headerProgressText').textContent = `${doneTotal}/${total}`;
+            document.getElementById('sidebarProgressBadge').textContent = `${doneTotal}/${total}`;
+            document.getElementById('mobileProgressBadge').textContent = `${doneTotal}`;
+        }
+
+        function toggleMobilePalette() {
+            document.getElementById('mobilePaletteModal').classList.toggle('hidden');
+        }
+
+        function toggleCheatSheetModal() {
+            document.getElementById('cheatSheetModal').classList.toggle('hidden');
+        }
+
+        function startTimer() {
+            updateTimerUI();
+            examState.timerInterval = setInterval(() => {
+                if (examState.isSubmitted) {
+                    clearInterval(examState.timerInterval);
+                    return;
+                }
+                examState.remainingSeconds--;
+                examState.elapsedSeconds++;
+                updateTimerUI();
+
+                if (examState.remainingSeconds <= 0) {
+                    clearInterval(examState.timerInterval);
+                    gradeExam(true);
+                }
+            }, 1000);
+        }
+
+        function updateTimerUI() {
+            const mins = Math.floor(Math.max(0, examState.remainingSeconds) / 60);
+            const secs = Math.max(0, examState.remainingSeconds) % 60;
+            document.getElementById('timerDisplay').textContent = `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+            const containerEl = document.getElementById('timerContainer');
+            if (examState.remainingSeconds <= 300 && !examState.isSubmitted) {
+                containerEl.classList.add('timer-warning', 'text-rose-400', 'border-rose-500');
+            } else {
+                containerEl.classList.remove('timer-warning', 'text-rose-400', 'border-rose-500');
+            }
+        }
+
+        function toggleBinaryTool() {
+            document.getElementById('binaryWidget').classList.toggle('hidden');
+        }
+
+        function convertBinToDec() {
+            const raw = document.getElementById('binInput').value.trim();
+            const out = document.getElementById('decOutput');
+            if (!raw) {
+                out.textContent = '--';
+                return;
+            }
+            const parts = raw.split(/[\s.]+/).filter(Boolean);
+            const decParts = [];
+            for (const p of parts) {
+                if (!/^[01]+$/.test(p)) {
+                    out.textContent = 'Chỉ nhập bit 0 hoặc 1';
+                    return;
+                }
+                decParts.push(parseInt(p, 2));
+            }
+            out.textContent = decParts.join('.');
+        }
+
+        function getPart2QuestionScore(correctSubCount) {
+            switch (correctSubCount) {
+                case 1: return 0.1;
+                case 2: return 0.25;
+                case 3: return 0.5;
+                case 4: return 1.0;
+                default: return 0.0;
+            }
+        }
+
+        function openSubmitModal() {
+            if (examState.isSubmitted) return;
+
+            const missingP1 = examState.part1Questions.length - Object.keys(examState.answersP1).length;
+            let doneSubP2 = 0;
+            examState.part2Questions.forEach((_, idx) => {
+                doneSubP2 += Object.keys(examState.answersP2[idx] || {}).length;
+            });
+            const missingSubP2 = (examState.part2Questions.length * 4) - doneSubP2;
+
+            let msg = `<p class="mb-2">Bạn có chắc chắn muốn nộp bài để xem điểm và toàn bộ <strong>Mẹo Từ Khóa + Giải thích chi tiết</strong>?</p>`;
+            if (missingP1 > 0 || missingSubP2 > 0) {
+                msg += `
+                    <div class="p-3 rounded-xl bg-amber-500/15 border border-amber-500/30 text-amber-800 dark:text-amber-300 text-xs space-y-1 mt-2">
+                        <div class="font-bold"><i class="fa-solid fa-triangle-exclamation mr-1"></i>Cảnh báo câu chưa làm xong:</div>
+                        ${missingP1 > 0 ? `<div>• Phần I còn <strong>${missingP1} câu</strong> chưa chọn đáp án.</div>` : ''}
+                        ${missingSubP2 > 0 ? `<div>• Phần II còn <strong>${missingSubP2} ý (Đúng/Sai)</strong> chưa chọn.</div>` : ''}
+                    </div>
+                `;
+            } else {
+                msg += `<div class="text-xs font-bold text-emerald-600 dark:text-emerald-400"><i class="fa-solid fa-circle-check mr-1"></i>Bạn đã hoàn thành 100% tất cả các câu hỏi!</div>`;
+            }
+
+            showCustomModal({
+                title: "Xác nhận nộp bài Tin học 12",
+                subtitle: `Mã đề: ${examState.examCode}`,
+                bodyHTML: msg,
+                confirmText: "Nộp bài & Xem giải thích",
+                onConfirm: () => {
+                    closeCustomModal();
+                    gradeExam(false);
+                }
+            });
+        }
+
+        function gradeExam(isAutoTimeout) {
+            if (examState.timerInterval) clearInterval(examState.timerInterval);
+            examState.isSubmitted = true;
+
+            let correctP1 = 0;
+            examState.part1Questions.forEach((qObj, idx) => {
+                const correctIdx = qObj.options.findIndex(o => o.isCorrect);
+                if (examState.answersP1[idx] === correctIdx) correctP1++;
+            });
+            const scoreP1 = correctP1 * 0.25;
+            const maxP1 = examState.part1Questions.length * 0.25;
+
+            let scoreP2 = 0;
+            let totalCorrectSubs = 0;
+            const subStats = { 0: 0, 1: 0, 2: 0, 3: 0, 4: 0 };
+
+            examState.part2Questions.forEach((qObj, idx) => {
+                const subAns = examState.answersP2[idx] || {};
+                let c = 0;
+                qObj.items.forEach((s, sIdx) => {
+                    if (subAns[sIdx] === s.answer) {
+                        c++;
+                        totalCorrectSubs++;
+                    }
+                });
+                subStats[c]++;
+                scoreP2 += getPart2QuestionScore(c);
+            });
+            const maxP2 = examState.part2Questions.length * 1.0;
+
+            const totalRaw = scoreP1 + scoreP2;
+            const totalMax = maxP1 + maxP2;
+            const scaled10 = totalMax > 0 ? (totalRaw / totalMax) * 10 : 0;
+
+            document.getElementById('resultSummaryPanel').classList.remove('hidden');
+            document.getElementById('headerSubmitBtn').classList.add('hidden');
+            document.getElementById('sidebarSubmitBtn').classList.add('hidden');
+
+            const mins = Math.floor(examState.elapsedSeconds / 60);
+            const secs = examState.elapsedSeconds % 60;
+            document.getElementById('resultTitleText').textContent = isAutoTimeout
+                ? "Hết giờ! Hệ thống đã tự động chấm điểm."
+                : "Hoàn thành bài kiểm tra Tin học 12!";
+            document.getElementById('resultTimeSpentText').textContent = `Mã đề: ${examState.examCode} • Thời gian làm: ${mins} phút ${secs} giây`;
+
+            document.getElementById('finalScore10Display').textContent = scaled10.toFixed(2).replace('.', ',');
+            document.getElementById('part1ScoreDisplay').textContent = `${scoreP1.toFixed(2).replace('.', ',')} / ${maxP1.toFixed(2).replace('.', ',')}đ`;
+            document.getElementById('part1CorrectCountDisplay').textContent = `Đúng ${correctP1}/${examState.part1Questions.length} câu`;
+
+            document.getElementById('part2ScoreDisplay').textContent = `${scoreP2.toFixed(2).replace('.', ',')} / ${maxP2.toFixed(2).replace('.', ',')}đ`;
+            document.getElementById('part2SubCountDisplay').textContent = `Đúng ${totalCorrectSubs}/${examState.part2Questions.length * 4} ý a, b, c, d`;
+
+            document.getElementById('stat4Sub').textContent = `${subStats[4]} câu`;
+            document.getElementById('stat3Sub').textContent = `${subStats[3]} câu`;
+            document.getElementById('stat2Sub').textContent = `${subStats[2]} câu`;
+            document.getElementById('stat1Sub').textContent = `${subStats[1]} câu`;
+
+            renderAllQuestions();
+            renderQuestionPalette();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function setReviewFilter(filterType) {
+            examState.reviewFilter = filterType;
+            const activeClass = "px-3 py-1.5 rounded-xl text-xs font-bold bg-cyan-600 text-white";
+            const inactiveClass = "px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700";
+
+            document.getElementById('filterBtnAll').className = filterType === 'all' ? activeClass : inactiveClass;
+            document.getElementById('filterBtnWrong').className = filterType === 'wrong' ? activeClass : inactiveClass;
+            document.getElementById('filterBtnFlagged').className = filterType === 'flagged' ? activeClass : inactiveClass;
+            renderAllQuestions();
+        }
+
+        function showCustomModal({ title, subtitle, bodyHTML, confirmText, onConfirm }) {
+            document.getElementById('modalTitle').textContent = title;
+            document.getElementById('modalSubtitle').textContent = subtitle || '';
+            document.getElementById('modalBody').innerHTML = bodyHTML;
+            const btn = document.getElementById('modalConfirmBtn');
+            btn.textContent = confirmText || 'Đồng ý';
+            btn.onclick = onConfirm;
+            document.getElementById('customModal').classList.remove('hidden');
+        }
+
+        function closeCustomModal() {
+            document.getElementById('customModal').classList.add('hidden');
+        }
+
+        function confirmReshuffle() {
+            if (examState.isSubmitted) {
+                reshuffleAndRestart();
+                return;
+            }
+            showCustomModal({
+                title: "Đảo đề Tin học mới?",
+                subtitle: "Trộn lại thứ tự câu hỏi và sinh câu Đúng/Sai mới",
+                bodyHTML: "Bài đang làm hiện tại sẽ được tạo mới với thứ tự câu hỏi và phương án trả lời khác. Bạn có muốn đổi đề ngay không?",
+                confirmText: "Đảo đề mới",
+                onConfirm: () => {
+                    closeCustomModal();
+                    reshuffleAndRestart();
+                }
+            });
+        }
+
+        function reshuffleAndRestart() {
+            startExam();
+        }
+
+        function confirmExitToSetup() {
+            if (!examState.isActive || examState.isSubmitted) {
+                exitToSetup();
+                return;
+            }
+            showCustomModal({
+                title: "Quay lại màn hình chính?",
+                subtitle: "Tiến độ bài đang làm sẽ bị hủy",
+                bodyHTML: "Nếu bạn quay về màn hình chính lúc này, các đáp án đang chọn trong bài thi sẽ không được lưu. Bạn có chắc chắn muốn thoát?",
+                confirmText: "Về trang chính",
+                onConfirm: () => {
+                    closeCustomModal();
+                    exitToSetup();
+                }
+            });
+        }
+
+        function exitToSetup() {
+            if (examState.timerInterval) clearInterval(examState.timerInterval);
+            examState.isActive = false;
+            document.getElementById('examWorkspace').classList.add('hidden');
+            document.getElementById('infiniteTrainerScreen').classList.add('hidden');
+            document.getElementById('examHeaderControls').classList.add('hidden');
+            document.getElementById('examHeaderControls').classList.remove('flex');
+            document.getElementById('backToConfigBtn').classList.add('hidden');
+            document.getElementById('setupScreen').classList.remove('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function toggleDarkMode() {
+            const htmlEl = document.documentElement;
+            const icon = document.getElementById('themeIcon');
+            htmlEl.classList.toggle('dark');
+            icon.className = htmlEl.classList.contains('dark') ? "fa-solid fa-sun" : "fa-solid fa-moon";
+        }
+    </script>
+</body>
+</html>
