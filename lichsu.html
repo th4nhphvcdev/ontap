@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kiểm Tra Trắc Nghiệm Lịch Sử 12 - Chuẩn Cấu Trúc Bộ GD&ĐT 2026</title>
+    <title>Kiểm Tra & Học Bài Lịch Sử 12 - Chuẩn Cấu Trúc Bộ GD&ĐT 2026</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts: Inter & Merriweather -->
+    <!-- Google Fonts: Inter & Merriweather & Times New Roman style -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Merriweather:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
@@ -84,6 +84,35 @@
         .dark .correct-bold-badge {
             color: #fde68a !important;
         }
+        /* DOCX Paper Simulation Styling */
+        .docx-paper {
+            font-family: 'Times New Roman', Times, 'Merriweather', serif;
+            line-height: 1.65;
+            box-shadow: 0 10px 35px -5px rgba(0, 0, 0, 0.15), 0 0 1px 1px rgba(0, 0, 0, 0.05);
+        }
+        .docx-highlight {
+            background-color: #fef3c7;
+            color: #92400e;
+            font-weight: 700;
+            padding: 1px 6px;
+            border-radius: 4px;
+            border-bottom: 2px solid #f59e0b;
+        }
+        .dark .docx-highlight {
+            background-color: rgba(245, 158, 11, 0.22);
+            color: #fde68a;
+            border-bottom: 2px solid #fbbf24;
+        }
+        @media print {
+            header, .no-print {
+                display: none !important;
+            }
+            .docx-paper {
+                box-shadow: none !important;
+                border: none !important;
+                padding: 0 !important;
+            }
+        }
     </style>
 </head>
 <body class="bg-slate-100 dark:bg-slate-950 text-slate-800 dark:text-slate-100 min-h-screen flex flex-col transition-colors duration-200">
@@ -93,7 +122,7 @@
         <div class="max-w-7xl mx-auto px-3 sm:px-6 h-16 flex items-center justify-between gap-2">
             <!-- Brand / Title -->
             <div class="flex items-center gap-3">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center text-navy-900 font-extrabold text-lg shadow-md shrink-0">
+                <div onclick="confirmExitToSetup()" class="cursor-pointer w-10 h-10 rounded-xl bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center text-navy-900 font-extrabold text-lg shadow-md shrink-0">
                     <i class="fa-solid fa-landmark"></i>
                 </div>
                 <div>
@@ -101,16 +130,22 @@
                         <h1 class="font-bold text-sm sm:text-base tracking-tight text-white line-clamp-1">LỊCH SỬ 12 - GIỮA KỲ 1 (2026 - 2027)</h1>
                         <span class="hidden md:inline-block text-[11px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-300 border border-amber-400/30">Chuẩn Bộ GD&ĐT 2026</span>
                     </div>
-                    <p id="headerSubtitle" class="text-xs text-slate-300 line-clamp-1">Đảo câu hỏi & Đảo A, B, C, D • <strong class="text-amber-300 font-extrabold">IN ĐẬM</strong> đáp án đúng & các ý Đúng</p>
+                    <p id="headerSubtitle" class="text-xs text-slate-300 line-clamp-1">Học theo gói 20 câu • Đảo câu & Đảo A,B,C,D • Chế độ đọc DOCX</p>
                 </div>
             </div>
 
-            <!-- Active Exam Controls (Hidden on Setup Screen) -->
+            <!-- Active Exam Controls (Hidden on Setup Screen & DOCX Screen) -->
             <div id="examHeaderControls" class="hidden items-center gap-2 sm:gap-3">
+                <!-- Current Batch Pill -->
+                <div id="activeBatchHeaderBadge" class="hidden lg:flex items-center gap-1.5 bg-amber-500/20 border border-amber-400/40 text-amber-300 px-3 py-1.5 rounded-xl text-xs font-bold">
+                    <i class="fa-solid fa-layer-group"></i>
+                    <span id="activeBatchHeaderText">Gói câu 1 - 20</span>
+                </div>
+
                 <!-- Progress Pill -->
                 <div class="hidden xl:flex items-center gap-2 bg-white/10 px-3 py-1.5 rounded-xl text-xs font-medium">
                     <i class="fa-solid fa-list-check text-amber-400"></i>
-                    <span>Đã làm: <strong id="headerProgressText" class="text-amber-300">0/28</strong></span>
+                    <span>Đã làm: <strong id="headerProgressText" class="text-amber-300">0/20</strong></span>
                 </div>
 
                 <!-- Countdown Timer -->
@@ -132,9 +167,9 @@
                 </button>
 
                 <!-- Re-shuffle / New Exam Button -->
-                <button onclick="confirmReshuffle()" class="hidden sm:flex items-center gap-1.5 bg-white/10 hover:bg-white/20 text-white text-xs sm:text-sm font-medium px-3 py-2 rounded-xl transition" title="Tạo đề mới đảo câu hỏi và đáp án">
+                <button onclick="confirmReshuffle()" class="hidden sm:flex items-center gap-1.5 bg-white/10 hover:bg-white/20 text-white text-xs sm:text-sm font-medium px-3 py-2 rounded-xl transition" title="Trộn lại 20 câu đang làm và đảo lại A, B, C, D">
                     <i class="fa-solid fa-shuffle text-amber-400"></i>
-                    <span class="hidden md:inline">Đảo đề mới</span>
+                    <span class="hidden md:inline">Trộn lại</span>
                 </button>
 
                 <!-- Submit Exam Button -->
@@ -144,11 +179,15 @@
                 </button>
             </div>
 
-            <!-- Right Actions (Theme Toggle & Config Home) -->
+            <!-- Right Actions (DOCX Study Button, Config Home, Theme Toggle) -->
             <div class="flex items-center gap-2">
-                <button id="backToConfigBtn" onclick="confirmExitToSetup()" class="hidden items-center gap-1.5 text-xs sm:text-sm bg-white/10 hover:bg-white/20 px-3 py-2 rounded-xl transition" title="Cấu hình đề thi">
+                <button id="openDocxHeaderBtn" onclick="openDocxStudyView()" class="flex items-center gap-1.5 text-xs sm:text-sm bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-300 border border-emerald-400/30 font-semibold px-3 py-2 rounded-xl transition" title="Mở chế độ Học bài dạng văn bản Word (.docx)">
+                    <i class="fa-solid fa-file-word"></i>
+                    <span class="hidden sm:inline">Đọc Đề Cương (DOCX)</span>
+                </button>
+                <button id="backToConfigBtn" onclick="confirmExitToSetup()" class="hidden items-center gap-1.5 text-xs sm:text-sm bg-white/10 hover:bg-white/20 px-3 py-2 rounded-xl transition" title="Màn hình chính / Chọn gói câu hỏi">
                     <i class="fa-solid fa-sliders"></i>
-                    <span class="hidden sm:inline">Cấu hình</span>
+                    <span class="hidden sm:inline">Chọn gói câu</span>
                 </button>
                 <button onclick="toggleDarkMode()" class="w-9 h-9 rounded-xl bg-white/10 hover:bg-white/20 flex items-center justify-center text-amber-300 transition" title="Đổi giao diện Sáng/Tối">
                     <i id="themeIcon" class="fa-solid fa-moon"></i>
@@ -161,27 +200,33 @@
     <main class="flex-1 max-w-7xl w-full mx-auto px-3 sm:px-6 py-6">
 
         <!-- ================= VIEW 1: SETUP & CONFIGURATION SCREEN ================= -->
-        <section id="setupScreen" class="max-w-4xl mx-auto space-y-6">
+        <section id="setupScreen" class="max-w-5xl mx-auto space-y-6">
             <!-- Hero Banner -->
             <div class="bg-gradient-to-br from-navy-800 via-navy-700 to-slate-900 rounded-2xl p-6 sm:p-8 text-white shadow-xl border border-amber-500/20 relative overflow-hidden">
                 <div class="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
                     <div class="space-y-3 max-w-2xl">
                         <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/20 border border-amber-400/30 text-amber-300 text-xs font-semibold">
-                            <i class="fa-solid fa-certificate"></i> Cấu trúc đề thi mới của Bộ GD&ĐT áp dụng năm 2026
+                            <i class="fa-solid fa-bolt"></i> Tích hợp Chia nhỏ 20 câu/lần & Chế độ Đọc Đề Cương như file Word (DOCX)
                         </div>
-                        <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight">Đề Cương Ôn Tập & Kiểm Tra Giữa Kỳ 1 - Lịch Sử 12</h2>
+                        <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight">Hệ Thống Học Thuộc Nhanh & Kiểm Tra Lịch Sử 12</h2>
                         <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
-                            Tích hợp toàn bộ <strong>125 câu trắc nghiệm 4 phương án (Phần I)</strong> và <strong>18 câu trắc nghiệm Đúng/Sai có đoạn tư liệu (Phần II)</strong> từ Bài 1 đến Bài 5. Mỗi lần tạo đề sẽ tự động đảo vị trí câu hỏi và đảo vị trí đáp án A, B, C, D.
+                            Thay vì làm một lúc 125 câu dễ quá tải, bạn có thể <strong>học trên trang DOCX</strong> theo từng chặng <strong>20 câu (1–20, 21–40, 41–60...)</strong> rồi bấm <strong>kiểm tra trộn câu + đảo đáp án A, B, C, D</strong> của đúng 20 câu đó (vào bài vẫn đánh số lại từ Câu 1 đến Câu 20).
                         </p>
                     </div>
-                    <div class="grid grid-cols-2 gap-3 shrink-0">
-                        <div class="bg-white/10 backdrop-blur-sm border border-white/15 rounded-2xl p-4 text-center">
-                            <div class="text-2xl sm:text-3xl font-extrabold text-amber-400">125</div>
-                            <div class="text-xs text-slate-300 mt-1">Câu Phần I (A,B,C,D)</div>
-                        </div>
-                        <div class="bg-white/10 backdrop-blur-sm border border-white/15 rounded-2xl p-4 text-center">
-                            <div class="text-2xl sm:text-3xl font-extrabold text-emerald-400">18</div>
-                            <div class="text-xs text-slate-300 mt-1">Câu Phần II (72 ý Đ/S)</div>
+                    <div class="flex flex-col sm:flex-row md:flex-col gap-3 shrink-0">
+                        <button onclick="openDocxStudyView()" class="px-5 py-3.5 rounded-2xl bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white font-extrabold text-sm shadow-lg flex items-center justify-center gap-2.5 transition transform active:scale-95">
+                            <i class="fa-solid fa-file-word text-lg"></i>
+                            <span>MỞ TRANG HỌC BÀI (NHƯ FILE DOCX)</span>
+                        </button>
+                        <div class="grid grid-cols-2 gap-2.5">
+                            <div class="bg-white/10 backdrop-blur-sm border border-white/15 rounded-xl p-3 text-center">
+                                <div class="text-xl font-extrabold text-amber-400">125</div>
+                                <div class="text-[11px] text-slate-300">Câu Phần I</div>
+                            </div>
+                            <div class="bg-white/10 backdrop-blur-sm border border-white/15 rounded-xl p-3 text-center">
+                                <div class="text-xl font-extrabold text-emerald-400">18</div>
+                                <div class="text-[11px] text-slate-300">Câu Phần II (Đ/S)</div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -190,34 +235,47 @@
             <!-- Configuration Card -->
             <div class="bg-white dark:bg-slate-900 rounded-2xl shadow-md border border-slate-200 dark:border-slate-800 p-5 sm:p-7 space-y-6">
                 <h3 class="text-lg font-bold flex items-center gap-2 text-navy-800 dark:text-amber-400 border-b border-slate-200 dark:border-slate-800 pb-3">
-                    <i class="fa-solid fa-gears"></i> Thiết Lập Bài Kiểm Tra
+                    <i class="fa-solid fa-gears"></i> Thiết Lập Bài Kiểm Tra Trắc Nghiệm
                 </h3>
 
-                <!-- 1. Exam Mode Selection -->
+                <!-- 1. Exam Mode Selection (3 Modes now: Batch 20, Standard 28, Custom) -->
                 <div class="space-y-3">
-                    <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300">1. Chọn chế độ kiểm tra:</label>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <!-- Mode A: Standard MOET 2026 -->
-                        <label id="modeCardStandard" onclick="selectExamMode('standard')" class="cursor-pointer rounded-2xl border-2 border-amber-500 bg-amber-50/50 dark:bg-amber-950/20 p-4 transition flex items-start gap-3.5">
-                            <input type="radio" name="examMode" value="standard" checked class="mt-1 accent-amber-600 w-4 h-4">
+                    <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300">1. Chọn chế độ luyện tập / kiểm tra:</label>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <!-- Mode 1: Batch Study (20 Questions at a time) -->
+                        <label id="modeCardBatch" onclick="selectExamMode('batch')" class="cursor-pointer rounded-2xl border-2 border-amber-500 bg-amber-50/50 dark:bg-amber-950/20 p-4 transition flex items-start gap-3">
+                            <input type="radio" name="examMode" value="batch" checked class="mt-1 accent-amber-600 w-4 h-4">
                             <div class="space-y-1">
-                                <div class="font-bold text-slate-900 dark:text-white flex items-center gap-2">
-                                    <span>Đề Thi Chuẩn Bộ GD&ĐT (28 câu)</span>
-                                    <span class="text-[11px] bg-amber-500 text-navy-900 font-bold px-2 py-0.5 rounded-full">Khuyên dùng</span>
+                                <div class="font-bold text-slate-900 dark:text-white flex flex-wrap items-center gap-1.5">
+                                    <span>Học & Kiểm Tra Từng Chặng (20 câu)</span>
+                                    <span class="text-[10px] bg-emerald-500 text-white font-bold px-2 py-0.5 rounded-full">Mới • Dễ thuộc</span>
                                 </div>
                                 <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
-                                    Gồm <strong>24 câu Phần I</strong> (6,0 điểm) + <strong>4 câu Phần II Đúng/Sai</strong> (4,0 điểm). Tổng điểm <strong>10,0 điểm</strong>. Lấy ngẫu nhiên từ các bài được chọn.
+                                    Chia thành từng gói <strong>1–20, 21–40, 41–60...</strong> Có trộn câu hỏi, đảo đáp án A, B, C, D và tự động đánh số lại từ <strong>Câu 1 → Câu 20</strong>.
                                 </p>
                             </div>
                         </label>
 
-                        <!-- Mode B: Custom / Full Outline -->
-                        <label id="modeCardCustom" onclick="selectExamMode('custom')" class="cursor-pointer rounded-2xl border-2 border-slate-200 dark:border-slate-700 hover:border-amber-400 p-4 transition flex items-start gap-3.5">
+                        <!-- Mode 2: Standard MOET 2026 -->
+                        <label id="modeCardStandard" onclick="selectExamMode('standard')" class="cursor-pointer rounded-2xl border-2 border-slate-200 dark:border-slate-700 hover:border-amber-400 p-4 transition flex items-start gap-3">
+                            <input type="radio" name="examMode" value="standard" class="mt-1 accent-amber-600 w-4 h-4">
+                            <div class="space-y-1">
+                                <div class="font-bold text-slate-900 dark:text-white flex flex-wrap items-center gap-1.5">
+                                    <span>Đề Thi Chuẩn Bộ GD&ĐT (28 câu)</span>
+                                </div>
+                                <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                                    Gồm <strong>24 câu Phần I</strong> (6,0đ) + <strong>4 câu Phần II Đúng/Sai</strong> (4,0đ). Lấy ngẫu nhiên trong phạm vi bài học đã chọn.
+                                </p>
+                            </div>
+                        </label>
+
+                        <!-- Mode 3: Custom / Full Outline -->
+                        <label id="modeCardCustom" onclick="selectExamMode('custom')" class="cursor-pointer rounded-2xl border-2 border-slate-200 dark:border-slate-700 hover:border-amber-400 p-4 transition flex items-start gap-3">
                             <input type="radio" name="examMode" value="custom" class="mt-1 accent-amber-600 w-4 h-4">
                             <div class="space-y-1">
-                                <div class="font-bold text-slate-900 dark:text-white">Luyện Tập Tùy Chỉnh / Toàn Bộ Đề Cương</div>
+                                <div class="font-bold text-slate-900 dark:text-white">Tùy Chỉnh Số Câu / Toàn Bộ Đề</div>
                                 <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
-                                    Tự chọn số lượng câu hỏi hoặc ôn toàn bộ <strong>125 câu Phần I + 18 câu Phần II</strong> theo từng bài học cụ thể.
+                                    Tự nhập số lượng câu muốn làm hoặc ôn một lượt toàn bộ <strong>125 câu Phần I + 18 câu Phần II</strong>.
                                 </p>
                             </div>
                         </label>
@@ -237,37 +295,78 @@
                             <input type="checkbox" value="1" checked onchange="updateAvailableCounts()" class="lesson-cb w-4 h-4 accent-amber-600 rounded">
                             <div class="text-xs">
                                 <div class="font-bold text-slate-800 dark:text-slate-100">Bài 1: Liên hợp quốc</div>
-                                <div class="text-slate-500 dark:text-slate-400">30 câu P.I • 4 câu P.II</div>
+                                <div class="text-slate-500 dark:text-slate-400">Câu 1–30 P.I • 4 câu P.II</div>
                             </div>
                         </label>
                         <label class="flex items-center gap-3 p-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/60 cursor-pointer hover:border-amber-400 transition">
                             <input type="checkbox" value="2" checked onchange="updateAvailableCounts()" class="lesson-cb w-4 h-4 accent-amber-600 rounded">
                             <div class="text-xs">
                                 <div class="font-bold text-slate-800 dark:text-slate-100">Bài 2: Trật tự TG trong Chiến tranh lạnh</div>
-                                <div class="text-slate-500 dark:text-slate-400">27 câu P.I • 4 câu P.II</div>
+                                <div class="text-slate-500 dark:text-slate-400">Câu 31–57 P.I • 4 câu P.II</div>
                             </div>
                         </label>
                         <label class="flex items-center gap-3 p-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/60 cursor-pointer hover:border-amber-400 transition">
                             <input type="checkbox" value="3" checked onchange="updateAvailableCounts()" class="lesson-cb w-4 h-4 accent-amber-600 rounded">
                             <div class="text-xs">
                                 <div class="font-bold text-slate-800 dark:text-slate-100">Bài 3: Trật tự TG sau Chiến tranh lạnh</div>
-                                <div class="text-slate-500 dark:text-slate-400">20 câu P.I • 4 câu P.II</div>
+                                <div class="text-slate-500 dark:text-slate-400">Câu 58–77 P.I • 4 câu P.II</div>
                             </div>
                         </label>
                         <label class="flex items-center gap-3 p-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/60 cursor-pointer hover:border-amber-400 transition">
                             <input type="checkbox" value="4" checked onchange="updateAvailableCounts()" class="lesson-cb w-4 h-4 accent-amber-600 rounded">
                             <div class="text-xs">
                                 <div class="font-bold text-slate-800 dark:text-slate-100">Bài 4: Sự ra đời & phát triển ASEAN</div>
-                                <div class="text-slate-500 dark:text-slate-400">23 câu P.I • 3 câu P.II</div>
+                                <div class="text-slate-500 dark:text-slate-400">Câu 78–100 P.I • 3 câu P.II</div>
                             </div>
                         </label>
                         <label class="flex items-center gap-3 p-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/60 cursor-pointer hover:border-amber-400 transition">
                             <input type="checkbox" value="5" checked onchange="updateAvailableCounts()" class="lesson-cb w-4 h-4 accent-amber-600 rounded">
                             <div class="text-xs">
                                 <div class="font-bold text-slate-800 dark:text-slate-100">Bài 5: Cộng đồng ASEAN</div>
-                                <div class="text-slate-500 dark:text-slate-400">25 câu P.I • 3 câu P.II</div>
+                                <div class="text-slate-500 dark:text-slate-400">Câu 101–125 P.I • 3 câu P.II</div>
                             </div>
                         </label>
+                    </div>
+                </div>
+
+                <!-- BATCH RANGE SELECTION CONTROLS (Visible when 'batch' mode is selected) -->
+                <div id="batchRangeControls" class="p-4 sm:p-5 rounded-2xl bg-amber-50/70 dark:bg-slate-800/70 border-2 border-amber-500/40 space-y-4">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-amber-500/20 pb-3">
+                        <div>
+                            <h4 class="font-extrabold text-sm text-navy-900 dark:text-amber-400 flex items-center gap-2">
+                                <i class="fa-solid fa-layer-group"></i> Chọn Gói Câu Hỏi Muốn Kiểm Tra (Mặc định 20 câu/lần)
+                            </h4>
+                            <p class="text-xs text-slate-600 dark:text-slate-300 mt-0.5">
+                                Khi vào làm bài, hệ thống sẽ <strong>trộn câu hỏi & đảo đáp án A, B, C, D</strong> trong gói bạn chọn, nhưng vẫn đánh số thứ tự từ <strong>Câu 1, 2, 3...</strong> để dễ theo dõi!
+                            </p>
+                        </div>
+                        <button type="button" onclick="openDocxStudyFromBatch()" class="shrink-0 px-3 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold flex items-center gap-1.5 shadow-xs transition">
+                            <i class="fa-solid fa-book-open"></i> Xem trước gói này dạng DOCX
+                        </button>
+                    </div>
+
+                    <!-- Part I Batch Buttons (1-20, 21-40, 41-60...) -->
+                    <div class="space-y-2">
+                        <div class="flex flex-wrap items-center justify-between gap-2">
+                            <label class="text-xs font-bold text-slate-700 dark:text-slate-200 uppercase">
+                                A. Chọn nhanh chặng 20 câu Phần I (Có <span id="batchTotalAvailP1">125</span> câu khả dụng):
+                            </label>
+                            <div class="flex items-center gap-1.5 text-xs">
+                                <span>Hoặc tự nhập từ câu:</span>
+                                <input type="number" id="batchP1StartInput" min="1" max="125" value="1" onchange="onManualBatchRangeChange()" class="w-16 px-2 py-1 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900 font-bold text-center">
+                                <span>đến</span>
+                                <input type="number" id="batchP1EndInput" min="1" max="125" value="20" onchange="onManualBatchRangeChange()" class="w-16 px-2 py-1 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900 font-bold text-center">
+                            </div>
+                        </div>
+                        <div id="batchP1ButtonsContainer" class="flex flex-wrap gap-2"></div>
+                    </div>
+
+                    <!-- Part II Batch Buttons (Optional: Include True/False or Only Part I) -->
+                    <div class="space-y-2 pt-2 border-t border-amber-500/20">
+                        <label class="text-xs font-bold text-slate-700 dark:text-slate-200 uppercase block">
+                            B. Tùy chọn gộp thêm câu Đúng/Sai (Phần II - <span id="batchTotalAvailP2">18</span> câu):
+                        </label>
+                        <div id="batchP2ButtonsContainer" class="flex flex-wrap gap-2"></div>
                     </div>
                 </div>
 
@@ -303,16 +402,15 @@
                             <i class="fa-regular fa-clock text-amber-500 mr-1"></i> 3. Thời gian làm bài (phút):
                         </label>
                         <div class="flex flex-wrap gap-2">
-                            <button type="button" onclick="setDuration(15)" class="time-preset px-3 py-1.5 rounded-xl text-xs font-semibold border border-slate-200 dark:border-slate-700 hover:border-amber-500">15p</button>
+                            <button type="button" onclick="setDuration(15)" class="time-preset px-3 py-1.5 rounded-xl text-xs font-bold border-2 border-amber-500 bg-amber-500/10 text-amber-600 dark:text-amber-400">15p (Gói 20 câu)</button>
                             <button type="button" onclick="setDuration(30)" class="time-preset px-3 py-1.5 rounded-xl text-xs font-semibold border border-slate-200 dark:border-slate-700 hover:border-amber-500">30p</button>
-                            <button type="button" onclick="setDuration(40)" class="time-preset px-3 py-1.5 rounded-xl text-xs font-bold border-2 border-amber-500 bg-amber-500/10 text-amber-600 dark:text-amber-400">40p (Mặc định)</button>
+                            <button type="button" onclick="setDuration(40)" class="time-preset px-3 py-1.5 rounded-xl text-xs font-semibold border border-slate-200 dark:border-slate-700 hover:border-amber-500">40p (Chuẩn)</button>
                             <button type="button" onclick="setDuration(45)" class="time-preset px-3 py-1.5 rounded-xl text-xs font-semibold border border-slate-200 dark:border-slate-700 hover:border-amber-500">45p</button>
-                            <button type="button" onclick="setDuration(50)" class="time-preset px-3 py-1.5 rounded-xl text-xs font-semibold border border-slate-200 dark:border-slate-700 hover:border-amber-500">50p</button>
                             <button type="button" onclick="setDuration(90)" class="time-preset px-3 py-1.5 rounded-xl text-xs font-semibold border border-slate-200 dark:border-slate-700 hover:border-amber-500">90p</button>
                         </div>
                         <div class="flex items-center gap-2 pt-1">
                             <span class="text-xs text-slate-500">Hoặc nhập số phút tùy ý:</span>
-                            <input type="number" id="durationInput" min="1" max="300" value="40" class="w-24 px-3 py-1.5 rounded-xl border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-sm font-bold text-center">
+                            <input type="number" id="durationInput" min="1" max="300" value="15" class="w-24 px-3 py-1.5 rounded-xl border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-sm font-bold text-center">
                             <span class="text-xs text-slate-500">phút</span>
                         </div>
                     </div>
@@ -325,11 +423,11 @@
                         <div class="space-y-2 text-xs">
                             <label class="flex items-center gap-2.5 p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 cursor-pointer">
                                 <input type="checkbox" id="shuffleQuestionsCb" checked class="w-4 h-4 accent-amber-600 rounded">
-                                <span><strong>Đảo thứ tự câu hỏi</strong> mỗi lần làm bài mới</span>
+                                <span><strong>Đảo thứ tự câu hỏi</strong> trong gói đang chọn (vẫn đánh số lại từ Câu 1, 2, 3...)</span>
                             </label>
                             <label class="flex items-center gap-2.5 p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 cursor-pointer">
                                 <input type="checkbox" id="shuffleOptionsCb" checked class="w-4 h-4 accent-amber-600 rounded">
-                                <span><strong>Đảo vị trí đáp án A, B, C, D</strong> ở Phần I (chống học tủ vị trí A)</span>
+                                <span><strong>Đảo vị trí đáp án A, B, C, D</strong> ở Phần I (chống học vẹt vị trí)</span>
                             </label>
                             <label class="flex items-center gap-2.5 p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 cursor-pointer">
                                 <input type="checkbox" id="shuffleSubItemsCb" checked class="w-4 h-4 accent-amber-600 rounded">
@@ -337,39 +435,24 @@
                             </label>
                             <label class="flex items-center gap-2.5 p-2.5 rounded-xl bg-amber-50/80 dark:bg-amber-950/30 border border-amber-300 dark:border-amber-700/70 cursor-pointer">
                                 <input type="checkbox" id="showBoldHintCb" class="w-4 h-4 accent-amber-600 rounded">
-                                <span><strong>Chế độ Ôn tập: In đậm sẵn đáp án đúng và các ý Đúng (khi tắt sẽ chỉ in đậm đáp án đúng sau khi nộp bài)</strong></span>
+                                <span><strong>Chế độ Ôn tập: In đậm sẵn đáp án đúng ngay khi đang làm bài</strong></span>
                             </label>
                         </div>
                     </div>
                 </div>
 
-                <!-- MOET 2026 Scoring Box -->
-                <div class="rounded-2xl bg-navy-50 dark:bg-slate-800/80 border border-navy-100 dark:border-slate-700 p-4 text-xs space-y-2">
-                    <div class="font-bold text-navy-800 dark:text-amber-400 flex items-center gap-2">
-                        <i class="fa-solid fa-scale-balanced"></i> Quy tắc tính điểm chuẩn Bộ Giáo dục & Đào tạo (Áp dụng năm 2026):
-                    </div>
-                    <ul class="list-disc list-inside space-y-1 text-slate-600 dark:text-slate-300">
-                        <li><strong>Phần I (Trắc nghiệm nhiều phương án lựa chọn):</strong> Mỗi câu trả lời đúng được <strong>0,25 điểm</strong> (24 câu × 0,25đ = 6,0 điểm).</li>
-                        <li><strong>Phần II (Trắc nghiệm Đúng/Sai - mỗi câu có 4 ý a, b, c, d):</strong> Điểm tối đa <strong>1,0 điểm/câu</strong>, tính lũy tiến theo số ý đúng trong mỗi câu:
-                            <span class="inline-flex flex-wrap gap-1.5 ml-1 mt-1 sm:mt-0">
-                                <span class="px-2 py-0.5 rounded bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-600 font-semibold">Đúng 1 ý: <strong>0,1đ</strong></span>
-                                <span class="px-2 py-0.5 rounded bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-600 font-semibold">Đúng 2 ý: <strong>0,25đ</strong></span>
-                                <span class="px-2 py-0.5 rounded bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-600 font-semibold">Đúng 3 ý: <strong>0,5đ</strong></span>
-                                <span class="px-2 py-0.5 rounded bg-emerald-500/15 text-emerald-700 dark:text-emerald-300 border border-emerald-500/30 font-bold">Đúng cả 4 ý: <strong>1,0đ</strong></span>
-                            </span>
-                        </li>
-                        <li><strong>Chế độ Ôn tập (In đậm):</strong> Khi bật Chế độ Ôn tập hoặc sau khi Nộp bài, phương án đúng ở Phần I và các mệnh đề có đáp án <strong>ĐÚNG</strong> ở Phần II sẽ được <strong>IN ĐẬM toàn bộ chữ cái và nội dung</strong>.</li>
-                    </ul>
-                </div>
-
                 <!-- Error Notification Box -->
                 <div id="setupErrorBox" class="hidden p-3 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-600 dark:text-rose-400 text-xs font-semibold"></div>
 
-                <!-- Start Action Button -->
+                <!-- Start Action Buttons -->
                 <div class="pt-2 flex flex-col sm:flex-row gap-3">
                     <button type="button" onclick="startExam()" class="flex-1 py-4 px-6 rounded-2xl bg-gradient-to-r from-navy-800 to-navy-700 dark:from-amber-500 dark:to-amber-600 hover:opacity-95 text-white dark:text-navy-900 font-extrabold text-base shadow-lg flex items-center justify-center gap-3 transition transform active:scale-[0.99]">
                         <i class="fa-solid fa-play"></i>
-                        <span>BẮT ĐẦU LÀM BÀI KIỂM TRA (ĐẢO ĐỀ NGẪU NHIÊN)</span>
+                        <span id="startExamBtnText">BẮT ĐẦU KIỂM TRA GÓI CÂU 1 - 20 (TRỘN CÂU & ĐẢO A,B,C,D)</span>
+                    </button>
+                    <button type="button" onclick="openDocxStudyView()" class="py-4 px-6 rounded-2xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm shadow-md flex items-center justify-center gap-2 transition">
+                        <i class="fa-solid fa-file-word"></i>
+                        <span>Học Bài Dạng DOCX Trước</span>
                     </button>
                 </div>
             </div>
@@ -386,13 +469,13 @@
                     <div id="resultSummaryPanel" class="hidden bg-white dark:bg-slate-900 rounded-2xl shadow-xl border-2 border-amber-500 overflow-hidden">
                         <div class="bg-gradient-to-r from-navy-800 via-navy-700 to-slate-900 p-6 text-white flex flex-col sm:flex-row items-center justify-between gap-4">
                             <div class="space-y-1 text-center sm:text-left">
-                                <span class="text-xs uppercase tracking-widest text-amber-300 font-bold">KẾT QUẢ BÀI KIỂM TRA LỊCH SỬ 12</span>
+                                <span class="text-xs uppercase tracking-widest text-amber-300 font-bold" id="resultBatchBadge">KẾT QUẢ KIỂM TRA LỊCH SỬ 12</span>
                                 <h2 class="text-2xl font-extrabold" id="resultTitleText">Hoàn thành bài thi!</h2>
                                 <p class="text-xs text-slate-300" id="resultTimeSpentText">Thời gian làm bài: 00 phút 00 giây</p>
                             </div>
                             <div class="flex items-center gap-4">
                                 <div class="bg-white/10 backdrop-blur-md border border-amber-400/40 rounded-2xl px-6 py-3 text-center">
-                                    <div class="text-xs text-amber-200 uppercase font-semibold">Tổng Điểm (Thang 10)</div>
+                                    <div class="text-xs text-amber-200 uppercase font-semibold">Điểm Quy Đổi (Thang 10)</div>
                                     <div id="finalScore10Display" class="text-4xl font-black text-amber-400 mt-0.5">0.00</div>
                                 </div>
                             </div>
@@ -404,15 +487,15 @@
                                 <!-- Part I Score Card -->
                                 <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/70 border border-slate-200 dark:border-slate-700">
                                     <div class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">PHẦN I (4 phương án A,B,C,D)</div>
-                                    <div class="text-2xl font-extrabold text-navy-800 dark:text-white mt-1" id="part1ScoreDisplay">0.00 / 6.00đ</div>
-                                    <div class="text-xs text-emerald-600 dark:text-emerald-400 font-semibold mt-1" id="part1CorrectCountDisplay">Đúng 0/24 câu (0,25đ/câu)</div>
+                                    <div class="text-2xl font-extrabold text-navy-800 dark:text-white mt-1" id="part1ScoreDisplay">0.00 / 5.00đ</div>
+                                    <div class="text-xs text-emerald-600 dark:text-emerald-400 font-semibold mt-1" id="part1CorrectCountDisplay">Đúng 0/20 câu</div>
                                 </div>
 
                                 <!-- Part II Score Card -->
                                 <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/70 border border-slate-200 dark:border-slate-700">
                                     <div class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">PHẦN II (Trắc nghiệm Đúng/Sai)</div>
-                                    <div class="text-2xl font-extrabold text-navy-800 dark:text-white mt-1" id="part2ScoreDisplay">0.00 / 4.00đ</div>
-                                    <div class="text-xs text-amber-600 dark:text-amber-400 font-semibold mt-1" id="part2SubCountDisplay">Đúng 0/16 ý a,b,c,d</div>
+                                    <div class="text-2xl font-extrabold text-navy-800 dark:text-white mt-1" id="part2ScoreDisplay">0.00 / 0.00đ</div>
+                                    <div class="text-xs text-amber-600 dark:text-amber-400 font-semibold mt-1" id="part2SubCountDisplay">Đúng 0/0 ý a,b,c,d</div>
                                 </div>
 
                                 <!-- Part II Progressive Breakdown -->
@@ -425,21 +508,33 @@
                                 </div>
                             </div>
 
-                            <!-- Review Filter Bar & Quick Actions -->
+                            <!-- Review Filter Bar & Quick Actions (Including NEXT 20 QUESTIONS Button!) -->
                             <div class="flex flex-wrap items-center justify-between gap-3 pt-3 border-t border-slate-200 dark:border-slate-800">
                                 <div class="flex flex-wrap items-center gap-2">
                                     <span class="text-xs font-bold text-slate-500 mr-1"><i class="fa-solid fa-filter mr-1"></i>Lọc xem lại:</span>
                                     <button onclick="setReviewFilter('all')" id="filterBtnAll" class="px-3 py-1.5 rounded-xl text-xs font-bold bg-navy-800 text-white dark:bg-amber-500 dark:text-navy-900">Tất cả câu</button>
-                                    <button onclick="setReviewFilter('wrong')" id="filterBtnWrong" class="px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-100 dark:bg-slate-800 hover:bg-rose-500/10 text-rose-600 dark:text-rose-400 border border-slate-200 dark:border-slate-700">Câu sai / Chưa tối đa</button>
+                                    <button onclick="setReviewFilter('wrong')" id="filterBtnWrong" class="px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-100 dark:bg-slate-800 hover:bg-rose-500/10 text-rose-600 dark:text-rose-400 border border-slate-200 dark:border-slate-700">Câu làm sai</button>
                                     <button onclick="setReviewFilter('flagged')" id="filterBtnFlagged" class="px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-100 dark:bg-slate-800 hover:bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-slate-200 dark:border-slate-700">Câu đánh dấu</button>
                                 </div>
-                                <div class="flex items-center gap-2">
-                                    <button onclick="reshuffleAndRestart()" class="px-4 py-2 rounded-xl bg-amber-500 hover:bg-amber-600 text-navy-900 font-bold text-xs sm:text-sm flex items-center gap-2 shadow transition">
-                                        <i class="fa-solid fa-rotate"></i> Làm đề mới (Đảo câu & Đáp án)
+                                <div class="flex flex-wrap items-center gap-2">
+                                    <button onclick="reshuffleAndRestart()" class="px-3.5 py-2 rounded-xl bg-amber-500 hover:bg-amber-600 text-navy-900 font-bold text-xs sm:text-sm flex items-center gap-1.5 shadow transition">
+                                        <i class="fa-solid fa-rotate"></i> Làm lại gói này (Đảo mới)
+                                    </button>
+                                    <button id="nextBatchActionBtn" onclick="startNextBatchExam()" class="hidden px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-xs sm:text-sm flex items-center gap-1.5 shadow-md transition">
+                                        <i class="fa-solid fa-forward-step"></i> <span id="nextBatchActionText">Làm tiếp 20 câu tiếp theo (21 - 40)</span>
                                     </button>
                                 </div>
                             </div>
                         </div>
+                    </div>
+
+                    <!-- QUICK BATCH SWITCHER BAR INSIDE EXAM WORKSPACE (For Batch Mode) -->
+                    <div id="inExamBatchBar" class="hidden bg-white dark:bg-slate-900 rounded-2xl shadow-xs border border-amber-500/30 p-3.5 flex flex-wrap items-center justify-between gap-2">
+                        <div class="flex items-center gap-2 text-xs font-bold text-navy-800 dark:text-amber-400">
+                            <i class="fa-solid fa-layer-group text-amber-500"></i>
+                            <span>Chuyển nhanh gói 20 câu:</span>
+                        </div>
+                        <div id="inExamBatchButtons" class="flex flex-wrap gap-1.5"></div>
                     </div>
 
                     <!-- OFFICIAL EXAM PAPER HEADER -->
@@ -447,13 +542,13 @@
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-center border-b border-slate-200 dark:border-slate-800 pb-4">
                             <div>
                                 <p class="text-xs uppercase font-semibold text-slate-500 dark:text-slate-400">BỘ GIÁO DỤC VÀ ĐÀO TẠO</p>
-                                <p class="text-sm font-bold text-navy-800 dark:text-white">ĐỀ KIỂM TRA GIỮA KỲ 1 (2026 - 2027)</p>
+                                <p class="text-sm font-bold text-navy-800 dark:text-white" id="paperMainTitle">ĐỀ KIỂM TRA GIỮA KỲ 1 (2026 - 2027)</p>
                                 <p class="text-[11px] text-slate-500 mt-0.5">Đề thi được trộn tự động (Mã đề: <strong id="examCodeDisplay" class="text-amber-600 dark:text-amber-400">1201</strong>)</p>
                             </div>
                             <div>
                                 <p class="text-sm font-extrabold uppercase text-navy-800 dark:text-amber-400">Môn: LỊCH SỬ LỚP 12</p>
-                                <p class="text-xs font-medium text-slate-600 dark:text-slate-300" id="paperSubInfo">Thời gian làm bài: 40 phút (không kể thời gian phát đề)</p>
-                                <p class="text-[11px] text-emerald-600 dark:text-emerald-400 font-semibold mt-0.5"><i class="fa-solid fa-bold mr-1"></i>Đáp án đúng & các mệnh đề Đúng được <strong>IN ĐẬM</strong> khi bật Ôn tập hoặc sau khi Nộp bài</p>
+                                <p class="text-xs font-medium text-slate-600 dark:text-slate-300" id="paperSubInfo">Thời gian làm bài: 15 phút</p>
+                                <p class="text-[11px] text-emerald-600 dark:text-emerald-400 font-semibold mt-0.5"><i class="fa-solid fa-list-ol mr-1"></i>Câu hỏi luôn được đánh số chuẩn từ Câu 1, 2, 3...</p>
                             </div>
                         </div>
 
@@ -464,7 +559,7 @@
                                     PHẦN I. Câu trắc nghiệm nhiều phương án lựa chọn
                                 </h3>
                                 <p class="text-xs text-slate-600 dark:text-slate-300 mt-1" id="part1InstructionText">
-                                    Thí sinh trả lời từ câu 1 đến câu 24. Mỗi câu hỏi thí sinh chỉ chọn một phương án đúng (0,25 điểm/câu).
+                                    Thí sinh trả lời từ câu 1 đến câu 20. Mỗi câu hỏi thí sinh chỉ chọn một phương án đúng.
                                 </p>
                             </div>
                             <div id="part1QuestionsList" class="space-y-4"></div>
@@ -492,7 +587,7 @@
                             <h4 class="font-bold text-sm flex items-center gap-2 text-navy-800 dark:text-white">
                                 <i class="fa-solid fa-table-cells text-amber-500"></i> Phiếu Trả Lời Trắc Nghiệm
                             </h4>
-                            <span id="sidebarProgressBadge" class="text-xs font-bold px-2.5 py-0.5 rounded-full bg-amber-500/15 text-amber-600 dark:text-amber-400">0/28</span>
+                            <span id="sidebarProgressBadge" class="text-xs font-bold px-2.5 py-0.5 rounded-full bg-amber-500/15 text-amber-600 dark:text-amber-400">0/20</span>
                         </div>
 
                         <!-- Legend -->
@@ -506,7 +601,7 @@
                         <!-- Scrollable Palette Grids -->
                         <div class="overflow-y-auto space-y-4 pr-1 flex-1">
                             <div id="palettePart1Container" class="space-y-2">
-                                <div class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">Phần I (Nhiều lựa chọn)</div>
+                                <div class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">Phần I (Đánh số từ 1)</div>
                                 <div id="palettePart1Grid" class="grid grid-cols-5 gap-1.5"></div>
                             </div>
                             <div id="palettePart2Container" class="space-y-2">
@@ -521,11 +616,100 @@
                                 <i class="fa-solid fa-paper-plane"></i> Nộp Bài & Chấm Điểm
                             </button>
                             <button onclick="confirmReshuffle()" class="w-full py-2 px-4 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 font-semibold text-xs flex items-center justify-center gap-2 transition">
-                                <i class="fa-solid fa-shuffle text-amber-500"></i> Đảo Đề Mới Ngay
+                                <i class="fa-solid fa-shuffle text-amber-500"></i> Đảo Lại Đề Đang Làm
                             </button>
                         </div>
                     </div>
                 </aside>
+            </div>
+        </section>
+
+        <!-- ================= VIEW 3: DOCX STUDY VIEW (ĐỌC ĐỀ CƯƠNG NHƯ FILE WORD) ================= -->
+        <section id="docxStudyWorkspace" class="hidden max-w-5xl mx-auto space-y-5">
+            <!-- Sticky Top Control Bar for DOCX Reader -->
+            <div class="no-print bg-white dark:bg-slate-900 rounded-2xl shadow-md border border-slate-200 dark:border-slate-800 p-4 sm:p-5 space-y-4">
+                <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-200 dark:border-slate-800 pb-3">
+                    <div class="flex items-center gap-2.5">
+                        <div class="w-9 h-9 rounded-xl bg-blue-600 text-white flex items-center justify-center text-base shadow">
+                            <i class="fa-solid fa-file-word"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-extrabold text-sm sm:text-base text-navy-900 dark:text-white">
+                                Chế Độ Học Bài & Đọc Đề Cương (Giao diện Trang Giấy Word / DOCX)
+                            </h3>
+                            <p class="text-xs text-slate-500 dark:text-slate-400">
+                                Chọn từng gói 20 câu để đọc thuộc nhanh • Có thể Bật/Tắt đáp án để tự dò bài hoặc bấm Kiểm tra ngay gói đang đọc
+                            </p>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap items-center gap-2">
+                        <!-- Toggle Show/Hide Answers in DOCX -->
+                        <button id="docxToggleAnswerBtn" onclick="toggleDocxShowAnswers()" class="px-3.5 py-2 rounded-xl text-xs sm:text-sm font-extrabold bg-amber-500 text-navy-900 shadow-xs flex items-center gap-1.5 transition">
+                            <i class="fa-solid fa-eye"></i>
+                            <span id="docxToggleAnswerText">Đáp án: ĐANG HIỆN (In đậm)</span>
+                        </button>
+                        <!-- Toggle Original vs Reset 1..20 numbering in DOCX -->
+                        <button id="docxToggleNumberingBtn" onclick="toggleDocxNumberingMode()" class="px-3 py-2 rounded-xl text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 flex items-center gap-1.5 transition" title="Đổi cách đánh số câu trên trang Word">
+                            <i class="fa-solid fa-list-ol text-amber-500"></i>
+                            <span id="docxToggleNumberingText">Đánh số: Từ Câu 1, 2, 3...</span>
+                        </button>
+                        <!-- Test This Exact Batch Button -->
+                        <button onclick="testCurrentDocxBatch()" class="px-4 py-2 rounded-xl text-xs sm:text-sm font-extrabold bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white shadow flex items-center gap-1.5 transition">
+                            <i class="fa-solid fa-pen-to-square"></i>
+                            <span>Kiểm tra ngay gói này (Đảo câu & A,B,C,D)</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Filter by Lesson or Batch 20 Questions inside DOCX View -->
+                <div class="space-y-3">
+                    <div class="flex flex-wrap items-center gap-2">
+                        <span class="text-xs font-bold text-slate-500 uppercase mr-1">Chọn nhanh gói 20 câu (Phần I):</span>
+                        <div id="docxBatchButtonsP1" class="flex flex-wrap gap-1.5"></div>
+                    </div>
+                    <div class="flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-slate-100 dark:border-slate-800/80">
+                        <div class="flex flex-wrap items-center gap-2">
+                            <span class="text-xs font-bold text-slate-500 uppercase mr-1">Phần II (Đúng/Sai):</span>
+                            <div id="docxBatchButtonsP2" class="flex flex-wrap gap-1.5"></div>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <button onclick="window.print()" class="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 text-xs font-semibold flex items-center gap-1.5">
+                                <i class="fa-solid fa-print"></i> In trang này
+                            </button>
+                            <button onclick="exitToSetup()" class="px-3 py-1.5 rounded-lg bg-slate-200 dark:bg-slate-700 hover:bg-slate-300 text-xs font-bold flex items-center gap-1.5">
+                                <i class="fa-solid fa-arrow-left"></i> Về màn hình chính
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- WORD / DOCX A4 PAPER CONTAINER -->
+            <div class="docx-paper bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 rounded-xl border border-slate-300 dark:border-slate-700 px-6 py-8 sm:px-14 sm:py-12 mx-auto max-w-4xl">
+                <!-- DOCX Document Header -->
+                <div class="border-b-2 border-slate-800 dark:border-slate-300 pb-4 mb-6 text-center space-y-1">
+                    <p class="text-xs sm:text-sm uppercase font-bold tracking-wider">TÀI LIỆU ÔN TẬP & HỌC THUỘC NHANH MÔN LỊCH SỬ 12 (2026 - 2027)</p>
+                    <h2 class="text-lg sm:text-2xl font-bold uppercase" id="docxPaperTitle">ĐỀ CƯƠNG LỊCH SỬ 12 - GÓI CÂU 1 ĐẾN 20</h2>
+                    <p class="text-xs sm:text-sm italic text-slate-600 dark:text-slate-400" id="docxPaperSubtitle">
+                        (Đáp án đúng ở Phần I và các mệnh đề Đúng ở Phần II được tô đậm để học thuộc nhanh)
+                    </p>
+                </div>
+
+                <!-- DOCX Document Body -->
+                <div id="docxPaperContent" class="space-y-6 text-[15px] sm:text-[16px]"></div>
+
+                <!-- Bottom Navigation inside Paper -->
+                <div class="no-print mt-10 pt-6 border-t border-slate-200 dark:border-slate-800 flex flex-wrap items-center justify-between gap-3 font-sans">
+                    <button id="docxPrevBatchBtn" onclick="navigateDocxBatch(-1)" class="px-4 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 font-bold text-xs sm:text-sm flex items-center gap-2">
+                        <i class="fa-solid fa-chevron-left"></i> Gói 20 câu trước
+                    </button>
+                    <button onclick="testCurrentDocxBatch()" class="px-5 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-600 text-navy-900 font-extrabold text-xs sm:text-sm shadow flex items-center gap-2">
+                        <i class="fa-solid fa-bolt"></i> Đã thuộc! Kiểm tra trộn đề 20 câu này ngay
+                    </button>
+                    <button id="docxNextBatchBtn" onclick="navigateDocxBatch(1)" class="px-4 py-2.5 rounded-xl bg-navy-800 dark:bg-amber-500 text-white dark:text-navy-900 font-bold text-xs sm:text-sm flex items-center gap-2">
+                        Gói 20 câu tiếp theo <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+                </div>
             </div>
         </section>
     </main>
@@ -562,7 +746,7 @@
         </div>
     </div>
 
-    <!-- CUSTOM CONFIRMATION / SUBMIT MODAL (NO BROWSER ALERT/CONFIRM) -->
+    <!-- CUSTOM CONFIRMATION / SUBMIT MODAL -->
     <div id="customModal" class="fixed inset-0 z-50 hidden bg-black/60 backdrop-blur-xs flex items-center justify-center p-4">
         <div class="bg-white dark:bg-slate-900 rounded-2xl max-w-md w-full p-6 shadow-2xl border border-slate-200 dark:border-slate-800 space-y-4 transform transition-all">
             <div class="flex items-center gap-3">
@@ -979,25 +1163,39 @@
         };
 
         /**************************************************************************
-         * 2. STATE QUẢN LÝ TRẠNG THÁI BÀI THI
+         * 2. STATE QUẢN LÝ TRẠNG THÁI BÀI THI & CHẾ ĐỘ HỌC TỪNG GÓI 20 CÂU / DOCX
          **************************************************************************/
-        let currentMode = 'standard'; // 'standard' (24 P1 + 4 P2) hoặc 'custom'
+        let currentMode = 'batch'; // 'batch' (20 câu/lần) | 'standard' (24 P1 + 4 P2) | 'custom'
+        let batchConfig = {
+            p1Start: 1,  // 1-indexed
+            p1End: 20,   // 1-indexed
+            p2RangeKey: 'none' // 'none' | 'all' | '1-6' | '7-12' | '13-18'
+        };
+        let docxState = {
+            p1Start: 1,
+            p1End: 20,
+            p2Mode: 'none', // 'none' | 'all' | '1-6' | '7-12' | '13-18'
+            showAnswers: true,
+            resetNumberingFrom1: true // Đánh số 1..20 thay vì 21..40
+        };
+
         let examState = {
             isActive: false,
             isSubmitted: false,
             examCode: '1201',
-            durationMinutes: 40,
-            remainingSeconds: 2400,
+            durationMinutes: 15,
+            remainingSeconds: 900,
             elapsedSeconds: 0,
             timerInterval: null,
             showBoldHint: false,
-            part1Questions: [], // Đã đảo câu & đảo đáp án A,B,C,D
+            batchLabel: 'Gói câu 1 - 20',
+            part1Questions: [], // Đã đảo câu & đảo đáp án A,B,C,D (luôn đánh số lại 1, 2, 3...)
             part2Questions: [], // Đã đảo câu & đảo ý a,b,c,d
-            answersP1: {},      // { qIndex: selectedOptionIndex (0..3) }
-            answersP2: {},      // { qIndex: { 0: true/false, 1: true/false, 2: true/false, 3: true/false } }
-            flaggedP1: {},      // { qIndex: boolean }
-            flaggedP2: {},      // { qIndex: boolean }
-            reviewFilter: 'all' // 'all' | 'wrong' | 'flagged'
+            answersP1: {},
+            answersP2: {},
+            flaggedP1: {},
+            flaggedP2: {},
+            reviewFilter: 'all'
         };
 
         /**************************************************************************
@@ -1017,33 +1215,56 @@
         }
 
         /**************************************************************************
-         * 4. CẤU HÌNH TRƯỚC KHI THI
+         * 4. CẤU HÌNH CHẾ ĐỘ & GÓI 20 CÂU (1-20, 21-40, 41-60...)
          **************************************************************************/
         function selectExamMode(mode) {
             currentMode = mode;
+            const batchCard = document.getElementById('modeCardBatch');
             const stdCard = document.getElementById('modeCardStandard');
             const cusCard = document.getElementById('modeCardCustom');
+            const batchControls = document.getElementById('batchRangeControls');
             const customControls = document.getElementById('customCountControls');
 
-            if (mode === 'standard') {
-                stdCard.className = "cursor-pointer rounded-2xl border-2 border-amber-500 bg-amber-50/50 dark:bg-amber-950/20 p-4 transition flex items-start gap-3.5";
-                cusCard.className = "cursor-pointer rounded-2xl border-2 border-slate-200 dark:border-slate-700 hover:border-amber-400 p-4 transition flex items-start gap-3.5";
-                stdCard.querySelector('input').checked = true;
-                customControls.classList.add('hidden');
-                customControls.classList.remove('grid');
-            } else {
-                cusCard.className = "cursor-pointer rounded-2xl border-2 border-amber-500 bg-amber-50/50 dark:bg-amber-950/20 p-4 transition flex items-start gap-3.5";
-                stdCard.className = "cursor-pointer rounded-2xl border-2 border-slate-200 dark:border-slate-700 hover:border-amber-400 p-4 transition flex items-start gap-3.5";
-                cusCard.querySelector('input').checked = true;
+            const activeCardClass = "cursor-pointer rounded-2xl border-2 border-amber-500 bg-amber-50/50 dark:bg-amber-950/20 p-4 transition flex items-start gap-3";
+            const inactiveCardClass = "cursor-pointer rounded-2xl border-2 border-slate-200 dark:border-slate-700 hover:border-amber-400 p-4 transition flex items-start gap-3";
+
+            batchCard.className = mode === 'batch' ? activeCardClass : inactiveCardClass;
+            stdCard.className = mode === 'standard' ? activeCardClass : inactiveCardClass;
+            cusCard.className = mode === 'custom' ? activeCardClass : inactiveCardClass;
+
+            batchCard.querySelector('input').checked = (mode === 'batch');
+            stdCard.querySelector('input').checked = (mode === 'standard');
+            cusCard.querySelector('input').checked = (mode === 'custom');
+
+            batchControls.classList.toggle('hidden', mode !== 'batch');
+            if (mode === 'custom') {
                 customControls.classList.remove('hidden');
                 customControls.classList.add('grid');
-                updateAvailableCounts();
+            } else {
+                customControls.classList.add('hidden');
+                customControls.classList.remove('grid');
             }
+
+            if (mode === 'batch') {
+                setDuration(15);
+            } else if (mode === 'standard') {
+                setDuration(40);
+            }
+            updateAvailableCounts();
+            updateStartExamButtonLabel();
         }
 
         function getSelectedLessons() {
             const checkboxes = document.querySelectorAll('.lesson-cb:checked');
             return Array.from(checkboxes).map(cb => parseInt(cb.value, 10));
+        }
+
+        function getFilteredQuestionPool() {
+            const selectedLessons = getSelectedLessons();
+            return {
+                poolP1: QUESTION_BANK.part1.filter(q => selectedLessons.includes(q.lesson)),
+                poolP2: QUESTION_BANK.part2.filter(q => selectedLessons.includes(q.lesson))
+            };
         }
 
         function toggleAllLessons() {
@@ -1054,12 +1275,14 @@
         }
 
         function updateAvailableCounts() {
-            const selectedLessons = getSelectedLessons();
-            const availP1 = QUESTION_BANK.part1.filter(q => selectedLessons.includes(q.lesson)).length;
-            const availP2 = QUESTION_BANK.part2.filter(q => selectedLessons.includes(q.lesson)).length;
+            const { poolP1, poolP2 } = getFilteredQuestionPool();
+            const availP1 = poolP1.length;
+            const availP2 = poolP2.length;
 
             document.getElementById('maxP1Label').textContent = availP1;
             document.getElementById('maxP2Label').textContent = availP2;
+            document.getElementById('batchTotalAvailP1').textContent = availP1;
+            document.getElementById('batchTotalAvailP2').textContent = availP2;
 
             const p1Input = document.getElementById('customP1Input');
             const p2Input = document.getElementById('customP2Input');
@@ -1067,14 +1290,134 @@
             p2Input.max = availP2;
             p1Input.value = availP1;
             p2Input.value = availP2;
+
+            // Đảm bảo batchConfig nằm trong phạm vi hợp lệ
+            if (availP1 > 0) {
+                if (batchConfig.p1Start > availP1) batchConfig.p1Start = 1;
+                batchConfig.p1End = Math.min(batchConfig.p1Start + 19, availP1);
+            } else {
+                batchConfig.p1Start = 0;
+                batchConfig.p1End = 0;
+            }
+            document.getElementById('batchP1StartInput').value = batchConfig.p1Start;
+            document.getElementById('batchP1EndInput').value = batchConfig.p1End;
+
+            renderBatchRangeButtons();
+            updateStartExamButtonLabel();
+        }
+
+        function renderBatchRangeButtons() {
+            const { poolP1, poolP2 } = getFilteredQuestionPool();
+            const totalP1 = poolP1.length;
+            const totalP2 = poolP2.length;
+            const containerP1 = document.getElementById('batchP1ButtonsContainer');
+            const containerP2 = document.getElementById('batchP2ButtonsContainer');
+
+            // 1. Tạo các nút gói 20 câu cho Phần I: 1-20, 21-40, 41-60...
+            let htmlP1 = '';
+            const step = 20;
+            for (let start = 1; start <= totalP1; start += step) {
+                const end = Math.min(start + step - 1, totalP1);
+                const count = end - start + 1;
+                const isSelected = (batchConfig.p1Start === start && batchConfig.p1End === end);
+                const btnClass = isSelected
+                    ? "px-3.5 py-2 rounded-xl text-xs font-extrabold bg-navy-800 text-white dark:bg-amber-500 dark:text-navy-900 shadow-sm border-2 border-navy-800 dark:border-amber-400"
+                    : "px-3.5 py-2 rounded-xl text-xs font-bold bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-200 border border-slate-300 dark:border-slate-700 hover:border-amber-500";
+                htmlP1 += `
+                    <button type="button" onclick="selectBatchP1Range(${start}, ${end})" class="${btnClass} transition flex items-center gap-1.5">
+                        <i class="fa-solid ${isSelected ? 'fa-circle-check text-amber-400 dark:text-navy-900' : 'fa-layer-group text-slate-400'}"></i>
+                        <span>Câu ${start} – ${end}</span>
+                        <span class="opacity-75 text-[11px]">(${count} câu)</span>
+                    </button>
+                `;
+            }
+            // Thêm nút "Không làm Phần I (Chỉ làm Phần II)" nếu muốn
+            const isNoneP1 = (batchConfig.p1Start === 0 && batchConfig.p1End === 0);
+            htmlP1 += `
+                <button type="button" onclick="selectBatchP1Range(0, 0)" class="${
+                    isNoneP1
+                        ? 'px-3 py-2 rounded-xl text-xs font-extrabold bg-rose-600 text-white'
+                        : 'px-3 py-2 rounded-xl text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-500 border border-slate-200 dark:border-slate-700'
+                } transition">
+                    Bỏ qua Phần I
+                </button>
+            `;
+            containerP1.innerHTML = htmlP1;
+
+            // 2. Tạo các nút chọn Phần II (Đúng/Sai)
+            const p2Options = [
+                { key: 'none', label: 'Không kèm Phần II (Chỉ làm 20 câu P.I)' },
+                { key: '1-6', label: `Câu 1 – ${Math.min(6, totalP2)} P.II` },
+                { key: '7-12', label: `Câu 7 – ${Math.min(12, totalP2)} P.II`, hide: totalP2 < 7 },
+                { key: '13-18', label: `Câu 13 – ${totalP2} P.II`, hide: totalP2 < 13 },
+                { key: 'all', label: `Tất cả ${totalP2} câu P.II` }
+            ];
+
+            containerP2.innerHTML = p2Options.filter(o => !o.hide).map(opt => {
+                const active = batchConfig.p2RangeKey === opt.key;
+                return `
+                    <button type="button" onclick="selectBatchP2Range('${opt.key}')" class="${
+                        active
+                            ? 'px-3 py-1.5 rounded-xl text-xs font-extrabold bg-amber-500 text-navy-900 border-2 border-amber-600 shadow-2xs'
+                            : 'px-3 py-1.5 rounded-xl text-xs font-semibold bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border border-slate-300 dark:border-slate-700 hover:border-amber-500'
+                    } transition">
+                        ${opt.label}
+                    </button>
+                `;
+            }).join('');
+        }
+
+        function selectBatchP1Range(start, end) {
+            batchConfig.p1Start = start;
+            batchConfig.p1End = end;
+            document.getElementById('batchP1StartInput').value = start;
+            document.getElementById('batchP1EndInput').value = end;
+            renderBatchRangeButtons();
+            updateStartExamButtonLabel();
+        }
+
+        function onManualBatchRangeChange() {
+            const { poolP1 } = getFilteredQuestionPool();
+            const maxP1 = poolP1.length;
+            let s = parseInt(document.getElementById('batchP1StartInput').value || 1, 10);
+            let e = parseInt(document.getElementById('batchP1EndInput').value || 20, 10);
+            s = Math.max(1, Math.min(s, maxP1));
+            e = Math.max(s, Math.min(e, maxP1));
+            batchConfig.p1Start = s;
+            batchConfig.p1End = e;
+            document.getElementById('batchP1StartInput').value = s;
+            document.getElementById('batchP1EndInput').value = e;
+            renderBatchRangeButtons();
+            updateStartExamButtonLabel();
+        }
+
+        function selectBatchP2Range(key) {
+            batchConfig.p2RangeKey = key;
+            renderBatchRangeButtons();
+            updateStartExamButtonLabel();
+        }
+
+        function updateStartExamButtonLabel() {
+            const btnSpan = document.getElementById('startExamBtnText');
+            if (!btnSpan) return;
+            if (currentMode === 'batch') {
+                const p1Part = batchConfig.p1End > 0
+                    ? `GÓI CÂU ${batchConfig.p1Start} - ${batchConfig.p1End} (${batchConfig.p1End - batchConfig.p1Start + 1} CÂU)`
+                    : `CHỈ PHẦN II`;
+                btnSpan.textContent = `BẮT ĐẦU KIỂM TRA ${p1Part} • ĐÁNH SỐ TỪ CÂU 1 & ĐẢO A,B,C,D`;
+            } else if (currentMode === 'standard') {
+                btnSpan.textContent = `BẮT ĐẦU THI ĐỀ CHUẨN BỘ GD&ĐT (28 CÂU NGẪU NHIÊN)`;
+            } else {
+                btnSpan.textContent = `BẮT ĐẦU LÀM BÀI LUYỆN TẬP TÙY CHỈNH`;
+            }
         }
 
         function setMaxQuestions(part) {
-            const selectedLessons = getSelectedLessons();
+            const { poolP1, poolP2 } = getFilteredQuestionPool();
             if (part === 'p1') {
-                document.getElementById('customP1Input').value = QUESTION_BANK.part1.filter(q => selectedLessons.includes(q.lesson)).length;
+                document.getElementById('customP1Input').value = poolP1.length;
             } else {
-                document.getElementById('customP2Input').value = QUESTION_BANK.part2.filter(q => selectedLessons.includes(q.lesson)).length;
+                document.getElementById('customP2Input').value = poolP2.length;
             }
         }
 
@@ -1091,6 +1434,7 @@
 
         /**************************************************************************
          * 5. KHỞI TẠO ĐỀ THI & ĐẢO CÂU HỎI + ĐẢO ĐÁP ÁN A, B, C, D
+         *    (ĐÁNH SỐ LẠI TỪ 1, 2, 3... CHO DÙ ĐANG LÀM GÓI 21-40 HAY 41-60)
          **************************************************************************/
         function startExam() {
             const errorBox = document.getElementById('setupErrorBox');
@@ -1103,34 +1447,67 @@
                 return;
             }
 
-            const poolP1 = QUESTION_BANK.part1.filter(q => selectedLessons.includes(q.lesson));
-            const poolP2 = QUESTION_BANK.part2.filter(q => selectedLessons.includes(q.lesson));
-
-            let countP1 = 24;
-            let countP2 = 4;
-
-            if (currentMode === 'standard') {
-                countP1 = Math.min(24, poolP1.length);
-                countP2 = Math.min(4, poolP2.length);
-            } else {
-                countP1 = Math.min(Math.max(0, parseInt(document.getElementById('customP1Input').value || 0, 10)), poolP1.length);
-                countP2 = Math.min(Math.max(0, parseInt(document.getElementById('customP2Input').value || 0, 10)), poolP2.length);
-                if (countP1 === 0 && countP2 === 0) {
-                    errorBox.textContent = "Số lượng câu hỏi phải lớn hơn 0!";
-                    errorBox.classList.remove('hidden');
-                    return;
-                }
-            }
-
-            const durationMinutes = Math.max(1, parseInt(document.getElementById('durationInput').value || 40, 10));
+            const { poolP1, poolP2 } = getFilteredQuestionPool();
+            const durationMinutes = Math.max(1, parseInt(document.getElementById('durationInput').value || 15, 10));
             const doShuffleQuestions = document.getElementById('shuffleQuestionsCb').checked;
             const doShuffleOptions = document.getElementById('shuffleOptionsCb').checked;
             const doShuffleSubItems = document.getElementById('shuffleSubItemsCb').checked;
             const showBoldHint = document.getElementById('showBoldHintCb').checked;
 
-            // 1. Chọn & Đảo câu hỏi Phần I + Đảo thứ tự A, B, C, D
-            const selectedRawP1 = (doShuffleQuestions ? shuffleArray(poolP1) : [...poolP1]).slice(0, countP1);
-            const preparedP1 = selectedRawP1.map((item) => {
+            let chosenRawP1 = [];
+            let chosenRawP2 = [];
+            let batchLabel = "Đề Chuẩn 28 Câu";
+
+            if (currentMode === 'batch') {
+                // Lấy đúng khoảng câu (ví dụ 1-20 hoặc 21-40) từ poolP1
+                if (batchConfig.p1Start > 0 && batchConfig.p1End >= batchConfig.p1Start) {
+                    chosenRawP1 = poolP1.slice(batchConfig.p1Start - 1, batchConfig.p1End);
+                }
+                if (batchConfig.p2RangeKey === 'all') {
+                    chosenRawP2 = [...poolP2];
+                } else if (batchConfig.p2RangeKey === '1-6') {
+                    chosenRawP2 = poolP2.slice(0, 6);
+                } else if (batchConfig.p2RangeKey === '7-12') {
+                    chosenRawP2 = poolP2.slice(6, 12);
+                } else if (batchConfig.p2RangeKey === '13-18') {
+                    chosenRawP2 = poolP2.slice(12, 18);
+                }
+
+                if (chosenRawP1.length === 0 && chosenRawP2.length === 0) {
+                    errorBox.textContent = "Vui lòng chọn ít nhất 1 gói câu hỏi ở Phần I hoặc Phần II!";
+                    errorBox.classList.remove('hidden');
+                    return;
+                }
+                batchLabel = chosenRawP1.length > 0
+                    ? `Gói câu ${batchConfig.p1Start} – ${batchConfig.p1End}`
+                    : `Gói Đúng/Sai (${batchConfig.p2RangeKey})`;
+            } else if (currentMode === 'standard') {
+                const countP1 = Math.min(24, poolP1.length);
+                const countP2 = Math.min(4, poolP2.length);
+                chosenRawP1 = (doShuffleQuestions ? shuffleArray(poolP1) : [...poolP1]).slice(0, countP1);
+                chosenRawP2 = (doShuffleQuestions ? shuffleArray(poolP2) : [...poolP2]).slice(0, countP2);
+                batchLabel = "Đề Chuẩn Bộ GD&ĐT (28 câu)";
+            } else {
+                const countP1 = Math.min(Math.max(0, parseInt(document.getElementById('customP1Input').value || 0, 10)), poolP1.length);
+                const countP2 = Math.min(Math.max(0, parseInt(document.getElementById('customP2Input').value || 0, 10)), poolP2.length);
+                if (countP1 === 0 && countP2 === 0) {
+                    errorBox.textContent = "Số lượng câu hỏi phải lớn hơn 0!";
+                    errorBox.classList.remove('hidden');
+                    return;
+                }
+                chosenRawP1 = (doShuffleQuestions ? shuffleArray(poolP1) : [...poolP1]).slice(0, countP1);
+                chosenRawP2 = (doShuffleQuestions ? shuffleArray(poolP2) : [...poolP2]).slice(0, countP2);
+                batchLabel = `Tùy chỉnh (${countP1} P.I + ${countP2} P.II)`;
+            }
+
+            // Nếu ở chế độ batch và bật Đảo thứ tự câu hỏi -> trộn ngẫu nhiên các câu TRONG GÓI 20 CÂU ĐÓ
+            if (currentMode === 'batch' && doShuffleQuestions) {
+                chosenRawP1 = shuffleArray(chosenRawP1);
+                chosenRawP2 = shuffleArray(chosenRawP2);
+            }
+
+            // Chuẩn bị Phần I: Đảo đáp án A, B, C, D
+            const preparedP1 = chosenRawP1.map((item) => {
                 const rawOptions = [
                     { text: item.correct, isCorrect: true },
                     ...item.distractors.map(d => ({ text: d, isCorrect: false }))
@@ -1145,9 +1522,8 @@
                 };
             });
 
-            // 2. Chọn & Đảo câu hỏi Phần II + Đảo thứ tự a), b), c), d)
-            const selectedRawP2 = (doShuffleQuestions ? shuffleArray(poolP2) : [...poolP2]).slice(0, countP2);
-            const preparedP2 = selectedRawP2.map((item) => {
+            // Chuẩn bị Phần II: Đảo thứ tự a), b), c), d)
+            const preparedP2 = chosenRawP2.map((item) => {
                 const rawSubItems = item.items.map(sub => ({ text: sub.text, answer: sub.answer }));
                 const finalSubItems = doShuffleSubItems ? shuffleArray(rawSubItems) : rawSubItems;
                 return {
@@ -1160,7 +1536,6 @@
                 };
             });
 
-            // Cập nhật State
             if (examState.timerInterval) clearInterval(examState.timerInterval);
             examState = {
                 isActive: true,
@@ -1171,6 +1546,7 @@
                 elapsedSeconds: 0,
                 timerInterval: null,
                 showBoldHint: showBoldHint,
+                batchLabel: batchLabel,
                 part1Questions: preparedP1,
                 part2Questions: preparedP2,
                 answersP1: {},
@@ -1182,6 +1558,7 @@
 
             // Chuyển sang màn hình làm bài
             document.getElementById('setupScreen').classList.add('hidden');
+            document.getElementById('docxStudyWorkspace').classList.add('hidden');
             document.getElementById('examWorkspace').classList.remove('hidden');
             document.getElementById('resultSummaryPanel').classList.add('hidden');
             document.getElementById('examHeaderControls').classList.remove('hidden');
@@ -1191,10 +1568,27 @@
             document.getElementById('headerSubmitBtn').classList.remove('hidden');
             document.getElementById('sidebarSubmitBtn').classList.remove('hidden');
 
-            // Cập nhật thông tin tờ đề
+            // Hiển thị thanh chuyển gói 20 câu nhanh nếu đang ở chế độ Batch
+            const inExamBatchBar = document.getElementById('inExamBatchBar');
+            const activeBatchBadge = document.getElementById('activeBatchHeaderBadge');
+            if (currentMode === 'batch') {
+                inExamBatchBar.classList.remove('hidden');
+                activeBatchBadge.classList.remove('hidden');
+                activeBatchBadge.classList.add('lg:flex');
+                document.getElementById('activeBatchHeaderText').textContent = batchLabel;
+                renderInExamBatchSwitcher();
+            } else {
+                inExamBatchBar.classList.add('hidden');
+                activeBatchBadge.classList.add('hidden');
+            }
+
+            // Cập nhật thông tin tờ đề (vẫn đánh số từ Câu 1 đến Câu N)
             document.getElementById('examCodeDisplay').textContent = examState.examCode;
-            document.getElementById('paperSubInfo').textContent = `Thời gian làm bài: ${durationMinutes} phút • Gồm ${preparedP1.length} câu Phần I & ${preparedP2.length} câu Phần II`;
-            document.getElementById('part1InstructionText').innerHTML = `Thí sinh trả lời từ câu 1 đến câu ${preparedP1.length}. Mỗi câu hỏi thí sinh chỉ chọn một phương án đúng (0,25 điểm/câu). Phương án đúng được <strong>IN ĐẬM</strong> toàn bộ chữ cái và nội dung.`;
+            document.getElementById('paperMainTitle').textContent = currentMode === 'batch'
+                ? `BÀI KIỂM TRA THEO CHẶNG (${batchLabel.toUpperCase()})`
+                : `ĐỀ KIỂM TRA GIỮA KỲ 1 (2026 - 2027)`;
+            document.getElementById('paperSubInfo').textContent = `Thời gian: ${durationMinutes} phút • Gồm ${preparedP1.length} câu Phần I & ${preparedP2.length} câu Phần II`;
+            document.getElementById('part1InstructionText').innerHTML = `Thí sinh trả lời từ <strong>Câu 1 đến Câu ${preparedP1.length}</strong> (đã được trộn ngẫu nhiên và đảo vị trí A, B, C, D). Mỗi câu chọn 1 phương án đúng.`;
 
             updateStudyBoldButtonUI();
             renderAllQuestions();
@@ -1202,6 +1596,62 @@
             updateProgressCounters();
             startTimer();
             window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function renderInExamBatchSwitcher() {
+            const { poolP1 } = getFilteredQuestionPool();
+            const totalP1 = poolP1.length;
+            const container = document.getElementById('inExamBatchButtons');
+            let html = '';
+            for (let start = 1; start <= totalP1; start += 20) {
+                const end = Math.min(start + 19, totalP1);
+                const isCurrent = (batchConfig.p1Start === start && batchConfig.p1End === end);
+                html += `
+                    <button type="button" onclick="switchBatchDuringExam(${start}, ${end})"
+                        class="px-2.5 py-1 rounded-lg text-xs font-bold transition ${
+                            isCurrent
+                                ? 'bg-amber-500 text-navy-900 font-extrabold shadow-2xs'
+                                : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-amber-500/20'
+                        }">
+                        Câu ${start}–${end}
+                    </button>
+                `;
+            }
+            container.innerHTML = html;
+        }
+
+        function switchBatchDuringExam(start, end) {
+            if (!examState.isSubmitted && Object.keys(examState.answersP1).length > 0) {
+                showCustomModal({
+                    title: `Chuyển sang làm gói Câu ${start} – ${end}?`,
+                    subtitle: "Đánh số lại từ Câu 1 đến Câu " + (end - start + 1),
+                    bodyHTML: `Bạn đang làm dở gói hiện tại. Bạn có muốn chuyển ngay sang kiểm tra gói <strong>Câu ${start} – ${end}</strong> (trộn câu hỏi & đảo đáp án A, B, C, D mới) không?`,
+                    confirmText: `Chuyển sang Câu ${start} – ${end}`,
+                    onConfirm: () => {
+                        closeCustomModal();
+                        selectBatchP1Range(start, end);
+                        startExam();
+                    }
+                });
+            } else {
+                selectBatchP1Range(start, end);
+                startExam();
+            }
+        }
+
+        function startNextBatchExam() {
+            const { poolP1 } = getFilteredQuestionPool();
+            const totalP1 = poolP1.length;
+            const nextStart = batchConfig.p1End + 1;
+            if (nextStart <= totalP1) {
+                const nextEnd = Math.min(nextStart + 19, totalP1);
+                selectBatchP1Range(nextStart, nextEnd);
+                startExam();
+            } else {
+                // Quay vòng lại từ 1-20
+                selectBatchP1Range(1, Math.min(20, totalP1));
+                startExam();
+            }
         }
 
         function toggleStudyBoldMode() {
@@ -1226,7 +1676,7 @@
         }
 
         /**************************************************************************
-         * 6. HIỂN THỊ DANH SÁCH CÂU HỎI PHẦN I VÀ PHẦN II (CÓ IN ĐẬM ĐÁP ÁN ĐÚNG)
+         * 6. HIỂN THỊ DANH SÁCH CÂU HỎI PHẦN I VÀ PHẦN II (LUÔN ĐÁNH SỐ 1, 2, 3...)
          **************************************************************************/
         const OPTION_LABELS = ['A', 'B', 'C', 'D'];
         const SUB_ITEM_LABELS = ['a)', 'b)', 'c)', 'd)'];
@@ -1240,21 +1690,19 @@
             p1Container.innerHTML = '';
             p2Container.innerHTML = '';
 
-            // Ẩn/hiện phần nếu số câu = 0
             p1Wrapper.classList.toggle('hidden', examState.part1Questions.length === 0);
             p2Wrapper.classList.toggle('hidden', examState.part2Questions.length === 0);
 
             const isSubmitted = examState.isSubmitted;
             const showBold = isSubmitted || examState.showBoldHint;
 
-            // Render Phần I
+            // Render Phần I (Đánh số luôn bắt đầu từ Câu 1, Câu 2... bằng qIndex + 1)
             examState.part1Questions.forEach((qObj, qIndex) => {
                 const userSelected = examState.answersP1[qIndex];
                 const isFlagged = !!examState.flaggedP1[qIndex];
                 const correctIndex = qObj.options.findIndex(o => o.isCorrect);
                 const isQuestionCorrect = isSubmitted && userSelected === correctIndex;
 
-                // Kiểm tra bộ lọc khi đã nộp bài
                 if (isSubmitted) {
                     if (examState.reviewFilter === 'wrong' && isQuestionCorrect) return;
                     if (examState.reviewFilter === 'flagged' && !isFlagged) return;
@@ -1277,7 +1725,6 @@
                     let badgeStyle = "bg-white dark:bg-slate-700 text-slate-700 dark:text-slate-200 border border-slate-300 dark:border-slate-600 font-medium";
                     let feedbackNote = "";
 
-                    // Khi bật Chế độ Ôn tập hoặc sau khi Nộp bài: IN ĐẬM toàn bộ chữ cái A,B,C,D và nội dung đáp án đúng
                     const isBoldAnswer = showBold && opt.isCorrect;
                     const textWeightClass = isBoldAnswer ? "correct-bold-answer" : "font-normal";
                     const badgeBoldClass = isBoldAnswer && !isSubmitted && !isThisSelected ? "correct-bold-badge" : "";
@@ -1290,7 +1737,6 @@
                             btnStyle = "border-2 border-amber-500/50 bg-amber-50/40 dark:bg-amber-950/20";
                         }
                     } else {
-                        // Đã nộp bài: tô màu đáp án đúng và đáp án học sinh chọn
                         if (opt.isCorrect) {
                             btnStyle = "border-2 border-emerald-500 bg-emerald-50/80 dark:bg-emerald-950/30 text-emerald-950 dark:text-emerald-200";
                             badgeStyle = "bg-emerald-500 text-white font-extrabold border-emerald-500";
@@ -1298,7 +1744,7 @@
                         } else if (isThisSelected && !opt.isCorrect) {
                             btnStyle = "border-2 border-rose-500 bg-rose-50/80 dark:bg-rose-950/30 text-rose-950 dark:text-rose-200 line-through decoration-rose-500/60";
                             badgeStyle = "bg-rose-500 text-white font-extrabold border-rose-500";
-                            feedbackNote = `<span class="ml-auto text-xs font-bold text-rose-600 dark:text-rose-400 shrink-0"><i class="fa-solid fa-circle-xmark mr-1"></i>Bạn đã chọn</span>`;
+                            feedbackNote = `<span class="ml-auto text-xs font-bold text-rose-600 dark:text-rose-400 shrink-0"><i class="fa-solid fa-circle-xmark mr-1"></i>Bạn chọn</span>`;
                         } else {
                             btnStyle = "border-slate-200 dark:border-slate-800 bg-slate-50/40 dark:bg-slate-900/40 opacity-65";
                         }
@@ -1363,7 +1809,6 @@
                 const userSubAnswers = examState.answersP2[qIndex] || {};
                 const isFlagged = !!examState.flaggedP2[qIndex];
 
-                // Tính số ý đúng và điểm câu này nếu đã nộp bài
                 let correctSubCount = 0;
                 qObj.items.forEach((sub, sIdx) => {
                     if (userSubAnswers[sIdx] === sub.answer) correctSubCount++;
@@ -1390,10 +1835,9 @@
                 const formattedPassage = qObj.passage.split('\n').map(p => `<p class="mb-2 last:mb-0">${p}</p>`).join('');
 
                 const subRowsHTML = qObj.items.map((subItem, sIdx) => {
-                    const userChoice = userSubAnswers[sIdx]; // true | false | undefined
+                    const userChoice = userSubAnswers[sIdx];
                     const isSubCorrect = userChoice === subItem.answer;
 
-                    // Khi bật Chế độ Ôn tập hoặc sau khi Nộp bài: Mệnh đề ĐÚNG được IN ĐẬM toàn bộ từ chữ cái a), b), c), d) đến hết câu
                     const isBoldStatement = showBold && subItem.answer === true;
                     const statementTextClass = isBoldStatement
                         ? "correct-bold-answer"
@@ -1413,7 +1857,6 @@
                             falseBtnClass = "border-2 border-rose-600 bg-rose-500 text-white font-extrabold shadow-xs";
                         }
                     } else {
-                        // Đã nộp bài
                         if (userChoice === true) {
                             trueBtnClass = isSubCorrect
                                 ? "border-2 border-emerald-600 bg-emerald-500 text-white font-extrabold"
@@ -1499,7 +1942,6 @@
                         Đọc đoạn tư liệu sau đây, trong mỗi ý <strong>a), b), c), d)</strong>, học sinh chọn <strong>Đúng</strong> hoặc <strong>Sai</strong>:
                     </p>
 
-                    <!-- Historical Passage Box -->
                     <div class="passage-box p-4 sm:p-5 rounded-2xl bg-amber-50/60 dark:bg-slate-800/80 border-l-4 border-amber-500 text-slate-800 dark:text-slate-200 text-sm italic mb-4 shadow-2xs">
                         ${formattedPassage}
                         <div class="text-right not-italic font-sans text-xs font-semibold text-slate-500 dark:text-slate-400 mt-2">
@@ -1507,7 +1949,6 @@
                         </div>
                     </div>
 
-                    <!-- 4 Sub-statements a, b, c, d -->
                     <div class="space-y-2.5">
                         ${subRowsHTML}
                     </div>
@@ -1517,7 +1958,260 @@
         }
 
         /**************************************************************************
-         * 7. XỬ LÝ CHỌN ĐÁP ÁN & ĐÁNH DẤU CÂU HỎI
+         * 7. CHẾ ĐỘ ĐỌC ĐỀ CƯƠNG NHƯ FILE WORD / DOCX TRÊN WEB
+         **************************************************************************/
+        function openDocxStudyFromBatch() {
+            docxState.p1Start = batchConfig.p1Start || 1;
+            docxState.p1End = batchConfig.p1End || 20;
+            docxState.p2Mode = batchConfig.p2RangeKey;
+            openDocxStudyView();
+        }
+
+        function openDocxStudyView() {
+            if (examState.timerInterval) clearInterval(examState.timerInterval);
+            examState.isActive = false;
+
+            const { poolP1 } = getFilteredQuestionPool();
+            if (poolP1.length > 0 && docxState.p1End === 0) {
+                docxState.p1Start = 1;
+                docxState.p1End = Math.min(20, poolP1.length);
+            }
+
+            document.getElementById('setupScreen').classList.add('hidden');
+            document.getElementById('examWorkspace').classList.add('hidden');
+            document.getElementById('examHeaderControls').classList.add('hidden');
+            document.getElementById('examHeaderControls').classList.remove('flex');
+            document.getElementById('backToConfigBtn').classList.remove('hidden');
+            document.getElementById('backToConfigBtn').classList.add('flex');
+            document.getElementById('docxStudyWorkspace').classList.remove('hidden');
+
+            renderDocxBatchToolbar();
+            renderDocxPaperContent();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function renderDocxBatchToolbar() {
+            const { poolP1, poolP2 } = getFilteredQuestionPool();
+            const totalP1 = poolP1.length;
+            const totalP2 = poolP2.length;
+
+            // Nút chọn gói 20 câu Phần I trên thanh công cụ DOCX
+            const p1Bar = document.getElementById('docxBatchButtonsP1');
+            let htmlP1 = '';
+            for (let start = 1; start <= totalP1; start += 20) {
+                const end = Math.min(start + 19, totalP1);
+                const active = (docxState.p1Start === start && docxState.p1End === end);
+                htmlP1 += `
+                    <button type="button" onclick="selectDocxBatchP1(${start}, ${end})"
+                        class="px-3 py-1.5 rounded-xl text-xs font-bold transition ${
+                            active
+                                ? 'bg-navy-800 text-white dark:bg-amber-500 dark:text-navy-900 shadow-xs'
+                                : 'bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:border-amber-500 border border-slate-200 dark:border-slate-700'
+                        }">
+                        Câu ${start} – ${end}
+                    </button>
+                `;
+            }
+            const isAllP1 = (docxState.p1Start === 1 && docxState.p1End === totalP1 && totalP1 > 20);
+            htmlP1 += `
+                <button type="button" onclick="selectDocxBatchP1(1, ${totalP1})"
+                    class="px-3 py-1.5 rounded-xl text-xs font-bold transition ${
+                        isAllP1
+                            ? 'bg-navy-800 text-white dark:bg-amber-500 dark:text-navy-900'
+                            : 'bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700'
+                    }">
+                    Tất cả (${totalP1} câu)
+                </button>
+            `;
+            p1Bar.innerHTML = htmlP1;
+
+            // Nút chọn Phần II trên thanh DOCX
+            const p2Bar = document.getElementById('docxBatchButtonsP2');
+            const p2Modes = [
+                { key: 'none', label: 'Ẩn Phần II' },
+                { key: '1-6', label: `Câu 1–${Math.min(6, totalP2)} P.II` },
+                { key: '7-12', label: `Câu 7–${Math.min(12, totalP2)} P.II`, hide: totalP2 < 7 },
+                { key: '13-18', label: `Câu 13–${totalP2} P.II`, hide: totalP2 < 13 },
+                { key: 'all', label: `Hiện tất cả ${totalP2} câu P.II` }
+            ];
+            p2Bar.innerHTML = p2Modes.filter(m => !m.hide).map(m => {
+                const active = docxState.p2Mode === m.key;
+                return `
+                    <button type="button" onclick="selectDocxBatchP2('${m.key}')"
+                        class="px-2.5 py-1 rounded-lg text-xs font-bold transition ${
+                            active
+                                ? 'bg-amber-500 text-navy-900'
+                                : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300'
+                        }">
+                        ${m.label}
+                    </button>
+                `;
+            }).join('');
+        }
+
+        function selectDocxBatchP1(start, end) {
+            docxState.p1Start = start;
+            docxState.p1End = end;
+            renderDocxBatchToolbar();
+            renderDocxPaperContent();
+        }
+
+        function selectDocxBatchP2(modeKey) {
+            docxState.p2Mode = modeKey;
+            renderDocxBatchToolbar();
+            renderDocxPaperContent();
+        }
+
+        function navigateDocxBatch(direction) {
+            const { poolP1 } = getFilteredQuestionPool();
+            const totalP1 = poolP1.length;
+            let newStart = docxState.p1Start + direction * 20;
+            if (newStart < 1) newStart = 1;
+            if (newStart > totalP1) newStart = Math.max(1, Math.floor((totalP1 - 1) / 20) * 20 + 1);
+            const newEnd = Math.min(newStart + 19, totalP1);
+            selectDocxBatchP1(newStart, newEnd);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function toggleDocxShowAnswers() {
+            docxState.showAnswers = !docxState.showAnswers;
+            const btn = document.getElementById('docxToggleAnswerBtn');
+            const txt = document.getElementById('docxToggleAnswerText');
+            if (docxState.showAnswers) {
+                btn.className = "px-3.5 py-2 rounded-xl text-xs sm:text-sm font-extrabold bg-amber-500 text-navy-900 shadow-xs flex items-center gap-1.5 transition";
+                txt.textContent = "Đáp án: ĐANG HIỆN (In đậm)";
+            } else {
+                btn.className = "px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 flex items-center gap-1.5 transition";
+                txt.textContent = "Đáp án: ĐANG ẨN (Tự nhẩm bài)";
+            }
+            renderDocxPaperContent();
+        }
+
+        function toggleDocxNumberingMode() {
+            docxState.resetNumberingFrom1 = !docxState.resetNumberingFrom1;
+            const txt = document.getElementById('docxToggleNumberingText');
+            txt.textContent = docxState.resetNumberingFrom1
+                ? "Đánh số: Từ Câu 1, 2, 3..."
+                : `Đánh số: Theo gốc (${docxState.p1Start}–${docxState.p1End})`;
+            renderDocxPaperContent();
+        }
+
+        function renderDocxPaperContent() {
+            const { poolP1, poolP2 } = getFilteredQuestionPool();
+            const sliceP1 = poolP1.slice(docxState.p1Start - 1, docxState.p1End);
+
+            let sliceP2 = [];
+            if (docxState.p2Mode === 'all') sliceP2 = [...poolP2];
+            else if (docxState.p2Mode === '1-6') sliceP2 = poolP2.slice(0, 6);
+            else if (docxState.p2Mode === '7-12') sliceP2 = poolP2.slice(6, 12);
+            else if (docxState.p2Mode === '13-18') sliceP2 = poolP2.slice(12, 18);
+
+            document.getElementById('docxPaperTitle').textContent =
+                `TÀI LIỆU ÔN TẬP LỊCH SỬ 12 — CHẶNG CÂU ${docxState.p1Start} ĐẾN ${docxState.p1End}`;
+            document.getElementById('docxPaperSubtitle').textContent = docxState.showAnswers
+                ? `(Chế độ Học Bài: Đáp án đúng đang được TÔ ĐẬM & GẠCH CHÂN giống file Word đề cương)`
+                : `(Chế độ Tự Dò Bài: Đáp án đúng đang được ẩn đi để bạn tự kiểm tra trí nhớ)`;
+
+            const contentEl = document.getElementById('docxPaperContent');
+            let html = '';
+
+            // 1. Render Phần I dạng văn bản Word
+            if (sliceP1.length > 0) {
+                html += `
+                    <div class="space-y-4">
+                        <h3 class="font-bold text-base sm:text-lg uppercase border-b border-slate-300 dark:border-slate-700 pb-1.5">
+                            PHẦN I. CÂU HỎI TRẮC NGHIỆM NHIỀU PHƯƠNG ÁN LỰA CHỌN (${sliceP1.length} CÂU)
+                        </h3>
+                `;
+
+                sliceP1.forEach((item, idx) => {
+                    const displayNum = docxState.resetNumberingFrom1 ? (idx + 1) : (docxState.p1Start + idx);
+                    const opts = [
+                        { letter: 'A', text: item.correct, isCorrect: true },
+                        { letter: 'B', text: item.distractors[0], isCorrect: false },
+                        { letter: 'C', text: item.distractors[1], isCorrect: false },
+                        { letter: 'D', text: item.distractors[2], isCorrect: false }
+                    ];
+
+                    const optionsDocxHTML = opts.map(o => {
+                        if (docxState.showAnswers && o.isCorrect) {
+                            return `<div class="py-0.5"><span class="docx-highlight">${o.letter}. ${o.text}</span></div>`;
+                        }
+                        return `<div class="py-0.5"><strong>${o.letter}.</strong> ${o.text}</div>`;
+                    }).join('');
+
+                    html += `
+                        <div class="pb-3 border-b border-dashed border-slate-200 dark:border-slate-800 last:border-none">
+                            <p class="mb-1.5">
+                                <strong>Câu ${displayNum}:</strong> ${item.q}
+                                <span class="text-xs italic text-slate-400 ml-1">(${item.lessonName})</span>
+                            </p>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-1 pl-2 sm:pl-4">
+                                ${optionsDocxHTML}
+                            </div>
+                        </div>
+                    `;
+                });
+
+                html += `</div>`;
+            }
+
+            // 2. Render Phần II dạng văn bản Word (nếu có bật)
+            if (sliceP2.length > 0) {
+                html += `
+                    <div class="space-y-5 pt-6 border-t-2 border-slate-800 dark:border-slate-300">
+                        <h3 class="font-bold text-base sm:text-lg uppercase border-b border-slate-300 dark:border-slate-700 pb-1.5">
+                            PHẦN II. CÂU TRẮC NGHIỆM ĐÚNG / SAI (${sliceP2.length} CÂU)
+                        </h3>
+                `;
+
+                sliceP2.forEach((item, idx) => {
+                    const subHTML = item.items.map((sub, sIdx) => {
+                        const letter = SUB_ITEM_LABELS[sIdx];
+                        if (docxState.showAnswers) {
+                            if (sub.answer === true) {
+                                return `<div class="py-1"><span class="docx-highlight">${letter} ${sub.text} → [ĐÚNG]</span></div>`;
+                            } else {
+                                return `<div class="py-1 text-slate-700 dark:text-slate-300"><strong>${letter}</strong> ${sub.text} → <span class="font-bold text-rose-600 dark:text-rose-400">[SAI]</span></div>`;
+                            }
+                        } else {
+                            return `<div class="py-1"><strong>${letter}</strong> ${sub.text}</div>`;
+                        }
+                    }).join('');
+
+                    html += `
+                        <div class="pb-4 border-b border-dashed border-slate-300 dark:border-slate-700 last:border-none space-y-2">
+                            <p class="font-bold">Câu ${idx + 1} (Phần II - ${item.lessonName}): Đọc đoạn tư liệu sau:</p>
+                            <blockquote class="pl-4 border-l-2 border-slate-400 italic text-slate-700 dark:text-slate-300">
+                                ${item.passage.replace(/\n/g, '<br>')}
+                                <div class="text-right not-italic text-xs text-slate-500 mt-1">(${item.source})</div>
+                            </blockquote>
+                            <div class="pl-2 sm:pl-4 space-y-0.5">
+                                ${subHTML}
+                            </div>
+                        </div>
+                    `;
+                });
+
+                html += `</div>`;
+            }
+
+            contentEl.innerHTML = html;
+        }
+
+        function testCurrentDocxBatch() {
+            currentMode = 'batch';
+            batchConfig.p1Start = docxState.p1Start;
+            batchConfig.p1End = docxState.p1End;
+            batchConfig.p2RangeKey = docxState.p2Mode;
+            selectExamMode('batch');
+            selectBatchP1Range(docxState.p1Start, docxState.p1End);
+            selectBatchP2Range(docxState.p2Mode);
+            startExam();
+        }
+
+        /**************************************************************************
+         * 8. XỬ LÝ CHỌN ĐÁP ÁN, BẢNG ĐIỀU HƯỚNG & ĐỒNG HỒ ĐẾM NGƯỢC
          **************************************************************************/
         function selectPart1Answer(qIndex, optIndex) {
             if (examState.isSubmitted) return;
@@ -1548,14 +2242,14 @@
             renderQuestionPalette();
         }
 
-        /**************************************************************************
-         * 8. BẢNG ĐIỀU HƯỚNG CÂU HỎI (QUESTION PALETTE) & TIẾN ĐỘ
-         **************************************************************************/
         function renderQuestionPalette() {
             const p1Grid = document.getElementById('palettePart1Grid');
             const p2Grid = document.getElementById('palettePart2Grid');
             const mobP1Grid = document.getElementById('mobilePalettePart1Grid');
             const mobP2Grid = document.getElementById('mobilePalettePart2Grid');
+
+            document.getElementById('palettePart1Container').classList.toggle('hidden', examState.part1Questions.length === 0);
+            document.getElementById('palettePart2Container').classList.toggle('hidden', examState.part2Questions.length === 0);
 
             const buildP1Buttons = (isMobile) => examState.part1Questions.map((qObj, idx) => {
                 const answered = examState.answersP1[idx] !== undefined;
@@ -1577,7 +2271,6 @@
 
                 const flagRing = flagged ? "ring-2 ring-rose-500 ring-offset-1 dark:ring-offset-slate-900" : "";
                 const chosenLetter = answered ? OPTION_LABELS[examState.answersP1[idx]] : '';
-
                 return `
                     <button type="button" onclick="scrollToQuestion('p1', ${idx}, ${isMobile})"
                         class="h-9 rounded-lg text-xs font-bold flex items-center justify-center transition ${colorClass} ${flagRing}">
@@ -1658,9 +2351,6 @@
             modal.classList.toggle('hidden');
         }
 
-        /**************************************************************************
-         * 9. ĐỒNG HỒ ĐẾM NGƯỢC (COUNTDOWN TIMER)
-         **************************************************************************/
         function startTimer() {
             updateTimerUI();
             examState.timerInterval = setInterval(() => {
@@ -1674,7 +2364,7 @@
 
                 if (examState.remainingSeconds <= 0) {
                     clearInterval(examState.timerInterval);
-                    gradeExam(true); // Tự động nộp bài khi hết giờ
+                    gradeExam(true);
                 }
             }, 1000);
         }
@@ -1687,7 +2377,7 @@
             const containerEl = document.getElementById('timerContainer');
             timerEl.textContent = display;
 
-            if (examState.remainingSeconds <= 300 && !examState.isSubmitted) {
+            if (examState.remainingSeconds <= 180 && !examState.isSubmitted) {
                 containerEl.classList.add('timer-warning', 'text-rose-400', 'border-rose-500');
                 containerEl.classList.remove('text-amber-400');
             } else {
@@ -1697,13 +2387,7 @@
         }
 
         /**************************************************************************
-         * 10. QUY TẮC CHẤM ĐIỂM CHUẨN BỘ GIÁO DỤC & ĐÀO TẠO (2026)
-         * - Phần I: 0,25 điểm / câu đúng
-         * - Phần II (Đúng/Sai):
-         *   + Đúng 1 ý: 0,10 điểm
-         *   + Đúng 2 ý: 0,25 điểm
-         *   + Đúng 3 ý: 0,50 điểm
-         *   + Đúng 4 ý: 1,00 điểm
+         * 9. CHẤM ĐIỂM & CHUYỂN TIẾP GÓI 20 CÂU TIẾP THEO
          **************************************************************************/
         function getPart2QuestionScore(correctSubCount) {
             switch (correctSubCount) {
@@ -1739,12 +2423,12 @@
                     </div>
                 `;
             } else {
-                messageHTML += `<div class="text-xs font-bold text-emerald-600 dark:text-emerald-400"><i class="fa-solid fa-circle-check mr-1"></i>Bạn đã hoàn thành 100% tất cả các câu hỏi và các ý Đúng/Sai!</div>`;
+                messageHTML += `<div class="text-xs font-bold text-emerald-600 dark:text-emerald-400"><i class="fa-solid fa-circle-check mr-1"></i>Bạn đã hoàn thành 100% các câu hỏi trong đề!</div>`;
             }
 
             showCustomModal({
                 title: "Xác nhận nộp bài kiểm tra",
-                subtitle: `Mã đề: ${examState.examCode} • Lịch Sử 12`,
+                subtitle: `${examState.batchLabel} • Mã đề: ${examState.examCode}`,
                 bodyHTML: messageHTML,
                 confirmText: "Nộp bài & Xem điểm",
                 onConfirm: () => {
@@ -1768,7 +2452,7 @@
             const rawScoreP1 = correctP1Count * 0.25;
             const maxScoreP1 = examState.part1Questions.length * 0.25;
 
-            // 2. Chấm Phần II theo lũy tiến Bộ GD&ĐT
+            // 2. Chấm Phần II
             let rawScoreP2 = 0;
             let totalCorrectSubItems = 0;
             const subStats = { 0: 0, 1: 0, 2: 0, 3: 0, 4: 0 };
@@ -1787,28 +2471,26 @@
             });
             const maxScoreP2 = examState.part2Questions.length * 1.0;
 
-            // Tổng điểm
             const totalRawScore = rawScoreP1 + rawScoreP2;
             const totalMaxPossible = maxScoreP1 + maxScoreP2;
-            // Nếu là đề chuẩn 24 câu P1 + 4 câu P2 thì totalMaxPossible = 10.0
             const scaledScore10 = totalMaxPossible > 0 ? (totalRawScore / totalMaxPossible) * 10 : 0;
 
-            // Hiển thị kết quả lên Dashboard
             document.getElementById('resultSummaryPanel').classList.remove('hidden');
             document.getElementById('headerSubmitBtn').classList.add('hidden');
             document.getElementById('sidebarSubmitBtn').classList.add('hidden');
 
             const elapsedMins = Math.floor(examState.elapsedSeconds / 60);
             const elapsedSecs = examState.elapsedSeconds % 60;
+            document.getElementById('resultBatchBadge').textContent = `KẾT QUẢ KIỂM TRA • ${examState.batchLabel.toUpperCase()}`;
             document.getElementById('resultTitleText').textContent = isAutoTimeout
-                ? "Hết thời gian làm bài! Hệ thống đã tự động chấm điểm."
-                : "Chúc mừng bạn đã hoàn thành bài kiểm tra!";
+                ? "Hết thời gian! Hệ thống đã tự động chấm điểm."
+                : `Hoàn thành ${examState.batchLabel}!`;
             document.getElementById('resultTimeSpentText').textContent =
-                `Mã đề: ${examState.examCode} • Thời gian hoàn thành: ${elapsedMins} phút ${elapsedSecs} giây`;
+                `Mã đề: ${examState.examCode} • Thời gian làm: ${elapsedMins} phút ${elapsedSecs} giây`;
 
             document.getElementById('finalScore10Display').textContent = scaledScore10.toFixed(2).replace('.', ',');
             document.getElementById('part1ScoreDisplay').textContent = `${rawScoreP1.toFixed(2).replace('.', ',')} / ${maxScoreP1.toFixed(2).replace('.', ',')}đ`;
-            document.getElementById('part1CorrectCountDisplay').textContent = `Đúng ${correctP1Count}/${examState.part1Questions.length} câu (0,25đ/câu)`;
+            document.getElementById('part1CorrectCountDisplay').textContent = `Đúng ${correctP1Count}/${examState.part1Questions.length} câu`;
 
             document.getElementById('part2ScoreDisplay').textContent = `${rawScoreP2.toFixed(2).replace('.', ',')} / ${maxScoreP2.toFixed(2).replace('.', ',')}đ`;
             document.getElementById('part2SubCountDisplay').textContent = `Đúng ${totalCorrectSubItems}/${examState.part2Questions.length * 4} ý a, b, c, d`;
@@ -1817,6 +2499,24 @@
             document.getElementById('stat3Sub').textContent = `${subStats[3]} câu`;
             document.getElementById('stat2Sub').textContent = `${subStats[2]} câu`;
             document.getElementById('stat1Sub').textContent = `${subStats[1]} câu`;
+
+            // Hiển thị nút "Làm tiếp 20 câu tiếp theo (21-40...)" nếu đang ở chế độ Batch
+            const nextBatchBtn = document.getElementById('nextBatchActionBtn');
+            const nextBatchTxt = document.getElementById('nextBatchActionText');
+            if (currentMode === 'batch' && batchConfig.p1End > 0) {
+                const { poolP1 } = getFilteredQuestionPool();
+                const totalP1 = poolP1.length;
+                nextBatchBtn.classList.remove('hidden');
+                if (batchConfig.p1End < totalP1) {
+                    const nextS = batchConfig.p1End + 1;
+                    const nextE = Math.min(nextS + 19, totalP1);
+                    nextBatchTxt.textContent = `Làm tiếp gói Câu ${nextS} – ${nextE} (${nextE - nextS + 1} câu)`;
+                } else {
+                    nextBatchTxt.textContent = `Đã hết 125 câu! Quay lại làm Câu 1 – 20`;
+                }
+            } else {
+                nextBatchBtn.classList.add('hidden');
+            }
 
             renderAllQuestions();
             renderQuestionPalette();
@@ -1840,7 +2540,7 @@
         }
 
         /**************************************************************************
-         * 11. HỘP THOẠI TÙY CHỈNH & ĐẢO ĐỀ MỚI / QUAY LẠI CẤU HÌNH
+         * 10. HỘP THOẠI TÙY CHỈNH & ĐIỀU HƯỚNG MÀN HÌNH
          **************************************************************************/
         function showCustomModal({ title, subtitle, bodyHTML, confirmText, onConfirm }) {
             document.getElementById('modalTitle').textContent = title;
@@ -1862,10 +2562,10 @@
                 return;
             }
             showCustomModal({
-                title: "Đảo đề kiểm tra mới?",
-                subtitle: "Hệ thống sẽ trộn lại thứ tự câu hỏi và đảo vị trí A, B, C, D",
-                bodyHTML: "Bài đang làm hiện tại sẽ được làm mới hoàn toàn với thứ tự câu hỏi và phương án trả lời khác. Bạn có muốn tạo đề mới ngay không?",
-                confirmText: "Tạo đề mới ngay",
+                title: "Trộn lại gói câu hỏi đang làm?",
+                subtitle: "Đảo lại thứ tự câu hỏi và đảo vị trí A, B, C, D",
+                bodyHTML: "Các câu hỏi trong gói hiện tại sẽ được trộn lại ngẫu nhiên từ Câu 1 với thứ tự A, B, C, D mới. Bạn có muốn làm mới ngay không?",
+                confirmText: "Trộn đề mới ngay",
                 onConfirm: () => {
                     closeCustomModal();
                     reshuffleAndRestart();
@@ -1878,15 +2578,15 @@
         }
 
         function confirmExitToSetup() {
-            if (examState.isSubmitted) {
+            if (!examState.isActive || examState.isSubmitted) {
                 exitToSetup();
                 return;
             }
             showCustomModal({
-                title: "Quay lại màn hình cấu hình?",
-                subtitle: "Tiến độ bài làm hiện tại sẽ bị hủy",
-                bodyHTML: "Bạn đang trong quá trình làm bài. Nếu quay về màn hình cấu hình, kết quả đang chọn sẽ không được lưu. Bạn có chắc chắn muốn thoát?",
-                confirmText: "Thoát về cấu hình",
+                title: "Quay lại màn hình chọn gói câu hỏi?",
+                subtitle: "Tiến độ bài đang làm sẽ bị hủy",
+                bodyHTML: "Bạn đang trong quá trình làm bài kiểm tra. Nếu thoát ra bây giờ, các đáp án đang chọn sẽ không được lưu. Bạn có chắc chắn muốn thoát?",
+                confirmText: "Thoát ra ngoài",
                 onConfirm: () => {
                     closeCustomModal();
                     exitToSetup();
@@ -1898,16 +2598,15 @@
             if (examState.timerInterval) clearInterval(examState.timerInterval);
             examState.isActive = false;
             document.getElementById('examWorkspace').classList.add('hidden');
+            document.getElementById('docxStudyWorkspace').classList.add('hidden');
             document.getElementById('examHeaderControls').classList.add('hidden');
             document.getElementById('examHeaderControls').classList.remove('flex');
             document.getElementById('backToConfigBtn').classList.add('hidden');
             document.getElementById('setupScreen').classList.remove('hidden');
+            updateAvailableCounts();
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        /**************************************************************************
-         * 12. CHẾ ĐỘ SÁNG / TỐI (DARK MODE)
-         **************************************************************************/
         function toggleDarkMode() {
             const htmlEl = document.documentElement;
             const icon = document.getElementById('themeIcon');
@@ -1918,6 +2617,11 @@
                 icon.className = "fa-solid fa-moon";
             }
         }
+
+        // Khởi tạo ban đầu khi tải trang
+        window.addEventListener('DOMContentLoaded', () => {
+            selectExamMode('batch');
+        });
     </script>
 </body>
 </html>
