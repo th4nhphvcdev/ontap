@@ -2321,10 +2321,25 @@
             document.getElementById('part3ScoreDisplay').textContent = `${scoreP3.toFixed(2).replace('.', ',')} / ${maxP3.toFixed(2).replace('.', ',')}đ`;
             document.getElementById('part3CorrectCountDisplay').textContent = `Đúng ${correctP3}/${examState.part3Questions.length} câu (0,25đ/câu)`;
 
-            // 🔥 Lưu điểm lên bảng xếp hạng Firebase
-            if (typeof window.hubSubmitScore === 'function') {
-                window.hubSubmitScore(scaled10, examState.elapsedSeconds);
-            }
+            // 🔥 Gửi điểm lên Firebase (retry nếu module chưa load)
+            (function() {
+                const sc = scaled10, tm = examState.elapsedSeconds;
+                if (typeof window.hubSubmitScore === 'function') {
+                    window.hubSubmitScore(sc, tm);
+                } else {
+                    let tries = 0;
+                    const iv = setInterval(function() {
+                        tries++;
+                        if (typeof window.hubSubmitScore === 'function') {
+                            clearInterval(iv);
+                            window.hubSubmitScore(sc, tm);
+                        } else if (tries > 20) {
+                            clearInterval(iv);
+                            console.warn('[Hub] hubSubmitScore not available after 10s');
+                        }
+                    }, 500);
+                }
+            })();
 
             renderAllQuestions();
             renderQuestionPalette();
@@ -2563,16 +2578,25 @@
 
   // Nộp điểm lên Bảng xếp hạng
   window.hubSubmitScore = async function(score, timeSeconds) {
-    const name = localStorage.getItem("quiz_username") || "Ẩn danh";
-    const sc = Number(score), t = Number(timeSeconds);
-    const userRef = ref(db, `leaderboards/${PAGE_ID}/${deviceId}`);
-    const snap = await get(userRef);
-    let shouldWrite = !snap.exists();
-    if (!shouldWrite) {
-      const old = snap.val();
-      if (sc > Number(old.score) || (sc === Number(old.score) && t < Number(old.time ?? 999999))) shouldWrite = true;
+    try {
+      const name = localStorage.getItem("quiz_username") || "Ẩn danh";
+      const sc = Number(score), t = Number(timeSeconds);
+      console.log(`[Hub] Submitting: name=${name}, score=${sc}, time=${t}s, page=${PAGE_ID}`);
+      const userRef = ref(db, `leaderboards/${PAGE_ID}/${deviceId}`);
+      const snap = await get(userRef);
+      let shouldWrite = !snap.exists();
+      if (!shouldWrite) {
+        const old = snap.val();
+        if (sc > Number(old.score) || (sc === Number(old.score) && t < Number(old.time ?? 999999))) shouldWrite = true;
+        else console.log(`[Hub] Score not better: old=${old.score}đ/${old.time}s, new=${sc}đ/${t}s`);
+      }
+      if (shouldWrite) {
+        await set(userRef, { name, score: sc, time: t, updatedAt: Date.now() });
+        console.log(`[Hub] ✅ Score saved! ${sc}đ in ${t}s`);
+      }
+    } catch (err) {
+      console.error('[Hub] ❌ Error submitting score:', err);
     }
-    if (shouldWrite) await set(userRef, { name, score: sc, time: t, updatedAt: Date.now() });
   };
 
   // Bảng xếp hạng Top 30
