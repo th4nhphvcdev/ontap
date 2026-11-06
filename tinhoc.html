@@ -2151,6 +2151,7 @@
             examState = {
                 isActive: true,
                 isSubmitted: false,
+                examMode: currentMode,
                 examCode: generateRandomExamCode(),
                 durationMinutes,
                 remainingSeconds: durationMinutes * 60,
@@ -2855,39 +2856,55 @@
 
 <!-- POPUP NHẬP TÊN -->
 <div id="hub-name-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.75);z-index:10000;align-items:center;justify-content:center;padding:16px;">
-  <div style="background:linear-gradient(135deg,#0c1a2e 0%,#0f2d4a 100%);color:#e0f2fe;padding:28px 24px;border-radius:18px;width:340px;max-width:calc(100vw - 32px);text-align:center;border:1px solid #0ea5e9;box-shadow:0 20px 60px rgba(0,0,0,0.6);font-family:system-ui,sans-serif;">
-    <div style="width:52px;height:52px;background:linear-gradient(135deg,#0ea5e9,#0369a1);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:24px;margin:0 auto 14px;">💻</div>
-    <h3 style="margin:0 0 6px;font-size:18px;font-weight:800;color:#7dd3fc;">Chào mừng bạn!</h3>
-    <p style="font-size:13px;color:#bae6fd;margin-bottom:18px;line-height:1.5;">Nhập tên / biệt danh để bắt đầu kiểm tra<br>và tranh hạng <strong style="color:#fbbf24;">Top 30 TIN HỌC 12 🏆</strong></p>
+  <div style="background:linear-gradient(135deg,#164e63 0%,#155e75 100%);color:#ecfdf5;padding:28px 24px;border-radius:18px;width:340px;max-width:calc(100vw - 32px);text-align:center;border:1px solid rgba(6,182,212,0.6);box-shadow:0 20px 60px rgba(0,0,0,0.6);font-family:system-ui,sans-serif;">
+    <div style="width:52px;height:52px;background:linear-gradient(135deg,rgba(6,182,212,1),rgba(6,182,212,0.7));border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:24px;margin:0 auto 14px;">🌏</div>
+    <h3 style="margin:0 0 6px;font-size:18px;font-weight:800;color:#67e8f9;">Chào mừng bạn!</h3>
+    <p style="font-size:13px;color:#a5f3fc;margin-bottom:18px;line-height:1.5;">Nhập tên / biệt danh để bắt đầu kiểm tra<br>và tranh hạng <strong style="color:#fbbf24;">Top 10 TIN HỌC 12 🏆</strong></p>
     <input type="text" id="hub-name-input" placeholder="Ví dụ: th4nhphvc" maxlength="20"
-      style="width:100%;box-sizing:border-box;padding:11px 14px;border-radius:10px;border:1.5px solid #0ea5e9;background:rgba(0,0,0,0.3);color:#e0f2fe;font-size:14px;outline:none;margin-bottom:14px;font-family:inherit;" />
-    <button id="hub-start-btn" style="width:100%;padding:12px;border-radius:10px;border:none;background:linear-gradient(135deg,#0ea5e9,#0369a1);color:#fff;font-weight:800;font-size:15px;cursor:pointer;">
+      style="width:100%;box-sizing:border-box;padding:11px 14px;border-radius:10px;border:1.5px solid rgba(6,182,212,0.8);background:rgba(0,0,0,0.3);color:#ecfdf5;font-size:14px;outline:none;margin-bottom:14px;font-family:inherit;" />
+    <button id="hub-start-btn" style="width:100%;padding:12px;border-radius:10px;border:none;background:linear-gradient(135deg,rgba(6,182,212,1),rgba(6,182,212,0.8));color:#fff;font-weight:800;font-size:15px;cursor:pointer;">
       Vào làm bài 🚀
     </button>
   </div>
 </div>
 
-<!-- MODAL BẢNG XẾP HẠNG (TOP 30) -->
+<!-- MODAL BẢNG XẾP HẠNG (TOP 10 CHUẨN BỘ & TOP BÁ KHÍ) -->
 <div id="hub-lb-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:9999;align-items:center;justify-content:center;padding:16px;">
-  <div style="background:linear-gradient(160deg,#0c1a2e 0%,#0f2d4a 100%);color:#e0f2fe;border-radius:18px;width:100%;max-width:440px;max-height:85vh;display:flex;flex-direction:column;border:1px solid rgba(14,165,233,0.4);box-shadow:0 24px 60px rgba(0,0,0,0.6);font-family:system-ui,sans-serif;overflow:hidden;">
+  <div style="background:linear-gradient(160deg,#164e63 0%,#155e75 100%);color:#ecfdf5;border-radius:18px;width:100%;max-width:440px;max-height:85vh;display:flex;flex-direction:column;border:1px solid rgba(6,182,212,0.4);box-shadow:0 24px 60px rgba(0,0,0,0.6);font-family:system-ui,sans-serif;overflow:hidden;">
     <!-- Modal Header -->
-    <div style="padding:16px 20px;background:rgba(0,0,0,0.3);border-bottom:1px solid rgba(14,165,233,0.2);display:flex;align-items:center;justify-content:space-between;flex-shrink:0;">
-      <div>
-        <div style="font-weight:800;font-size:16px;color:#fbbf24;">🏆 BẢNG VÀNG – TIN HỌC 12</div>
-        <div style="font-size:12px;color:#bae6fd;margin-top:3px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
-          <span>🟢 Online: <strong id="hub-online-count" style="color:#7dd3fc;">1</strong></span>
-          <span style="color:rgba(200,200,200,0.4);">·</span>
-          <span>👤 <span id="hub-user-display" style="color:#fbbf24;font-weight:700;">Chưa đặt tên</span></span>
-          <button onclick="openNameModal()" style="background:rgba(14,165,233,0.2);border:1px solid rgba(14,165,233,0.4);color:#7dd3fc;border-radius:5px;padding:1px 7px;cursor:pointer;font-size:11px;">✏️ Đổi tên</button>
+    <div style="padding:14px 18px 10px;background:rgba(0,0,0,0.3);border-bottom:1px solid rgba(6,182,212,0.2);flex-shrink:0;">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;">
+        <div>
+          <div style="font-weight:800;font-size:16px;color:#fbbf24;">🏆 BẢNG VÀNG – TIN HỌC 12</div>
+          <div style="font-size:12px;color:#a5f3fc;margin-top:2px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+            <span>🟢 Online: <strong id="hub-online-count" style="color:#67e8f9;">1</strong></span>
+            <span style="color:rgba(200,200,200,0.4);">·</span>
+            <span>👤 <span id="hub-user-display" style="color:#fbbf24;font-weight:700;">Chưa đặt tên</span></span>
+            <button onclick="openNameModal()" style="background:rgba(6,182,212,0.2);border:1px solid rgba(6,182,212,0.4);color:#67e8f9;border-radius:5px;padding:1px 7px;cursor:pointer;font-size:11px;">✏️ Đổi tên</button>
+          </div>
         </div>
+        <button onclick="document.getElementById('hub-lb-modal').style.display='none'" style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);color:#a5f3fc;border-radius:8px;padding:6px 12px;cursor:pointer;font-size:14px;font-weight:700;flex-shrink:0;margin-left:12px;">✕</button>
       </div>
-      <button onclick="document.getElementById('hub-lb-modal').style.display='none'" style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);color:#bae6fd;border-radius:8px;padding:6px 12px;cursor:pointer;font-size:14px;font-weight:700;flex-shrink:0;margin-left:12px;">✕</button>
+
+      <!-- 2 TABS CHỌN BẢNG XẾP HẠNG -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;background:rgba(0,0,0,0.3);padding:4px;border-radius:12px;border:1px solid rgba(255,255,255,0.08);">
+        <button id="tab-btn-standard" onclick="switchLbTab('standard')"
+          style="padding:8px 6px;border-radius:8px;border:1px solid rgba(6,182,212,0.8);background:rgba(6,182,212,0.35);color:#fff;font-weight:800;font-size:12px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:5px;transition:all .2s;">
+          🎯 Chuẩn Bộ GD (Top 10)
+        </button>
+        <button id="tab-btn-full" onclick="switchLbTab('full')"
+          style="padding:8px 6px;border-radius:8px;border:1px solid transparent;background:transparent;color:rgba(255,255,255,0.6);font-weight:600;font-size:12px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:5px;transition:all .2s;">
+          ⚡ TOP BÁ KHÍ (Full Đề)
+        </button>
+      </div>
     </div>
+
     <!-- Cột tiêu đề -->
-    <div style="padding:7px 20px;background:rgba(0,0,0,0.2);display:flex;justify-content:space-between;font-size:11px;color:rgba(200,200,200,0.5);font-weight:600;letter-spacing:.5px;border-bottom:1px solid rgba(14,165,233,0.1);flex-shrink:0;">
+    <div style="padding:7px 20px;background:rgba(0,0,0,0.2);display:flex;justify-content:space-between;font-size:11px;color:rgba(200,200,200,0.5);font-weight:600;letter-spacing:.5px;border-bottom:1px solid rgba(6,182,212,0.1);flex-shrink:0;">
       <span>HẠNG · THÍ SINH</span><span>ĐIỂM · THỜI GIAN</span>
     </div>
-    <!-- Danh sách Top 30 -->
+
+    <!-- Danh sách Top 10 -->
     <div id="hub-leaderboard" style="overflow-y:auto;padding:10px 14px;flex:1;">
       <div style="color:rgba(200,200,200,0.5);text-align:center;padding:24px 0;font-size:13px;">⏳ Đang tải bảng xếp hạng...</div>
     </div>
@@ -2897,8 +2914,24 @@
 <style>
 #hub-leaderboard::-webkit-scrollbar{width:5px;}
 #hub-leaderboard::-webkit-scrollbar-track{background:rgba(0,0,0,0.2);}
-#hub-leaderboard::-webkit-scrollbar-thumb{background:#0ea5e9;border-radius:4px;}
-#hub-name-input:focus{border-color:#7dd3fc;box-shadow:0 0 0 3px rgba(14,165,233,0.2);}
+#hub-leaderboard::-webkit-scrollbar-thumb{background:#06b6d4;border-radius:4px;}
+#hub-name-input:focus{border-color:#67e8f9;box-shadow:0 0 0 3px rgba(6,182,212,0.2);}
+
+@keyframes rainbowShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.rainbow-sieu-cap {
+  background: linear-gradient(90deg, #ff1a1a, #ff7a00, #ffea00, #00e676, #00b0ff, #7c4dff, #e040fb, #ff1a1a);
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: rainbowShift 2.5s linear infinite;
+  display: inline-block;
+  font-weight: 900;
+  letter-spacing: 1px;
+}
 </style>
 
 <!-- FIREBASE LOGIC -->
@@ -2916,6 +2949,9 @@
 
   const app = initializeApp(firebaseConfig, "hub-" + PAGE_ID);
   const db = getDatabase(app);
+
+  let activeLbTab = "standard"; // 'standard' | 'full'
+  let currentLbData = { standard: [], full: [] };
 
   function formatTime(s) {
     const sec = Math.max(1, Math.round(Number(s) || 0));
@@ -2977,9 +3013,13 @@
     updateUserNameDisplays(n);
     modal.style.display = "none";
     try {
-      const userRef = ref(db, `leaderboards/${PAGE_ID}/${deviceId}`);
-      const snap = await get(userRef);
-      if (snap.exists()) await update(userRef, { name: n });
+      const refStd = ref(db, `leaderboards/${PAGE_ID}/standard/${deviceId}`);
+      const snapStd = await get(refStd);
+      if (snapStd.exists()) await update(refStd, { name: n });
+
+      const refFull = ref(db, `leaderboards/${PAGE_ID}/full/${deviceId}`);
+      const snapFull = await get(refFull);
+      if (snapFull.exists()) await update(refFull, { name: n });
     } catch (err) {
       console.warn('[Hub] update name error:', err);
     }
@@ -3006,13 +3046,20 @@
     if (c2) c2.textContent = count;
   });
 
-  // Nộp điểm lên Bảng xếp hạng
-  window.hubSubmitScore = async function(score, timeSeconds) {
+  // Nộp điểm lên Bảng xếp hạng (chỉ nhận 'standard' và 'full')
+  window.hubSubmitScore = async function(score, timeSeconds, mode) {
     try {
+      const examMode = mode || "standard";
+      if (examMode !== "standard" && examMode !== "full") {
+        console.log(`[Hub] Bỏ qua: Chế độ '${examMode}' không phải Chuẩn Bộ hoặc Full Đề.`);
+        return;
+      }
+
       const name = localStorage.getItem("quiz_username") || "Ẩn danh";
       const sc = Number(score) || 0, t = Math.max(1, Math.round(Number(timeSeconds) || 0));
-      console.log(`[Hub] Submitting: name=${name}, score=${sc}, time=${t}s, page=${PAGE_ID}`);
-      const userRef = ref(db, `leaderboards/${PAGE_ID}/${deviceId}`);
+      console.log(`[Hub] Submitting [${examMode}]: name=${name}, score=${sc}, time=${t}s, page=${PAGE_ID}`);
+      
+      const userRef = ref(db, `leaderboards/${PAGE_ID}/${examMode}/${deviceId}`);
       const snap = await get(userRef);
       let shouldWrite = !snap.exists();
       if (!shouldWrite) {
@@ -3022,59 +3069,118 @@
       }
       if (shouldWrite) {
         await set(userRef, { name, score: sc, time: t, updatedAt: Date.now() });
-        console.log(`[Hub] ✅ Score saved! ${sc}đ in ${t}s`);
+        console.log(`[Hub] ✅ [${examMode}] Score saved! ${sc}đ in ${t}s`);
       }
     } catch (err) {
       console.error('[Hub] ❌ Error submitting score:', err);
     }
   };
 
-  // Mở modal & reload bảng xếp hạng
-  window.openLeaderboard = function() {
-    const m = document.getElementById("hub-lb-modal");
-    if (m) m.style.display = "flex";
-    window.hubReloadLeaderboard();
-  };
-
-  // Reload thủ công
-  window.hubReloadLeaderboard = function() {
-    const el = document.getElementById("hub-leaderboard");
-    if (el) el.innerHTML = `<div style="color:rgba(200,200,200,0.5);text-align:center;padding:16px 0;font-size:13px;">⏳ Đang tải...</div>`;
-    get(ref(db, `leaderboards/${PAGE_ID}`)).then(snap => {
-      renderLeaderboard(snap);
-    }).catch(err => {
-      console.error('[Hub] reload error:', err);
-      if (el) el.innerHTML = `<div style="color:#f87171;text-align:center;padding:16px 0;font-size:13px;">Lỗi tải dữ liệu</div>`;
-    });
-  };
-
-  function renderLeaderboard(snap) {
-    const el = document.getElementById("hub-leaderboard");
-    if (!el) return;
-    if (!snap || !snap.exists()) {
-      el.innerHTML = `<div style="color:rgba(200,200,200,0.5);text-align:center;padding:24px 0;font-size:13px;">Chưa có ai lên bảng vàng!</div>`;
-      return;
-    }
-    const players = [];
-    snap.forEach(c => {
-      const v = c.val();
-      if (v && typeof v === "object") {
-        players.push({
-          id: c.key,
+  function parseBranch(branchVal) {
+    if (!branchVal || typeof branchVal !== "object") return [];
+    const list = [];
+    Object.entries(branchVal).forEach(([k, v]) => {
+      if (v && typeof v === "object" && ("score" in v || "name" in v)) {
+        list.push({
+          id: k,
           name: v.name || "Ẩn danh",
           score: Number(v.score) || 0,
-          time: Number(v.time) || 0
+          time: Number(v.time) || 0,
+          updatedAt: v.updatedAt || 0
         });
       }
     });
-    players.sort((a, b) => b.score !== a.score ? b.score - a.score : (a.time || 999999) - (b.time || 999999));
-    el.innerHTML = players.slice(0, 30).map((p, i) => {
+    list.sort((a, b) => b.score !== a.score ? b.score - a.score : (a.time || 999999) - (b.time || 999999));
+    return list;
+  }
+
+  function updateLbDataFromSnap(snap) {
+    if (!snap || !snap.exists()) {
+      currentLbData = { standard: [], full: [] };
+      return;
+    }
+    const val = snap.val();
+    if (val.standard || val.full) {
+      currentLbData.standard = parseBranch(val.standard);
+      currentLbData.full = parseBranch(val.full);
+    } else {
+      currentLbData.standard = parseBranch(val);
+      currentLbData.full = [];
+    }
+  }
+
+  window.switchLbTab = function(tab) {
+    activeLbTab = tab;
+    const btnStd = document.getElementById("tab-btn-standard");
+    const btnFull = document.getElementById("tab-btn-full");
+    if (btnStd && btnFull) {
+      if (tab === "standard") {
+        btnStd.style.background = `rgba(${hexRgb},0.35)`;
+        btnStd.style.borderColor = `rgba(${hexRgb},0.8)`;
+        btnStd.style.color = "#fff";
+        btnStd.style.fontWeight = "800";
+        btnFull.style.background = "transparent";
+        btnFull.style.borderColor = "transparent";
+        btnFull.style.color = "rgba(255,255,255,0.6)";
+        btnFull.style.fontWeight = "600";
+      } else {
+        btnFull.style.background = "linear-gradient(135deg, rgba(245,158,11,0.4), rgba(239,68,68,0.4))";
+        btnFull.style.borderColor = "rgba(245,158,11,0.8)";
+        btnFull.style.color = "#fde047";
+        btnFull.style.fontWeight = "800";
+        btnStd.style.background = "transparent";
+        btnStd.style.borderColor = "transparent";
+        btnStd.style.color = "rgba(255,255,255,0.6)";
+        btnStd.style.fontWeight = "600";
+      }
+    }
+    renderLeaderboardView();
+  };
+
+  function renderLeaderboardView() {
+    const el = document.getElementById("hub-leaderboard");
+    if (!el) return;
+    const list = currentLbData[activeLbTab] || [];
+    const isFullTab = activeLbTab === "full";
+    const emptyMsg = isFullTab 
+      ? "Chưa có ai chinh phục Full Đề để lên Top Bá Khí!" 
+      : "Chưa có ai lên Bảng Vàng Chuẩn Bộ GD&ĐT!";
+
+    if (list.length === 0) {
+      el.innerHTML = `<div style="color:rgba(200,200,200,0.5);text-align:center;padding:28px 0;font-size:13px;">${emptyMsg}</div>`;
+      return;
+    }
+
+    const top10 = list.slice(0, 10);
+    el.innerHTML = top10.map((p, i) => {
       const isMe = p.id === deviceId;
+      const isTop1 = i === 0;
       const badges = ["🥇", "🥈", "🥉"];
       const badge = i < 3 ? `<span style="font-size:16px;">${badges[i]}</span>` : `<span style="color:rgba(200,200,200,0.5);font-size:12px;font-weight:700;min-width:22px;text-align:center;display:inline-block;">${i+1}</span>`;
       const color = nc[Math.min(i, 3)];
       const bg = isMe ? `background:${rowMe};border-radius:8px;` : "";
       const meTag = isMe ? `<span style="color:${meColor};font-size:9px;font-weight:800;background:${meBg};padding:1px 6px;border-radius:4px;margin-left:5px;">BẠN</span>` : "";
+
+      if (isTop1) {
+        return `<div style="margin-bottom:8px;background:rgba(251,191,36,0.12);border:1.5px solid rgba(251,191,36,0.55);border-radius:12px;padding:9px 12px;box-shadow:0 0 20px rgba(251,191,36,0.22);${isMe ? `outline:2px solid ${meColor};` : ''}">
+          <div style="text-align:center;margin-bottom:5px;display:flex;align-items:center;justify-content:center;gap:6px;">
+            <span style="font-size:14px;">👑</span>
+            <span class="rainbow-sieu-cap" style="font-size:12px;text-transform:uppercase;">⚡ SIÊU CẤP BÁ KHÍ ⚡</span>
+            <span style="font-size:14px;">👑</span>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;">
+            <div style="display:flex;align-items:center;gap:7px;min-width:0;flex:1;overflow:hidden;">
+              <span style="font-size:20px;flex-shrink:0;">🥇</span>
+              <span style="color:#fbbf24;font-weight:800;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${p.name}</span>${meTag}
+            </div>
+            <div style="white-space:nowrap;flex-shrink:0;text-align:right;margin-left:8px;">
+              <span style="color:#f87171;font-weight:800;font-size:14px;">${p.score.toFixed(1)}đ</span>
+              <span style="color:#60a5fa;font-size:11px;margin-left:5px;">⏱${formatTime(p.time)}</span>
+            </div>
+          </div>
+        </div>`;
+      }
+
       return `<div style="display:flex;align-items:center;justify-content:space-between;padding:7px 8px;margin-bottom:2px;${bg}border-bottom:1px solid rgba(${hexRgb},0.1);">
         <div style="display:flex;align-items:center;gap:7px;min-width:0;flex:1;overflow:hidden;">
           <span style="min-width:24px;text-align:center;flex-shrink:0;">${badge}</span>
@@ -3088,9 +3194,30 @@
     }).join("");
   }
 
+  // Mở modal & reload bảng xếp hạng
+  window.openLeaderboard = function() {
+    const m = document.getElementById("hub-lb-modal");
+    if (m) m.style.display = "flex";
+    window.hubReloadLeaderboard();
+  };
+
+  // Reload thủ công
+  window.hubReloadLeaderboard = function() {
+    const el = document.getElementById("hub-leaderboard");
+    if (el) el.innerHTML = `<div style="color:rgba(200,200,200,0.5);text-align:center;padding:16px 0;font-size:13px;">⏳ Đang tải...</div>`;
+    get(ref(db, `leaderboards/${PAGE_ID}`)).then(snap => {
+      updateLbDataFromSnap(snap);
+      renderLeaderboardView();
+    }).catch(err => {
+      console.error('[Hub] reload error:', err);
+      if (el) el.innerHTML = `<div style="color:#f87171;text-align:center;padding:16px 0;font-size:13px;">Lỗi tải dữ liệu</div>`;
+    });
+  };
+
   // Real-time listener
   onValue(ref(db, `leaderboards/${PAGE_ID}`), snap => {
-    renderLeaderboard(snap);
+    updateLbDataFromSnap(snap);
+    renderLeaderboardView();
   });
 </script>
 </body>
