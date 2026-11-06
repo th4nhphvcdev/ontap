@@ -185,6 +185,30 @@
                     <i class="fa-solid fa-sliders"></i>
                     <span class="hidden sm:inline">Cấu hình</span>
                 </button>
+                
+                <!-- Online Badge -->
+                <div class="hidden md:flex items-center gap-1.5 text-xs bg-white/10 px-2.5 py-1.5 rounded-xl border border-white/10 text-emerald-200" title="Số người đang online">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                    <span><strong id="header-online-count" class="font-bold text-white">1</strong> online</span>
+                </div>
+
+                <!-- User Name / Change Name -->
+                <button id="header-name-btn" onclick="openNameModal()"
+                    class="flex items-center gap-1.5 text-xs bg-white/10 hover:bg-white/20 px-2.5 py-1.5 rounded-xl transition border border-white/10 text-amber-300 font-semibold"
+                    title="Nhấn để đổi tên hiển thị">
+                    <i class="fa-solid fa-user text-[11px]"></i>
+                    <span id="header-user-display" class="max-w-[70px] sm:max-w-[110px] truncate">Chưa đặt tên</span>
+                    <i class="fa-solid fa-pen text-[9px] opacity-70"></i>
+                </button>
+
+                <!-- Leaderboard Top 30 Button -->
+                <button onclick="document.getElementById('hub-lb-modal').style.display='flex'"
+                    class="flex items-center gap-1.5 text-xs bg-gradient-to-r from-amber-400/20 to-yellow-400/20 hover:from-amber-400/30 hover:to-yellow-400/30 border border-yellow-400/40 text-yellow-300 font-bold px-3 py-1.5 rounded-xl shadow-sm transition active:scale-95"
+                    title="Bảng xếp hạng Top 30">
+                    <i class="fa-solid fa-trophy text-yellow-400"></i>
+                    <span>Bảng XH</span>
+                </button>
+
                 <button onclick="toggleDarkMode()"
                     class="w-9 h-9 rounded-xl bg-white/10 hover:bg-white/20 flex items-center justify-center text-emerald-200 transition"
                     title="Đổi giao diện Sáng/Tối">
@@ -2392,74 +2416,63 @@
         }
     </script>
 
-<!-- ========== FIREBASE LEADERBOARD WIDGET – DIALI ========== -->
+<!-- ========== FIREBASE HUB – DIALI ========== -->
 
-<!-- 1. POPUP NHẬP TÊN -->
-<div id="hub-name-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.75);z-index:10000;align-items:center;justify-content:center;">
-  <div style="background:linear-gradient(135deg,#064e3b 0%,#065f46 100%);color:#ecfdf5;padding:28px 24px;border-radius:18px;width:340px;max-width:calc(100vw - 32px);text-align:center;border:1px solid #10b981;box-shadow:0 20px 60px rgba(0,0,0,0.6),0 0 0 1px rgba(16,185,129,0.2);font-family:system-ui,sans-serif;position:relative;">
+<!-- POPUP NHẬP TÊN -->
+<div id="hub-name-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.75);z-index:10000;align-items:center;justify-content:center;padding:16px;">
+  <div style="background:linear-gradient(135deg,#064e3b 0%,#065f46 100%);color:#ecfdf5;padding:28px 24px;border-radius:18px;width:340px;max-width:calc(100vw - 32px);text-align:center;border:1px solid #10b981;box-shadow:0 20px 60px rgba(0,0,0,0.6);font-family:system-ui,sans-serif;">
     <div style="width:52px;height:52px;background:linear-gradient(135deg,#10b981,#059669);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:24px;margin:0 auto 14px;">🌏</div>
     <h3 style="margin:0 0 6px;font-size:18px;font-weight:800;color:#6ee7b7;">Chào mừng bạn!</h3>
-    <p style="font-size:13px;color:#a7f3d0;margin-bottom:18px;line-height:1.5;">Nhập tên / biệt danh để bắt đầu kiểm tra<br>và tranh hạng <strong style="color:#fbbf24;">Top 30 Địa Lí 🏆</strong></p>
+    <p style="font-size:13px;color:#a7f3d0;margin-bottom:18px;line-height:1.5;">Nhập tên / biệt danh để bắt đầu kiểm tra<br>và tranh hạng <strong style="color:#fbbf24;">Top 30 ĐỊA LÍ 12 🏆</strong></p>
     <input type="text" id="hub-name-input" placeholder="Ví dụ: th4nhphvc" maxlength="20"
       style="width:100%;box-sizing:border-box;padding:11px 14px;border-radius:10px;border:1.5px solid #10b981;background:rgba(0,0,0,0.3);color:#ecfdf5;font-size:14px;outline:none;margin-bottom:14px;font-family:inherit;" />
-    <button id="hub-start-btn"
-      style="width:100%;padding:12px;border-radius:10px;border:none;background:linear-gradient(135deg,#10b981,#059669);color:#ecfdf5;font-weight:800;font-size:15px;cursor:pointer;letter-spacing:0.3px;transition:opacity .15s;">
+    <button id="hub-start-btn" style="width:100%;padding:12px;border-radius:10px;border:none;background:linear-gradient(135deg,#10b981,#059669);color:#fff;font-weight:800;font-size:15px;cursor:pointer;">
       Vào làm bài 🚀
     </button>
   </div>
 </div>
 
-<!-- 2. WIDGET ONLINE + BẢNG XẾP HẠNG -->
-<div id="hub-widget" style="position:fixed;bottom:16px;right:16px;width:320px;max-width:calc(100vw - 32px);background:linear-gradient(160deg,#064e3b 0%,#065f46 100%);color:#ecfdf5;border:1px solid rgba(16,185,129,0.4);border-radius:14px;padding:0;font-family:system-ui,sans-serif;box-shadow:0 12px 40px rgba(0,0,0,0.5),0 0 0 1px rgba(16,185,129,0.1);z-index:9999;font-size:13px;overflow:hidden;">
-
-  <!-- Header -->
-  <div style="padding:10px 14px;background:rgba(0,0,0,0.25);display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(16,185,129,0.2);">
-    <div style="display:flex;align-items:center;gap:8px;">
-      <span style="display:inline-block;width:8px;height:8px;background:#10b981;border-radius:50%;box-shadow:0 0 6px #10b981;animation:hub-pulse 2s infinite;"></span>
-      <span style="font-weight:700;font-size:12px;color:#a7f3d0;">ONLINE: <strong id="hub-online-count" style="color:#6ee7b7;font-size:14px;">1</strong></span>
-      <span style="color:rgba(167,243,208,0.4);">|</span>
-      <span style="font-size:11px;color:#a7f3d0;">👤 <span id="hub-user-display" style="color:#fbbf24;font-weight:700;">Chưa đặt tên</span></span>
+<!-- MODAL BẢNG XẾP HẠNG (TOP 30) -->
+<div id="hub-lb-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:9999;align-items:center;justify-content:center;padding:16px;">
+  <div style="background:linear-gradient(160deg,#064e3b 0%,#065f46 100%);color:#ecfdf5;border-radius:18px;width:100%;max-width:440px;max-height:85vh;display:flex;flex-direction:column;border:1px solid rgba(16,185,129,0.4);box-shadow:0 24px 60px rgba(0,0,0,0.6);font-family:system-ui,sans-serif;overflow:hidden;">
+    <!-- Modal Header -->
+    <div style="padding:16px 20px;background:rgba(0,0,0,0.3);border-bottom:1px solid rgba(16,185,129,0.2);display:flex;align-items:center;justify-content:space-between;flex-shrink:0;">
+      <div>
+        <div style="font-weight:800;font-size:16px;color:#fbbf24;">🏆 BẢNG VÀNG – ĐỊA LÍ 12</div>
+        <div style="font-size:12px;color:#a7f3d0;margin-top:3px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+          <span>🟢 Online: <strong id="hub-online-count" style="color:#6ee7b7;">1</strong></span>
+          <span style="color:rgba(200,200,200,0.4);">·</span>
+          <span>👤 <span id="hub-user-display" style="color:#fbbf24;font-weight:700;">Chưa đặt tên</span></span>
+          <button onclick="openNameModal()" style="background:rgba(16,185,129,0.2);border:1px solid rgba(16,185,129,0.4);color:#6ee7b7;border-radius:5px;padding:1px 7px;cursor:pointer;font-size:11px;">✏️ Đổi tên</button>
+        </div>
+      </div>
+      <button onclick="document.getElementById('hub-lb-modal').style.display='none'" style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);color:#a7f3d0;border-radius:8px;padding:6px 12px;cursor:pointer;font-size:14px;font-weight:700;flex-shrink:0;margin-left:12px;">✕</button>
     </div>
-    <div style="display:flex;gap:5px;align-items:center;">
-      <button id="hub-change-name-btn" title="Đổi tên" style="background:rgba(16,185,129,0.15);border:1px solid rgba(16,185,129,0.3);color:#6ee7b7;border-radius:6px;padding:3px 8px;cursor:pointer;font-size:11px;font-weight:600;">✏️</button>
-      <button id="hub-toggle-btn" style="background:none;border:1px solid rgba(167,243,208,0.2);color:#a7f3d0;border-radius:6px;padding:3px 7px;cursor:pointer;font-size:12px;font-weight:700;">−</button>
+    <!-- Cột tiêu đề -->
+    <div style="padding:7px 20px;background:rgba(0,0,0,0.2);display:flex;justify-content:space-between;font-size:11px;color:rgba(200,200,200,0.5);font-weight:600;letter-spacing:.5px;border-bottom:1px solid rgba(16,185,129,0.1);flex-shrink:0;">
+      <span>HẠNG · THÍ SINH</span><span>ĐIỂM · THỜI GIAN</span>
     </div>
-  </div>
-
-  <!-- Body -->
-  <div id="hub-body" style="padding:12px 14px;">
-    <!-- Title -->
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
-      <span style="font-weight:800;font-size:13px;color:#fbbf24;">🏆 BẢNG VÀNG – ĐỊA LÍ 12</span>
-      <span style="font-size:10px;color:rgba(167,243,208,0.6);font-weight:500;">Điểm · Thời gian</span>
-    </div>
-    <!-- List -->
-    <div id="hub-leaderboard" style="max-height:220px;overflow-y:auto;padding-right:2px;">
-      <div style="color:rgba(167,243,208,0.6);text-align:center;padding:16px 0;font-size:12px;">⏳ Đang tải bảng xếp hạng...</div>
+    <!-- Danh sách Top 30 -->
+    <div id="hub-leaderboard" style="overflow-y:auto;padding:10px 14px;flex:1;">
+      <div style="color:rgba(200,200,200,0.5);text-align:center;padding:24px 0;font-size:13px;">⏳ Đang tải bảng xếp hạng...</div>
     </div>
   </div>
 </div>
 
 <style>
-@keyframes hub-pulse {
-  0%,100%{opacity:1;box-shadow:0 0 6px #10b981;}
-  50%{opacity:.5;box-shadow:0 0 12px #10b981;}
-}
-#hub-leaderboard::-webkit-scrollbar{width:4px;}
+#hub-leaderboard::-webkit-scrollbar{width:5px;}
 #hub-leaderboard::-webkit-scrollbar-track{background:rgba(0,0,0,0.2);}
 #hub-leaderboard::-webkit-scrollbar-thumb{background:#10b981;border-radius:4px;}
 #hub-name-input:focus{border-color:#6ee7b7;box-shadow:0 0 0 3px rgba(16,185,129,0.2);}
-#hub-start-btn:hover{opacity:.88;}
 </style>
 
-<!-- 3. FIREBASE LOGIC -->
+<!-- FIREBASE LOGIC -->
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
   import { getDatabase, ref, onValue, push, onDisconnect, set, get, update } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
 
   const firebaseConfig = { databaseURL: "https://ontap-hub-default-rtdb.asia-southeast1.firebasedatabase.app/" };
   const PAGE_ID = "diali";
-
   const app = initializeApp(firebaseConfig, "hub-diali");
   const db = getDatabase(app);
 
@@ -2469,42 +2482,58 @@
     return m > 0 ? `${m}p${r < 10 ? "0" : ""}${r}s` : `${sec}s`;
   }
 
-  // Toggle widget
-  const hubBody = document.getElementById("hub-body");
-  const hubToggle = document.getElementById("hub-toggle-btn");
-  hubToggle.addEventListener("click", () => {
-    const hidden = hubBody.style.display === "none";
-    hubBody.style.display = hidden ? "block" : "none";
-    hubToggle.textContent = hidden ? "−" : "+";
+  // Đóng modal khi bấm ra ngoài nền đen
+  document.getElementById("hub-lb-modal").addEventListener("click", function(e) {
+    if (e.target === this) this.style.display = "none";
+  });
+  document.getElementById("hub-name-modal").addEventListener("click", function(e) {
+    if (e.target === this && localStorage.getItem("quiz_username")) this.style.display = "none";
   });
 
-  // Device ID
+  // Device ID định danh máy
   let deviceId = localStorage.getItem("quiz_device_id");
   if (!deviceId) {
     deviceId = "u_" + Math.random().toString(36).substring(2, 9) + "_" + Date.now();
     localStorage.setItem("quiz_device_id", deviceId);
   }
 
-  // Name modal
+  // Quản lý tên hiển thị
   const modal = document.getElementById("hub-name-modal");
   const nameInput = document.getElementById("hub-name-input");
   const startBtn = document.getElementById("hub-start-btn");
-  const userDisplay = document.getElementById("hub-user-display");
 
   let currentName = localStorage.getItem("quiz_username") || "";
+
+  function updateUserNameDisplays(name) {
+    const d1 = document.getElementById("hub-user-display");
+    if (d1) d1.textContent = name || "Chưa đặt tên";
+    const d2 = document.getElementById("header-user-display");
+    if (d2) d2.textContent = name || "Chưa đặt tên";
+  }
+
+  window.openNameModal = function() {
+    nameInput.value = currentName;
+    modal.style.display = "flex";
+    setTimeout(() => nameInput.focus(), 120);
+  };
+
   if (!currentName) {
     modal.style.display = "flex";
     setTimeout(() => nameInput.focus(), 150);
   } else {
-    userDisplay.textContent = currentName;
+    updateUserNameDisplays(currentName);
   }
 
   async function saveUsername(name) {
     const n = name.trim();
-    if (!n) { nameInput.style.borderColor = "#f87171"; return; }
+    if (!n) {
+      nameInput.style.borderColor = "#f87171";
+      nameInput.focus();
+      return;
+    }
     localStorage.setItem("quiz_username", n);
     currentName = n;
-    userDisplay.textContent = n;
+    updateUserNameDisplays(n);
     modal.style.display = "none";
     const userRef = ref(db, `leaderboards/${PAGE_ID}/${deviceId}`);
     const snap = await get(userRef);
@@ -2513,13 +2542,8 @@
 
   startBtn.addEventListener("click", () => saveUsername(nameInput.value));
   nameInput.addEventListener("keydown", e => { if (e.key === "Enter") saveUsername(nameInput.value); });
-  document.getElementById("hub-change-name-btn").addEventListener("click", () => {
-    nameInput.value = currentName;
-    modal.style.display = "flex";
-    nameInput.focus();
-  });
 
-  // Online presence
+  // Online count
   const connRef = ref(db, ".info/connected");
   const onlineRef = ref(db, "online_users");
   onValue(connRef, snap => {
@@ -2530,10 +2554,14 @@
     }
   });
   onValue(onlineRef, snap => {
-    document.getElementById("hub-online-count").textContent = snap.exists() ? Object.keys(snap.val()).length : 1;
+    const count = snap.exists() ? Object.keys(snap.val()).length : 1;
+    const c1 = document.getElementById("hub-online-count");
+    if (c1) c1.textContent = count;
+    const c2 = document.getElementById("header-online-count");
+    if (c2) c2.textContent = count;
   });
 
-  // Submit score (called from gradeExam)
+  // Nộp điểm lên Bảng xếp hạng
   window.hubSubmitScore = async function(score, timeSeconds) {
     const name = localStorage.getItem("quiz_username") || "Ẩn danh";
     const sc = Number(score), t = Number(timeSeconds);
@@ -2547,43 +2575,32 @@
     if (shouldWrite) await set(userRef, { name, score: sc, time: t, updatedAt: Date.now() });
   };
 
-  // Leaderboard display
-  const rank1 = (n, name, me) => {
-    const badges = ["🥇","🥈","🥉"];
-    const badge = n < 3 ? `<span style="font-size:14px;">${badges[n]}</span>` : `<span style="color:rgba(167,243,208,0.5);font-size:11px;min-width:18px;text-align:center;">${n+1}</span>`;
-    const nameColor = n === 0 ? "#fbbf24" : n === 1 ? "#e2e8f0" : n === 2 ? "#fb923c" : "#a7f3d0";
-    const meTag = me ? `<span style="color:#6ee7b7;font-size:10px;font-weight:700;"> ★</span>` : "";
-    return `<div style="display:flex;align-items:center;justify-content:space-between;padding:5px 0;border-bottom:1px solid rgba(16,185,129,0.1);">
-      <div style="display:flex;align-items:center;gap:6px;min-width:0;flex:1;">
-        ${badge}
-        <span style="color:${nameColor};font-weight:${n<3?'700':'500'};white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:155px;">${name}</span>${meTag}
-      </div>
-      <div style="text-align:right;white-space:nowrap;flex-shrink:0;"></div>
-    </div>`;
-  };
-
+  // Bảng xếp hạng Top 30
+  const nc = ["#fbbf24","#e2e8f0","#fb923c","#a7f3d0"];
   onValue(ref(db, `leaderboards/${PAGE_ID}`), snap => {
     const el = document.getElementById("hub-leaderboard");
-    if (!snap.exists()) { el.innerHTML = `<div style="color:rgba(167,243,208,0.5);text-align:center;padding:16px 0;font-size:12px;">Chưa có ai lên bảng vàng!</div>`; return; }
+    if (!snap.exists()) {
+      el.innerHTML = `<div style="color:rgba(200,200,200,0.5);text-align:center;padding:24px 0;">Chưa có ai lên bảng vàng!</div>`;
+      return;
+    }
     const players = [];
     snap.forEach(c => players.push({ id: c.key, ...c.val() }));
     players.sort((a, b) => b.score !== a.score ? b.score - a.score : (a.time ?? 999999) - (b.time ?? 999999));
-    const top30 = players.slice(0, 30);
-    el.innerHTML = top30.map((p, i) => {
+    el.innerHTML = players.slice(0, 30).map((p, i) => {
       const isMe = p.id === deviceId;
-      const badges = ["🥇","🥈","🥉"];
-      const badge = i < 3 ? badges[i] : `<span style="color:rgba(167,243,208,0.5);font-size:11px;">${i+1}.</span>`;
-      const nc = i===0?"#fbbf24":i===1?"#e2e8f0":i===2?"#fb923c":"#a7f3d0";
-      const bg = isMe ? "background:rgba(16,185,129,0.12);" : "";
-      const meTag = isMe ? `<span style="color:#6ee7b7;font-size:9px;font-weight:800;background:rgba(16,185,129,0.2);padding:1px 5px;border-radius:4px;margin-left:4px;">BẠN</span>` : "";
-      return `<div style="display:flex;align-items:center;justify-content:space-between;padding:5px 6px;border-radius:7px;margin-bottom:1px;${bg}border-bottom:1px solid rgba(16,185,129,0.08);">
-        <div style="display:flex;align-items:center;gap:5px;min-width:0;flex:1;overflow:hidden;">
-          <span style="font-size:${i<3?'14':'11'}px;min-width:20px;text-align:center;">${badge}</span>
-          <span style="color:${nc};font-weight:${i<3?700:500};white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:148px;font-size:12px;">${p.name}</span>${meTag}
+      const badges = ["🥇", "🥈", "🥉"];
+      const badge = i < 3 ? `<span style="font-size:16px;">${badges[i]}</span>` : `<span style="color:rgba(200,200,200,0.5);font-size:12px;font-weight:700;min-width:22px;text-align:center;display:inline-block;">${i+1}</span>`;
+      const color = nc[Math.min(i, 3)];
+      const bg = isMe ? "background:rgba(16,185,129,0.14);border-radius:8px;" : "";
+      const meTag = isMe ? `<span style="color:#6ee7b7;font-size:9px;font-weight:800;background:rgba(16,185,129,0.25);padding:1px 6px;border-radius:4px;margin-left:5px;">BẠN</span>` : "";
+      return `<div style="display:flex;align-items:center;justify-content:space-between;padding:7px 8px;margin-bottom:2px;${bg}border-bottom:1px solid rgba(16,185,129,0.1);">
+        <div style="display:flex;align-items:center;gap:7px;min-width:0;flex:1;overflow:hidden;">
+          <span style="min-width:24px;text-align:center;flex-shrink:0;">${badge}</span>
+          <span style="color:${color};font-weight:${i<3?700:500};white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:13px;">${p.name}</span>${meTag}
         </div>
-        <div style="white-space:nowrap;flex-shrink:0;text-align:right;">
-          <span style="color:#f87171;font-weight:700;font-size:12px;">${Number(p.score).toFixed(1)}đ</span>
-          <span style="color:#60a5fa;font-size:10px;margin-left:4px;">⏱${formatTime(p.time)}</span>
+        <div style="white-space:nowrap;flex-shrink:0;text-align:right;margin-left:8px;">
+          <span style="color:#f87171;font-weight:700;font-size:13px;">${Number(p.score).toFixed(1)}đ</span>
+          <span style="color:#60a5fa;font-size:11px;margin-left:5px;">⏱${formatTime(p.time)}</span>
         </div>
       </div>`;
     }).join("");
