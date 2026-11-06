@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="vi" class="scroll-smooth">
+
 <head>
+    <!-- No-cache: luôn tải bản mới nhất trên mọi trình duyệt / thiết bị -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kiểm Tra & Học Bài Lịch Sử 12 - Chuẩn Cấu Trúc Bộ GD&ĐT 2026</title>
@@ -9,7 +14,9 @@
     <!-- Google Fonts: Inter & Merriweather & Times New Roman style -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Merriweather:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Merriweather:ital,wght@0,400;0,700;1,400&display=swap"
+        rel="stylesheet">
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <script>
@@ -45,35 +52,51 @@
             width: 8px;
             height: 8px;
         }
+
         ::-webkit-scrollbar-track {
             background: rgba(0, 0, 0, 0.04);
         }
+
         ::-webkit-scrollbar-thumb {
             background: #cbd5e1;
             border-radius: 9999px;
         }
+
         .dark ::-webkit-scrollbar-thumb {
             background: #475569;
         }
+
         .passage-box {
             font-family: 'Merriweather', serif;
             line-height: 1.85;
         }
+
         @keyframes pulse-fast {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.45; }
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.45;
+            }
         }
+
         .timer-warning {
             animation: pulse-fast 1.2s infinite;
         }
+
         /* Highlighting for BOLD correct answers in Study Mode & Submitted Mode */
         .correct-bold-answer {
             font-weight: 800 !important;
             color: #b45309;
         }
+
         .dark .correct-bold-answer {
             color: #fbbf24;
         }
+
         .correct-bold-badge {
             font-weight: 800 !important;
             border-width: 2px !important;
@@ -81,15 +104,18 @@
             background-color: rgba(245, 158, 11, 0.18) !important;
             color: #92400e !important;
         }
+
         .dark .correct-bold-badge {
             color: #fde68a !important;
         }
+
         /* DOCX Paper Simulation Styling */
         .docx-paper {
             font-family: 'Times New Roman', Times, 'Merriweather', serif;
             line-height: 1.65;
             box-shadow: 0 10px 35px -5px rgba(0, 0, 0, 0.15), 0 0 1px 1px rgba(0, 0, 0, 0.05);
         }
+
         .docx-highlight {
             background-color: #fef3c7;
             color: #92400e;
@@ -98,15 +124,20 @@
             border-radius: 4px;
             border-bottom: 2px solid #f59e0b;
         }
+
         .dark .docx-highlight {
             background-color: rgba(245, 158, 11, 0.22);
             color: #fde68a;
             border-bottom: 2px solid #fbbf24;
         }
+
         @media print {
-            header, .no-print {
+
+            header,
+            .no-print {
                 display: none !important;
             }
+
             .docx-paper {
                 box-shadow: none !important;
                 border: none !important;
@@ -115,29 +146,37 @@
         }
     </style>
 </head>
-<body class="bg-slate-100 dark:bg-slate-950 text-slate-800 dark:text-slate-100 min-h-screen flex flex-col transition-colors duration-200">
+
+<body
+    class="bg-slate-100 dark:bg-slate-950 text-slate-800 dark:text-slate-100 min-h-screen flex flex-col transition-colors duration-200">
 
     <!-- STICKY HEADER -->
     <header class="sticky top-0 z-40 bg-navy-800 dark:bg-slate-900 text-white shadow-lg border-b border-amber-500/30">
         <div class="max-w-7xl mx-auto px-3 sm:px-6 h-16 flex items-center justify-between gap-2">
             <!-- Brand / Title -->
             <div class="flex items-center gap-3">
-                <div onclick="confirmExitToSetup()" class="cursor-pointer w-10 h-10 rounded-xl bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center text-navy-900 font-extrabold text-lg shadow-md shrink-0">
+                <div onclick="confirmExitToSetup()"
+                    class="cursor-pointer w-10 h-10 rounded-xl bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center text-navy-900 font-extrabold text-lg shadow-md shrink-0">
                     <i class="fa-solid fa-landmark"></i>
                 </div>
                 <div>
                     <div class="flex items-center gap-2">
-                        <h1 class="font-bold text-sm sm:text-base tracking-tight text-white line-clamp-1">LỊCH SỬ 12 - GIỮA KỲ 1 (2026 - 2027)</h1>
-                        <span class="hidden md:inline-block text-[11px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-300 border border-amber-400/30">Chuẩn Bộ GD&ĐT 2026</span>
+                        <h1 class="font-bold text-sm sm:text-base tracking-tight text-white line-clamp-1">LỊCH SỬ 12 -
+                            GIỮA KỲ 1 (2026 - 2027)</h1>
+                        <span
+                            class="hidden md:inline-block text-[11px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-300 border border-amber-400/30">Chuẩn
+                            Bộ GD&ĐT 2026</span>
                     </div>
-                    <p id="headerSubtitle" class="text-xs text-slate-300 line-clamp-1">Học theo gói 20 câu • Đảo câu & Đảo A,B,C,D • Chế độ đọc DOCX</p>
+                    <p id="headerSubtitle" class="text-xs text-slate-300 line-clamp-1">Học theo gói 20 câu • Đảo câu &
+                        Đảo A,B,C,D • Chế độ đọc DOCX</p>
                 </div>
             </div>
 
             <!-- Active Exam Controls (Hidden on Setup Screen & DOCX Screen) -->
             <div id="examHeaderControls" class="hidden items-center gap-2 sm:gap-3">
                 <!-- Current Batch Pill -->
-                <div id="activeBatchHeaderBadge" class="hidden lg:flex items-center gap-1.5 bg-amber-500/20 border border-amber-400/40 text-amber-300 px-3 py-1.5 rounded-xl text-xs font-bold">
+                <div id="activeBatchHeaderBadge"
+                    class="hidden lg:flex items-center gap-1.5 bg-amber-500/20 border border-amber-400/40 text-amber-300 px-3 py-1.5 rounded-xl text-xs font-bold">
                     <i class="fa-solid fa-layer-group"></i>
                     <span id="activeBatchHeaderText">Gói câu 1 - 20</span>
                 </div>
@@ -149,31 +188,40 @@
                 </div>
 
                 <!-- Countdown Timer -->
-                <div id="timerContainer" class="flex items-center gap-2 bg-slate-950/60 border border-amber-500/40 px-3 py-1.5 rounded-xl font-mono font-bold text-sm sm:text-base text-amber-400 shadow-inner">
+                <div id="timerContainer"
+                    class="flex items-center gap-2 bg-slate-950/60 border border-amber-500/40 px-3 py-1.5 rounded-xl font-mono font-bold text-sm sm:text-base text-amber-400 shadow-inner">
                     <i class="fa-regular fa-clock"></i>
                     <span id="timerDisplay">40:00</span>
                 </div>
 
                 <!-- Quick Toggle Study Bold Mode Button -->
-                <button id="headerStudyBoldBtn" onclick="toggleStudyBoldMode()" class="flex items-center gap-1.5 bg-white/10 hover:bg-white/20 text-white text-xs sm:text-sm font-semibold px-2.5 sm:px-3 py-2 rounded-xl border border-white/15 transition" title="Bật/Tắt chế độ Ôn tập: In đậm sẵn đáp án đúng">
+                <button id="headerStudyBoldBtn" onclick="toggleStudyBoldMode()"
+                    class="flex items-center gap-1.5 bg-white/10 hover:bg-white/20 text-white text-xs sm:text-sm font-semibold px-2.5 sm:px-3 py-2 rounded-xl border border-white/15 transition"
+                    title="Bật/Tắt chế độ Ôn tập: In đậm sẵn đáp án đúng">
                     <i class="fa-solid fa-highlighter text-amber-400"></i>
                     <span id="headerStudyBoldText" class="hidden md:inline">Ôn tập (In đậm): Tắt</span>
                 </button>
 
                 <!-- Mobile Palette Button -->
-                <button onclick="toggleMobilePalette()" class="lg:hidden p-2 rounded-xl bg-white/10 hover:bg-white/20 text-white relative" title="Bảng câu hỏi">
+                <button onclick="toggleMobilePalette()"
+                    class="lg:hidden p-2 rounded-xl bg-white/10 hover:bg-white/20 text-white relative"
+                    title="Bảng câu hỏi">
                     <i class="fa-solid fa-table-cells"></i>
-                    <span id="mobileProgressBadge" class="absolute -top-1 -right-1 bg-amber-500 text-navy-900 text-[10px] font-bold px-1.5 rounded-full">0</span>
+                    <span id="mobileProgressBadge"
+                        class="absolute -top-1 -right-1 bg-amber-500 text-navy-900 text-[10px] font-bold px-1.5 rounded-full">0</span>
                 </button>
 
                 <!-- Re-shuffle / New Exam Button -->
-                <button onclick="confirmReshuffle()" class="hidden sm:flex items-center gap-1.5 bg-white/10 hover:bg-white/20 text-white text-xs sm:text-sm font-medium px-3 py-2 rounded-xl transition" title="Trộn lại 20 câu đang làm và đảo lại A, B, C, D">
+                <button onclick="confirmReshuffle()"
+                    class="hidden sm:flex items-center gap-1.5 bg-white/10 hover:bg-white/20 text-white text-xs sm:text-sm font-medium px-3 py-2 rounded-xl transition"
+                    title="Trộn lại 20 câu đang làm và đảo lại A, B, C, D">
                     <i class="fa-solid fa-shuffle text-amber-400"></i>
                     <span class="hidden md:inline">Trộn lại</span>
                 </button>
 
                 <!-- Submit Exam Button -->
-                <button id="headerSubmitBtn" onclick="openSubmitModal()" class="flex items-center gap-1.5 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-navy-900 font-bold text-xs sm:text-sm px-3.5 py-2 rounded-xl shadow-md transition transform active:scale-95">
+                <button id="headerSubmitBtn" onclick="openSubmitModal()"
+                    class="flex items-center gap-1.5 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-navy-900 font-bold text-xs sm:text-sm px-3.5 py-2 rounded-xl shadow-md transition transform active:scale-95">
                     <i class="fa-solid fa-paper-plane"></i>
                     <span>Nộp bài</span>
                 </button>
@@ -181,15 +229,45 @@
 
             <!-- Right Actions (DOCX Study Button, Config Home, Theme Toggle) -->
             <div class="flex items-center gap-2">
-                <button id="openDocxHeaderBtn" onclick="openDocxStudyView()" class="flex items-center gap-1.5 text-xs sm:text-sm bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-300 border border-emerald-400/30 font-semibold px-3 py-2 rounded-xl transition" title="Mở chế độ Học bài dạng văn bản Word (.docx)">
+                <button id="openDocxHeaderBtn" onclick="openDocxStudyView()"
+                    class="flex items-center gap-1.5 text-xs sm:text-sm bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-300 border border-emerald-400/30 font-semibold px-3 py-2 rounded-xl transition"
+                    title="Mở chế độ Học bài dạng văn bản Word (.docx)">
                     <i class="fa-solid fa-file-word"></i>
                     <span class="hidden sm:inline">Đọc Đề Cương (DOCX)</span>
                 </button>
-                <button id="backToConfigBtn" onclick="confirmExitToSetup()" class="hidden items-center gap-1.5 text-xs sm:text-sm bg-white/10 hover:bg-white/20 px-3 py-2 rounded-xl transition" title="Màn hình chính / Chọn gói câu hỏi">
+                <button id="backToConfigBtn" onclick="confirmExitToSetup()"
+                    class="hidden items-center gap-1.5 text-xs sm:text-sm bg-white/10 hover:bg-white/20 px-3 py-2 rounded-xl transition"
+                    title="Màn hình chính / Chọn gói câu hỏi">
                     <i class="fa-solid fa-sliders"></i>
                     <span class="hidden sm:inline">Chọn gói câu</span>
                 </button>
-                <button onclick="toggleDarkMode()" class="w-9 h-9 rounded-xl bg-white/10 hover:bg-white/20 flex items-center justify-center text-amber-300 transition" title="Đổi giao diện Sáng/Tối">
+                
+                <!-- Online Badge -->
+                <div class="hidden md:flex items-center gap-1.5 text-xs bg-white/10 px-2.5 py-1.5 rounded-xl border border-white/10 text-emerald-200" title="Số người đang online">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                    <span><strong id="header-online-count" class="font-bold text-white">1</strong> online</span>
+                </div>
+
+                <!-- User Name / Change Name -->
+                <button id="header-name-btn" onclick="openNameModal()"
+                    class="flex items-center gap-1.5 text-xs bg-white/10 hover:bg-white/20 px-2.5 py-1.5 rounded-xl transition border border-white/10 text-amber-300 font-semibold"
+                    title="Nhấn để đổi tên hiển thị">
+                    <i class="fa-solid fa-user text-[11px]"></i>
+                    <span id="header-user-display" class="max-w-[70px] sm:max-w-[110px] truncate">Chưa đặt tên</span>
+                    <i class="fa-solid fa-pen text-[9px] opacity-70"></i>
+                </button>
+
+                <!-- Leaderboard Top 30 Button -->
+                <button onclick="document.getElementById('hub-lb-modal').style.display='flex';if(typeof window.hubReloadLeaderboard==='function')window.hubReloadLeaderboard();"
+                    class="flex items-center gap-1.5 text-xs bg-gradient-to-r from-amber-400/20 to-yellow-400/20 hover:from-amber-400/30 hover:to-yellow-400/30 border border-yellow-400/40 text-yellow-300 font-bold px-3 py-1.5 rounded-xl shadow-sm transition active:scale-95"
+                    title="Bảng xếp hạng Top 30">
+                    <i class="fa-solid fa-trophy text-yellow-400"></i>
+                    <span>Bảng XH</span>
+                </button>
+
+                <button onclick="toggleDarkMode()"
+                    class="w-9 h-9 rounded-xl bg-white/10 hover:bg-white/20 flex items-center justify-center text-amber-300 transition"
+                    title="Đổi giao diện Sáng/Tối">
                     <i id="themeIcon" class="fa-solid fa-moon"></i>
                 </button>
             </div>
@@ -202,19 +280,27 @@
         <!-- ================= VIEW 1: SETUP & CONFIGURATION SCREEN ================= -->
         <section id="setupScreen" class="max-w-5xl mx-auto space-y-6">
             <!-- Hero Banner -->
-            <div class="bg-gradient-to-br from-navy-800 via-navy-700 to-slate-900 rounded-2xl p-6 sm:p-8 text-white shadow-xl border border-amber-500/20 relative overflow-hidden">
+            <div
+                class="bg-gradient-to-br from-navy-800 via-navy-700 to-slate-900 rounded-2xl p-6 sm:p-8 text-white shadow-xl border border-amber-500/20 relative overflow-hidden">
                 <div class="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
                     <div class="space-y-3 max-w-2xl">
-                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/20 border border-amber-400/30 text-amber-300 text-xs font-semibold">
-                            <i class="fa-solid fa-bolt"></i> Tích hợp Chia nhỏ 20 câu/lần & Chế độ Đọc Đề Cương như file Word (DOCX)
+                        <div
+                            class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/20 border border-amber-400/30 text-amber-300 text-xs font-semibold">
+                            <i class="fa-solid fa-bolt"></i> Tích hợp Chia nhỏ 20 câu/lần & Chế độ Đọc Đề Cương như file
+                            Word (DOCX)
                         </div>
-                        <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight">Hệ Thống Học Thuộc Nhanh & Kiểm Tra Lịch Sử 12</h2>
+                        <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight">Hệ Thống Học Thuộc Nhanh & Kiểm
+                            Tra Lịch Sử 12</h2>
                         <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
-                            Thay vì làm một lúc 125 câu dễ quá tải, bạn có thể <strong>học trên trang DOCX</strong> theo từng chặng <strong>20 câu (1–20, 21–40, 41–60...)</strong> rồi bấm <strong>kiểm tra trộn câu + đảo đáp án A, B, C, D</strong> của đúng 20 câu đó (vào bài vẫn đánh số lại từ Câu 1 đến Câu 20).
+                            Thay vì làm một lúc 125 câu dễ quá tải, bạn có thể <strong>học trên trang DOCX</strong> theo
+                            từng chặng <strong>20 câu (1–20, 21–40, 41–60...)</strong> rồi bấm <strong>kiểm tra trộn câu
+                                + đảo đáp án A, B, C, D</strong> của đúng 20 câu đó (vào bài vẫn đánh số lại từ Câu 1
+                            đến Câu 20).
                         </p>
                     </div>
                     <div class="flex flex-col sm:flex-row md:flex-col gap-3 shrink-0">
-                        <button onclick="openDocxStudyView()" class="px-5 py-3.5 rounded-2xl bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white font-extrabold text-sm shadow-lg flex items-center justify-center gap-2.5 transition transform active:scale-95">
+                        <button onclick="openDocxStudyView()"
+                            class="px-5 py-3.5 rounded-2xl bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white font-extrabold text-sm shadow-lg flex items-center justify-center gap-2.5 transition transform active:scale-95">
                             <i class="fa-solid fa-file-word text-lg"></i>
                             <span>MỞ TRANG HỌC BÀI (NHƯ FILE DOCX)</span>
                         </button>
@@ -233,49 +319,64 @@
             </div>
 
             <!-- Configuration Card -->
-            <div class="bg-white dark:bg-slate-900 rounded-2xl shadow-md border border-slate-200 dark:border-slate-800 p-5 sm:p-7 space-y-6">
-                <h3 class="text-lg font-bold flex items-center gap-2 text-navy-800 dark:text-amber-400 border-b border-slate-200 dark:border-slate-800 pb-3">
+            <div
+                class="bg-white dark:bg-slate-900 rounded-2xl shadow-md border border-slate-200 dark:border-slate-800 p-5 sm:p-7 space-y-6">
+                <h3
+                    class="text-lg font-bold flex items-center gap-2 text-navy-800 dark:text-amber-400 border-b border-slate-200 dark:border-slate-800 pb-3">
                     <i class="fa-solid fa-gears"></i> Thiết Lập Bài Kiểm Tra Trắc Nghiệm
                 </h3>
 
                 <!-- 1. Exam Mode Selection (3 Modes now: Batch 20, Standard 28, Custom) -->
                 <div class="space-y-3">
-                    <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300">1. Chọn chế độ luyện tập / kiểm tra:</label>
+                    <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300">1. Chọn chế độ luyện
+                        tập / kiểm tra:</label>
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                         <!-- Mode 1: Batch Study (20 Questions at a time) -->
-                        <label id="modeCardBatch" onclick="selectExamMode('batch')" class="cursor-pointer rounded-2xl border-2 border-amber-500 bg-amber-50/50 dark:bg-amber-950/20 p-4 transition flex items-start gap-3">
-                            <input type="radio" name="examMode" value="batch" checked class="mt-1 accent-amber-600 w-4 h-4">
+                        <label id="modeCardBatch" onclick="selectExamMode('batch')"
+                            class="cursor-pointer rounded-2xl border-2 border-amber-500 bg-amber-50/50 dark:bg-amber-950/20 p-4 transition flex items-start gap-3">
+                            <input type="radio" name="examMode" value="batch" checked
+                                class="mt-1 accent-amber-600 w-4 h-4">
                             <div class="space-y-1">
-                                <div class="font-bold text-slate-900 dark:text-white flex flex-wrap items-center gap-1.5">
+                                <div
+                                    class="font-bold text-slate-900 dark:text-white flex flex-wrap items-center gap-1.5">
                                     <span>Học & Kiểm Tra Từng Chặng (20 câu)</span>
-                                    <span class="text-[10px] bg-emerald-500 text-white font-bold px-2 py-0.5 rounded-full">Mới • Dễ thuộc</span>
+                                    <span
+                                        class="text-[10px] bg-emerald-500 text-white font-bold px-2 py-0.5 rounded-full">Mới
+                                        • Dễ thuộc</span>
                                 </div>
                                 <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
-                                    Chia thành từng gói <strong>1–20, 21–40, 41–60...</strong> Có trộn câu hỏi, đảo đáp án A, B, C, D và tự động đánh số lại từ <strong>Câu 1 → Câu 20</strong>.
+                                    Chia thành từng gói <strong>1–20, 21–40, 41–60...</strong> Có trộn câu hỏi, đảo đáp
+                                    án A, B, C, D và tự động đánh số lại từ <strong>Câu 1 → Câu 20</strong>.
                                 </p>
                             </div>
                         </label>
 
                         <!-- Mode 2: Standard MOET 2026 -->
-                        <label id="modeCardStandard" onclick="selectExamMode('standard')" class="cursor-pointer rounded-2xl border-2 border-slate-200 dark:border-slate-700 hover:border-amber-400 p-4 transition flex items-start gap-3">
+                        <label id="modeCardStandard" onclick="selectExamMode('standard')"
+                            class="cursor-pointer rounded-2xl border-2 border-slate-200 dark:border-slate-700 hover:border-amber-400 p-4 transition flex items-start gap-3">
                             <input type="radio" name="examMode" value="standard" class="mt-1 accent-amber-600 w-4 h-4">
                             <div class="space-y-1">
-                                <div class="font-bold text-slate-900 dark:text-white flex flex-wrap items-center gap-1.5">
+                                <div
+                                    class="font-bold text-slate-900 dark:text-white flex flex-wrap items-center gap-1.5">
                                     <span>Đề Thi Chuẩn Bộ GD&ĐT (28 câu)</span>
                                 </div>
                                 <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
-                                    Gồm <strong>24 câu Phần I</strong> (6,0đ) + <strong>4 câu Phần II Đúng/Sai</strong> (4,0đ). Lấy ngẫu nhiên trong phạm vi bài học đã chọn.
+                                    Gồm <strong>24 câu Phần I</strong> (6,0đ) + <strong>4 câu Phần II Đúng/Sai</strong>
+                                    (4,0đ). Lấy ngẫu nhiên trong phạm vi bài học đã chọn.
                                 </p>
                             </div>
                         </label>
 
                         <!-- Mode 3: Custom / Full Outline -->
-                        <label id="modeCardCustom" onclick="selectExamMode('custom')" class="cursor-pointer rounded-2xl border-2 border-slate-200 dark:border-slate-700 hover:border-amber-400 p-4 transition flex items-start gap-3">
+                        <label id="modeCardCustom" onclick="selectExamMode('custom')"
+                            class="cursor-pointer rounded-2xl border-2 border-slate-200 dark:border-slate-700 hover:border-amber-400 p-4 transition flex items-start gap-3">
                             <input type="radio" name="examMode" value="custom" class="mt-1 accent-amber-600 w-4 h-4">
                             <div class="space-y-1">
-                                <div class="font-bold text-slate-900 dark:text-white">Tùy Chỉnh Số Câu / Toàn Bộ Đề</div>
+                                <div class="font-bold text-slate-900 dark:text-white">Tùy Chỉnh Số Câu / Toàn Bộ Đề
+                                </div>
                                 <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
-                                    Tự nhập số lượng câu muốn làm hoặc ôn một lượt toàn bộ <strong>125 câu Phần I + 18 câu Phần II</strong>.
+                                    Tự nhập số lượng câu muốn làm hoặc ôn một lượt toàn bộ <strong>125 câu Phần I + 18
+                                        câu Phần II</strong>.
                                 </p>
                             </div>
                         </label>
@@ -285,42 +386,57 @@
                 <!-- 2. Lesson Filter Selection -->
                 <div class="space-y-3">
                     <div class="flex items-center justify-between">
-                        <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300">2. Phạm vi bài học trong đề cương:</label>
-                        <button type="button" onclick="toggleAllLessons()" class="text-xs font-semibold text-amber-600 dark:text-amber-400 hover:underline">
+                        <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300">2. Phạm vi bài học
+                            trong đề cương:</label>
+                        <button type="button" onclick="toggleAllLessons()"
+                            class="text-xs font-semibold text-amber-600 dark:text-amber-400 hover:underline">
                             Chọn / Bỏ chọn tất cả
                         </button>
                     </div>
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3" id="lessonCheckboxes">
-                        <label class="flex items-center gap-3 p-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/60 cursor-pointer hover:border-amber-400 transition">
-                            <input type="checkbox" value="1" checked onchange="updateAvailableCounts()" class="lesson-cb w-4 h-4 accent-amber-600 rounded">
+                        <label
+                            class="flex items-center gap-3 p-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/60 cursor-pointer hover:border-amber-400 transition">
+                            <input type="checkbox" value="1" checked onchange="updateAvailableCounts()"
+                                class="lesson-cb w-4 h-4 accent-amber-600 rounded">
                             <div class="text-xs">
                                 <div class="font-bold text-slate-800 dark:text-slate-100">Bài 1: Liên hợp quốc</div>
                                 <div class="text-slate-500 dark:text-slate-400">Câu 1–30 P.I • 4 câu P.II</div>
                             </div>
                         </label>
-                        <label class="flex items-center gap-3 p-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/60 cursor-pointer hover:border-amber-400 transition">
-                            <input type="checkbox" value="2" checked onchange="updateAvailableCounts()" class="lesson-cb w-4 h-4 accent-amber-600 rounded">
+                        <label
+                            class="flex items-center gap-3 p-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/60 cursor-pointer hover:border-amber-400 transition">
+                            <input type="checkbox" value="2" checked onchange="updateAvailableCounts()"
+                                class="lesson-cb w-4 h-4 accent-amber-600 rounded">
                             <div class="text-xs">
-                                <div class="font-bold text-slate-800 dark:text-slate-100">Bài 2: Trật tự TG trong Chiến tranh lạnh</div>
+                                <div class="font-bold text-slate-800 dark:text-slate-100">Bài 2: Trật tự TG trong Chiến
+                                    tranh lạnh</div>
                                 <div class="text-slate-500 dark:text-slate-400">Câu 31–57 P.I • 4 câu P.II</div>
                             </div>
                         </label>
-                        <label class="flex items-center gap-3 p-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/60 cursor-pointer hover:border-amber-400 transition">
-                            <input type="checkbox" value="3" checked onchange="updateAvailableCounts()" class="lesson-cb w-4 h-4 accent-amber-600 rounded">
+                        <label
+                            class="flex items-center gap-3 p-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/60 cursor-pointer hover:border-amber-400 transition">
+                            <input type="checkbox" value="3" checked onchange="updateAvailableCounts()"
+                                class="lesson-cb w-4 h-4 accent-amber-600 rounded">
                             <div class="text-xs">
-                                <div class="font-bold text-slate-800 dark:text-slate-100">Bài 3: Trật tự TG sau Chiến tranh lạnh</div>
+                                <div class="font-bold text-slate-800 dark:text-slate-100">Bài 3: Trật tự TG sau Chiến
+                                    tranh lạnh</div>
                                 <div class="text-slate-500 dark:text-slate-400">Câu 58–77 P.I • 4 câu P.II</div>
                             </div>
                         </label>
-                        <label class="flex items-center gap-3 p-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/60 cursor-pointer hover:border-amber-400 transition">
-                            <input type="checkbox" value="4" checked onchange="updateAvailableCounts()" class="lesson-cb w-4 h-4 accent-amber-600 rounded">
+                        <label
+                            class="flex items-center gap-3 p-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/60 cursor-pointer hover:border-amber-400 transition">
+                            <input type="checkbox" value="4" checked onchange="updateAvailableCounts()"
+                                class="lesson-cb w-4 h-4 accent-amber-600 rounded">
                             <div class="text-xs">
-                                <div class="font-bold text-slate-800 dark:text-slate-100">Bài 4: Sự ra đời & phát triển ASEAN</div>
+                                <div class="font-bold text-slate-800 dark:text-slate-100">Bài 4: Sự ra đời & phát triển
+                                    ASEAN</div>
                                 <div class="text-slate-500 dark:text-slate-400">Câu 78–100 P.I • 3 câu P.II</div>
                             </div>
                         </label>
-                        <label class="flex items-center gap-3 p-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/60 cursor-pointer hover:border-amber-400 transition">
-                            <input type="checkbox" value="5" checked onchange="updateAvailableCounts()" class="lesson-cb w-4 h-4 accent-amber-600 rounded">
+                        <label
+                            class="flex items-center gap-3 p-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/60 cursor-pointer hover:border-amber-400 transition">
+                            <input type="checkbox" value="5" checked onchange="updateAvailableCounts()"
+                                class="lesson-cb w-4 h-4 accent-amber-600 rounded">
                             <div class="text-xs">
                                 <div class="font-bold text-slate-800 dark:text-slate-100">Bài 5: Cộng đồng ASEAN</div>
                                 <div class="text-slate-500 dark:text-slate-400">Câu 101–125 P.I • 3 câu P.II</div>
@@ -330,17 +446,24 @@
                 </div>
 
                 <!-- BATCH RANGE SELECTION CONTROLS (Visible when 'batch' mode is selected) -->
-                <div id="batchRangeControls" class="p-4 sm:p-5 rounded-2xl bg-amber-50/70 dark:bg-slate-800/70 border-2 border-amber-500/40 space-y-4">
-                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-amber-500/20 pb-3">
+                <div id="batchRangeControls"
+                    class="p-4 sm:p-5 rounded-2xl bg-amber-50/70 dark:bg-slate-800/70 border-2 border-amber-500/40 space-y-4">
+                    <div
+                        class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-amber-500/20 pb-3">
                         <div>
-                            <h4 class="font-extrabold text-sm text-navy-900 dark:text-amber-400 flex items-center gap-2">
-                                <i class="fa-solid fa-layer-group"></i> Chọn Gói Câu Hỏi Muốn Kiểm Tra (Mặc định 20 câu/lần)
+                            <h4
+                                class="font-extrabold text-sm text-navy-900 dark:text-amber-400 flex items-center gap-2">
+                                <i class="fa-solid fa-layer-group"></i> Chọn Gói Câu Hỏi Muốn Kiểm Tra (Mặc định 20
+                                câu/lần)
                             </h4>
                             <p class="text-xs text-slate-600 dark:text-slate-300 mt-0.5">
-                                Khi vào làm bài, hệ thống sẽ <strong>trộn câu hỏi & đảo đáp án A, B, C, D</strong> trong gói bạn chọn, nhưng vẫn đánh số thứ tự từ <strong>Câu 1, 2, 3...</strong> để dễ theo dõi!
+                                Khi vào làm bài, hệ thống sẽ <strong>trộn câu hỏi & đảo đáp án A, B, C, D</strong> trong
+                                gói bạn chọn, nhưng vẫn đánh số thứ tự từ <strong>Câu 1, 2, 3...</strong> để dễ theo
+                                dõi!
                             </p>
                         </div>
-                        <button type="button" onclick="openDocxStudyFromBatch()" class="shrink-0 px-3 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold flex items-center gap-1.5 shadow-xs transition">
+                        <button type="button" onclick="openDocxStudyFromBatch()"
+                            class="shrink-0 px-3 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold flex items-center gap-1.5 shadow-xs transition">
                             <i class="fa-solid fa-book-open"></i> Xem trước gói này dạng DOCX
                         </button>
                     </div>
@@ -349,13 +472,18 @@
                     <div class="space-y-2">
                         <div class="flex flex-wrap items-center justify-between gap-2">
                             <label class="text-xs font-bold text-slate-700 dark:text-slate-200 uppercase">
-                                A. Chọn nhanh chặng 20 câu Phần I (Có <span id="batchTotalAvailP1">125</span> câu khả dụng):
+                                A. Chọn nhanh chặng 20 câu Phần I (Có <span id="batchTotalAvailP1">125</span> câu khả
+                                dụng):
                             </label>
                             <div class="flex items-center gap-1.5 text-xs">
                                 <span>Hoặc tự nhập từ câu:</span>
-                                <input type="number" id="batchP1StartInput" min="1" max="125" value="1" onchange="onManualBatchRangeChange()" class="w-16 px-2 py-1 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900 font-bold text-center">
+                                <input type="number" id="batchP1StartInput" min="1" max="125" value="1"
+                                    onchange="onManualBatchRangeChange()"
+                                    class="w-16 px-2 py-1 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900 font-bold text-center">
                                 <span>đến</span>
-                                <input type="number" id="batchP1EndInput" min="1" max="125" value="20" onchange="onManualBatchRangeChange()" class="w-16 px-2 py-1 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900 font-bold text-center">
+                                <input type="number" id="batchP1EndInput" min="1" max="125" value="20"
+                                    onchange="onManualBatchRangeChange()"
+                                    class="w-16 px-2 py-1 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900 font-bold text-center">
                             </div>
                         </div>
                         <div id="batchP1ButtonsContainer" class="flex flex-wrap gap-2"></div>
@@ -371,25 +499,34 @@
                 </div>
 
                 <!-- Custom Question Count Controls (Only visible in Custom Mode) -->
-                <div id="customCountControls" class="hidden grid-cols-1 sm:grid-cols-2 gap-4 p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700">
+                <div id="customCountControls"
+                    class="hidden grid-cols-1 sm:grid-cols-2 gap-4 p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700">
                     <div>
                         <div class="flex justify-between text-xs font-semibold mb-1.5">
                             <span>Số câu Phần I (Nhiều lựa chọn):</span>
-                            <span class="text-amber-600 dark:text-amber-400">Tối đa: <strong id="maxP1Label">125</strong> câu</span>
+                            <span class="text-amber-600 dark:text-amber-400">Tối đa: <strong
+                                    id="maxP1Label">125</strong> câu</span>
                         </div>
                         <div class="flex gap-2">
-                            <input type="number" id="customP1Input" min="0" max="125" value="125" class="w-full px-3 py-2 rounded-xl border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900 text-sm font-bold">
-                            <button type="button" onclick="setMaxQuestions('p1')" class="px-3 py-2 rounded-xl bg-amber-500/20 text-amber-700 dark:text-amber-300 text-xs font-bold shrink-0">Tất cả</button>
+                            <input type="number" id="customP1Input" min="0" max="125" value="125"
+                                class="w-full px-3 py-2 rounded-xl border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900 text-sm font-bold">
+                            <button type="button" onclick="setMaxQuestions('p1')"
+                                class="px-3 py-2 rounded-xl bg-amber-500/20 text-amber-700 dark:text-amber-300 text-xs font-bold shrink-0">Tất
+                                cả</button>
                         </div>
                     </div>
                     <div>
                         <div class="flex justify-between text-xs font-semibold mb-1.5">
                             <span>Số câu Phần II (Đúng / Sai):</span>
-                            <span class="text-amber-600 dark:text-amber-400">Tối đa: <strong id="maxP2Label">18</strong> câu</span>
+                            <span class="text-amber-600 dark:text-amber-400">Tối đa: <strong id="maxP2Label">18</strong>
+                                câu</span>
                         </div>
                         <div class="flex gap-2">
-                            <input type="number" id="customP2Input" min="0" max="18" value="18" class="w-full px-3 py-2 rounded-xl border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900 text-sm font-bold">
-                            <button type="button" onclick="setMaxQuestions('p2')" class="px-3 py-2 rounded-xl bg-amber-500/20 text-amber-700 dark:text-amber-300 text-xs font-bold shrink-0">Tất cả</button>
+                            <input type="number" id="customP2Input" min="0" max="18" value="18"
+                                class="w-full px-3 py-2 rounded-xl border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900 text-sm font-bold">
+                            <button type="button" onclick="setMaxQuestions('p2')"
+                                class="px-3 py-2 rounded-xl bg-amber-500/20 text-amber-700 dark:text-amber-300 text-xs font-bold shrink-0">Tất
+                                cả</button>
                         </div>
                     </div>
                 </div>
@@ -402,15 +539,23 @@
                             <i class="fa-regular fa-clock text-amber-500 mr-1"></i> 3. Thời gian làm bài (phút):
                         </label>
                         <div class="flex flex-wrap gap-2">
-                            <button type="button" onclick="setDuration(15)" class="time-preset px-3 py-1.5 rounded-xl text-xs font-bold border-2 border-amber-500 bg-amber-500/10 text-amber-600 dark:text-amber-400">15p (Gói 20 câu)</button>
-                            <button type="button" onclick="setDuration(30)" class="time-preset px-3 py-1.5 rounded-xl text-xs font-semibold border border-slate-200 dark:border-slate-700 hover:border-amber-500">30p</button>
-                            <button type="button" onclick="setDuration(40)" class="time-preset px-3 py-1.5 rounded-xl text-xs font-semibold border border-slate-200 dark:border-slate-700 hover:border-amber-500">40p (Chuẩn)</button>
-                            <button type="button" onclick="setDuration(45)" class="time-preset px-3 py-1.5 rounded-xl text-xs font-semibold border border-slate-200 dark:border-slate-700 hover:border-amber-500">45p</button>
-                            <button type="button" onclick="setDuration(90)" class="time-preset px-3 py-1.5 rounded-xl text-xs font-semibold border border-slate-200 dark:border-slate-700 hover:border-amber-500">90p</button>
+                            <button type="button" onclick="setDuration(15)"
+                                class="time-preset px-3 py-1.5 rounded-xl text-xs font-bold border-2 border-amber-500 bg-amber-500/10 text-amber-600 dark:text-amber-400">15p
+                                (Gói 20 câu)</button>
+                            <button type="button" onclick="setDuration(30)"
+                                class="time-preset px-3 py-1.5 rounded-xl text-xs font-semibold border border-slate-200 dark:border-slate-700 hover:border-amber-500">30p</button>
+                            <button type="button" onclick="setDuration(40)"
+                                class="time-preset px-3 py-1.5 rounded-xl text-xs font-semibold border border-slate-200 dark:border-slate-700 hover:border-amber-500">40p
+                                (Chuẩn)</button>
+                            <button type="button" onclick="setDuration(45)"
+                                class="time-preset px-3 py-1.5 rounded-xl text-xs font-semibold border border-slate-200 dark:border-slate-700 hover:border-amber-500">45p</button>
+                            <button type="button" onclick="setDuration(90)"
+                                class="time-preset px-3 py-1.5 rounded-xl text-xs font-semibold border border-slate-200 dark:border-slate-700 hover:border-amber-500">90p</button>
                         </div>
                         <div class="flex items-center gap-2 pt-1">
                             <span class="text-xs text-slate-500">Hoặc nhập số phút tùy ý:</span>
-                            <input type="number" id="durationInput" min="1" max="300" value="15" class="w-24 px-3 py-1.5 rounded-xl border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-sm font-bold text-center">
+                            <input type="number" id="durationInput" min="1" max="300" value="15"
+                                class="w-24 px-3 py-1.5 rounded-xl border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-sm font-bold text-center">
                             <span class="text-xs text-slate-500">phút</span>
                         </div>
                     </div>
@@ -418,39 +563,54 @@
                     <!-- Shuffle & Anti-rote Options -->
                     <div class="space-y-2.5">
                         <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300">
-                            <i class="fa-solid fa-shuffle text-amber-500 mr-1"></i> 4. Chế độ trộn đề & Ôn tập in đậm đáp án:
+                            <i class="fa-solid fa-shuffle text-amber-500 mr-1"></i> 4. Chế độ trộn đề & Ôn tập in đậm
+                            đáp án:
                         </label>
                         <div class="space-y-2 text-xs">
-                            <label class="flex items-center gap-2.5 p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 cursor-pointer">
-                                <input type="checkbox" id="shuffleQuestionsCb" checked class="w-4 h-4 accent-amber-600 rounded">
-                                <span><strong>Đảo thứ tự câu hỏi</strong> trong gói đang chọn (vẫn đánh số lại từ Câu 1, 2, 3...)</span>
+                            <label
+                                class="flex items-center gap-2.5 p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 cursor-pointer">
+                                <input type="checkbox" id="shuffleQuestionsCb" checked
+                                    class="w-4 h-4 accent-amber-600 rounded">
+                                <span><strong>Đảo thứ tự câu hỏi</strong> trong gói đang chọn (vẫn đánh số lại từ Câu 1,
+                                    2, 3...)</span>
                             </label>
-                            <label class="flex items-center gap-2.5 p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 cursor-pointer">
-                                <input type="checkbox" id="shuffleOptionsCb" checked class="w-4 h-4 accent-amber-600 rounded">
-                                <span><strong>Đảo vị trí đáp án A, B, C, D</strong> ở Phần I (chống học vẹt vị trí)</span>
+                            <label
+                                class="flex items-center gap-2.5 p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 cursor-pointer">
+                                <input type="checkbox" id="shuffleOptionsCb" checked
+                                    class="w-4 h-4 accent-amber-600 rounded">
+                                <span><strong>Đảo vị trí đáp án A, B, C, D</strong> ở Phần I (chống học vẹt vị
+                                    trí)</span>
                             </label>
-                            <label class="flex items-center gap-2.5 p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 cursor-pointer">
-                                <input type="checkbox" id="shuffleSubItemsCb" checked class="w-4 h-4 accent-amber-600 rounded">
+                            <label
+                                class="flex items-center gap-2.5 p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 cursor-pointer">
+                                <input type="checkbox" id="shuffleSubItemsCb" checked
+                                    class="w-4 h-4 accent-amber-600 rounded">
                                 <span><strong>Đảo thứ tự 4 ý a), b), c), d)</strong> ở Phần II (Đúng/Sai)</span>
                             </label>
-                            <label class="flex items-center gap-2.5 p-2.5 rounded-xl bg-amber-50/80 dark:bg-amber-950/30 border border-amber-300 dark:border-amber-700/70 cursor-pointer">
+                            <label
+                                class="flex items-center gap-2.5 p-2.5 rounded-xl bg-amber-50/80 dark:bg-amber-950/30 border border-amber-300 dark:border-amber-700/70 cursor-pointer">
                                 <input type="checkbox" id="showBoldHintCb" class="w-4 h-4 accent-amber-600 rounded">
-                                <span><strong>Chế độ Ôn tập: In đậm sẵn đáp án đúng ngay khi đang làm bài</strong></span>
+                                <span><strong>Chế độ Ôn tập: In đậm sẵn đáp án đúng ngay khi đang làm
+                                        bài</strong></span>
                             </label>
                         </div>
                     </div>
                 </div>
 
                 <!-- Error Notification Box -->
-                <div id="setupErrorBox" class="hidden p-3 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-600 dark:text-rose-400 text-xs font-semibold"></div>
+                <div id="setupErrorBox"
+                    class="hidden p-3 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-600 dark:text-rose-400 text-xs font-semibold">
+                </div>
 
                 <!-- Start Action Buttons -->
                 <div class="pt-2 flex flex-col sm:flex-row gap-3">
-                    <button type="button" onclick="startExam()" class="flex-1 py-4 px-6 rounded-2xl bg-gradient-to-r from-navy-800 to-navy-700 dark:from-amber-500 dark:to-amber-600 hover:opacity-95 text-white dark:text-navy-900 font-extrabold text-base shadow-lg flex items-center justify-center gap-3 transition transform active:scale-[0.99]">
+                    <button type="button" onclick="startExam()"
+                        class="flex-1 py-4 px-6 rounded-2xl bg-gradient-to-r from-navy-800 to-navy-700 dark:from-amber-500 dark:to-amber-600 hover:opacity-95 text-white dark:text-navy-900 font-extrabold text-base shadow-lg flex items-center justify-center gap-3 transition transform active:scale-[0.99]">
                         <i class="fa-solid fa-play"></i>
                         <span id="startExamBtnText">BẮT ĐẦU KIỂM TRA GÓI CÂU 1 - 20 (TRỘN CÂU & ĐẢO A,B,C,D)</span>
                     </button>
-                    <button type="button" onclick="openDocxStudyView()" class="py-4 px-6 rounded-2xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm shadow-md flex items-center justify-center gap-2 transition">
+                    <button type="button" onclick="openDocxStudyView()"
+                        class="py-4 px-6 rounded-2xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm shadow-md flex items-center justify-center gap-2 transition">
                         <i class="fa-solid fa-file-word"></i>
                         <span>Học Bài Dạng DOCX Trước</span>
                     </button>
@@ -466,17 +626,24 @@
                 <div class="lg:col-span-8 xl:col-span-9 space-y-6">
 
                     <!-- RESULT DASHBOARD (SHOWN AFTER SUBMIT) -->
-                    <div id="resultSummaryPanel" class="hidden bg-white dark:bg-slate-900 rounded-2xl shadow-xl border-2 border-amber-500 overflow-hidden">
-                        <div class="bg-gradient-to-r from-navy-800 via-navy-700 to-slate-900 p-6 text-white flex flex-col sm:flex-row items-center justify-between gap-4">
+                    <div id="resultSummaryPanel"
+                        class="hidden bg-white dark:bg-slate-900 rounded-2xl shadow-xl border-2 border-amber-500 overflow-hidden">
+                        <div
+                            class="bg-gradient-to-r from-navy-800 via-navy-700 to-slate-900 p-6 text-white flex flex-col sm:flex-row items-center justify-between gap-4">
                             <div class="space-y-1 text-center sm:text-left">
-                                <span class="text-xs uppercase tracking-widest text-amber-300 font-bold" id="resultBatchBadge">KẾT QUẢ KIỂM TRA LỊCH SỬ 12</span>
+                                <span class="text-xs uppercase tracking-widest text-amber-300 font-bold"
+                                    id="resultBatchBadge">KẾT QUẢ KIỂM TRA LỊCH SỬ 12</span>
                                 <h2 class="text-2xl font-extrabold" id="resultTitleText">Hoàn thành bài thi!</h2>
-                                <p class="text-xs text-slate-300" id="resultTimeSpentText">Thời gian làm bài: 00 phút 00 giây</p>
+                                <p class="text-xs text-slate-300" id="resultTimeSpentText">Thời gian làm bài: 00 phút 00
+                                    giây</p>
                             </div>
                             <div class="flex items-center gap-4">
-                                <div class="bg-white/10 backdrop-blur-md border border-amber-400/40 rounded-2xl px-6 py-3 text-center">
-                                    <div class="text-xs text-amber-200 uppercase font-semibold">Điểm Quy Đổi (Thang 10)</div>
-                                    <div id="finalScore10Display" class="text-4xl font-black text-amber-400 mt-0.5">0.00</div>
+                                <div
+                                    class="bg-white/10 backdrop-blur-md border border-amber-400/40 rounded-2xl px-6 py-3 text-center">
+                                    <div class="text-xs text-amber-200 uppercase font-semibold">Điểm Quy Đổi (Thang 10)
+                                    </div>
+                                    <div id="finalScore10Display" class="text-4xl font-black text-amber-400 mt-0.5">0.00
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -485,43 +652,71 @@
                         <div class="p-5 sm:p-6 space-y-5">
                             <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
                                 <!-- Part I Score Card -->
-                                <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/70 border border-slate-200 dark:border-slate-700">
-                                    <div class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">PHẦN I (4 phương án A,B,C,D)</div>
-                                    <div class="text-2xl font-extrabold text-navy-800 dark:text-white mt-1" id="part1ScoreDisplay">0.00 / 5.00đ</div>
-                                    <div class="text-xs text-emerald-600 dark:text-emerald-400 font-semibold mt-1" id="part1CorrectCountDisplay">Đúng 0/20 câu</div>
+                                <div
+                                    class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/70 border border-slate-200 dark:border-slate-700">
+                                    <div class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">PHẦN I
+                                        (4 phương án A,B,C,D)</div>
+                                    <div class="text-2xl font-extrabold text-navy-800 dark:text-white mt-1"
+                                        id="part1ScoreDisplay">0.00 / 5.00đ</div>
+                                    <div class="text-xs text-emerald-600 dark:text-emerald-400 font-semibold mt-1"
+                                        id="part1CorrectCountDisplay">Đúng 0/20 câu</div>
                                 </div>
 
                                 <!-- Part II Score Card -->
-                                <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/70 border border-slate-200 dark:border-slate-700">
-                                    <div class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">PHẦN II (Trắc nghiệm Đúng/Sai)</div>
-                                    <div class="text-2xl font-extrabold text-navy-800 dark:text-white mt-1" id="part2ScoreDisplay">0.00 / 0.00đ</div>
-                                    <div class="text-xs text-amber-600 dark:text-amber-400 font-semibold mt-1" id="part2SubCountDisplay">Đúng 0/0 ý a,b,c,d</div>
+                                <div
+                                    class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/70 border border-slate-200 dark:border-slate-700">
+                                    <div class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">PHẦN II
+                                        (Trắc nghiệm Đúng/Sai)</div>
+                                    <div class="text-2xl font-extrabold text-navy-800 dark:text-white mt-1"
+                                        id="part2ScoreDisplay">0.00 / 0.00đ</div>
+                                    <div class="text-xs text-amber-600 dark:text-amber-400 font-semibold mt-1"
+                                        id="part2SubCountDisplay">Đúng 0/0 ý a,b,c,d</div>
                                 </div>
 
                                 <!-- Part II Progressive Breakdown -->
-                                <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/70 border border-slate-200 dark:border-slate-700 text-xs space-y-1">
-                                    <div class="font-bold text-slate-500 dark:text-slate-400 uppercase mb-1">Thống kê lũy tiến Phần II:</div>
-                                    <div class="flex justify-between"><span>Đúng 4 ý (+1,00đ):</span><strong id="stat4Sub" class="text-emerald-600 dark:text-emerald-400">0 câu</strong></div>
-                                    <div class="flex justify-between"><span>Đúng 3 ý (+0,50đ):</span><strong id="stat3Sub" class="text-blue-600 dark:text-blue-400">0 câu</strong></div>
-                                    <div class="flex justify-between"><span>Đúng 2 ý (+0,25đ):</span><strong id="stat2Sub" class="text-amber-600 dark:text-amber-400">0 câu</strong></div>
-                                    <div class="flex justify-between"><span>Đúng 1 ý (+0,10đ):</span><strong id="stat1Sub" class="text-orange-600 dark:text-orange-400">0 câu</strong></div>
+                                <div
+                                    class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/70 border border-slate-200 dark:border-slate-700 text-xs space-y-1">
+                                    <div class="font-bold text-slate-500 dark:text-slate-400 uppercase mb-1">Thống kê
+                                        lũy tiến Phần II:</div>
+                                    <div class="flex justify-between"><span>Đúng 4 ý (+1,00đ):</span><strong
+                                            id="stat4Sub" class="text-emerald-600 dark:text-emerald-400">0 câu</strong>
+                                    </div>
+                                    <div class="flex justify-between"><span>Đúng 3 ý (+0,50đ):</span><strong
+                                            id="stat3Sub" class="text-blue-600 dark:text-blue-400">0 câu</strong></div>
+                                    <div class="flex justify-between"><span>Đúng 2 ý (+0,25đ):</span><strong
+                                            id="stat2Sub" class="text-amber-600 dark:text-amber-400">0 câu</strong>
+                                    </div>
+                                    <div class="flex justify-between"><span>Đúng 1 ý (+0,10đ):</span><strong
+                                            id="stat1Sub" class="text-orange-600 dark:text-orange-400">0 câu</strong>
+                                    </div>
                                 </div>
                             </div>
 
                             <!-- Review Filter Bar & Quick Actions (Including NEXT 20 QUESTIONS Button!) -->
-                            <div class="flex flex-wrap items-center justify-between gap-3 pt-3 border-t border-slate-200 dark:border-slate-800">
+                            <div
+                                class="flex flex-wrap items-center justify-between gap-3 pt-3 border-t border-slate-200 dark:border-slate-800">
                                 <div class="flex flex-wrap items-center gap-2">
-                                    <span class="text-xs font-bold text-slate-500 mr-1"><i class="fa-solid fa-filter mr-1"></i>Lọc xem lại:</span>
-                                    <button onclick="setReviewFilter('all')" id="filterBtnAll" class="px-3 py-1.5 rounded-xl text-xs font-bold bg-navy-800 text-white dark:bg-amber-500 dark:text-navy-900">Tất cả câu</button>
-                                    <button onclick="setReviewFilter('wrong')" id="filterBtnWrong" class="px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-100 dark:bg-slate-800 hover:bg-rose-500/10 text-rose-600 dark:text-rose-400 border border-slate-200 dark:border-slate-700">Câu làm sai</button>
-                                    <button onclick="setReviewFilter('flagged')" id="filterBtnFlagged" class="px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-100 dark:bg-slate-800 hover:bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-slate-200 dark:border-slate-700">Câu đánh dấu</button>
+                                    <span class="text-xs font-bold text-slate-500 mr-1"><i
+                                            class="fa-solid fa-filter mr-1"></i>Lọc xem lại:</span>
+                                    <button onclick="setReviewFilter('all')" id="filterBtnAll"
+                                        class="px-3 py-1.5 rounded-xl text-xs font-bold bg-navy-800 text-white dark:bg-amber-500 dark:text-navy-900">Tất
+                                        cả câu</button>
+                                    <button onclick="setReviewFilter('wrong')" id="filterBtnWrong"
+                                        class="px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-100 dark:bg-slate-800 hover:bg-rose-500/10 text-rose-600 dark:text-rose-400 border border-slate-200 dark:border-slate-700">Câu
+                                        làm sai</button>
+                                    <button onclick="setReviewFilter('flagged')" id="filterBtnFlagged"
+                                        class="px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-100 dark:bg-slate-800 hover:bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-slate-200 dark:border-slate-700">Câu
+                                        đánh dấu</button>
                                 </div>
                                 <div class="flex flex-wrap items-center gap-2">
-                                    <button onclick="reshuffleAndRestart()" class="px-3.5 py-2 rounded-xl bg-amber-500 hover:bg-amber-600 text-navy-900 font-bold text-xs sm:text-sm flex items-center gap-1.5 shadow transition">
+                                    <button onclick="reshuffleAndRestart()"
+                                        class="px-3.5 py-2 rounded-xl bg-amber-500 hover:bg-amber-600 text-navy-900 font-bold text-xs sm:text-sm flex items-center gap-1.5 shadow transition">
                                         <i class="fa-solid fa-rotate"></i> Làm lại gói này (Đảo mới)
                                     </button>
-                                    <button id="nextBatchActionBtn" onclick="startNextBatchExam()" class="hidden px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-xs sm:text-sm flex items-center gap-1.5 shadow-md transition">
-                                        <i class="fa-solid fa-forward-step"></i> <span id="nextBatchActionText">Làm tiếp 20 câu tiếp theo (21 - 40)</span>
+                                    <button id="nextBatchActionBtn" onclick="startNextBatchExam()"
+                                        class="hidden px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-xs sm:text-sm flex items-center gap-1.5 shadow-md transition">
+                                        <i class="fa-solid fa-forward-step"></i> <span id="nextBatchActionText">Làm tiếp
+                                            20 câu tiếp theo (21 - 40)</span>
                                     </button>
                                 </div>
                             </div>
@@ -529,7 +724,8 @@
                     </div>
 
                     <!-- QUICK BATCH SWITCHER BAR INSIDE EXAM WORKSPACE (For Batch Mode) -->
-                    <div id="inExamBatchBar" class="hidden bg-white dark:bg-slate-900 rounded-2xl shadow-xs border border-amber-500/30 p-3.5 flex flex-wrap items-center justify-between gap-2">
+                    <div id="inExamBatchBar"
+                        class="hidden bg-white dark:bg-slate-900 rounded-2xl shadow-xs border border-amber-500/30 p-3.5 flex flex-wrap items-center justify-between gap-2">
                         <div class="flex items-center gap-2 text-xs font-bold text-navy-800 dark:text-amber-400">
                             <i class="fa-solid fa-layer-group text-amber-500"></i>
                             <span>Chuyển nhanh gói 20 câu:</span>
@@ -538,28 +734,41 @@
                     </div>
 
                     <!-- OFFICIAL EXAM PAPER HEADER -->
-                    <div class="bg-white dark:bg-slate-900 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 p-4 sm:p-6">
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-center border-b border-slate-200 dark:border-slate-800 pb-4">
+                    <div
+                        class="bg-white dark:bg-slate-900 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 p-4 sm:p-6">
+                        <div
+                            class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-center border-b border-slate-200 dark:border-slate-800 pb-4">
                             <div>
-                                <p class="text-xs uppercase font-semibold text-slate-500 dark:text-slate-400">BỘ GIÁO DỤC VÀ ĐÀO TẠO</p>
-                                <p class="text-sm font-bold text-navy-800 dark:text-white" id="paperMainTitle">ĐỀ KIỂM TRA GIỮA KỲ 1 (2026 - 2027)</p>
-                                <p class="text-[11px] text-slate-500 mt-0.5">Đề thi được trộn tự động (Mã đề: <strong id="examCodeDisplay" class="text-amber-600 dark:text-amber-400">1201</strong>)</p>
+                                <p class="text-xs uppercase font-semibold text-slate-500 dark:text-slate-400">BỘ GIÁO
+                                    DỤC VÀ ĐÀO TẠO</p>
+                                <p class="text-sm font-bold text-navy-800 dark:text-white" id="paperMainTitle">ĐỀ KIỂM
+                                    TRA GIỮA KỲ 1 (2026 - 2027)</p>
+                                <p class="text-[11px] text-slate-500 mt-0.5">Đề thi được trộn tự động (Mã đề: <strong
+                                        id="examCodeDisplay" class="text-amber-600 dark:text-amber-400">1201</strong>)
+                                </p>
                             </div>
                             <div>
-                                <p class="text-sm font-extrabold uppercase text-navy-800 dark:text-amber-400">Môn: LỊCH SỬ LỚP 12</p>
-                                <p class="text-xs font-medium text-slate-600 dark:text-slate-300" id="paperSubInfo">Thời gian làm bài: 15 phút</p>
-                                <p class="text-[11px] text-emerald-600 dark:text-emerald-400 font-semibold mt-0.5"><i class="fa-solid fa-list-ol mr-1"></i>Câu hỏi luôn được đánh số chuẩn từ Câu 1, 2, 3...</p>
+                                <p class="text-sm font-extrabold uppercase text-navy-800 dark:text-amber-400">Môn: LỊCH
+                                    SỬ LỚP 12</p>
+                                <p class="text-xs font-medium text-slate-600 dark:text-slate-300" id="paperSubInfo">Thời
+                                    gian làm bài: 15 phút</p>
+                                <p class="text-[11px] text-emerald-600 dark:text-emerald-400 font-semibold mt-0.5"><i
+                                        class="fa-solid fa-list-ol mr-1"></i>Câu hỏi luôn được đánh số chuẩn từ Câu 1,
+                                    2, 3...</p>
                             </div>
                         </div>
 
                         <!-- PART I SECTION CONTAINER -->
                         <div id="part1SectionWrapper" class="mt-6 space-y-5">
-                            <div class="bg-navy-50 dark:bg-slate-800/90 border-l-4 border-navy-800 dark:border-amber-500 p-4 rounded-r-xl">
-                                <h3 class="font-extrabold text-sm sm:text-base text-navy-900 dark:text-amber-400 uppercase">
+                            <div
+                                class="bg-navy-50 dark:bg-slate-800/90 border-l-4 border-navy-800 dark:border-amber-500 p-4 rounded-r-xl">
+                                <h3
+                                    class="font-extrabold text-sm sm:text-base text-navy-900 dark:text-amber-400 uppercase">
                                     PHẦN I. Câu trắc nghiệm nhiều phương án lựa chọn
                                 </h3>
                                 <p class="text-xs text-slate-600 dark:text-slate-300 mt-1" id="part1InstructionText">
-                                    Thí sinh trả lời từ câu 1 đến câu 20. Mỗi câu hỏi thí sinh chỉ chọn một phương án đúng.
+                                    Thí sinh trả lời từ câu 1 đến câu 20. Mỗi câu hỏi thí sinh chỉ chọn một phương án
+                                    đúng.
                                 </p>
                             </div>
                             <div id="part1QuestionsList" class="space-y-4"></div>
@@ -567,12 +776,16 @@
 
                         <!-- PART II SECTION CONTAINER -->
                         <div id="part2SectionWrapper" class="mt-10 space-y-5">
-                            <div class="bg-amber-50/80 dark:bg-slate-800/90 border-l-4 border-amber-500 p-4 rounded-r-xl">
-                                <h3 class="font-extrabold text-sm sm:text-base text-navy-900 dark:text-amber-400 uppercase">
+                            <div
+                                class="bg-amber-50/80 dark:bg-slate-800/90 border-l-4 border-amber-500 p-4 rounded-r-xl">
+                                <h3
+                                    class="font-extrabold text-sm sm:text-base text-navy-900 dark:text-amber-400 uppercase">
                                     PHẦN II. Câu trắc nghiệm đúng sai
                                 </h3>
                                 <p class="text-xs text-slate-600 dark:text-slate-300 mt-1" id="part2InstructionText">
-                                    Trong mỗi ý <strong>a), b), c), d)</strong> ở mỗi câu, thí sinh chọn <strong>Đúng</strong> hoặc <strong>Sai</strong>. (Điểm tính lũy tiến chuẩn Bộ GD&ĐT: Đúng 1 ý = 0,1đ; 2 ý = 0,25đ; 3 ý = 0,5đ; 4 ý = 1,0đ).
+                                    Trong mỗi ý <strong>a), b), c), d)</strong> ở mỗi câu, thí sinh chọn
+                                    <strong>Đúng</strong> hoặc <strong>Sai</strong>. (Điểm tính lũy tiến chuẩn Bộ GD&ĐT:
+                                    Đúng 1 ý = 0,1đ; 2 ý = 0,25đ; 3 ý = 0,5đ; 4 ý = 1,0đ).
                                 </p>
                             </div>
                             <div id="part2QuestionsList" class="space-y-6"></div>
@@ -582,40 +795,54 @@
 
                 <!-- RIGHT SIDEBAR: QUESTION PALETTE (STICKY ON DESKTOP) -->
                 <aside class="hidden lg:block lg:col-span-4 xl:col-span-3 sticky top-20">
-                    <div class="bg-white dark:bg-slate-900 rounded-2xl shadow-md border border-slate-200 dark:border-slate-800 p-4 space-y-4 max-h-[calc(100vh-6rem)] flex flex-col">
-                        <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-3">
+                    <div
+                        class="bg-white dark:bg-slate-900 rounded-2xl shadow-md border border-slate-200 dark:border-slate-800 p-4 space-y-4 max-h-[calc(100vh-6rem)] flex flex-col">
+                        <div
+                            class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-3">
                             <h4 class="font-bold text-sm flex items-center gap-2 text-navy-800 dark:text-white">
                                 <i class="fa-solid fa-table-cells text-amber-500"></i> Phiếu Trả Lời Trắc Nghiệm
                             </h4>
-                            <span id="sidebarProgressBadge" class="text-xs font-bold px-2.5 py-0.5 rounded-full bg-amber-500/15 text-amber-600 dark:text-amber-400">0/20</span>
+                            <span id="sidebarProgressBadge"
+                                class="text-xs font-bold px-2.5 py-0.5 rounded-full bg-amber-500/15 text-amber-600 dark:text-amber-400">0/20</span>
                         </div>
 
                         <!-- Legend -->
                         <div class="grid grid-cols-2 gap-2 text-[11px] text-slate-600 dark:text-slate-400">
-                            <div class="flex items-center gap-1.5"><span class="w-3 h-3 rounded bg-amber-500 inline-block"></span> Đã trả lời đủ</div>
-                            <div class="flex items-center gap-1.5"><span class="w-3 h-3 rounded bg-amber-200 dark:bg-amber-800 inline-block"></span> Đang làm dở (P.II)</div>
-                            <div class="flex items-center gap-1.5"><span class="w-3 h-3 rounded border border-slate-300 dark:border-slate-600 inline-block"></span> Chưa trả lời</div>
-                            <div class="flex items-center gap-1.5"><span class="w-3 h-3 rounded ring-2 ring-rose-500 inline-block"></span> Đánh dấu xem lại</div>
+                            <div class="flex items-center gap-1.5"><span
+                                    class="w-3 h-3 rounded bg-amber-500 inline-block"></span> Đã trả lời đủ</div>
+                            <div class="flex items-center gap-1.5"><span
+                                    class="w-3 h-3 rounded bg-amber-200 dark:bg-amber-800 inline-block"></span> Đang làm
+                                dở (P.II)</div>
+                            <div class="flex items-center gap-1.5"><span
+                                    class="w-3 h-3 rounded border border-slate-300 dark:border-slate-600 inline-block"></span>
+                                Chưa trả lời</div>
+                            <div class="flex items-center gap-1.5"><span
+                                    class="w-3 h-3 rounded ring-2 ring-rose-500 inline-block"></span> Đánh dấu xem lại
+                            </div>
                         </div>
 
                         <!-- Scrollable Palette Grids -->
                         <div class="overflow-y-auto space-y-4 pr-1 flex-1">
                             <div id="palettePart1Container" class="space-y-2">
-                                <div class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">Phần I (Đánh số từ 1)</div>
+                                <div class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">Phần I (Đánh
+                                    số từ 1)</div>
                                 <div id="palettePart1Grid" class="grid grid-cols-5 gap-1.5"></div>
                             </div>
                             <div id="palettePart2Container" class="space-y-2">
-                                <div class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">Phần II (Đúng / Sai)</div>
+                                <div class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">Phần II
+                                    (Đúng / Sai)</div>
                                 <div id="palettePart2Grid" class="grid grid-cols-4 gap-2"></div>
                             </div>
                         </div>
 
                         <!-- Bottom Sidebar Buttons -->
                         <div class="pt-3 border-t border-slate-200 dark:border-slate-800 space-y-2">
-                            <button id="sidebarSubmitBtn" onclick="openSubmitModal()" class="w-full py-2.5 px-4 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-navy-900 font-extrabold text-sm shadow flex items-center justify-center gap-2 transition">
+                            <button id="sidebarSubmitBtn" onclick="openSubmitModal()"
+                                class="w-full py-2.5 px-4 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-navy-900 font-extrabold text-sm shadow flex items-center justify-center gap-2 transition">
                                 <i class="fa-solid fa-paper-plane"></i> Nộp Bài & Chấm Điểm
                             </button>
-                            <button onclick="confirmReshuffle()" class="w-full py-2 px-4 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 font-semibold text-xs flex items-center justify-center gap-2 transition">
+                            <button onclick="confirmReshuffle()"
+                                class="w-full py-2 px-4 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 font-semibold text-xs flex items-center justify-center gap-2 transition">
                                 <i class="fa-solid fa-shuffle text-amber-500"></i> Đảo Lại Đề Đang Làm
                             </button>
                         </div>
@@ -627,10 +854,13 @@
         <!-- ================= VIEW 3: DOCX STUDY VIEW (ĐỌC ĐỀ CƯƠNG NHƯ FILE WORD) ================= -->
         <section id="docxStudyWorkspace" class="hidden max-w-5xl mx-auto space-y-5">
             <!-- Sticky Top Control Bar for DOCX Reader -->
-            <div class="no-print bg-white dark:bg-slate-900 rounded-2xl shadow-md border border-slate-200 dark:border-slate-800 p-4 sm:p-5 space-y-4">
-                <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-200 dark:border-slate-800 pb-3">
+            <div
+                class="no-print bg-white dark:bg-slate-900 rounded-2xl shadow-md border border-slate-200 dark:border-slate-800 p-4 sm:p-5 space-y-4">
+                <div
+                    class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-200 dark:border-slate-800 pb-3">
                     <div class="flex items-center gap-2.5">
-                        <div class="w-9 h-9 rounded-xl bg-blue-600 text-white flex items-center justify-center text-base shadow">
+                        <div
+                            class="w-9 h-9 rounded-xl bg-blue-600 text-white flex items-center justify-center text-base shadow">
                             <i class="fa-solid fa-file-word"></i>
                         </div>
                         <div>
@@ -638,23 +868,28 @@
                                 Chế Độ Học Bài & Đọc Đề Cương (Giao diện Trang Giấy Word / DOCX)
                             </h3>
                             <p class="text-xs text-slate-500 dark:text-slate-400">
-                                Chọn từng gói 20 câu để đọc thuộc nhanh • Có thể Bật/Tắt đáp án để tự dò bài hoặc bấm Kiểm tra ngay gói đang đọc
+                                Chọn từng gói 20 câu để đọc thuộc nhanh • Có thể Bật/Tắt đáp án để tự dò bài hoặc bấm
+                                Kiểm tra ngay gói đang đọc
                             </p>
                         </div>
                     </div>
                     <div class="flex flex-wrap items-center gap-2">
                         <!-- Toggle Show/Hide Answers in DOCX -->
-                        <button id="docxToggleAnswerBtn" onclick="toggleDocxShowAnswers()" class="px-3.5 py-2 rounded-xl text-xs sm:text-sm font-extrabold bg-amber-500 text-navy-900 shadow-xs flex items-center gap-1.5 transition">
+                        <button id="docxToggleAnswerBtn" onclick="toggleDocxShowAnswers()"
+                            class="px-3.5 py-2 rounded-xl text-xs sm:text-sm font-extrabold bg-amber-500 text-navy-900 shadow-xs flex items-center gap-1.5 transition">
                             <i class="fa-solid fa-eye"></i>
                             <span id="docxToggleAnswerText">Đáp án: ĐANG HIỆN (In đậm)</span>
                         </button>
                         <!-- Toggle Original vs Reset 1..20 numbering in DOCX -->
-                        <button id="docxToggleNumberingBtn" onclick="toggleDocxNumberingMode()" class="px-3 py-2 rounded-xl text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 flex items-center gap-1.5 transition" title="Đổi cách đánh số câu trên trang Word">
+                        <button id="docxToggleNumberingBtn" onclick="toggleDocxNumberingMode()"
+                            class="px-3 py-2 rounded-xl text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 flex items-center gap-1.5 transition"
+                            title="Đổi cách đánh số câu trên trang Word">
                             <i class="fa-solid fa-list-ol text-amber-500"></i>
                             <span id="docxToggleNumberingText">Đánh số: Từ Câu 1, 2, 3...</span>
                         </button>
                         <!-- Test This Exact Batch Button -->
-                        <button onclick="testCurrentDocxBatch()" class="px-4 py-2 rounded-xl text-xs sm:text-sm font-extrabold bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white shadow flex items-center gap-1.5 transition">
+                        <button onclick="testCurrentDocxBatch()"
+                            class="px-4 py-2 rounded-xl text-xs sm:text-sm font-extrabold bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white shadow flex items-center gap-1.5 transition">
                             <i class="fa-solid fa-pen-to-square"></i>
                             <span>Kiểm tra ngay gói này (Đảo câu & A,B,C,D)</span>
                         </button>
@@ -664,19 +899,23 @@
                 <!-- Filter by Lesson or Batch 20 Questions inside DOCX View -->
                 <div class="space-y-3">
                     <div class="flex flex-wrap items-center gap-2">
-                        <span class="text-xs font-bold text-slate-500 uppercase mr-1">Chọn nhanh gói 20 câu (Phần I):</span>
+                        <span class="text-xs font-bold text-slate-500 uppercase mr-1">Chọn nhanh gói 20 câu (Phần
+                            I):</span>
                         <div id="docxBatchButtonsP1" class="flex flex-wrap gap-1.5"></div>
                     </div>
-                    <div class="flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-slate-100 dark:border-slate-800/80">
+                    <div
+                        class="flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-slate-100 dark:border-slate-800/80">
                         <div class="flex flex-wrap items-center gap-2">
                             <span class="text-xs font-bold text-slate-500 uppercase mr-1">Phần II (Đúng/Sai):</span>
                             <div id="docxBatchButtonsP2" class="flex flex-wrap gap-1.5"></div>
                         </div>
                         <div class="flex items-center gap-2">
-                            <button onclick="window.print()" class="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 text-xs font-semibold flex items-center gap-1.5">
+                            <button onclick="window.print()"
+                                class="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 text-xs font-semibold flex items-center gap-1.5">
                                 <i class="fa-solid fa-print"></i> In trang này
                             </button>
-                            <button onclick="exitToSetup()" class="px-3 py-1.5 rounded-lg bg-slate-200 dark:bg-slate-700 hover:bg-slate-300 text-xs font-bold flex items-center gap-1.5">
+                            <button onclick="exitToSetup()"
+                                class="px-3 py-1.5 rounded-lg bg-slate-200 dark:bg-slate-700 hover:bg-slate-300 text-xs font-bold flex items-center gap-1.5">
                                 <i class="fa-solid fa-arrow-left"></i> Về màn hình chính
                             </button>
                         </div>
@@ -685,11 +924,14 @@
             </div>
 
             <!-- WORD / DOCX A4 PAPER CONTAINER -->
-            <div class="docx-paper bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 rounded-xl border border-slate-300 dark:border-slate-700 px-6 py-8 sm:px-14 sm:py-12 mx-auto max-w-4xl">
+            <div
+                class="docx-paper bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 rounded-xl border border-slate-300 dark:border-slate-700 px-6 py-8 sm:px-14 sm:py-12 mx-auto max-w-4xl">
                 <!-- DOCX Document Header -->
                 <div class="border-b-2 border-slate-800 dark:border-slate-300 pb-4 mb-6 text-center space-y-1">
-                    <p class="text-xs sm:text-sm uppercase font-bold tracking-wider">TÀI LIỆU ÔN TẬP & HỌC THUỘC NHANH MÔN LỊCH SỬ 12 (2026 - 2027)</p>
-                    <h2 class="text-lg sm:text-2xl font-bold uppercase" id="docxPaperTitle">ĐỀ CƯƠNG LỊCH SỬ 12 - GÓI CÂU 1 ĐẾN 20</h2>
+                    <p class="text-xs sm:text-sm uppercase font-bold tracking-wider">TÀI LIỆU ÔN TẬP & HỌC THUỘC NHANH
+                        MÔN LỊCH SỬ 12 (2026 - 2027)</p>
+                    <h2 class="text-lg sm:text-2xl font-bold uppercase" id="docxPaperTitle">ĐỀ CƯƠNG LỊCH SỬ 12 - GÓI
+                        CÂU 1 ĐẾN 20</h2>
                     <p class="text-xs sm:text-sm italic text-slate-600 dark:text-slate-400" id="docxPaperSubtitle">
                         (Đáp án đúng ở Phần I và các mệnh đề Đúng ở Phần II được tô đậm để học thuộc nhanh)
                     </p>
@@ -699,14 +941,18 @@
                 <div id="docxPaperContent" class="space-y-6 text-[15px] sm:text-[16px]"></div>
 
                 <!-- Bottom Navigation inside Paper -->
-                <div class="no-print mt-10 pt-6 border-t border-slate-200 dark:border-slate-800 flex flex-wrap items-center justify-between gap-3 font-sans">
-                    <button id="docxPrevBatchBtn" onclick="navigateDocxBatch(-1)" class="px-4 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 font-bold text-xs sm:text-sm flex items-center gap-2">
+                <div
+                    class="no-print mt-10 pt-6 border-t border-slate-200 dark:border-slate-800 flex flex-wrap items-center justify-between gap-3 font-sans">
+                    <button id="docxPrevBatchBtn" onclick="navigateDocxBatch(-1)"
+                        class="px-4 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 font-bold text-xs sm:text-sm flex items-center gap-2">
                         <i class="fa-solid fa-chevron-left"></i> Gói 20 câu trước
                     </button>
-                    <button onclick="testCurrentDocxBatch()" class="px-5 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-600 text-navy-900 font-extrabold text-xs sm:text-sm shadow flex items-center gap-2">
+                    <button onclick="testCurrentDocxBatch()"
+                        class="px-5 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-600 text-navy-900 font-extrabold text-xs sm:text-sm shadow flex items-center gap-2">
                         <i class="fa-solid fa-bolt"></i> Đã thuộc! Kiểm tra trộn đề 20 câu này ngay
                     </button>
-                    <button id="docxNextBatchBtn" onclick="navigateDocxBatch(1)" class="px-4 py-2.5 rounded-xl bg-navy-800 dark:bg-amber-500 text-white dark:text-navy-900 font-bold text-xs sm:text-sm flex items-center gap-2">
+                    <button id="docxNextBatchBtn" onclick="navigateDocxBatch(1)"
+                        class="px-4 py-2.5 rounded-xl bg-navy-800 dark:bg-amber-500 text-white dark:text-navy-900 font-bold text-xs sm:text-sm flex items-center gap-2">
                         Gói 20 câu tiếp theo <i class="fa-solid fa-chevron-right"></i>
                     </button>
                 </div>
@@ -715,13 +961,16 @@
     </main>
 
     <!-- MOBILE QUESTION PALETTE DRAWER -->
-    <div id="mobilePaletteModal" class="fixed inset-0 z-50 hidden bg-black/60 backdrop-blur-xs flex items-end sm:items-center justify-center p-0 sm:p-4">
-        <div class="bg-white dark:bg-slate-900 w-full sm:max-w-md rounded-t-3xl sm:rounded-2xl max-h-[82vh] flex flex-col p-5 shadow-2xl border border-slate-200 dark:border-slate-800">
+    <div id="mobilePaletteModal"
+        class="fixed inset-0 z-50 hidden bg-black/60 backdrop-blur-xs flex items-end sm:items-center justify-center p-0 sm:p-4">
+        <div
+            class="bg-white dark:bg-slate-900 w-full sm:max-w-md rounded-t-3xl sm:rounded-2xl max-h-[82vh] flex flex-col p-5 shadow-2xl border border-slate-200 dark:border-slate-800">
             <div class="flex items-center justify-between pb-3 border-b border-slate-200 dark:border-slate-800">
                 <h4 class="font-bold text-base flex items-center gap-2">
                     <i class="fa-solid fa-table-cells text-amber-500"></i> Danh sách câu hỏi
                 </h4>
-                <button onclick="toggleMobilePalette()" class="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center">
+                <button onclick="toggleMobilePalette()"
+                    class="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center">
                     <i class="fa-solid fa-xmark"></i>
                 </button>
             </div>
@@ -736,10 +985,12 @@
                 </div>
             </div>
             <div class="pt-3 border-t border-slate-200 dark:border-slate-800 flex gap-2">
-                <button onclick="toggleMobilePalette(); openSubmitModal();" class="flex-1 py-2.5 rounded-xl bg-amber-500 text-navy-900 font-bold text-sm">
+                <button onclick="toggleMobilePalette(); openSubmitModal();"
+                    class="flex-1 py-2.5 rounded-xl bg-amber-500 text-navy-900 font-bold text-sm">
                     Nộp bài ngay
                 </button>
-                <button onclick="toggleMobilePalette()" class="px-4 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 font-semibold text-sm">
+                <button onclick="toggleMobilePalette()"
+                    class="px-4 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 font-semibold text-sm">
                     Đóng
                 </button>
             </div>
@@ -747,23 +998,32 @@
     </div>
 
     <!-- CUSTOM CONFIRMATION / SUBMIT MODAL -->
-    <div id="customModal" class="fixed inset-0 z-50 hidden bg-black/60 backdrop-blur-xs flex items-center justify-center p-4">
-        <div class="bg-white dark:bg-slate-900 rounded-2xl max-w-md w-full p-6 shadow-2xl border border-slate-200 dark:border-slate-800 space-y-4 transform transition-all">
+    <div id="customModal"
+        class="fixed inset-0 z-50 hidden bg-black/60 backdrop-blur-xs flex items-center justify-center p-4">
+        <div
+            class="bg-white dark:bg-slate-900 rounded-2xl max-w-md w-full p-6 shadow-2xl border border-slate-200 dark:border-slate-800 space-y-4 transform transition-all">
             <div class="flex items-center gap-3">
-                <div id="modalIconBox" class="w-11 h-11 rounded-2xl bg-amber-500/20 text-amber-500 flex items-center justify-center text-xl shrink-0">
+                <div id="modalIconBox"
+                    class="w-11 h-11 rounded-2xl bg-amber-500/20 text-amber-500 flex items-center justify-center text-xl shrink-0">
                     <i class="fa-solid fa-circle-question"></i>
                 </div>
                 <div>
-                    <h3 id="modalTitle" class="font-extrabold text-lg text-slate-900 dark:text-white">Xác nhận nộp bài</h3>
-                    <p id="modalSubtitle" class="text-xs text-slate-500 dark:text-slate-400">Kiểm tra kỹ trước khi kết thúc bài thi</p>
+                    <h3 id="modalTitle" class="font-extrabold text-lg text-slate-900 dark:text-white">Xác nhận nộp bài
+                    </h3>
+                    <p id="modalSubtitle" class="text-xs text-slate-500 dark:text-slate-400">Kiểm tra kỹ trước khi kết
+                        thúc bài thi</p>
                 </div>
             </div>
-            <div id="modalBody" class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed bg-slate-50 dark:bg-slate-800/60 p-4 rounded-xl border border-slate-200 dark:border-slate-700"></div>
+            <div id="modalBody"
+                class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed bg-slate-50 dark:bg-slate-800/60 p-4 rounded-xl border border-slate-200 dark:border-slate-700">
+            </div>
             <div class="flex items-center justify-end gap-3 pt-2">
-                <button id="modalCancelBtn" onclick="closeCustomModal()" class="px-4 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-semibold text-sm transition">
+                <button id="modalCancelBtn" onclick="closeCustomModal()"
+                    class="px-4 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-semibold text-sm transition">
                     Quay lại làm tiếp
                 </button>
-                <button id="modalConfirmBtn" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-navy-900 font-bold text-sm shadow transition">
+                <button id="modalConfirmBtn"
+                    class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-navy-900 font-bold text-sm shadow transition">
                     Đồng ý
                 </button>
             </div>
@@ -1334,10 +1594,9 @@
             // Thêm nút "Không làm Phần I (Chỉ làm Phần II)" nếu muốn
             const isNoneP1 = (batchConfig.p1Start === 0 && batchConfig.p1End === 0);
             htmlP1 += `
-                <button type="button" onclick="selectBatchP1Range(0, 0)" class="${
-                    isNoneP1
-                        ? 'px-3 py-2 rounded-xl text-xs font-extrabold bg-rose-600 text-white'
-                        : 'px-3 py-2 rounded-xl text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-500 border border-slate-200 dark:border-slate-700'
+                <button type="button" onclick="selectBatchP1Range(0, 0)" class="${isNoneP1
+                    ? 'px-3 py-2 rounded-xl text-xs font-extrabold bg-rose-600 text-white'
+                    : 'px-3 py-2 rounded-xl text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-500 border border-slate-200 dark:border-slate-700'
                 } transition">
                     Bỏ qua Phần I
                 </button>
@@ -1356,10 +1615,9 @@
             containerP2.innerHTML = p2Options.filter(o => !o.hide).map(opt => {
                 const active = batchConfig.p2RangeKey === opt.key;
                 return `
-                    <button type="button" onclick="selectBatchP2Range('${opt.key}')" class="${
-                        active
-                            ? 'px-3 py-1.5 rounded-xl text-xs font-extrabold bg-amber-500 text-navy-900 border-2 border-amber-600 shadow-2xs'
-                            : 'px-3 py-1.5 rounded-xl text-xs font-semibold bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border border-slate-300 dark:border-slate-700 hover:border-amber-500'
+                    <button type="button" onclick="selectBatchP2Range('${opt.key}')" class="${active
+                        ? 'px-3 py-1.5 rounded-xl text-xs font-extrabold bg-amber-500 text-navy-900 border-2 border-amber-600 shadow-2xs'
+                        : 'px-3 py-1.5 rounded-xl text-xs font-semibold bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border border-slate-300 dark:border-slate-700 hover:border-amber-500'
                     } transition">
                         ${opt.label}
                     </button>
@@ -1608,11 +1866,10 @@
                 const isCurrent = (batchConfig.p1Start === start && batchConfig.p1End === end);
                 html += `
                     <button type="button" onclick="switchBatchDuringExam(${start}, ${end})"
-                        class="px-2.5 py-1 rounded-lg text-xs font-bold transition ${
-                            isCurrent
-                                ? 'bg-amber-500 text-navy-900 font-extrabold shadow-2xs'
-                                : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-amber-500/20'
-                        }">
+                        class="px-2.5 py-1 rounded-lg text-xs font-bold transition ${isCurrent
+                        ? 'bg-amber-500 text-navy-900 font-extrabold shadow-2xs'
+                        : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-amber-500/20'
+                    }">
                         Câu ${start}–${end}
                     </button>
                 `;
@@ -1765,11 +2022,10 @@
 
                 const card = document.createElement('div');
                 card.id = `question_p1_${qIndex}`;
-                card.className = `scroll-mt-24 rounded-2xl border p-4 sm:p-5 transition ${
-                    isSubmitted
+                card.className = `scroll-mt-24 rounded-2xl border p-4 sm:p-5 transition ${isSubmitted
                         ? (isQuestionCorrect ? 'border-emerald-500/40 bg-white dark:bg-slate-900' : 'border-rose-500/40 bg-white dark:bg-slate-900')
                         : 'border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-slate-300 dark:hover:border-slate-700'
-                }`;
+                    }`;
 
                 card.innerHTML = `
                     <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
@@ -1784,11 +2040,10 @@
                         <div class="flex items-center gap-2">
                             ${statusBadgeHTML}
                             <button type="button" onclick="toggleFlag('p1', ${qIndex})"
-                                class="px-2.5 py-1 rounded-lg text-xs font-semibold border transition flex items-center gap-1 ${
-                                    isFlagged
-                                        ? 'bg-rose-500/15 text-rose-600 dark:text-rose-400 border-rose-500/40'
-                                        : 'bg-slate-100 dark:bg-slate-800 text-slate-500 border-slate-200 dark:border-slate-700 hover:text-rose-500'
-                                }" title="Đánh dấu xem lại">
+                                class="px-2.5 py-1 rounded-lg text-xs font-semibold border transition flex items-center gap-1 ${isFlagged
+                        ? 'bg-rose-500/15 text-rose-600 dark:text-rose-400 border-rose-500/40'
+                        : 'bg-slate-100 dark:bg-slate-800 text-slate-500 border-slate-200 dark:border-slate-700 hover:text-rose-500'
+                    }" title="Đánh dấu xem lại">
                                 <i class="fa-${isFlagged ? 'solid' : 'regular'} fa-flag"></i>
                                 <span class="hidden sm:inline">${isFlagged ? 'Đã đánh dấu' : 'Đánh dấu'}</span>
                             </button>
@@ -1878,10 +2133,9 @@
                     }
 
                     return `
-                        <div class="p-3.5 rounded-xl border ${
-                            isSubmitted
-                                ? (isSubCorrect ? 'border-emerald-500/40 bg-emerald-50/30 dark:bg-emerald-950/15' : 'border-rose-500/40 bg-rose-50/30 dark:bg-rose-950/15')
-                                : (isBoldStatement ? 'border-amber-500/45 bg-amber-50/40 dark:bg-amber-950/20' : 'border-slate-200 dark:border-slate-700/80 bg-slate-50/60 dark:bg-slate-800/40')
+                        <div class="p-3.5 rounded-xl border ${isSubmitted
+                            ? (isSubCorrect ? 'border-emerald-500/40 bg-emerald-50/30 dark:bg-emerald-950/15' : 'border-rose-500/40 bg-rose-50/30 dark:bg-rose-950/15')
+                            : (isBoldStatement ? 'border-amber-500/45 bg-amber-50/40 dark:bg-amber-950/20' : 'border-slate-200 dark:border-slate-700/80 bg-slate-50/60 dark:bg-slate-800/40')
                         } flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                             <div class="space-y-1 flex-1">
                                 <div class="text-sm leading-relaxed">
@@ -1908,11 +2162,10 @@
 
                 const card = document.createElement('div');
                 card.id = `question_p2_${qIndex}`;
-                card.className = `scroll-mt-24 rounded-2xl border p-4 sm:p-6 bg-white dark:bg-slate-900 transition ${
-                    isSubmitted
+                card.className = `scroll-mt-24 rounded-2xl border p-4 sm:p-6 bg-white dark:bg-slate-900 transition ${isSubmitted
                         ? (correctSubCount === 4 ? 'border-emerald-500/50' : 'border-amber-500/50')
                         : 'border-slate-200 dark:border-slate-800'
-                }`;
+                    }`;
 
                 card.innerHTML = `
                     <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
@@ -1927,11 +2180,10 @@
                         <div class="flex items-center gap-2">
                             ${scoreBadgeHTML}
                             <button type="button" onclick="toggleFlag('p2', ${qIndex})"
-                                class="px-2.5 py-1 rounded-lg text-xs font-semibold border transition flex items-center gap-1 ${
-                                    isFlagged
-                                        ? 'bg-rose-500/15 text-rose-600 dark:text-rose-400 border-rose-500/40'
-                                        : 'bg-slate-100 dark:bg-slate-800 text-slate-500 border-slate-200 dark:border-slate-700 hover:text-rose-500'
-                                }">
+                                class="px-2.5 py-1 rounded-lg text-xs font-semibold border transition flex items-center gap-1 ${isFlagged
+                        ? 'bg-rose-500/15 text-rose-600 dark:text-rose-400 border-rose-500/40'
+                        : 'bg-slate-100 dark:bg-slate-800 text-slate-500 border-slate-200 dark:border-slate-700 hover:text-rose-500'
+                    }">
                                 <i class="fa-${isFlagged ? 'solid' : 'regular'} fa-flag"></i>
                                 <span class="hidden sm:inline">${isFlagged ? 'Đã đánh dấu' : 'Đánh dấu'}</span>
                             </button>
@@ -2003,11 +2255,10 @@
                 const active = (docxState.p1Start === start && docxState.p1End === end);
                 htmlP1 += `
                     <button type="button" onclick="selectDocxBatchP1(${start}, ${end})"
-                        class="px-3 py-1.5 rounded-xl text-xs font-bold transition ${
-                            active
-                                ? 'bg-navy-800 text-white dark:bg-amber-500 dark:text-navy-900 shadow-xs'
-                                : 'bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:border-amber-500 border border-slate-200 dark:border-slate-700'
-                        }">
+                        class="px-3 py-1.5 rounded-xl text-xs font-bold transition ${active
+                        ? 'bg-navy-800 text-white dark:bg-amber-500 dark:text-navy-900 shadow-xs'
+                        : 'bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:border-amber-500 border border-slate-200 dark:border-slate-700'
+                    }">
                         Câu ${start} – ${end}
                     </button>
                 `;
@@ -2015,11 +2266,10 @@
             const isAllP1 = (docxState.p1Start === 1 && docxState.p1End === totalP1 && totalP1 > 20);
             htmlP1 += `
                 <button type="button" onclick="selectDocxBatchP1(1, ${totalP1})"
-                    class="px-3 py-1.5 rounded-xl text-xs font-bold transition ${
-                        isAllP1
-                            ? 'bg-navy-800 text-white dark:bg-amber-500 dark:text-navy-900'
-                            : 'bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700'
-                    }">
+                    class="px-3 py-1.5 rounded-xl text-xs font-bold transition ${isAllP1
+                    ? 'bg-navy-800 text-white dark:bg-amber-500 dark:text-navy-900'
+                    : 'bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700'
+                }">
                     Tất cả (${totalP1} câu)
                 </button>
             `;
@@ -2038,11 +2288,10 @@
                 const active = docxState.p2Mode === m.key;
                 return `
                     <button type="button" onclick="selectDocxBatchP2('${m.key}')"
-                        class="px-2.5 py-1 rounded-lg text-xs font-bold transition ${
-                            active
-                                ? 'bg-amber-500 text-navy-900'
-                                : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300'
-                        }">
+                        class="px-2.5 py-1 rounded-lg text-xs font-bold transition ${active
+                        ? 'bg-amber-500 text-navy-900'
+                        : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300'
+                    }">
                         ${m.label}
                     </button>
                 `;
@@ -2521,6 +2770,26 @@
             renderAllQuestions();
             renderQuestionPalette();
             window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            // 🔥 Gửi điểm lên Firebase (retry nếu module chưa load)
+            (function() {
+                const sc = scaledScore10, tm = examState.elapsedSeconds;
+                if (typeof window.hubSubmitScore === 'function') {
+                    window.hubSubmitScore(sc, tm);
+                } else {
+                    let tries = 0;
+                    const iv = setInterval(function() {
+                        tries++;
+                        if (typeof window.hubSubmitScore === 'function') {
+                            clearInterval(iv);
+                            window.hubSubmitScore(sc, tm);
+                        } else if (tries > 20) {
+                            clearInterval(iv);
+                            console.warn('[Hub] hubSubmitScore not available after 10s');
+                        }
+                    }, 500);
+                }
+            })();
         }
 
         function setReviewFilter(filterType) {
@@ -2623,5 +2892,249 @@
             selectExamMode('batch');
         });
     </script>
+
+<!-- ========== FIREBASE HUB – LICHSU ========== -->
+
+<!-- POPUP NHẬP TÊN -->
+<div id="hub-name-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.75);z-index:10000;align-items:center;justify-content:center;padding:16px;">
+  <div style="background:linear-gradient(135deg,#78350f 0%,#92400e 100%);color:#fef3c7;padding:28px 24px;border-radius:18px;width:340px;max-width:calc(100vw - 32px);text-align:center;border:1px solid #f59e0b;box-shadow:0 20px 60px rgba(0,0,0,0.6);font-family:system-ui,sans-serif;">
+    <div style="width:52px;height:52px;background:linear-gradient(135deg,#f59e0b,#d97706);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:24px;margin:0 auto 14px;">📜</div>
+    <h3 style="margin:0 0 6px;font-size:18px;font-weight:800;color:#fde68a;">Chào mừng bạn!</h3>
+    <p style="font-size:13px;color:#fcd34d;margin-bottom:18px;line-height:1.5;">Nhập tên / biệt danh để bắt đầu kiểm tra<br>và tranh hạng <strong style="color:#fbbf24;">Top 30 LỊCH SỬ 12 🏆</strong></p>
+    <input type="text" id="hub-name-input" placeholder="Ví dụ: th4nhphvc" maxlength="20"
+      style="width:100%;box-sizing:border-box;padding:11px 14px;border-radius:10px;border:1.5px solid #f59e0b;background:rgba(0,0,0,0.3);color:#fef3c7;font-size:14px;outline:none;margin-bottom:14px;font-family:inherit;" />
+    <button id="hub-start-btn" style="width:100%;padding:12px;border-radius:10px;border:none;background:linear-gradient(135deg,#f59e0b,#d97706);color:#fff;font-weight:800;font-size:15px;cursor:pointer;">
+      Vào làm bài 🚀
+    </button>
+  </div>
+</div>
+
+<!-- MODAL BẢNG XẾP HẠNG (TOP 30) -->
+<div id="hub-lb-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:9999;align-items:center;justify-content:center;padding:16px;">
+  <div style="background:linear-gradient(160deg,#78350f 0%,#92400e 100%);color:#fef3c7;border-radius:18px;width:100%;max-width:440px;max-height:85vh;display:flex;flex-direction:column;border:1px solid rgba(245,158,11,0.4);box-shadow:0 24px 60px rgba(0,0,0,0.6);font-family:system-ui,sans-serif;overflow:hidden;">
+    <!-- Modal Header -->
+    <div style="padding:16px 20px;background:rgba(0,0,0,0.3);border-bottom:1px solid rgba(245,158,11,0.2);display:flex;align-items:center;justify-content:space-between;flex-shrink:0;">
+      <div>
+        <div style="font-weight:800;font-size:16px;color:#fbbf24;">🏆 BẢNG VÀNG – LỊCH SỬ 12</div>
+        <div style="font-size:12px;color:#fcd34d;margin-top:3px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+          <span>🟢 Online: <strong id="hub-online-count" style="color:#fde68a;">1</strong></span>
+          <span style="color:rgba(200,200,200,0.4);">·</span>
+          <span>👤 <span id="hub-user-display" style="color:#fbbf24;font-weight:700;">Chưa đặt tên</span></span>
+          <button onclick="openNameModal()" style="background:rgba(245,158,11,0.2);border:1px solid rgba(245,158,11,0.4);color:#fde68a;border-radius:5px;padding:1px 7px;cursor:pointer;font-size:11px;">✏️ Đổi tên</button>
+        </div>
+      </div>
+      <button onclick="document.getElementById('hub-lb-modal').style.display='none'" style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);color:#fcd34d;border-radius:8px;padding:6px 12px;cursor:pointer;font-size:14px;font-weight:700;flex-shrink:0;margin-left:12px;">✕</button>
+    </div>
+    <!-- Cột tiêu đề -->
+    <div style="padding:7px 20px;background:rgba(0,0,0,0.2);display:flex;justify-content:space-between;font-size:11px;color:rgba(200,200,200,0.5);font-weight:600;letter-spacing:.5px;border-bottom:1px solid rgba(245,158,11,0.1);flex-shrink:0;">
+      <span>HẠNG · THÍ SINH</span><span>ĐIỂM · THỜI GIAN</span>
+    </div>
+    <!-- Danh sách Top 30 -->
+    <div id="hub-leaderboard" style="overflow-y:auto;padding:10px 14px;flex:1;">
+      <div style="color:rgba(200,200,200,0.5);text-align:center;padding:24px 0;font-size:13px;">⏳ Đang tải bảng xếp hạng...</div>
+    </div>
+  </div>
+</div>
+
+<style>
+#hub-leaderboard::-webkit-scrollbar{width:5px;}
+#hub-leaderboard::-webkit-scrollbar-track{background:rgba(0,0,0,0.2);}
+#hub-leaderboard::-webkit-scrollbar-thumb{background:#f59e0b;border-radius:4px;}
+#hub-name-input:focus{border-color:#fde68a;box-shadow:0 0 0 3px rgba(245,158,11,0.2);}
+</style>
+
+<!-- FIREBASE LOGIC -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+  import { getDatabase, ref, onValue, push, onDisconnect, set, get, update } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+
+  const firebaseConfig = { databaseURL: "https://ontap-hub-default-rtdb.asia-southeast1.firebasedatabase.app/" };
+  const PAGE_ID = "lichsu";
+  const hexRgb = "245,158,11";
+  const rowMe = "rgba(245,158,11,0.18)";
+  const meColor = "#fcd34d";
+  const meBg = "rgba(245,158,11,0.25)";
+  const nc = ["#fbbf24","#e2e8f0","#fb923c","#fde68a"];
+
+  const app = initializeApp(firebaseConfig, "hub-" + PAGE_ID);
+  const db = getDatabase(app);
+
+  function formatTime(s) {
+    const sec = Math.max(1, Math.round(Number(s) || 0));
+    const m = Math.floor(sec / 60), r = sec % 60;
+    return m > 0 ? `${m}p${r < 10 ? "0" : ""}${r}s` : `${sec}s`;
+  }
+
+  // Đóng modal khi bấm ra ngoài nền đen
+  document.getElementById("hub-lb-modal").addEventListener("click", function(e) {
+    if (e.target === this) this.style.display = "none";
+  });
+  document.getElementById("hub-name-modal").addEventListener("click", function(e) {
+    if (e.target === this && localStorage.getItem("quiz_username")) this.style.display = "none";
+  });
+
+  // Device ID định danh máy
+  let deviceId = localStorage.getItem("quiz_device_id");
+  if (!deviceId) {
+    deviceId = "u_" + Math.random().toString(36).substring(2, 9) + "_" + Date.now();
+    localStorage.setItem("quiz_device_id", deviceId);
+  }
+
+  // Quản lý tên hiển thị
+  const modal = document.getElementById("hub-name-modal");
+  const nameInput = document.getElementById("hub-name-input");
+  const startBtn = document.getElementById("hub-start-btn");
+
+  let currentName = localStorage.getItem("quiz_username") || "";
+
+  function updateUserNameDisplays(name) {
+    const d1 = document.getElementById("hub-user-display");
+    if (d1) d1.textContent = name || "Chưa đặt tên";
+    const d2 = document.getElementById("header-user-display");
+    if (d2) d2.textContent = name || "Chưa đặt tên";
+  }
+
+  window.openNameModal = function() {
+    nameInput.value = currentName;
+    modal.style.display = "flex";
+    setTimeout(() => nameInput.focus(), 120);
+  };
+
+  if (!currentName) {
+    modal.style.display = "flex";
+    setTimeout(() => nameInput.focus(), 150);
+  } else {
+    updateUserNameDisplays(currentName);
+  }
+
+  async function saveUsername(name) {
+    const n = name.trim();
+    if (!n) {
+      nameInput.style.borderColor = "#f87171";
+      nameInput.focus();
+      return;
+    }
+    localStorage.setItem("quiz_username", n);
+    currentName = n;
+    updateUserNameDisplays(n);
+    modal.style.display = "none";
+    try {
+      const userRef = ref(db, `leaderboards/${PAGE_ID}/${deviceId}`);
+      const snap = await get(userRef);
+      if (snap.exists()) await update(userRef, { name: n });
+    } catch (err) {
+      console.warn('[Hub] update name error:', err);
+    }
+  }
+
+  startBtn.addEventListener("click", () => saveUsername(nameInput.value));
+  nameInput.addEventListener("keydown", e => { if (e.key === "Enter") saveUsername(nameInput.value); });
+
+  // Online count
+  const connRef = ref(db, ".info/connected");
+  const onlineRef = ref(db, "online_users");
+  onValue(connRef, snap => {
+    if (snap.val() === true) {
+      const myRef = push(onlineRef);
+      onDisconnect(myRef).remove();
+      set(myRef, { page: PAGE_ID, ts: Date.now() });
+    }
+  });
+  onValue(onlineRef, snap => {
+    const count = snap.exists() ? Object.keys(snap.val()).length : 1;
+    const c1 = document.getElementById("hub-online-count");
+    if (c1) c1.textContent = count;
+    const c2 = document.getElementById("header-online-count");
+    if (c2) c2.textContent = count;
+  });
+
+  // Nộp điểm lên Bảng xếp hạng
+  window.hubSubmitScore = async function(score, timeSeconds) {
+    try {
+      const name = localStorage.getItem("quiz_username") || "Ẩn danh";
+      const sc = Number(score) || 0, t = Math.max(1, Math.round(Number(timeSeconds) || 0));
+      console.log(`[Hub] Submitting: name=${name}, score=${sc}, time=${t}s, page=${PAGE_ID}`);
+      const userRef = ref(db, `leaderboards/${PAGE_ID}/${deviceId}`);
+      const snap = await get(userRef);
+      let shouldWrite = !snap.exists();
+      if (!shouldWrite) {
+        const old = snap.val();
+        if (sc > Number(old.score) || (sc === Number(old.score) && t < Number(old.time ?? 999999))) shouldWrite = true;
+        else console.log(`[Hub] Score not better: old=${old.score}đ/${old.time}s, new=${sc}đ/${t}s`);
+      }
+      if (shouldWrite) {
+        await set(userRef, { name, score: sc, time: t, updatedAt: Date.now() });
+        console.log(`[Hub] ✅ Score saved! ${sc}đ in ${t}s`);
+      }
+    } catch (err) {
+      console.error('[Hub] ❌ Error submitting score:', err);
+    }
+  };
+
+  // Mở modal & reload bảng xếp hạng
+  window.openLeaderboard = function() {
+    const m = document.getElementById("hub-lb-modal");
+    if (m) m.style.display = "flex";
+    window.hubReloadLeaderboard();
+  };
+
+  // Reload thủ công
+  window.hubReloadLeaderboard = function() {
+    const el = document.getElementById("hub-leaderboard");
+    if (el) el.innerHTML = `<div style="color:rgba(200,200,200,0.5);text-align:center;padding:16px 0;font-size:13px;">⏳ Đang tải...</div>`;
+    get(ref(db, `leaderboards/${PAGE_ID}`)).then(snap => {
+      renderLeaderboard(snap);
+    }).catch(err => {
+      console.error('[Hub] reload error:', err);
+      if (el) el.innerHTML = `<div style="color:#f87171;text-align:center;padding:16px 0;font-size:13px;">Lỗi tải dữ liệu</div>`;
+    });
+  };
+
+  function renderLeaderboard(snap) {
+    const el = document.getElementById("hub-leaderboard");
+    if (!el) return;
+    if (!snap || !snap.exists()) {
+      el.innerHTML = `<div style="color:rgba(200,200,200,0.5);text-align:center;padding:24px 0;font-size:13px;">Chưa có ai lên bảng vàng!</div>`;
+      return;
+    }
+    const players = [];
+    snap.forEach(c => {
+      const v = c.val();
+      if (v && typeof v === "object") {
+        players.push({
+          id: c.key,
+          name: v.name || "Ẩn danh",
+          score: Number(v.score) || 0,
+          time: Number(v.time) || 0
+        });
+      }
+    });
+    players.sort((a, b) => b.score !== a.score ? b.score - a.score : (a.time || 999999) - (b.time || 999999));
+    el.innerHTML = players.slice(0, 30).map((p, i) => {
+      const isMe = p.id === deviceId;
+      const badges = ["🥇", "🥈", "🥉"];
+      const badge = i < 3 ? `<span style="font-size:16px;">${badges[i]}</span>` : `<span style="color:rgba(200,200,200,0.5);font-size:12px;font-weight:700;min-width:22px;text-align:center;display:inline-block;">${i+1}</span>`;
+      const color = nc[Math.min(i, 3)];
+      const bg = isMe ? `background:${rowMe};border-radius:8px;` : "";
+      const meTag = isMe ? `<span style="color:${meColor};font-size:9px;font-weight:800;background:${meBg};padding:1px 6px;border-radius:4px;margin-left:5px;">BẠN</span>` : "";
+      return `<div style="display:flex;align-items:center;justify-content:space-between;padding:7px 8px;margin-bottom:2px;${bg}border-bottom:1px solid rgba(${hexRgb},0.1);">
+        <div style="display:flex;align-items:center;gap:7px;min-width:0;flex:1;overflow:hidden;">
+          <span style="min-width:24px;text-align:center;flex-shrink:0;">${badge}</span>
+          <span style="color:${color};font-weight:${i<3?700:500};white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:13px;">${p.name}</span>${meTag}
+        </div>
+        <div style="white-space:nowrap;flex-shrink:0;text-align:right;margin-left:8px;">
+          <span style="color:#f87171;font-weight:700;font-size:13px;">${p.score.toFixed(1)}đ</span>
+          <span style="color:#60a5fa;font-size:11px;margin-left:5px;">⏱${formatTime(p.time)}</span>
+        </div>
+      </div>`;
+    }).join("");
+  }
+
+  // Real-time listener
+  onValue(ref(db, `leaderboards/${PAGE_ID}`), snap => {
+    renderLeaderboard(snap);
+  });
+</script>
 </body>
+
 </html>
