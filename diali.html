@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="vi" class="scroll-smooth">
+
 <head>
+    <!-- No-cache: luôn tải bản mới nhất trên mọi trình duyệt / thiết bị -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kiểm Tra Trắc Nghiệm Địa Lí 12 - Chuẩn Cấu Trúc Bộ GD&ĐT 2026</title>
@@ -9,7 +14,9 @@
     <!-- Google Fonts: Inter &Plus Jakarta Sans & JetBrains Mono -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap"
+        rel="stylesheet">
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <script>
@@ -48,16 +55,20 @@
             width: 8px;
             height: 8px;
         }
+
         ::-webkit-scrollbar-track {
             background: rgba(0, 0, 0, 0.04);
         }
+
         ::-webkit-scrollbar-thumb {
             background: #10b981;
             border-radius: 9999px;
         }
+
         .dark ::-webkit-scrollbar-thumb {
             background: #059669;
         }
+
         /* Topographic subtle background pattern */
         .topo-pattern {
             background-color: #064e3b;
@@ -65,13 +76,23 @@
             background-size: 32px 32px;
             background-position: 0 0, 16px 16px;
         }
+
         @keyframes pulse-fast {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.45; }
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.45;
+            }
         }
+
         .timer-warning {
             animation: pulse-fast 1.2s infinite;
         }
+
         /* Underline highlight style matching the original docx */
         .correct-underline {
             text-decoration: underline;
@@ -79,64 +100,82 @@
             text-underline-offset: 4px;
             text-decoration-color: #059669;
         }
+
         .dark .correct-underline {
             text-decoration-color: #34d399;
         }
     </style>
 </head>
-<body class="bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 min-h-screen flex flex-col transition-colors duration-200">
+
+<body
+    class="bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 min-h-screen flex flex-col transition-colors duration-200">
 
     <!-- STICKY HEADER -->
     <header class="sticky top-0 z-40 topo-pattern text-white shadow-lg border-b border-emerald-400/30">
         <div class="max-w-7xl mx-auto px-3 sm:px-6 h-16 flex items-center justify-between gap-2">
             <!-- Brand / Title -->
             <div class="flex items-center gap-3">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-400 to-teal-600 flex items-center justify-center text-geo-950 font-extrabold text-lg shadow-md shrink-0">
+                <div
+                    class="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-400 to-teal-600 flex items-center justify-center text-geo-950 font-extrabold text-lg shadow-md shrink-0">
                     <i class="fa-solid fa-earth-asia"></i>
                 </div>
                 <div>
                     <div class="flex items-center gap-2">
-                        <h1 class="font-bold text-sm sm:text-base tracking-tight text-white line-clamp-1">ĐỊA LÍ 12 - ÔN TẬP GIỮA KỲ 1 (2026 - 2027)</h1>
-                        <span class="hidden md:inline-block text-[11px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-full bg-emerald-400/20 text-emerald-200 border border-emerald-400/30">Chuẩn Bộ GD&ĐT 2026</span>
+                        <h1 class="font-bold text-sm sm:text-base tracking-tight text-white line-clamp-1">ĐỊA LÍ 12 - ÔN
+                            TẬP GIỮA KỲ 1 (2026 - 2027)</h1>
+                        <span
+                            class="hidden md:inline-block text-[11px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-full bg-emerald-400/20 text-emerald-200 border border-emerald-400/30">Chuẩn
+                            Bộ GD&ĐT 2026</span>
                     </div>
-                    <p class="text-xs text-emerald-100/80 line-clamp-1">Đảo câu hỏi • Đảo A, B, C, D • Có Đúng/Sai & Trả lời ngắn</p>
+                    <p class="text-xs text-emerald-100/80 line-clamp-1">Đảo câu hỏi • Đảo A, B, C, D • Có Đúng/Sai & Trả
+                        lời ngắn</p>
                 </div>
             </div>
 
             <!-- Active Exam Controls (Hidden on Setup Screen) -->
             <div id="examHeaderControls" class="hidden items-center gap-2 sm:gap-3">
                 <!-- Progress Pill -->
-                <div class="hidden xl:flex items-center gap-2 bg-white/10 px-3 py-1.5 rounded-xl text-xs font-medium border border-white/10">
+                <div
+                    class="hidden xl:flex items-center gap-2 bg-white/10 px-3 py-1.5 rounded-xl text-xs font-medium border border-white/10">
                     <i class="fa-solid fa-compass text-emerald-300"></i>
                     <span>Tiến độ: <strong id="headerProgressText" class="text-emerald-300">0/28</strong></span>
                 </div>
 
                 <!-- Countdown Timer -->
-                <div id="timerContainer" class="flex items-center gap-2 bg-slate-950/60 border border-emerald-400/40 px-3 py-1.5 rounded-xl font-mono font-bold text-sm sm:text-base text-emerald-300 shadow-inner">
+                <div id="timerContainer"
+                    class="flex items-center gap-2 bg-slate-950/60 border border-emerald-400/40 px-3 py-1.5 rounded-xl font-mono font-bold text-sm sm:text-base text-emerald-300 shadow-inner">
                     <i class="fa-regular fa-clock"></i>
                     <span id="timerDisplay">45:00</span>
                 </div>
 
                 <!-- Mini Calculator Button -->
-                <button onclick="toggleCalculator()" class="p-2 sm:px-3 sm:py-2 rounded-xl bg-white/10 hover:bg-white/20 text-emerald-200 text-xs sm:text-sm font-semibold flex items-center gap-1.5 transition" title="Máy tính bỏ túi tính bảng số liệu">
+                <button onclick="toggleCalculator()"
+                    class="p-2 sm:px-3 sm:py-2 rounded-xl bg-white/10 hover:bg-white/20 text-emerald-200 text-xs sm:text-sm font-semibold flex items-center gap-1.5 transition"
+                    title="Máy tính bỏ túi tính bảng số liệu">
                     <i class="fa-solid fa-calculator"></i>
                     <span class="hidden md:inline">Máy tính</span>
                 </button>
 
                 <!-- Mobile Palette Button -->
-                <button onclick="toggleMobilePalette()" class="lg:hidden p-2 rounded-xl bg-white/10 hover:bg-white/20 text-white relative" title="Bảng câu hỏi">
+                <button onclick="toggleMobilePalette()"
+                    class="lg:hidden p-2 rounded-xl bg-white/10 hover:bg-white/20 text-white relative"
+                    title="Bảng câu hỏi">
                     <i class="fa-solid fa-table-cells"></i>
-                    <span id="mobileProgressBadge" class="absolute -top-1 -right-1 bg-emerald-400 text-geo-950 text-[10px] font-bold px-1.5 rounded-full">0</span>
+                    <span id="mobileProgressBadge"
+                        class="absolute -top-1 -right-1 bg-emerald-400 text-geo-950 text-[10px] font-bold px-1.5 rounded-full">0</span>
                 </button>
 
                 <!-- Re-shuffle / New Exam Button -->
-                <button onclick="confirmReshuffle()" class="hidden sm:flex items-center gap-1.5 bg-white/10 hover:bg-white/20 text-white text-xs sm:text-sm font-medium px-3 py-2 rounded-xl transition" title="Tạo đề mới đảo câu hỏi và đáp án">
+                <button onclick="confirmReshuffle()"
+                    class="hidden sm:flex items-center gap-1.5 bg-white/10 hover:bg-white/20 text-white text-xs sm:text-sm font-medium px-3 py-2 rounded-xl transition"
+                    title="Tạo đề mới đảo câu hỏi và đáp án">
                     <i class="fa-solid fa-shuffle text-emerald-300"></i>
                     <span class="hidden md:inline">Đảo đề mới</span>
                 </button>
 
                 <!-- Submit Exam Button -->
-                <button id="headerSubmitBtn" onclick="openSubmitModal()" class="flex items-center gap-1.5 bg-gradient-to-r from-emerald-400 to-teal-500 hover:from-emerald-500 hover:to-teal-600 text-geo-950 font-extrabold text-xs sm:text-sm px-3.5 py-2 rounded-xl shadow-md transition transform active:scale-95">
+                <button id="headerSubmitBtn" onclick="openSubmitModal()"
+                    class="flex items-center gap-1.5 bg-gradient-to-r from-emerald-400 to-teal-500 hover:from-emerald-500 hover:to-teal-600 text-geo-950 font-extrabold text-xs sm:text-sm px-3.5 py-2 rounded-xl shadow-md transition transform active:scale-95">
                     <i class="fa-solid fa-paper-plane"></i>
                     <span>Nộp bài</span>
                 </button>
@@ -144,11 +183,39 @@
 
             <!-- Right Actions (Theme Toggle & Config Home) -->
             <div class="flex items-center gap-2">
-                <button id="backToConfigBtn" onclick="confirmExitToSetup()" class="hidden items-center gap-1.5 text-xs sm:text-sm bg-white/10 hover:bg-white/20 px-3 py-2 rounded-xl transition" title="Cấu hình đề thi">
+                <button id="backToConfigBtn" onclick="confirmExitToSetup()"
+                    class="hidden items-center gap-1.5 text-xs sm:text-sm bg-white/10 hover:bg-white/20 px-3 py-2 rounded-xl transition"
+                    title="Cấu hình đề thi">
                     <i class="fa-solid fa-sliders"></i>
                     <span class="hidden sm:inline">Cấu hình</span>
                 </button>
-                <button onclick="toggleDarkMode()" class="w-9 h-9 rounded-xl bg-white/10 hover:bg-white/20 flex items-center justify-center text-emerald-200 transition" title="Đổi giao diện Sáng/Tối">
+                
+                <!-- Online Badge -->
+                <div class="hidden md:flex items-center gap-1.5 text-xs bg-white/10 px-2.5 py-1.5 rounded-xl border border-white/10 text-emerald-200" title="Số người đang online">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                    <span><strong id="header-online-count" class="font-bold text-white">1</strong> online</span>
+                </div>
+
+                <!-- User Name / Change Name -->
+                <button id="header-name-btn" onclick="openNameModal()"
+                    class="flex items-center gap-1.5 text-xs bg-white/10 hover:bg-white/20 px-2.5 py-1.5 rounded-xl transition border border-white/10 text-amber-300 font-semibold"
+                    title="Nhấn để đổi tên hiển thị">
+                    <i class="fa-solid fa-user text-[11px]"></i>
+                    <span id="header-user-display" class="max-w-[70px] sm:max-w-[110px] truncate">Chưa đặt tên</span>
+                    <i class="fa-solid fa-pen text-[9px] opacity-70"></i>
+                </button>
+
+                <!-- Leaderboard Top 30 Button -->
+                <button onclick="document.getElementById('hub-lb-modal').style.display='flex'"
+                    class="flex items-center gap-1.5 text-xs bg-gradient-to-r from-amber-400/20 to-yellow-400/20 hover:from-amber-400/30 hover:to-yellow-400/30 border border-yellow-400/40 text-yellow-300 font-bold px-3 py-1.5 rounded-xl shadow-sm transition active:scale-95"
+                    title="Bảng xếp hạng Top 30">
+                    <i class="fa-solid fa-trophy text-yellow-400"></i>
+                    <span>Bảng XH</span>
+                </button>
+
+                <button onclick="toggleDarkMode()"
+                    class="w-9 h-9 rounded-xl bg-white/10 hover:bg-white/20 flex items-center justify-center text-emerald-200 transition"
+                    title="Đổi giao diện Sáng/Tối">
                     <i id="themeIcon" class="fa-solid fa-moon"></i>
                 </button>
             </div>
@@ -161,15 +228,22 @@
         <!-- ================= VIEW 1: SETUP & CONFIGURATION SCREEN ================= -->
         <section id="setupScreen" class="max-w-4xl mx-auto space-y-6">
             <!-- Geography Hero Banner -->
-            <div class="topo-pattern rounded-2xl p-6 sm:p-8 text-white shadow-xl border border-emerald-400/30 relative overflow-hidden">
+            <div
+                class="topo-pattern rounded-2xl p-6 sm:p-8 text-white shadow-xl border border-emerald-400/30 relative overflow-hidden">
                 <div class="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
                     <div class="space-y-3 max-w-2xl">
-                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-400/20 border border-emerald-300/30 text-emerald-200 text-xs font-semibold">
-                            <i class="fa-solid fa-map-location-dot"></i> Đề Cương Ôn Tập Giữa Kỳ 1 - Môn Địa Lí 12 (2026 - 2027)
+                        <div
+                            class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-400/20 border border-emerald-300/30 text-emerald-200 text-xs font-semibold">
+                            <i class="fa-solid fa-map-location-dot"></i> Đề Cương Ôn Tập Giữa Kỳ 1 - Môn Địa Lí 12 (2026
+                            - 2027)
                         </div>
-                        <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight">Hệ Thống Kiểm Tra Trắc Nghiệm Địa Lí 12</h2>
+                        <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight">Hệ Thống Kiểm Tra Trắc Nghiệm Địa
+                            Lí 12</h2>
                         <p class="text-emerald-100/90 text-sm sm:text-base leading-relaxed">
-                            Tích hợp đầy đủ 3 phần theo đúng định dạng đề thi mới nhất của Bộ GD&ĐT năm 2026: <strong>Phần I (4 phương án)</strong>, <strong>Phần II (Đúng/Sai)</strong> và <strong>Phần III (Trả lời ngắn tính toán số liệu)</strong>. Tự động đảo câu hỏi và đảo vị trí A, B, C, D sau mỗi lần làm.
+                            Tích hợp đầy đủ 3 phần theo đúng định dạng đề thi mới nhất của Bộ GD&ĐT năm 2026:
+                            <strong>Phần I (4 phương án)</strong>, <strong>Phần II (Đúng/Sai)</strong> và <strong>Phần
+                                III (Trả lời ngắn tính toán số liệu)</strong>. Tự động đảo câu hỏi và đảo vị trí A, B,
+                            C, D sau mỗi lần làm.
                         </p>
                     </div>
                     <div class="grid grid-cols-3 gap-2.5 shrink-0">
@@ -190,52 +264,70 @@
             </div>
 
             <!-- Configuration Card -->
-            <div class="bg-white dark:bg-slate-900 rounded-2xl shadow-md border border-slate-200 dark:border-slate-800 p-5 sm:p-7 space-y-6">
-                <h3 class="text-lg font-bold flex items-center gap-2 text-geo-800 dark:text-emerald-400 border-b border-slate-200 dark:border-slate-800 pb-3">
+            <div
+                class="bg-white dark:bg-slate-900 rounded-2xl shadow-md border border-slate-200 dark:border-slate-800 p-5 sm:p-7 space-y-6">
+                <h3
+                    class="text-lg font-bold flex items-center gap-2 text-geo-800 dark:text-emerald-400 border-b border-slate-200 dark:border-slate-800 pb-3">
                     <i class="fa-solid fa-compass-drafting"></i> Thiết Lập Cấu Trúc Đề Thi Địa Lí 12
                 </h3>
 
                 <!-- 1. Exam Mode Selection -->
                 <div class="space-y-3">
-                    <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300">1. Chọn chế độ kiểm tra:</label>
+                    <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300">1. Chọn chế độ kiểm
+                        tra:</label>
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-3.5">
                         <!-- Mode 1: Standard MOET 2026 (18 P1 + 4 P2 + 6 P3) -->
-                        <label id="modeCardStandard" onclick="selectExamMode('standard')" class="cursor-pointer rounded-2xl border-2 border-emerald-500 bg-emerald-50/50 dark:bg-emerald-950/20 p-4 transition flex flex-col justify-between gap-2">
+                        <label id="modeCardStandard" onclick="selectExamMode('standard')"
+                            class="cursor-pointer rounded-2xl border-2 border-emerald-500 bg-emerald-50/50 dark:bg-emerald-950/20 p-4 transition flex flex-col justify-between gap-2">
                             <div class="flex items-start gap-2.5">
-                                <input type="radio" name="examMode" value="standard" checked class="mt-1 accent-emerald-600 w-4 h-4">
+                                <input type="radio" name="examMode" value="standard" checked
+                                    class="mt-1 accent-emerald-600 w-4 h-4">
                                 <div>
-                                    <div class="font-bold text-slate-900 dark:text-white text-sm flex items-center gap-1.5 flex-wrap">
+                                    <div
+                                        class="font-bold text-slate-900 dark:text-white text-sm flex items-center gap-1.5 flex-wrap">
                                         <span>Đề Chuẩn Bộ GD&ĐT (28 câu)</span>
-                                        <span class="text-[10px] bg-emerald-500 text-white font-bold px-2 py-0.5 rounded-full">Mặc định</span>
+                                        <span
+                                            class="text-[10px] bg-emerald-500 text-white font-bold px-2 py-0.5 rounded-full">Mặc
+                                            định</span>
                                     </div>
                                     <p class="text-xs text-slate-600 dark:text-slate-400 mt-1 leading-relaxed">
-                                        Đúng chuẩn đề Địa lí Bộ GD&ĐT: <strong>18 câu Phần I</strong> (4,5đ) + <strong>4 câu Phần II</strong> (4,0đ) + <strong>6 câu Phần III trả lời ngắn</strong> (1,5đ) = <strong>10,0 điểm</strong>.
+                                        Đúng chuẩn đề Địa lí Bộ GD&ĐT: <strong>18 câu Phần I</strong> (4,5đ) + <strong>4
+                                            câu Phần II</strong> (4,0đ) + <strong>6 câu Phần III trả lời ngắn</strong>
+                                        (1,5đ) = <strong>10,0 điểm</strong>.
                                     </p>
                                 </div>
                             </div>
                         </label>
 
                         <!-- Mode 2: Full Outline (All 56 questions) -->
-                        <label id="modeCardFull" onclick="selectExamMode('full')" class="cursor-pointer rounded-2xl border-2 border-slate-200 dark:border-slate-700 hover:border-emerald-400 p-4 transition flex flex-col justify-between gap-2">
+                        <label id="modeCardFull" onclick="selectExamMode('full')"
+                            class="cursor-pointer rounded-2xl border-2 border-slate-200 dark:border-slate-700 hover:border-emerald-400 p-4 transition flex flex-col justify-between gap-2">
                             <div class="flex items-start gap-2.5">
-                                <input type="radio" name="examMode" value="full" class="mt-1 accent-emerald-600 w-4 h-4">
+                                <input type="radio" name="examMode" value="full"
+                                    class="mt-1 accent-emerald-600 w-4 h-4">
                                 <div>
-                                    <div class="font-bold text-slate-900 dark:text-white text-sm">Full Toàn Bộ Đề Cương (56 câu)</div>
+                                    <div class="font-bold text-slate-900 dark:text-white text-sm">Full Toàn Bộ Đề Cương
+                                        (56 câu)</div>
                                     <p class="text-xs text-slate-600 dark:text-slate-400 mt-1 leading-relaxed">
-                                        Làm hết 100% ngân hàng đề cương: <strong>36 câu Phần I</strong> + <strong>8 câu Phần II (32 ý Đ/S)</strong> + <strong>12 câu Phần III trả lời ngắn</strong>.
+                                        Làm hết 100% ngân hàng đề cương: <strong>36 câu Phần I</strong> + <strong>8 câu
+                                            Phần II (32 ý Đ/S)</strong> + <strong>12 câu Phần III trả lời ngắn</strong>.
                                     </p>
                                 </div>
                             </div>
                         </label>
 
                         <!-- Mode 3: Custom Counts -->
-                        <label id="modeCardCustom" onclick="selectExamMode('custom')" class="cursor-pointer rounded-2xl border-2 border-slate-200 dark:border-slate-700 hover:border-emerald-400 p-4 transition flex flex-col justify-between gap-2">
+                        <label id="modeCardCustom" onclick="selectExamMode('custom')"
+                            class="cursor-pointer rounded-2xl border-2 border-slate-200 dark:border-slate-700 hover:border-emerald-400 p-4 transition flex flex-col justify-between gap-2">
                             <div class="flex items-start gap-2.5">
-                                <input type="radio" name="examMode" value="custom" class="mt-1 accent-emerald-600 w-4 h-4">
+                                <input type="radio" name="examMode" value="custom"
+                                    class="mt-1 accent-emerald-600 w-4 h-4">
                                 <div>
-                                    <div class="font-bold text-slate-900 dark:text-white text-sm">Tùy Chỉnh Số Lượng Câu</div>
+                                    <div class="font-bold text-slate-900 dark:text-white text-sm">Tùy Chỉnh Số Lượng Câu
+                                    </div>
                                     <p class="text-xs text-slate-600 dark:text-slate-400 mt-1 leading-relaxed">
-                                        Tự chọn số câu muốn luyện tập ở từng phần (Phần I tối đa 36, Phần II tối đa 8, Phần III tối đa 12).
+                                        Tự chọn số câu muốn luyện tập ở từng phần (Phần I tối đa 36, Phần II tối đa 8,
+                                        Phần III tối đa 12).
                                     </p>
                                 </div>
                             </div>
@@ -244,15 +336,18 @@
                 </div>
 
                 <!-- Custom Question Count Controls (Visible in Custom Mode) -->
-                <div id="customCountControls" class="hidden grid-cols-1 sm:grid-cols-3 gap-4 p-4 rounded-2xl bg-emerald-50/50 dark:bg-slate-800/50 border border-emerald-200 dark:border-slate-700">
+                <div id="customCountControls"
+                    class="hidden grid-cols-1 sm:grid-cols-3 gap-4 p-4 rounded-2xl bg-emerald-50/50 dark:bg-slate-800/50 border border-emerald-200 dark:border-slate-700">
                     <div>
                         <div class="flex justify-between text-xs font-semibold mb-1.5">
                             <span>Số câu Phần I (A, B, C, D):</span>
                             <span class="text-emerald-600 dark:text-emerald-400">Tối đa: <strong>36</strong></span>
                         </div>
                         <div class="flex gap-2">
-                            <input type="number" id="customP1Input" min="0" max="36" value="18" class="w-full px-3 py-2 rounded-xl border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900 text-sm font-bold">
-                            <button type="button" onclick="document.getElementById('customP1Input').value = 36" class="px-2.5 py-2 rounded-xl bg-emerald-500/20 text-emerald-700 dark:text-emerald-300 text-xs font-bold shrink-0">36</button>
+                            <input type="number" id="customP1Input" min="0" max="36" value="18"
+                                class="w-full px-3 py-2 rounded-xl border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900 text-sm font-bold">
+                            <button type="button" onclick="document.getElementById('customP1Input').value = 36"
+                                class="px-2.5 py-2 rounded-xl bg-emerald-500/20 text-emerald-700 dark:text-emerald-300 text-xs font-bold shrink-0">36</button>
                         </div>
                     </div>
                     <div>
@@ -261,8 +356,10 @@
                             <span class="text-emerald-600 dark:text-emerald-400">Tối đa: <strong>8</strong></span>
                         </div>
                         <div class="flex gap-2">
-                            <input type="number" id="customP2Input" min="0" max="8" value="4" class="w-full px-3 py-2 rounded-xl border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900 text-sm font-bold">
-                            <button type="button" onclick="document.getElementById('customP2Input').value = 8" class="px-2.5 py-2 rounded-xl bg-emerald-500/20 text-emerald-700 dark:text-emerald-300 text-xs font-bold shrink-0">8</button>
+                            <input type="number" id="customP2Input" min="0" max="8" value="4"
+                                class="w-full px-3 py-2 rounded-xl border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900 text-sm font-bold">
+                            <button type="button" onclick="document.getElementById('customP2Input').value = 8"
+                                class="px-2.5 py-2 rounded-xl bg-emerald-500/20 text-emerald-700 dark:text-emerald-300 text-xs font-bold shrink-0">8</button>
                         </div>
                     </div>
                     <div>
@@ -271,8 +368,10 @@
                             <span class="text-emerald-600 dark:text-emerald-400">Tối đa: <strong>12</strong></span>
                         </div>
                         <div class="flex gap-2">
-                            <input type="number" id="customP3Input" min="0" max="12" value="6" class="w-full px-3 py-2 rounded-xl border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900 text-sm font-bold">
-                            <button type="button" onclick="document.getElementById('customP3Input').value = 12" class="px-2.5 py-2 rounded-xl bg-emerald-500/20 text-emerald-700 dark:text-emerald-300 text-xs font-bold shrink-0">12</button>
+                            <input type="number" id="customP3Input" min="0" max="12" value="6"
+                                class="w-full px-3 py-2 rounded-xl border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900 text-sm font-bold">
+                            <button type="button" onclick="document.getElementById('customP3Input').value = 12"
+                                class="px-2.5 py-2 rounded-xl bg-emerald-500/20 text-emerald-700 dark:text-emerald-300 text-xs font-bold shrink-0">12</button>
                         </div>
                     </div>
                 </div>
@@ -285,15 +384,24 @@
                             <i class="fa-regular fa-clock text-emerald-600 mr-1"></i> 2. Thời gian làm bài (phút):
                         </label>
                         <div class="flex flex-wrap gap-2">
-                            <button type="button" onclick="setDuration(30)" class="time-preset px-3 py-1.5 rounded-xl text-xs font-semibold border border-slate-200 dark:border-slate-700 hover:border-emerald-500">30p</button>
-                            <button type="button" onclick="setDuration(40)" class="time-preset px-3 py-1.5 rounded-xl text-xs font-semibold border border-slate-200 dark:border-slate-700 hover:border-emerald-500">40p</button>
-                            <button type="button" onclick="setDuration(45)" class="time-preset px-3 py-1.5 rounded-xl text-xs font-bold border-2 border-emerald-500 bg-emerald-500/10 text-emerald-700 dark:text-emerald-300">45p (Mặc định)</button>
-                            <button type="button" onclick="setDuration(50)" class="time-preset px-3 py-1.5 rounded-xl text-xs font-semibold border border-slate-200 dark:border-slate-700 hover:border-emerald-500">50p (Chuẩn Bộ)</button>
-                            <button type="button" onclick="setDuration(90)" class="time-preset px-3 py-1.5 rounded-xl text-xs font-semibold border border-slate-200 dark:border-slate-700 hover:border-emerald-500">90p (Full đề)</button>
+                            <button type="button" onclick="setDuration(30)"
+                                class="time-preset px-3 py-1.5 rounded-xl text-xs font-semibold border border-slate-200 dark:border-slate-700 hover:border-emerald-500">30p</button>
+                            <button type="button" onclick="setDuration(40)"
+                                class="time-preset px-3 py-1.5 rounded-xl text-xs font-semibold border border-slate-200 dark:border-slate-700 hover:border-emerald-500">40p</button>
+                            <button type="button" onclick="setDuration(45)"
+                                class="time-preset px-3 py-1.5 rounded-xl text-xs font-bold border-2 border-emerald-500 bg-emerald-500/10 text-emerald-700 dark:text-emerald-300">45p
+                                (Mặc định)</button>
+                            <button type="button" onclick="setDuration(50)"
+                                class="time-preset px-3 py-1.5 rounded-xl text-xs font-semibold border border-slate-200 dark:border-slate-700 hover:border-emerald-500">50p
+                                (Chuẩn Bộ)</button>
+                            <button type="button" onclick="setDuration(90)"
+                                class="time-preset px-3 py-1.5 rounded-xl text-xs font-semibold border border-slate-200 dark:border-slate-700 hover:border-emerald-500">90p
+                                (Full đề)</button>
                         </div>
                         <div class="flex items-center gap-2 pt-1">
                             <span class="text-xs text-slate-500">Hoặc nhập số phút tùy ý:</span>
-                            <input type="number" id="durationInput" min="1" max="300" value="45" class="w-24 px-3 py-1.5 rounded-xl border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-sm font-bold text-center">
+                            <input type="number" id="durationInput" min="1" max="300" value="45"
+                                class="w-24 px-3 py-1.5 rounded-xl border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-sm font-bold text-center">
                             <span class="text-xs text-slate-500">phút</span>
                         </div>
                     </div>
@@ -301,50 +409,76 @@
                     <!-- Shuffle & Study Options -->
                     <div class="space-y-2.5">
                         <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300">
-                            <i class="fa-solid fa-shuffle text-emerald-600 mr-1"></i> 3. Tùy chọn đảo đề & gạch chân đáp án:
+                            <i class="fa-solid fa-shuffle text-emerald-600 mr-1"></i> 3. Tùy chọn đảo đề & gạch chân đáp
+                            án:
                         </label>
                         <div class="space-y-2 text-xs">
-                            <label class="flex items-center gap-2.5 p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 cursor-pointer">
-                                <input type="checkbox" id="shuffleQuestionsCb" checked class="w-4 h-4 accent-emerald-600 rounded">
+                            <label
+                                class="flex items-center gap-2.5 p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 cursor-pointer">
+                                <input type="checkbox" id="shuffleQuestionsCb" checked
+                                    class="w-4 h-4 accent-emerald-600 rounded">
                                 <span><strong>Đảo vị trí các câu hỏi</strong> ở cả 3 phần mỗi lần thi</span>
                             </label>
-                            <label class="flex items-center gap-2.5 p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 cursor-pointer">
-                                <input type="checkbox" id="shuffleOptionsCb" checked class="w-4 h-4 accent-emerald-600 rounded">
-                                <span><strong>Đảo thứ tự phương án A, B, C, D</strong> và <strong>ý a), b), c), d)</strong></span>
+                            <label
+                                class="flex items-center gap-2.5 p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 cursor-pointer">
+                                <input type="checkbox" id="shuffleOptionsCb" checked
+                                    class="w-4 h-4 accent-emerald-600 rounded">
+                                <span><strong>Đảo thứ tự phương án A, B, C, D</strong> và <strong>ý a), b), c),
+                                        d)</strong></span>
                             </label>
-                            <label class="flex items-center gap-2.5 p-2.5 rounded-xl bg-emerald-50/70 dark:bg-emerald-950/30 border border-emerald-200 dark:border-emerald-800/60 cursor-pointer">
-                                <input type="checkbox" id="showUnderlineHintCb" class="w-4 h-4 accent-emerald-600 rounded">
-                                <span><strong>Chế độ Ôn tập:</strong> Gạch chân sẵn đáp án đúng như file đề cương gốc (khi tắt sẽ chỉ gạch chân sau khi nộp bài)</span>
+                            <label
+                                class="flex items-center gap-2.5 p-2.5 rounded-xl bg-emerald-50/70 dark:bg-emerald-950/30 border border-emerald-200 dark:border-emerald-800/60 cursor-pointer">
+                                <input type="checkbox" id="showUnderlineHintCb"
+                                    class="w-4 h-4 accent-emerald-600 rounded">
+                                <span><strong>Chế độ Ôn tập:</strong> Gạch chân sẵn đáp án đúng như file đề cương gốc
+                                    (khi tắt sẽ chỉ gạch chân sau khi nộp bài)</span>
                             </label>
                         </div>
                     </div>
                 </div>
 
                 <!-- MOET 2026 Geography Scoring Rule Box -->
-                <div class="rounded-2xl bg-emerald-50/70 dark:bg-slate-800/80 border border-emerald-200/80 dark:border-slate-700 p-4 text-xs space-y-2">
+                <div
+                    class="rounded-2xl bg-emerald-50/70 dark:bg-slate-800/80 border border-emerald-200/80 dark:border-slate-700 p-4 text-xs space-y-2">
                     <div class="font-bold text-geo-800 dark:text-emerald-400 flex items-center gap-2">
-                        <i class="fa-solid fa-scale-balanced"></i> Cách tính điểm môn Địa lí chuẩn Bộ GD&ĐT (Áp dụng năm 2026):
+                        <i class="fa-solid fa-scale-balanced"></i> Cách tính điểm môn Địa lí chuẩn Bộ GD&ĐT (Áp dụng năm
+                        2026):
                     </div>
                     <ul class="list-disc list-inside space-y-1.5 text-slate-600 dark:text-slate-300">
-                        <li><strong>Phần I (Nhiều phương án lựa chọn - 18 câu):</strong> Mỗi câu đúng được <strong>0,25 điểm</strong> (18 câu × 0,25đ = <strong>4,5 điểm</strong>).</li>
-                        <li><strong>Phần II (Trắc nghiệm Đúng/Sai - 4 câu, mỗi câu 4 ý a, b, c, d):</strong> Tối đa <strong>1,0 điểm/câu</strong> (4 câu = <strong>4,0 điểm</strong>):
+                        <li><strong>Phần I (Nhiều phương án lựa chọn - 18 câu):</strong> Mỗi câu đúng được <strong>0,25
+                                điểm</strong> (18 câu × 0,25đ = <strong>4,5 điểm</strong>).</li>
+                        <li><strong>Phần II (Trắc nghiệm Đúng/Sai - 4 câu, mỗi câu 4 ý a, b, c, d):</strong> Tối đa
+                            <strong>1,0 điểm/câu</strong> (4 câu = <strong>4,0 điểm</strong>):
                             <span class="inline-flex flex-wrap gap-1.5 ml-1 mt-1 sm:mt-0">
-                                <span class="px-2 py-0.5 rounded bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-600 font-semibold">Đúng 1 ý: <strong>0,1đ</strong></span>
-                                <span class="px-2 py-0.5 rounded bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-600 font-semibold">Đúng 2 ý: <strong>0,25đ</strong></span>
-                                <span class="px-2 py-0.5 rounded bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-600 font-semibold">Đúng 3 ý: <strong>0,5đ</strong></span>
-                                <span class="px-2 py-0.5 rounded bg-emerald-500/15 text-emerald-700 dark:text-emerald-300 border border-emerald-500/30 font-bold">Đúng cả 4 ý: <strong>1,0đ</strong></span>
+                                <span
+                                    class="px-2 py-0.5 rounded bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-600 font-semibold">Đúng
+                                    1 ý: <strong>0,1đ</strong></span>
+                                <span
+                                    class="px-2 py-0.5 rounded bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-600 font-semibold">Đúng
+                                    2 ý: <strong>0,25đ</strong></span>
+                                <span
+                                    class="px-2 py-0.5 rounded bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-600 font-semibold">Đúng
+                                    3 ý: <strong>0,5đ</strong></span>
+                                <span
+                                    class="px-2 py-0.5 rounded bg-emerald-500/15 text-emerald-700 dark:text-emerald-300 border border-emerald-500/30 font-bold">Đúng
+                                    cả 4 ý: <strong>1,0đ</strong></span>
                             </span>
                         </li>
-                        <li><strong>Phần III (Trắc nghiệm trả lời ngắn - 6 câu):</strong> Mỗi câu điền kết quả số đúng được <strong>0,25 điểm</strong> (6 câu × 0,25đ = <strong>1,5 điểm</strong>). Hỗ trợ nhập cả dấu phẩy (<code>,</code>) và dấu chấm (<code>.</code>).</li>
+                        <li><strong>Phần III (Trắc nghiệm trả lời ngắn - 6 câu):</strong> Mỗi câu điền kết quả số đúng
+                            được <strong>0,25 điểm</strong> (6 câu × 0,25đ = <strong>1,5 điểm</strong>). Hỗ trợ nhập cả
+                            dấu phẩy (<code>,</code>) và dấu chấm (<code>.</code>).</li>
                     </ul>
                 </div>
 
                 <!-- Error Notification Box -->
-                <div id="setupErrorBox" class="hidden p-3 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-600 dark:text-rose-400 text-xs font-semibold"></div>
+                <div id="setupErrorBox"
+                    class="hidden p-3 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-600 dark:text-rose-400 text-xs font-semibold">
+                </div>
 
                 <!-- Start Action Button -->
                 <div class="pt-2">
-                    <button type="button" onclick="startExam()" class="w-full py-4 px-6 rounded-2xl bg-gradient-to-r from-geo-700 to-teal-600 hover:from-geo-800 hover:to-teal-700 text-white font-extrabold text-base shadow-lg flex items-center justify-center gap-3 transition transform active:scale-[0.99]">
+                    <button type="button" onclick="startExam()"
+                        class="w-full py-4 px-6 rounded-2xl bg-gradient-to-r from-geo-700 to-teal-600 hover:from-geo-800 hover:to-teal-700 text-white font-extrabold text-base shadow-lg flex items-center justify-center gap-3 transition transform active:scale-[0.99]">
                         <i class="fa-solid fa-play"></i>
                         <span>BẮT ĐẦU LÀM BÀI KIỂM TRA ĐỊA LÍ 12</span>
                     </button>
@@ -360,17 +494,24 @@
                 <div class="lg:col-span-8 xl:col-span-9 space-y-6">
 
                     <!-- RESULT DASHBOARD (SHOWN AFTER SUBMIT) -->
-                    <div id="resultSummaryPanel" class="hidden bg-white dark:bg-slate-900 rounded-2xl shadow-xl border-2 border-emerald-500 overflow-hidden">
-                        <div class="topo-pattern p-6 text-white flex flex-col sm:flex-row items-center justify-between gap-4">
+                    <div id="resultSummaryPanel"
+                        class="hidden bg-white dark:bg-slate-900 rounded-2xl shadow-xl border-2 border-emerald-500 overflow-hidden">
+                        <div
+                            class="topo-pattern p-6 text-white flex flex-col sm:flex-row items-center justify-between gap-4">
                             <div class="space-y-1 text-center sm:text-left">
-                                <span class="text-xs uppercase tracking-widest text-emerald-300 font-bold">KẾT QUẢ BÀI KIỂM TRA ĐỊA LÍ 12</span>
+                                <span class="text-xs uppercase tracking-widest text-emerald-300 font-bold">KẾT QUẢ BÀI
+                                    KIỂM TRA ĐỊA LÍ 12</span>
                                 <h2 class="text-2xl font-extrabold" id="resultTitleText">Hoàn thành bài thi!</h2>
-                                <p class="text-xs text-emerald-100" id="resultTimeSpentText">Thời gian làm bài: 00 phút 00 giây</p>
+                                <p class="text-xs text-emerald-100" id="resultTimeSpentText">Thời gian làm bài: 00 phút
+                                    00 giây</p>
                             </div>
                             <div class="flex items-center gap-4">
-                                <div class="bg-white/10 backdrop-blur-md border border-emerald-300/40 rounded-2xl px-6 py-3 text-center">
-                                    <div class="text-xs text-emerald-200 uppercase font-semibold">Tổng Điểm (Thang 10)</div>
-                                    <div id="finalScore10Display" class="text-4xl font-black text-emerald-300 mt-0.5">0,00</div>
+                                <div
+                                    class="bg-white/10 backdrop-blur-md border border-emerald-300/40 rounded-2xl px-6 py-3 text-center">
+                                    <div class="text-xs text-emerald-200 uppercase font-semibold">Tổng Điểm (Thang 10)
+                                    </div>
+                                    <div id="finalScore10Display" class="text-4xl font-black text-emerald-300 mt-0.5">
+                                        0,00</div>
                                 </div>
                             </div>
                         </div>
@@ -379,37 +520,58 @@
                         <div class="p-5 sm:p-6 space-y-5">
                             <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
                                 <!-- Part I Score Card -->
-                                <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/70 border border-slate-200 dark:border-slate-700">
-                                    <div class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">PHẦN I (4 phương án A,B,C,D)</div>
-                                    <div class="text-2xl font-extrabold text-geo-800 dark:text-white mt-1" id="part1ScoreDisplay">0,00 / 4,50đ</div>
-                                    <div class="text-xs text-emerald-600 dark:text-emerald-400 font-semibold mt-1" id="part1CorrectCountDisplay">Đúng 0/18 câu (0,25đ/câu)</div>
+                                <div
+                                    class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/70 border border-slate-200 dark:border-slate-700">
+                                    <div class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">PHẦN I
+                                        (4 phương án A,B,C,D)</div>
+                                    <div class="text-2xl font-extrabold text-geo-800 dark:text-white mt-1"
+                                        id="part1ScoreDisplay">0,00 / 4,50đ</div>
+                                    <div class="text-xs text-emerald-600 dark:text-emerald-400 font-semibold mt-1"
+                                        id="part1CorrectCountDisplay">Đúng 0/18 câu (0,25đ/câu)</div>
                                 </div>
 
                                 <!-- Part II Score Card -->
-                                <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/70 border border-slate-200 dark:border-slate-700">
-                                    <div class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">PHẦN II (Đúng / Sai lũy tiến)</div>
-                                    <div class="text-2xl font-extrabold text-geo-800 dark:text-white mt-1" id="part2ScoreDisplay">0,00 / 4,00đ</div>
-                                    <div class="text-xs text-sky-600 dark:text-sky-400 font-semibold mt-1" id="part2SubCountDisplay">Đúng 0/16 ý a,b,c,d</div>
+                                <div
+                                    class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/70 border border-slate-200 dark:border-slate-700">
+                                    <div class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">PHẦN II
+                                        (Đúng / Sai lũy tiến)</div>
+                                    <div class="text-2xl font-extrabold text-geo-800 dark:text-white mt-1"
+                                        id="part2ScoreDisplay">0,00 / 4,00đ</div>
+                                    <div class="text-xs text-sky-600 dark:text-sky-400 font-semibold mt-1"
+                                        id="part2SubCountDisplay">Đúng 0/16 ý a,b,c,d</div>
                                 </div>
 
                                 <!-- Part III Score Card -->
-                                <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/70 border border-slate-200 dark:border-slate-700">
-                                    <div class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">PHẦN III (Trả lời ngắn)</div>
-                                    <div class="text-2xl font-extrabold text-geo-800 dark:text-white mt-1" id="part3ScoreDisplay">0,00 / 1,50đ</div>
-                                    <div class="text-xs text-amber-600 dark:text-amber-400 font-semibold mt-1" id="part3CorrectCountDisplay">Đúng 0/6 câu (0,25đ/câu)</div>
+                                <div
+                                    class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/70 border border-slate-200 dark:border-slate-700">
+                                    <div class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">PHẦN III
+                                        (Trả lời ngắn)</div>
+                                    <div class="text-2xl font-extrabold text-geo-800 dark:text-white mt-1"
+                                        id="part3ScoreDisplay">0,00 / 1,50đ</div>
+                                    <div class="text-xs text-amber-600 dark:text-amber-400 font-semibold mt-1"
+                                        id="part3CorrectCountDisplay">Đúng 0/6 câu (0,25đ/câu)</div>
                                 </div>
                             </div>
 
                             <!-- Review Filter Bar & Quick Actions -->
-                            <div class="flex flex-wrap items-center justify-between gap-3 pt-3 border-t border-slate-200 dark:border-slate-800">
+                            <div
+                                class="flex flex-wrap items-center justify-between gap-3 pt-3 border-t border-slate-200 dark:border-slate-800">
                                 <div class="flex flex-wrap items-center gap-2">
-                                    <span class="text-xs font-bold text-slate-500 mr-1"><i class="fa-solid fa-filter mr-1"></i>Chế độ xem:</span>
-                                    <button onclick="setReviewFilter('all')" id="filterBtnAll" class="px-3 py-1.5 rounded-xl text-xs font-bold bg-geo-700 text-white">Tất cả câu</button>
-                                    <button onclick="setReviewFilter('wrong')" id="filterBtnWrong" class="px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-100 dark:bg-slate-800 hover:bg-rose-500/10 text-rose-600 dark:text-rose-400 border border-slate-200 dark:border-slate-700">Câu làm sai / Thiếu điểm</button>
-                                    <button onclick="setReviewFilter('flagged')" id="filterBtnFlagged" class="px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-100 dark:bg-slate-800 hover:bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-slate-200 dark:border-slate-700">Câu đánh dấu</button>
+                                    <span class="text-xs font-bold text-slate-500 mr-1"><i
+                                            class="fa-solid fa-filter mr-1"></i>Chế độ xem:</span>
+                                    <button onclick="setReviewFilter('all')" id="filterBtnAll"
+                                        class="px-3 py-1.5 rounded-xl text-xs font-bold bg-geo-700 text-white">Tất cả
+                                        câu</button>
+                                    <button onclick="setReviewFilter('wrong')" id="filterBtnWrong"
+                                        class="px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-100 dark:bg-slate-800 hover:bg-rose-500/10 text-rose-600 dark:text-rose-400 border border-slate-200 dark:border-slate-700">Câu
+                                        làm sai / Thiếu điểm</button>
+                                    <button onclick="setReviewFilter('flagged')" id="filterBtnFlagged"
+                                        class="px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-100 dark:bg-slate-800 hover:bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-slate-200 dark:border-slate-700">Câu
+                                        đánh dấu</button>
                                 </div>
                                 <div class="flex items-center gap-2">
-                                    <button onclick="reshuffleAndRestart()" class="px-4 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white font-bold text-xs sm:text-sm flex items-center gap-2 shadow transition">
+                                    <button onclick="reshuffleAndRestart()"
+                                        class="px-4 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white font-bold text-xs sm:text-sm flex items-center gap-2 shadow transition">
                                         <i class="fa-solid fa-rotate"></i> Làm đề mới (Đảo câu & Đáp án)
                                     </button>
                                 </div>
@@ -418,28 +580,41 @@
                     </div>
 
                     <!-- OFFICIAL EXAM PAPER HEADER -->
-                    <div class="bg-white dark:bg-slate-900 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 p-4 sm:p-6">
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-center border-b border-slate-200 dark:border-slate-800 pb-4">
+                    <div
+                        class="bg-white dark:bg-slate-900 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 p-4 sm:p-6">
+                        <div
+                            class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-center border-b border-slate-200 dark:border-slate-800 pb-4">
                             <div>
-                                <p class="text-xs uppercase font-semibold text-slate-500 dark:text-slate-400">BỘ GIÁO DỤC VÀ ĐÀO TẠO</p>
-                                <p class="text-sm font-bold text-geo-800 dark:text-white">ĐỀ KIỂM TRA GIỮA KỲ 1 (2026 - 2027)</p>
-                                <p class="text-[11px] text-slate-500 mt-0.5">Mã đề trộn tự động: <strong id="examCodeDisplay" class="text-emerald-600 dark:text-emerald-400">0412</strong></p>
+                                <p class="text-xs uppercase font-semibold text-slate-500 dark:text-slate-400">BỘ GIÁO
+                                    DỤC VÀ ĐÀO TẠO</p>
+                                <p class="text-sm font-bold text-geo-800 dark:text-white">ĐỀ KIỂM TRA GIỮA KỲ 1 (2026 -
+                                    2027)</p>
+                                <p class="text-[11px] text-slate-500 mt-0.5">Mã đề trộn tự động: <strong
+                                        id="examCodeDisplay"
+                                        class="text-emerald-600 dark:text-emerald-400">0412</strong></p>
                             </div>
                             <div>
-                                <p class="text-sm font-extrabold uppercase text-geo-700 dark:text-emerald-400">Bài thi môn: ĐỊA LÍ 12</p>
-                                <p class="text-xs font-medium text-slate-600 dark:text-slate-300" id="paperSubInfo">Thời gian làm bài: 45 phút (không kể thời gian phát đề)</p>
-                                <p class="text-[11px] text-emerald-600 dark:text-emerald-400 font-semibold mt-0.5"><i class="fa-solid fa-check-double mr-1"></i>Đáp án đúng được gạch chân khi đối chiếu kết quả</p>
+                                <p class="text-sm font-extrabold uppercase text-geo-700 dark:text-emerald-400">Bài thi
+                                    môn: ĐỊA LÍ 12</p>
+                                <p class="text-xs font-medium text-slate-600 dark:text-slate-300" id="paperSubInfo">Thời
+                                    gian làm bài: 45 phút (không kể thời gian phát đề)</p>
+                                <p class="text-[11px] text-emerald-600 dark:text-emerald-400 font-semibold mt-0.5"><i
+                                        class="fa-solid fa-check-double mr-1"></i>Đáp án đúng được gạch chân khi đối
+                                    chiếu kết quả</p>
                             </div>
                         </div>
 
                         <!-- PART I SECTION CONTAINER -->
                         <div id="part1SectionWrapper" class="mt-6 space-y-5">
-                            <div class="bg-emerald-50/80 dark:bg-slate-800/90 border-l-4 border-emerald-600 p-4 rounded-r-xl">
-                                <h3 class="font-extrabold text-sm sm:text-base text-geo-900 dark:text-emerald-400 uppercase">
+                            <div
+                                class="bg-emerald-50/80 dark:bg-slate-800/90 border-l-4 border-emerald-600 p-4 rounded-r-xl">
+                                <h3
+                                    class="font-extrabold text-sm sm:text-base text-geo-900 dark:text-emerald-400 uppercase">
                                     PHẦN I. Câu trắc nghiệm nhiều phương án lựa chọn
                                 </h3>
                                 <p class="text-xs text-slate-600 dark:text-slate-300 mt-1" id="part1InstructionText">
-                                    Thí sinh trả lời từ câu 1 đến câu 18. Mỗi câu hỏi thí sinh chỉ chọn một phương án (0,25 điểm/câu).
+                                    Thí sinh trả lời từ câu 1 đến câu 18. Mỗi câu hỏi thí sinh chỉ chọn một phương án
+                                    (0,25 điểm/câu).
                                 </p>
                             </div>
                             <div id="part1QuestionsList" class="space-y-4"></div>
@@ -448,11 +623,14 @@
                         <!-- PART II SECTION CONTAINER -->
                         <div id="part2SectionWrapper" class="mt-10 space-y-5">
                             <div class="bg-sky-50/80 dark:bg-slate-800/90 border-l-4 border-sky-500 p-4 rounded-r-xl">
-                                <h3 class="font-extrabold text-sm sm:text-base text-sky-900 dark:text-sky-400 uppercase">
+                                <h3
+                                    class="font-extrabold text-sm sm:text-base text-sky-900 dark:text-sky-400 uppercase">
                                     PHẦN II. Câu trắc nghiệm đúng sai
                                 </h3>
                                 <p class="text-xs text-slate-600 dark:text-slate-300 mt-1" id="part2InstructionText">
-                                    Trong mỗi ý <strong>a), b), c), d)</strong> ở mỗi câu, thí sinh chọn <strong>Đúng</strong> hoặc <strong>Sai</strong>. (Đúng 1 ý: 0,1đ; 2 ý: 0,25đ; 3 ý: 0,5đ; 4 ý: 1,0đ).
+                                    Trong mỗi ý <strong>a), b), c), d)</strong> ở mỗi câu, thí sinh chọn
+                                    <strong>Đúng</strong> hoặc <strong>Sai</strong>. (Đúng 1 ý: 0,1đ; 2 ý: 0,25đ; 3 ý:
+                                    0,5đ; 4 ý: 1,0đ).
                                 </p>
                             </div>
                             <div id="part2QuestionsList" class="space-y-6"></div>
@@ -460,12 +638,15 @@
 
                         <!-- PART III SECTION CONTAINER -->
                         <div id="part3SectionWrapper" class="mt-10 space-y-5">
-                            <div class="bg-amber-50/80 dark:bg-slate-800/90 border-l-4 border-amber-500 p-4 rounded-r-xl">
-                                <h3 class="font-extrabold text-sm sm:text-base text-amber-900 dark:text-amber-400 uppercase">
+                            <div
+                                class="bg-amber-50/80 dark:bg-slate-800/90 border-l-4 border-amber-500 p-4 rounded-r-xl">
+                                <h3
+                                    class="font-extrabold text-sm sm:text-base text-amber-900 dark:text-amber-400 uppercase">
                                     PHẦN III. Câu trắc nghiệm yêu cầu trả lời ngắn
                                 </h3>
                                 <p class="text-xs text-slate-600 dark:text-slate-300 mt-1" id="part3InstructionText">
-                                    Thí sinh tính toán và điền kết quả số vào ô trả lời (0,25 điểm/câu). Hệ thống chấp nhận cả dấu phẩy (<code>,</code>) và dấu chấm (<code>.</code>) thập phân.
+                                    Thí sinh tính toán và điền kết quả số vào ô trả lời (0,25 điểm/câu). Hệ thống chấp
+                                    nhận cả dấu phẩy (<code>,</code>) và dấu chấm (<code>.</code>) thập phân.
                                 </p>
                             </div>
                             <div id="part3QuestionsList" class="space-y-5"></div>
@@ -475,44 +656,58 @@
 
                 <!-- RIGHT SIDEBAR: QUESTION PALETTE (STICKY ON DESKTOP) -->
                 <aside class="hidden lg:block lg:col-span-4 xl:col-span-3 sticky top-20">
-                    <div class="bg-white dark:bg-slate-900 rounded-2xl shadow-md border border-slate-200 dark:border-slate-800 p-4 space-y-4 max-h-[calc(100vh-6rem)] flex flex-col">
-                        <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-3">
+                    <div
+                        class="bg-white dark:bg-slate-900 rounded-2xl shadow-md border border-slate-200 dark:border-slate-800 p-4 space-y-4 max-h-[calc(100vh-6rem)] flex flex-col">
+                        <div
+                            class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-3">
                             <h4 class="font-bold text-sm flex items-center gap-2 text-geo-800 dark:text-white">
                                 <i class="fa-solid fa-table-cells text-emerald-500"></i> Phiếu Trả Lời Địa Lí
                             </h4>
-                            <span id="sidebarProgressBadge" class="text-xs font-bold px-2.5 py-0.5 rounded-full bg-emerald-500/15 text-emerald-700 dark:text-emerald-300">0/28</span>
+                            <span id="sidebarProgressBadge"
+                                class="text-xs font-bold px-2.5 py-0.5 rounded-full bg-emerald-500/15 text-emerald-700 dark:text-emerald-300">0/28</span>
                         </div>
 
                         <!-- Legend -->
                         <div class="grid grid-cols-2 gap-2 text-[11px] text-slate-600 dark:text-slate-400">
-                            <div class="flex items-center gap-1.5"><span class="w-3 h-3 rounded bg-emerald-600 inline-block"></span> Đã làm đủ</div>
-                            <div class="flex items-center gap-1.5"><span class="w-3 h-3 rounded bg-amber-300 dark:bg-amber-700 inline-block"></span> Làm một phần</div>
-                            <div class="flex items-center gap-1.5"><span class="w-3 h-3 rounded border border-slate-300 dark:border-slate-600 inline-block"></span> Chưa trả lời</div>
-                            <div class="flex items-center gap-1.5"><span class="w-3 h-3 rounded ring-2 ring-rose-500 inline-block"></span> Đánh dấu</div>
+                            <div class="flex items-center gap-1.5"><span
+                                    class="w-3 h-3 rounded bg-emerald-600 inline-block"></span> Đã làm đủ</div>
+                            <div class="flex items-center gap-1.5"><span
+                                    class="w-3 h-3 rounded bg-amber-300 dark:bg-amber-700 inline-block"></span> Làm một
+                                phần</div>
+                            <div class="flex items-center gap-1.5"><span
+                                    class="w-3 h-3 rounded border border-slate-300 dark:border-slate-600 inline-block"></span>
+                                Chưa trả lời</div>
+                            <div class="flex items-center gap-1.5"><span
+                                    class="w-3 h-3 rounded ring-2 ring-rose-500 inline-block"></span> Đánh dấu</div>
                         </div>
 
                         <!-- Scrollable Palette Grids -->
                         <div class="overflow-y-auto space-y-4 pr-1 flex-1">
                             <div id="palettePart1Container" class="space-y-1.5">
-                                <div class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">Phần I (Nhiều lựa chọn)</div>
+                                <div class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">Phần I
+                                    (Nhiều lựa chọn)</div>
                                 <div id="palettePart1Grid" class="grid grid-cols-6 gap-1.5"></div>
                             </div>
                             <div id="palettePart2Container" class="space-y-1.5">
-                                <div class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">Phần II (Đúng / Sai)</div>
+                                <div class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">Phần II
+                                    (Đúng / Sai)</div>
                                 <div id="palettePart2Grid" class="grid grid-cols-4 gap-2"></div>
                             </div>
                             <div id="palettePart3Container" class="space-y-1.5">
-                                <div class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">Phần III (Trả lời ngắn)</div>
+                                <div class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">Phần III
+                                    (Trả lời ngắn)</div>
                                 <div id="palettePart3Grid" class="grid grid-cols-4 gap-2"></div>
                             </div>
                         </div>
 
                         <!-- Bottom Sidebar Buttons -->
                         <div class="pt-3 border-t border-slate-200 dark:border-slate-800 space-y-2">
-                            <button id="sidebarSubmitBtn" onclick="openSubmitModal()" class="w-full py-2.5 px-4 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white font-extrabold text-sm shadow flex items-center justify-center gap-2 transition">
+                            <button id="sidebarSubmitBtn" onclick="openSubmitModal()"
+                                class="w-full py-2.5 px-4 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white font-extrabold text-sm shadow flex items-center justify-center gap-2 transition">
                                 <i class="fa-solid fa-paper-plane"></i> Nộp Bài & Chấm Điểm
                             </button>
-                            <button onclick="confirmReshuffle()" class="w-full py-2 px-4 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 font-semibold text-xs flex items-center justify-center gap-2 transition">
+                            <button onclick="confirmReshuffle()"
+                                class="w-full py-2 px-4 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 font-semibold text-xs flex items-center justify-center gap-2 transition">
                                 <i class="fa-solid fa-shuffle text-emerald-500"></i> Đảo Đề Mới Ngay
                             </button>
                         </div>
@@ -523,15 +718,20 @@
     </main>
 
     <!-- FLOATING MINI CALCULATOR FOR GEOGRAPHY DATA TABLES -->
-    <div id="calcWidget" class="fixed bottom-4 right-4 z-50 hidden w-72 bg-white dark:bg-slate-900 rounded-2xl shadow-2xl border-2 border-emerald-500 overflow-hidden">
+    <div id="calcWidget"
+        class="fixed bottom-4 right-4 z-50 hidden w-72 bg-white dark:bg-slate-900 rounded-2xl shadow-2xl border-2 border-emerald-500 overflow-hidden">
         <div class="topo-pattern px-4 py-2.5 text-white flex items-center justify-between">
-            <span class="text-xs font-bold flex items-center gap-2"><i class="fa-solid fa-calculator text-emerald-300"></i> Máy Tính Địa Lí</span>
-            <button onclick="toggleCalculator()" class="text-white/80 hover:text-white"><i class="fa-solid fa-xmark"></i></button>
+            <span class="text-xs font-bold flex items-center gap-2"><i
+                    class="fa-solid fa-calculator text-emerald-300"></i> Máy Tính Địa Lí</span>
+            <button onclick="toggleCalculator()" class="text-white/80 hover:text-white"><i
+                    class="fa-solid fa-xmark"></i></button>
         </div>
         <div class="p-3 space-y-2.5">
-            <input type="text" id="calcDisplay" readonly value="0" class="w-full px-3 py-2 text-right font-mono text-lg font-bold rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700">
+            <input type="text" id="calcDisplay" readonly value="0"
+                class="w-full px-3 py-2 text-right font-mono text-lg font-bold rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700">
             <div class="grid grid-cols-4 gap-1.5 text-sm font-bold">
-                <button onclick="calcInput('C')" class="p-2 rounded-lg bg-rose-500/15 text-rose-600 dark:text-rose-400">C</button>
+                <button onclick="calcInput('C')"
+                    class="p-2 rounded-lg bg-rose-500/15 text-rose-600 dark:text-rose-400">C</button>
                 <button onclick="calcInput('(')" class="p-2 rounded-lg bg-slate-100 dark:bg-slate-800">(</button>
                 <button onclick="calcInput(')')" class="p-2 rounded-lg bg-slate-100 dark:bg-slate-800">)</button>
                 <button onclick="calcInput('/')" class="p-2 rounded-lg bg-emerald-500/15 text-emerald-600">÷</button>
@@ -553,20 +753,24 @@
 
                 <button onclick="calcInput('0')" class="p-2 rounded-lg bg-slate-50 dark:bg-slate-800/60">0</button>
                 <button onclick="calcInput('.')" class="p-2 rounded-lg bg-slate-50 dark:bg-slate-800/60">.</button>
-                <button onclick="calcInput('DEL')" class="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs">⌫</button>
+                <button onclick="calcInput('DEL')"
+                    class="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs">⌫</button>
                 <button onclick="calcInput('=')" class="p-2 rounded-lg bg-emerald-600 text-white">=</button>
             </div>
         </div>
     </div>
 
     <!-- MOBILE QUESTION PALETTE DRAWER -->
-    <div id="mobilePaletteModal" class="fixed inset-0 z-50 hidden bg-black/60 backdrop-blur-xs flex items-end sm:items-center justify-center p-0 sm:p-4">
-        <div class="bg-white dark:bg-slate-900 w-full sm:max-w-md rounded-t-3xl sm:rounded-2xl max-h-[82vh] flex flex-col p-5 shadow-2xl border border-slate-200 dark:border-slate-800">
+    <div id="mobilePaletteModal"
+        class="fixed inset-0 z-50 hidden bg-black/60 backdrop-blur-xs flex items-end sm:items-center justify-center p-0 sm:p-4">
+        <div
+            class="bg-white dark:bg-slate-900 w-full sm:max-w-md rounded-t-3xl sm:rounded-2xl max-h-[82vh] flex flex-col p-5 shadow-2xl border border-slate-200 dark:border-slate-800">
             <div class="flex items-center justify-between pb-3 border-b border-slate-200 dark:border-slate-800">
                 <h4 class="font-bold text-base flex items-center gap-2">
                     <i class="fa-solid fa-table-cells text-emerald-500"></i> Phiếu trả lời trắc nghiệm
                 </h4>
-                <button onclick="toggleMobilePalette()" class="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center">
+                <button onclick="toggleMobilePalette()"
+                    class="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center">
                     <i class="fa-solid fa-xmark"></i>
                 </button>
             </div>
@@ -585,10 +789,12 @@
                 </div>
             </div>
             <div class="pt-3 border-t border-slate-200 dark:border-slate-800 flex gap-2">
-                <button onclick="toggleMobilePalette(); openSubmitModal();" class="flex-1 py-2.5 rounded-xl bg-emerald-600 text-white font-bold text-sm">
+                <button onclick="toggleMobilePalette(); openSubmitModal();"
+                    class="flex-1 py-2.5 rounded-xl bg-emerald-600 text-white font-bold text-sm">
                     Nộp bài ngay
                 </button>
-                <button onclick="toggleMobilePalette()" class="px-4 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 font-semibold text-sm">
+                <button onclick="toggleMobilePalette()"
+                    class="px-4 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 font-semibold text-sm">
                     Đóng
                 </button>
             </div>
@@ -596,23 +802,32 @@
     </div>
 
     <!-- CUSTOM CONFIRMATION / SUBMIT MODAL -->
-    <div id="customModal" class="fixed inset-0 z-50 hidden bg-black/60 backdrop-blur-xs flex items-center justify-center p-4">
-        <div class="bg-white dark:bg-slate-900 rounded-2xl max-w-md w-full p-6 shadow-2xl border border-slate-200 dark:border-slate-800 space-y-4">
+    <div id="customModal"
+        class="fixed inset-0 z-50 hidden bg-black/60 backdrop-blur-xs flex items-center justify-center p-4">
+        <div
+            class="bg-white dark:bg-slate-900 rounded-2xl max-w-md w-full p-6 shadow-2xl border border-slate-200 dark:border-slate-800 space-y-4">
             <div class="flex items-center gap-3">
-                <div class="w-11 h-11 rounded-2xl bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-xl shrink-0">
+                <div
+                    class="w-11 h-11 rounded-2xl bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-xl shrink-0">
                     <i class="fa-solid fa-circle-question"></i>
                 </div>
                 <div>
-                    <h3 id="modalTitle" class="font-extrabold text-lg text-slate-900 dark:text-white">Xác nhận nộp bài</h3>
-                    <p id="modalSubtitle" class="text-xs text-slate-500 dark:text-slate-400">Kiểm tra kỹ trước khi kết thúc bài thi</p>
+                    <h3 id="modalTitle" class="font-extrabold text-lg text-slate-900 dark:text-white">Xác nhận nộp bài
+                    </h3>
+                    <p id="modalSubtitle" class="text-xs text-slate-500 dark:text-slate-400">Kiểm tra kỹ trước khi kết
+                        thúc bài thi</p>
                 </div>
             </div>
-            <div id="modalBody" class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed bg-slate-50 dark:bg-slate-800/60 p-4 rounded-xl border border-slate-200 dark:border-slate-700"></div>
+            <div id="modalBody"
+                class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed bg-slate-50 dark:bg-slate-800/60 p-4 rounded-xl border border-slate-200 dark:border-slate-700">
+            </div>
             <div class="flex items-center justify-end gap-3 pt-2">
-                <button onclick="closeCustomModal()" class="px-4 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-semibold text-sm transition">
+                <button onclick="closeCustomModal()"
+                    class="px-4 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-semibold text-sm transition">
                     Quay lại làm tiếp
                 </button>
-                <button id="modalConfirmBtn" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white font-bold text-sm shadow transition">
+                <button id="modalConfirmBtn"
+                    class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white font-bold text-sm shadow transition">
                     Đồng ý
                 </button>
             </div>
@@ -1512,11 +1727,10 @@
 
                 const card = document.createElement('div');
                 card.id = `question_p1_${qIndex}`;
-                card.className = `scroll-mt-24 rounded-2xl border p-4 sm:p-5 bg-white dark:bg-slate-900 transition ${
-                    isSubmitted
+                card.className = `scroll-mt-24 rounded-2xl border p-4 sm:p-5 bg-white dark:bg-slate-900 transition ${isSubmitted
                         ? (isCorrect ? 'border-emerald-500/40' : 'border-rose-500/40')
                         : 'border-slate-200 dark:border-slate-800'
-                }`;
+                    }`;
 
                 card.innerHTML = `
                     <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
@@ -1531,11 +1745,10 @@
                         <div class="flex items-center gap-2">
                             ${statusBadge}
                             <button type="button" onclick="toggleFlag('p1', ${qIndex})"
-                                class="px-2.5 py-1 rounded-lg text-xs font-semibold border transition flex items-center gap-1 ${
-                                    isFlagged
-                                        ? 'bg-rose-500/15 text-rose-600 dark:text-rose-400 border-rose-500/40'
-                                        : 'bg-slate-100 dark:bg-slate-800 text-slate-500 border-slate-200 dark:border-slate-700 hover:text-rose-500'
-                                }">
+                                class="px-2.5 py-1 rounded-lg text-xs font-semibold border transition flex items-center gap-1 ${isFlagged
+                        ? 'bg-rose-500/15 text-rose-600 dark:text-rose-400 border-rose-500/40'
+                        : 'bg-slate-100 dark:bg-slate-800 text-slate-500 border-slate-200 dark:border-slate-700 hover:text-rose-500'
+                    }">
                                 <i class="fa-${isFlagged ? 'solid' : 'regular'} fa-flag"></i>
                                 <span class="hidden sm:inline">${isFlagged ? 'Đã đánh dấu' : 'Đánh dấu'}</span>
                             </button>
@@ -1623,10 +1836,9 @@
                     }
 
                     return `
-                        <div class="p-3.5 rounded-xl border ${
-                            isSubmitted
-                                ? (isSubCorrect ? 'border-emerald-500/40 bg-emerald-50/30 dark:bg-emerald-950/15' : 'border-rose-500/40 bg-rose-50/30 dark:bg-rose-950/15')
-                                : 'border-slate-200 dark:border-slate-700/80 bg-slate-50/60 dark:bg-slate-800/40'
+                        <div class="p-3.5 rounded-xl border ${isSubmitted
+                            ? (isSubCorrect ? 'border-emerald-500/40 bg-emerald-50/30 dark:bg-emerald-950/15' : 'border-rose-500/40 bg-rose-50/30 dark:bg-rose-950/15')
+                            : 'border-slate-200 dark:border-slate-700/80 bg-slate-50/60 dark:bg-slate-800/40'
                         } flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                             <div class="space-y-1 flex-1">
                                 <div class="text-sm text-slate-800 dark:text-slate-100 leading-relaxed">
@@ -1653,11 +1865,10 @@
 
                 const card = document.createElement('div');
                 card.id = `question_p2_${qIndex}`;
-                card.className = `scroll-mt-24 rounded-2xl border p-4 sm:p-6 bg-white dark:bg-slate-900 transition ${
-                    isSubmitted
+                card.className = `scroll-mt-24 rounded-2xl border p-4 sm:p-6 bg-white dark:bg-slate-900 transition ${isSubmitted
                         ? (correctSubCount === 4 ? 'border-emerald-500/50' : 'border-amber-500/50')
                         : 'border-slate-200 dark:border-slate-800'
-                }`;
+                    }`;
 
                 card.innerHTML = `
                     <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
@@ -1672,11 +1883,10 @@
                         <div class="flex items-center gap-2">
                             ${scoreBadge}
                             <button type="button" onclick="toggleFlag('p2', ${qIndex})"
-                                class="px-2.5 py-1 rounded-lg text-xs font-semibold border transition flex items-center gap-1 ${
-                                    isFlagged
-                                        ? 'bg-rose-500/15 text-rose-600 dark:text-rose-400 border-rose-500/40'
-                                        : 'bg-slate-100 dark:bg-slate-800 text-slate-500 border-slate-200 dark:border-slate-700 hover:text-rose-500'
-                                }">
+                                class="px-2.5 py-1 rounded-lg text-xs font-semibold border transition flex items-center gap-1 ${isFlagged
+                        ? 'bg-rose-500/15 text-rose-600 dark:text-rose-400 border-rose-500/40'
+                        : 'bg-slate-100 dark:bg-slate-800 text-slate-500 border-slate-200 dark:border-slate-700 hover:text-rose-500'
+                    }">
                                 <i class="fa-${isFlagged ? 'solid' : 'regular'} fa-flag"></i>
                                 <span class="hidden sm:inline">${isFlagged ? 'Đã đánh dấu' : 'Đánh dấu'}</span>
                             </button>
@@ -1737,11 +1947,10 @@
 
                 const card = document.createElement('div');
                 card.id = `question_p3_${qIndex}`;
-                card.className = `scroll-mt-24 rounded-2xl border p-4 sm:p-5 bg-white dark:bg-slate-900 transition ${
-                    isSubmitted
+                card.className = `scroll-mt-24 rounded-2xl border p-4 sm:p-5 bg-white dark:bg-slate-900 transition ${isSubmitted
                         ? (isCorrect ? 'border-emerald-500/50' : 'border-rose-500/50')
                         : 'border-slate-200 dark:border-slate-800'
-                }`;
+                    }`;
 
                 card.innerHTML = `
                     <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
@@ -1756,11 +1965,10 @@
                         <div class="flex items-center gap-2">
                             ${statusBadge}
                             <button type="button" onclick="toggleFlag('p3', ${qIndex})"
-                                class="px-2.5 py-1 rounded-lg text-xs font-semibold border transition flex items-center gap-1 ${
-                                    isFlagged
-                                        ? 'bg-rose-500/15 text-rose-600 dark:text-rose-400 border-rose-500/40'
-                                        : 'bg-slate-100 dark:bg-slate-800 text-slate-500 border-slate-200 dark:border-slate-700 hover:text-rose-500'
-                                }">
+                                class="px-2.5 py-1 rounded-lg text-xs font-semibold border transition flex items-center gap-1 ${isFlagged
+                        ? 'bg-rose-500/15 text-rose-600 dark:text-rose-400 border-rose-500/40'
+                        : 'bg-slate-100 dark:bg-slate-800 text-slate-500 border-slate-200 dark:border-slate-700 hover:text-rose-500'
+                    }">
                                 <i class="fa-${isFlagged ? 'solid' : 'regular'} fa-flag"></i>
                                 <span class="hidden sm:inline">${isFlagged ? 'Đã đánh dấu' : 'Đánh dấu'}</span>
                             </button>
@@ -1782,11 +1990,10 @@
                                     placeholder="Nhập số (VD: 72,3)"
                                     value="${userVal}"
                                     ${isSubmitted ? 'disabled' : `oninput="inputPart3Answer(${qIndex}, this.value)"`}
-                                    class="w-full px-3.5 py-2 rounded-xl border-2 font-mono font-bold text-sm focus:outline-none transition ${
-                                        isSubmitted
-                                            ? (isCorrect ? 'border-emerald-500 bg-emerald-50 dark:bg-emerald-950/30 text-emerald-700 dark:text-emerald-300' : 'border-rose-500 bg-rose-50 dark:bg-rose-950/30 text-rose-700 dark:text-rose-300')
-                                            : 'border-slate-300 dark:border-slate-600 focus:border-emerald-500 bg-white dark:bg-slate-900'
-                                    }">
+                                    class="w-full px-3.5 py-2 rounded-xl border-2 font-mono font-bold text-sm focus:outline-none transition ${isSubmitted
+                        ? (isCorrect ? 'border-emerald-500 bg-emerald-50 dark:bg-emerald-950/30 text-emerald-700 dark:text-emerald-300' : 'border-rose-500 bg-rose-50 dark:bg-rose-950/30 text-rose-700 dark:text-rose-300')
+                        : 'border-slate-300 dark:border-slate-600 focus:border-emerald-500 bg-white dark:bg-slate-900'
+                    }">
                             </div>
                             <span class="text-xs font-semibold text-slate-500">${qObj.unit || ''}</span>
                         </div>
@@ -2118,6 +2325,26 @@
             document.getElementById('part3ScoreDisplay').textContent = `${scoreP3.toFixed(2).replace('.', ',')} / ${maxP3.toFixed(2).replace('.', ',')}đ`;
             document.getElementById('part3CorrectCountDisplay').textContent = `Đúng ${correctP3}/${examState.part3Questions.length} câu (0,25đ/câu)`;
 
+            // 🔥 Gửi điểm lên Firebase (retry nếu module chưa load)
+            (function() {
+                const sc = scaled10, tm = examState.elapsedSeconds;
+                if (typeof window.hubSubmitScore === 'function') {
+                    window.hubSubmitScore(sc, tm);
+                } else {
+                    let tries = 0;
+                    const iv = setInterval(function() {
+                        tries++;
+                        if (typeof window.hubSubmitScore === 'function') {
+                            clearInterval(iv);
+                            window.hubSubmitScore(sc, tm);
+                        } else if (tries > 20) {
+                            clearInterval(iv);
+                            console.warn('[Hub] hubSubmitScore not available after 10s');
+                        }
+                    }, 500);
+                }
+            })();
+
             renderAllQuestions();
             renderQuestionPalette();
             window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -2207,5 +2434,206 @@
             icon.className = htmlEl.classList.contains('dark') ? "fa-solid fa-sun" : "fa-solid fa-moon";
         }
     </script>
+
+<!-- ========== FIREBASE HUB – DIALI ========== -->
+
+<!-- POPUP NHẬP TÊN -->
+<div id="hub-name-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.75);z-index:10000;align-items:center;justify-content:center;padding:16px;">
+  <div style="background:linear-gradient(135deg,#064e3b 0%,#065f46 100%);color:#ecfdf5;padding:28px 24px;border-radius:18px;width:340px;max-width:calc(100vw - 32px);text-align:center;border:1px solid #10b981;box-shadow:0 20px 60px rgba(0,0,0,0.6);font-family:system-ui,sans-serif;">
+    <div style="width:52px;height:52px;background:linear-gradient(135deg,#10b981,#059669);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:24px;margin:0 auto 14px;">🌏</div>
+    <h3 style="margin:0 0 6px;font-size:18px;font-weight:800;color:#6ee7b7;">Chào mừng bạn!</h3>
+    <p style="font-size:13px;color:#a7f3d0;margin-bottom:18px;line-height:1.5;">Nhập tên / biệt danh để bắt đầu kiểm tra<br>và tranh hạng <strong style="color:#fbbf24;">Top 30 ĐỊA LÍ 12 🏆</strong></p>
+    <input type="text" id="hub-name-input" placeholder="Ví dụ: th4nhphvc" maxlength="20"
+      style="width:100%;box-sizing:border-box;padding:11px 14px;border-radius:10px;border:1.5px solid #10b981;background:rgba(0,0,0,0.3);color:#ecfdf5;font-size:14px;outline:none;margin-bottom:14px;font-family:inherit;" />
+    <button id="hub-start-btn" style="width:100%;padding:12px;border-radius:10px;border:none;background:linear-gradient(135deg,#10b981,#059669);color:#fff;font-weight:800;font-size:15px;cursor:pointer;">
+      Vào làm bài 🚀
+    </button>
+  </div>
+</div>
+
+<!-- MODAL BẢNG XẾP HẠNG (TOP 30) -->
+<div id="hub-lb-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:9999;align-items:center;justify-content:center;padding:16px;">
+  <div style="background:linear-gradient(160deg,#064e3b 0%,#065f46 100%);color:#ecfdf5;border-radius:18px;width:100%;max-width:440px;max-height:85vh;display:flex;flex-direction:column;border:1px solid rgba(16,185,129,0.4);box-shadow:0 24px 60px rgba(0,0,0,0.6);font-family:system-ui,sans-serif;overflow:hidden;">
+    <!-- Modal Header -->
+    <div style="padding:16px 20px;background:rgba(0,0,0,0.3);border-bottom:1px solid rgba(16,185,129,0.2);display:flex;align-items:center;justify-content:space-between;flex-shrink:0;">
+      <div>
+        <div style="font-weight:800;font-size:16px;color:#fbbf24;">🏆 BẢNG VÀNG – ĐỊA LÍ 12</div>
+        <div style="font-size:12px;color:#a7f3d0;margin-top:3px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+          <span>🟢 Online: <strong id="hub-online-count" style="color:#6ee7b7;">1</strong></span>
+          <span style="color:rgba(200,200,200,0.4);">·</span>
+          <span>👤 <span id="hub-user-display" style="color:#fbbf24;font-weight:700;">Chưa đặt tên</span></span>
+          <button onclick="openNameModal()" style="background:rgba(16,185,129,0.2);border:1px solid rgba(16,185,129,0.4);color:#6ee7b7;border-radius:5px;padding:1px 7px;cursor:pointer;font-size:11px;">✏️ Đổi tên</button>
+        </div>
+      </div>
+      <button onclick="document.getElementById('hub-lb-modal').style.display='none'" style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);color:#a7f3d0;border-radius:8px;padding:6px 12px;cursor:pointer;font-size:14px;font-weight:700;flex-shrink:0;margin-left:12px;">✕</button>
+    </div>
+    <!-- Cột tiêu đề -->
+    <div style="padding:7px 20px;background:rgba(0,0,0,0.2);display:flex;justify-content:space-between;font-size:11px;color:rgba(200,200,200,0.5);font-weight:600;letter-spacing:.5px;border-bottom:1px solid rgba(16,185,129,0.1);flex-shrink:0;">
+      <span>HẠNG · THÍ SINH</span><span>ĐIỂM · THỜI GIAN</span>
+    </div>
+    <!-- Danh sách Top 30 -->
+    <div id="hub-leaderboard" style="overflow-y:auto;padding:10px 14px;flex:1;">
+      <div style="color:rgba(200,200,200,0.5);text-align:center;padding:24px 0;font-size:13px;">⏳ Đang tải bảng xếp hạng...</div>
+    </div>
+  </div>
+</div>
+
+<style>
+#hub-leaderboard::-webkit-scrollbar{width:5px;}
+#hub-leaderboard::-webkit-scrollbar-track{background:rgba(0,0,0,0.2);}
+#hub-leaderboard::-webkit-scrollbar-thumb{background:#10b981;border-radius:4px;}
+#hub-name-input:focus{border-color:#6ee7b7;box-shadow:0 0 0 3px rgba(16,185,129,0.2);}
+</style>
+
+<!-- FIREBASE LOGIC -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+  import { getDatabase, ref, onValue, push, onDisconnect, set, get, update } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+
+  const firebaseConfig = { databaseURL: "https://ontap-hub-default-rtdb.asia-southeast1.firebasedatabase.app/" };
+  const PAGE_ID = "diali";
+  const app = initializeApp(firebaseConfig, "hub-diali");
+  const db = getDatabase(app);
+
+  function formatTime(s) {
+    const sec = Math.max(1, Math.round(Number(s) || 0));
+    const m = Math.floor(sec / 60), r = sec % 60;
+    return m > 0 ? `${m}p${r < 10 ? "0" : ""}${r}s` : `${sec}s`;
+  }
+
+  // Đóng modal khi bấm ra ngoài nền đen
+  document.getElementById("hub-lb-modal").addEventListener("click", function(e) {
+    if (e.target === this) this.style.display = "none";
+  });
+  document.getElementById("hub-name-modal").addEventListener("click", function(e) {
+    if (e.target === this && localStorage.getItem("quiz_username")) this.style.display = "none";
+  });
+
+  // Device ID định danh máy
+  let deviceId = localStorage.getItem("quiz_device_id");
+  if (!deviceId) {
+    deviceId = "u_" + Math.random().toString(36).substring(2, 9) + "_" + Date.now();
+    localStorage.setItem("quiz_device_id", deviceId);
+  }
+
+  // Quản lý tên hiển thị
+  const modal = document.getElementById("hub-name-modal");
+  const nameInput = document.getElementById("hub-name-input");
+  const startBtn = document.getElementById("hub-start-btn");
+
+  let currentName = localStorage.getItem("quiz_username") || "";
+
+  function updateUserNameDisplays(name) {
+    const d1 = document.getElementById("hub-user-display");
+    if (d1) d1.textContent = name || "Chưa đặt tên";
+    const d2 = document.getElementById("header-user-display");
+    if (d2) d2.textContent = name || "Chưa đặt tên";
+  }
+
+  window.openNameModal = function() {
+    nameInput.value = currentName;
+    modal.style.display = "flex";
+    setTimeout(() => nameInput.focus(), 120);
+  };
+
+  if (!currentName) {
+    modal.style.display = "flex";
+    setTimeout(() => nameInput.focus(), 150);
+  } else {
+    updateUserNameDisplays(currentName);
+  }
+
+  async function saveUsername(name) {
+    const n = name.trim();
+    if (!n) {
+      nameInput.style.borderColor = "#f87171";
+      nameInput.focus();
+      return;
+    }
+    localStorage.setItem("quiz_username", n);
+    currentName = n;
+    updateUserNameDisplays(n);
+    modal.style.display = "none";
+    const userRef = ref(db, `leaderboards/${PAGE_ID}/${deviceId}`);
+    const snap = await get(userRef);
+    if (snap.exists()) await update(userRef, { name: n });
+  }
+
+  startBtn.addEventListener("click", () => saveUsername(nameInput.value));
+  nameInput.addEventListener("keydown", e => { if (e.key === "Enter") saveUsername(nameInput.value); });
+
+  // Online count
+  const connRef = ref(db, ".info/connected");
+  const onlineRef = ref(db, "online_users");
+  onValue(connRef, snap => {
+    if (snap.val() === true) {
+      const myRef = push(onlineRef);
+      onDisconnect(myRef).remove();
+      set(myRef, { page: PAGE_ID, ts: Date.now() });
+    }
+  });
+  onValue(onlineRef, snap => {
+    const count = snap.exists() ? Object.keys(snap.val()).length : 1;
+    const c1 = document.getElementById("hub-online-count");
+    if (c1) c1.textContent = count;
+    const c2 = document.getElementById("header-online-count");
+    if (c2) c2.textContent = count;
+  });
+
+  // Nộp điểm lên Bảng xếp hạng
+  window.hubSubmitScore = async function(score, timeSeconds) {
+    try {
+      const name = localStorage.getItem("quiz_username") || "Ẩn danh";
+      const sc = Number(score), t = Number(timeSeconds);
+      console.log(`[Hub] Submitting: name=${name}, score=${sc}, time=${t}s, page=${PAGE_ID}`);
+      const userRef = ref(db, `leaderboards/${PAGE_ID}/${deviceId}`);
+      const snap = await get(userRef);
+      let shouldWrite = !snap.exists();
+      if (!shouldWrite) {
+        const old = snap.val();
+        if (sc > Number(old.score) || (sc === Number(old.score) && t < Number(old.time ?? 999999))) shouldWrite = true;
+        else console.log(`[Hub] Score not better: old=${old.score}đ/${old.time}s, new=${sc}đ/${t}s`);
+      }
+      if (shouldWrite) {
+        await set(userRef, { name, score: sc, time: t, updatedAt: Date.now() });
+        console.log(`[Hub] ✅ Score saved! ${sc}đ in ${t}s`);
+      }
+    } catch (err) {
+      console.error('[Hub] ❌ Error submitting score:', err);
+    }
+  };
+
+  // Bảng xếp hạng Top 30
+  const nc = ["#fbbf24","#e2e8f0","#fb923c","#a7f3d0"];
+  onValue(ref(db, `leaderboards/${PAGE_ID}`), snap => {
+    const el = document.getElementById("hub-leaderboard");
+    if (!snap.exists()) {
+      el.innerHTML = `<div style="color:rgba(200,200,200,0.5);text-align:center;padding:24px 0;">Chưa có ai lên bảng vàng!</div>`;
+      return;
+    }
+    const players = [];
+    snap.forEach(c => players.push({ id: c.key, ...c.val() }));
+    players.sort((a, b) => b.score !== a.score ? b.score - a.score : (a.time ?? 999999) - (b.time ?? 999999));
+    el.innerHTML = players.slice(0, 30).map((p, i) => {
+      const isMe = p.id === deviceId;
+      const badges = ["🥇", "🥈", "🥉"];
+      const badge = i < 3 ? `<span style="font-size:16px;">${badges[i]}</span>` : `<span style="color:rgba(200,200,200,0.5);font-size:12px;font-weight:700;min-width:22px;text-align:center;display:inline-block;">${i+1}</span>`;
+      const color = nc[Math.min(i, 3)];
+      const bg = isMe ? "background:rgba(16,185,129,0.14);border-radius:8px;" : "";
+      const meTag = isMe ? `<span style="color:#6ee7b7;font-size:9px;font-weight:800;background:rgba(16,185,129,0.25);padding:1px 6px;border-radius:4px;margin-left:5px;">BẠN</span>` : "";
+      return `<div style="display:flex;align-items:center;justify-content:space-between;padding:7px 8px;margin-bottom:2px;${bg}border-bottom:1px solid rgba(16,185,129,0.1);">
+        <div style="display:flex;align-items:center;gap:7px;min-width:0;flex:1;overflow:hidden;">
+          <span style="min-width:24px;text-align:center;flex-shrink:0;">${badge}</span>
+          <span style="color:${color};font-weight:${i<3?700:500};white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:13px;">${p.name}</span>${meTag}
+        </div>
+        <div style="white-space:nowrap;flex-shrink:0;text-align:right;margin-left:8px;">
+          <span style="color:#f87171;font-weight:700;font-size:13px;">${Number(p.score).toFixed(1)}đ</span>
+          <span style="color:#60a5fa;font-size:11px;margin-left:5px;">⏱${formatTime(p.time)}</span>
+        </div>
+      </div>`;
+    }).join("");
+  });
+</script>
 </body>
+
 </html>
