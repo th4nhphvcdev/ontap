@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="vi" class="scroll-smooth">
-
 <head>
     <!-- No-cache: luôn tải bản mới nhất trên mọi trình duyệt / thiết bị -->
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
@@ -52,51 +51,40 @@
             width: 8px;
             height: 8px;
         }
-
         ::-webkit-scrollbar-track {
             background: rgba(0, 0, 0, 0.04);
         }
-
         ::-webkit-scrollbar-thumb {
             background: #cbd5e1;
             border-radius: 9999px;
         }
-
         .dark ::-webkit-scrollbar-thumb {
             background: #475569;
         }
-
         .passage-box {
             font-family: 'Merriweather', serif;
             line-height: 1.85;
         }
-
         @keyframes pulse-fast {
-
             0%,
             100% {
                 opacity: 1;
             }
-
             50% {
                 opacity: 0.45;
             }
         }
-
         .timer-warning {
             animation: pulse-fast 1.2s infinite;
         }
-
         /* Highlighting for BOLD correct answers in Study Mode & Submitted Mode */
         .correct-bold-answer {
             font-weight: 800 !important;
             color: #b45309;
         }
-
         .dark .correct-bold-answer {
             color: #fbbf24;
         }
-
         .correct-bold-badge {
             font-weight: 800 !important;
             border-width: 2px !important;
@@ -104,18 +92,15 @@
             background-color: rgba(245, 158, 11, 0.18) !important;
             color: #92400e !important;
         }
-
         .dark .correct-bold-badge {
             color: #fde68a !important;
         }
-
         /* DOCX Paper Simulation Styling */
         .docx-paper {
             font-family: 'Times New Roman', Times, 'Merriweather', serif;
             line-height: 1.65;
             box-shadow: 0 10px 35px -5px rgba(0, 0, 0, 0.15), 0 0 1px 1px rgba(0, 0, 0, 0.05);
         }
-
         .docx-highlight {
             background-color: #fef3c7;
             color: #92400e;
@@ -124,20 +109,16 @@
             border-radius: 4px;
             border-bottom: 2px solid #f59e0b;
         }
-
         .dark .docx-highlight {
             background-color: rgba(245, 158, 11, 0.22);
             color: #fde68a;
             border-bottom: 2px solid #fbbf24;
         }
-
         @media print {
-
             header,
             .no-print {
                 display: none !important;
             }
-
             .docx-paper {
                 box-shadow: none !important;
                 border: none !important;
@@ -146,10 +127,8 @@
         }
     </style>
 </head>
-
 <body
     class="bg-slate-100 dark:bg-slate-950 text-slate-800 dark:text-slate-100 min-h-screen flex flex-col transition-colors duration-200">
-
     <!-- STICKY HEADER -->
     <header class="sticky top-0 z-40 bg-navy-800 dark:bg-slate-900 text-white shadow-lg border-b border-amber-500/30">
         <div class="max-w-7xl mx-auto px-3 sm:px-6 h-16 flex items-center justify-between gap-2">
@@ -170,7 +149,6 @@
                         Đảo A,B,C,D • Chế độ đọc DOCX</p>
                 </div>
             </div>
-
             <!-- Active Exam Controls (Hidden on Setup Screen & DOCX Screen) -->
             <div id="examHeaderControls" class="hidden items-center gap-2 sm:gap-3">
                 <!-- Current Batch Pill -->
@@ -179,20 +157,17 @@
                     <i class="fa-solid fa-layer-group"></i>
                     <span id="activeBatchHeaderText">Gói câu 1 - 20</span>
                 </div>
-
                 <!-- Progress Pill -->
                 <div class="hidden xl:flex items-center gap-2 bg-white/10 px-3 py-1.5 rounded-xl text-xs font-medium">
                     <i class="fa-solid fa-list-check text-amber-400"></i>
                     <span>Đã làm: <strong id="headerProgressText" class="text-amber-300">0/20</strong></span>
                 </div>
-
                 <!-- Countdown Timer -->
                 <div id="timerContainer"
                     class="flex items-center gap-2 bg-slate-950/60 border border-amber-500/40 px-3 py-1.5 rounded-xl font-mono font-bold text-sm sm:text-base text-amber-400 shadow-inner">
                     <i class="fa-regular fa-clock"></i>
                     <span id="timerDisplay">40:00</span>
                 </div>
-
                 <!-- Quick Toggle Study Bold Mode Button -->
                 <button id="headerStudyBoldBtn" onclick="toggleStudyBoldMode()"
                     class="flex items-center gap-1.5 bg-white/10 hover:bg-white/20 text-white text-xs sm:text-sm font-semibold px-2.5 sm:px-3 py-2 rounded-xl border border-white/15 transition"
@@ -200,7 +175,6 @@
                     <i class="fa-solid fa-highlighter text-amber-400"></i>
                     <span id="headerStudyBoldText" class="hidden md:inline">Ôn tập (In đậm): Tắt</span>
                 </button>
-
                 <!-- Mobile Palette Button -->
                 <button onclick="toggleMobilePalette()"
                     class="lg:hidden p-2 rounded-xl bg-white/10 hover:bg-white/20 text-white relative"
@@ -209,7 +183,6 @@
                     <span id="mobileProgressBadge"
                         class="absolute -top-1 -right-1 bg-amber-500 text-navy-900 text-[10px] font-bold px-1.5 rounded-full">0</span>
                 </button>
-
                 <!-- Re-shuffle / New Exam Button -->
                 <button onclick="confirmReshuffle()"
                     class="hidden sm:flex items-center gap-1.5 bg-white/10 hover:bg-white/20 text-white text-xs sm:text-sm font-medium px-3 py-2 rounded-xl transition"
@@ -217,7 +190,6 @@
                     <i class="fa-solid fa-shuffle text-amber-400"></i>
                     <span class="hidden md:inline">Trộn lại</span>
                 </button>
-
                 <!-- Submit Exam Button -->
                 <button id="headerSubmitBtn" onclick="openSubmitModal()"
                     class="flex items-center gap-1.5 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-navy-900 font-bold text-xs sm:text-sm px-3.5 py-2 rounded-xl shadow-md transition transform active:scale-95">
@@ -225,7 +197,6 @@
                     <span>Nộp bài</span>
                 </button>
             </div>
-
             <!-- Right Actions (DOCX Study Button, Config Home, Theme Toggle) -->
             <div class="flex items-center gap-2">
                 <button id="openDocxHeaderBtn" onclick="openDocxStudyView()"
@@ -240,14 +211,12 @@
                     <i class="fa-solid fa-sliders"></i>
                     <span class="hidden sm:inline">Chọn gói câu</span>
                 </button>
-
                 <!-- Online Badge -->
                 <div class="hidden md:flex items-center gap-1.5 text-xs bg-white/10 px-2.5 py-1.5 rounded-xl border border-white/10 text-emerald-200"
                     title="Số người đang online">
                     <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
                     <span><strong id="header-online-count" class="font-bold text-white">1</strong> online</span>
                 </div>
-
                 <!-- User Name / Change Name -->
                 <button id="header-name-btn" onclick="openNameModal()"
                     class="flex items-center gap-1.5 text-xs bg-white/10 hover:bg-white/20 px-2.5 py-1.5 rounded-xl transition border border-white/10 text-amber-300 font-semibold"
@@ -256,7 +225,6 @@
                     <span id="header-user-display" class="max-w-[70px] sm:max-w-[110px] truncate">Chưa đặt tên</span>
                     <i class="fa-solid fa-pen text-[9px] opacity-70"></i>
                 </button>
-
                 <!-- Leaderboard Top 30 Button -->
                 <button
                     onclick="document.getElementById('hub-lb-modal').style.display='flex';if(typeof window.hubReloadLeaderboard==='function')window.hubReloadLeaderboard();"
@@ -265,7 +233,6 @@
                     <i class="fa-solid fa-trophy text-yellow-400"></i>
                     <span>Bảng XH</span>
                 </button>
-
                 <button onclick="toggleDarkMode()"
                     class="w-9 h-9 rounded-xl bg-white/10 hover:bg-white/20 flex items-center justify-center text-amber-300 transition"
                     title="Đổi giao diện Sáng/Tối">
@@ -274,10 +241,8 @@
             </div>
         </div>
     </header>
-
     <!-- MAIN CONTENT CONTAINER -->
     <main class="flex-1 max-w-7xl w-full mx-auto px-3 sm:px-6 py-6">
-
         <!-- ================= VIEW 1: SETUP & CONFIGURATION SCREEN ================= -->
         <section id="setupScreen" class="max-w-5xl mx-auto space-y-6">
             <!-- Hero Banner -->
@@ -317,7 +282,6 @@
                     </div>
                 </div>
             </div>
-
             <!-- Configuration Card -->
             <div
                 class="bg-white dark:bg-slate-900 rounded-2xl shadow-md border border-slate-200 dark:border-slate-800 p-5 sm:p-7 space-y-6">
@@ -325,7 +289,6 @@
                     class="text-lg font-bold flex items-center gap-2 text-navy-800 dark:text-amber-400 border-b border-slate-200 dark:border-slate-800 pb-3">
                     <i class="fa-solid fa-gears"></i> Thiết Lập Bài Kiểm Tra Trắc Nghiệm
                 </h3>
-
                 <!-- 1. Exam Mode Selection (3 Modes now: Batch 20, Standard 28, Custom) -->
                 <div class="space-y-3">
                     <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300">1. Chọn chế độ luyện
@@ -350,7 +313,6 @@
                                 </p>
                             </div>
                         </label>
-
                         <!-- Mode 2: Standard MOET 2026 -->
                         <label id="modeCardStandard" onclick="selectExamMode('standard')"
                             class="cursor-pointer rounded-2xl border-2 border-slate-200 dark:border-slate-700 hover:border-amber-400 p-4 transition flex items-start gap-3">
@@ -369,7 +331,6 @@
                                 </p>
                             </div>
                         </label>
-
                         <!-- Mode 3: Custom -->
                         <label id="modeCardCustom" onclick="selectExamMode('custom')"
                             class="cursor-pointer rounded-2xl border-2 border-slate-200 dark:border-slate-700 hover:border-amber-400 p-4 transition flex items-start gap-3">
@@ -387,7 +348,6 @@
                                 </p>
                             </div>
                         </label>
-
                         <!-- Mode 4: Full Outline -->
                         <label id="modeCardFull" onclick="selectExamMode('full')"
                             class="cursor-pointer rounded-2xl border-2 border-slate-200 dark:border-slate-700 hover:border-amber-400 p-4 transition flex items-start gap-3">
@@ -408,7 +368,6 @@
                         </label>
                     </div>
                 </div>
-
                 <!-- 2. Lesson Filter Selection -->
                 <div class="space-y-3">
                     <div class="flex items-center justify-between">
@@ -449,7 +408,6 @@
                         </label>
                     </div>
                 </div>
-
                 <!-- BATCH RANGE SELECTION CONTROLS (Visible when 'batch' mode is selected) -->
                 <div id="batchRangeControls"
                     class="p-4 sm:p-5 rounded-2xl bg-amber-50/70 dark:bg-slate-800/70 border-2 border-amber-500/40 space-y-4">
@@ -472,7 +430,6 @@
                             <i class="fa-solid fa-book-open"></i> Xem trước gói này dạng DOCX
                         </button>
                     </div>
-
                     <!-- Part I Batch Buttons (1-20, 21-40, 41-60...) -->
                     <div class="space-y-2">
                         <div class="flex flex-wrap items-center justify-between gap-2">
@@ -493,7 +450,6 @@
                         </div>
                         <div id="batchP1ButtonsContainer" class="flex flex-wrap gap-2"></div>
                     </div>
-
                     <!-- Part II Batch Buttons (Optional: Include True/False or Only Part I) -->
                     <div class="space-y-2 pt-2 border-t border-amber-500/20">
                         <label class="text-xs font-bold text-slate-700 dark:text-slate-200 uppercase block">
@@ -502,7 +458,6 @@
                         <div id="batchP2ButtonsContainer" class="flex flex-wrap gap-2"></div>
                     </div>
                 </div>
-
                 <!-- Custom Question Count Controls (Only visible in Custom Mode) -->
                 <div id="customCountControls"
                     class="hidden grid-cols-1 sm:grid-cols-2 gap-4 p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700">
@@ -535,7 +490,6 @@
                         </div>
                     </div>
                 </div>
-
                 <!-- 3. Time Limit & Shuffle Options -->
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
                     <!-- Time limit -->
@@ -564,7 +518,6 @@
                             <span class="text-xs text-slate-500">phút</span>
                         </div>
                     </div>
-
                     <!-- Shuffle & Anti-rote Options -->
                     <div class="space-y-2.5">
                         <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300">
@@ -601,12 +554,10 @@
                         </div>
                     </div>
                 </div>
-
                 <!-- Error Notification Box -->
                 <div id="setupErrorBox"
                     class="hidden p-3 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-600 dark:text-rose-400 text-xs font-semibold">
                 </div>
-
                 <!-- Start Action Buttons -->
                 <div class="pt-2 flex flex-col sm:flex-row gap-3">
                     <button type="button" onclick="startExam()"
@@ -622,14 +573,11 @@
                 </div>
             </div>
         </section>
-
         <!-- ================= VIEW 2: EXAM & REVIEW WORKSPACE ================= -->
         <section id="examWorkspace" class="hidden">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-
                 <!-- LEFT / MAIN COLUMN: RESULT BANNER (WHEN SUBMITTED) + QUESTIONS LIST -->
                 <div class="lg:col-span-8 xl:col-span-9 space-y-6">
-
                     <!-- RESULT DASHBOARD (SHOWN AFTER SUBMIT) -->
                     <div id="resultSummaryPanel"
                         class="hidden bg-white dark:bg-slate-900 rounded-2xl shadow-xl border-2 border-amber-500 overflow-hidden">
@@ -652,14 +600,12 @@
                                 </div>
                             </div>
                         </div>
-
                         <!-- Detailed Score Breakdown -->
                         <div class="p-5 sm:p-6 space-y-5">
                             <!-- BANNER TRẠNG THÁI BẢNG XẾP HẠNG / ĐUA TOP -->
                             <div id="leaderboardStatusBanner"
                                 class="hidden p-4 rounded-2xl border text-xs sm:text-sm font-semibold flex items-center gap-3">
                             </div>
-
                             <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
                                 <!-- Part I Score Card -->
                                 <div
@@ -671,7 +617,6 @@
                                     <div class="text-xs text-emerald-600 dark:text-emerald-400 font-semibold mt-1"
                                         id="part1CorrectCountDisplay">Đúng 0/20 câu</div>
                                 </div>
-
                                 <!-- Part II Score Card -->
                                 <div
                                     class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/70 border border-slate-200 dark:border-slate-700">
@@ -682,7 +627,6 @@
                                     <div class="text-xs text-amber-600 dark:text-amber-400 font-semibold mt-1"
                                         id="part2SubCountDisplay">Đúng 0/0 ý a,b,c,d</div>
                                 </div>
-
                                 <!-- Part II Progressive Breakdown -->
                                 <div
                                     class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/70 border border-slate-200 dark:border-slate-700 text-xs space-y-1">
@@ -701,7 +645,6 @@
                                     </div>
                                 </div>
                             </div>
-
                             <!-- Review Filter Bar & Quick Actions (Including NEXT 20 QUESTIONS Button!) -->
                             <div
                                 class="flex flex-wrap items-center justify-between gap-3 pt-3 border-t border-slate-200 dark:border-slate-800">
@@ -732,7 +675,6 @@
                             </div>
                         </div>
                     </div>
-
                     <!-- QUICK BATCH SWITCHER BAR INSIDE EXAM WORKSPACE (For Batch Mode) -->
                     <div id="inExamBatchBar"
                         class="hidden bg-white dark:bg-slate-900 rounded-2xl shadow-xs border border-amber-500/30 p-3.5 flex flex-wrap items-center justify-between gap-2">
@@ -742,7 +684,6 @@
                         </div>
                         <div id="inExamBatchButtons" class="flex flex-wrap gap-1.5"></div>
                     </div>
-
                     <!-- OFFICIAL EXAM PAPER HEADER -->
                     <div
                         class="bg-white dark:bg-slate-900 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 p-4 sm:p-6">
@@ -766,7 +707,6 @@
                                     2, 3...</p>
                             </div>
                         </div>
-
                         <!-- PART I SECTION CONTAINER -->
                         <div id="part1SectionWrapper" class="mt-6 space-y-5">
                             <div
@@ -782,7 +722,6 @@
                             </div>
                             <div id="part1QuestionsList" class="space-y-4"></div>
                         </div>
-
                         <!-- PART II SECTION CONTAINER -->
                         <div id="part2SectionWrapper" class="mt-10 space-y-5">
                             <div
@@ -801,7 +740,6 @@
                         </div>
                     </div>
                 </div>
-
                 <!-- RIGHT SIDEBAR: QUESTION PALETTE (STICKY ON DESKTOP) -->
                 <aside class="hidden lg:block lg:col-span-4 xl:col-span-3 sticky top-20">
                     <div
@@ -814,7 +752,6 @@
                             <span id="sidebarProgressBadge"
                                 class="text-xs font-bold px-2.5 py-0.5 rounded-full bg-amber-500/15 text-amber-600 dark:text-amber-400">0/20</span>
                         </div>
-
                         <!-- Legend -->
                         <div class="grid grid-cols-2 gap-2 text-[11px] text-slate-600 dark:text-slate-400">
                             <div class="flex items-center gap-1.5"><span
@@ -829,7 +766,6 @@
                                     class="w-3 h-3 rounded ring-2 ring-rose-500 inline-block"></span> Đánh dấu xem lại
                             </div>
                         </div>
-
                         <!-- Scrollable Palette Grids -->
                         <div class="overflow-y-auto space-y-4 pr-1 flex-1">
                             <div id="palettePart1Container" class="space-y-2">
@@ -843,7 +779,6 @@
                                 <div id="palettePart2Grid" class="grid grid-cols-4 gap-2"></div>
                             </div>
                         </div>
-
                         <!-- Bottom Sidebar Buttons -->
                         <div class="pt-3 border-t border-slate-200 dark:border-slate-800 space-y-2">
                             <button id="sidebarSubmitBtn" onclick="openSubmitModal()"
@@ -859,7 +794,6 @@
                 </aside>
             </div>
         </section>
-
         <!-- ================= VIEW 3: DOCX STUDY VIEW (ĐỌC ĐỀ CƯƠNG NHƯ FILE WORD) ================= -->
         <section id="docxStudyWorkspace" class="hidden max-w-5xl mx-auto space-y-5">
             <!-- Sticky Top Control Bar for DOCX Reader -->
@@ -904,7 +838,6 @@
                         </button>
                     </div>
                 </div>
-
                 <!-- Filter by Lesson or Batch 20 Questions inside DOCX View -->
                 <div class="space-y-3">
                     <div class="flex flex-wrap items-center gap-2">
@@ -931,7 +864,6 @@
                     </div>
                 </div>
             </div>
-
             <!-- WORD / DOCX A4 PAPER CONTAINER -->
             <div
                 class="docx-paper bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 rounded-xl border border-slate-300 dark:border-slate-700 px-6 py-8 sm:px-14 sm:py-12 mx-auto max-w-4xl">
@@ -945,10 +877,8 @@
                         (Đáp án đúng ở Phần I và các mệnh đề Đúng ở Phần II được tô đậm để học thuộc nhanh)
                     </p>
                 </div>
-
                 <!-- DOCX Document Body -->
                 <div id="docxPaperContent" class="space-y-6 text-[15px] sm:text-[16px]"></div>
-
                 <!-- Bottom Navigation inside Paper -->
                 <div
                     class="no-print mt-10 pt-6 border-t border-slate-200 dark:border-slate-800 flex flex-wrap items-center justify-between gap-3 font-sans">
@@ -968,7 +898,6 @@
             </div>
         </section>
     </main>
-
     <!-- MOBILE QUESTION PALETTE DRAWER -->
     <div id="mobilePaletteModal"
         class="fixed inset-0 z-50 hidden bg-black/60 backdrop-blur-xs flex items-end sm:items-center justify-center p-0 sm:p-4">
@@ -1005,7 +934,6 @@
             </div>
         </div>
     </div>
-
     <!-- CUSTOM CONFIRMATION / SUBMIT MODAL -->
     <div id="customModal"
         class="fixed inset-0 z-50 hidden bg-black/60 backdrop-blur-xs flex items-center justify-center p-4">
@@ -1038,13 +966,12 @@
             </div>
         </div>
     </div>
-
     <!-- ================= APPLICATION JAVASCRIPT & FULL QUESTION BANK ================= -->
     <script>
         /**************************************************************************
-         * 1. NGÂN HÀNG CÂU HỎI ĐẦY ĐỦ TỪ ĐỀ CƯƠNG SỬ 12 (BÀI 1 -> BÀI 5)
-         * - 125 câu Phần I (Trắc nghiệm 4 phương án A, B, C, D)
-         * - 18 câu Phần II (Trắc nghiệm Đúng / Sai có đoạn tư liệu)
+         * NGÂN HÀNG CÂU HỎI ĐẦY ĐỦ TỪ ĐỀ CƯƠNG CÔNG NGHỆ LNTS 12 (CHƯƠNG 1 -> CHƯƠNG 3)
+         * - 126 câu Phần I (Trắc nghiệm 4 phương án A, B, C, D)
+         * - 9 câu Phần II (Trắc nghiệm Đúng / Sai có đoạn tư liệu)
          **************************************************************************/
         const QUESTION_BANK = {
             "part1": [
@@ -2109,11 +2036,11 @@
                                     "lesson": 2,
                                     "lessonName": "Chương II: Trồng rừng và chăm sóc rừng",
                                     "q": "Những hoạt động nào sau đây đều là hoạt động chăm sóc rừng?",
-                                    "correct": "Làm cỏ, làm hàng rào bảo vệ, tỉa cành, bón phân, tưới nước.",
+                                    "correct": "Làm cỏ, chặt bỏ cây dại, tỉa cành, bón phân, tưới nước.",
                                     "distractors": [
-                                                "Làm cỏ, chặt bỏ cây dại, tỉa cành, bón phân, tưới nước.",
                                                 "Làm cỏ, bón phân, phòng trừ sâu hại, phòng chống cháy rừng, tưới nước.",
-                                                "Làm cỏ, chặt bỏ cây dại, bón phân, tưới nước, khai thác rừng trồng."
+                                                "Làm cỏ, chặt bỏ cây dại, bón phân, tưới nước, khai thác rừng trồng.",
+                                                "Làm cỏ, làm hàng rào bảo vệ, tỉa cành, bón phân, tưới nước."
                                     ]
                         },
                         {
@@ -2671,7 +2598,7 @@
                                     "items": [
                                                 {
                                                             "text": "Sinh trưởng của cây rừng là sự tăng lên về kích thước của cây rừng.",
-                                                            "answer": true
+                                                            "answer": false
                                                 },
                                                 {
                                                             "text": "Giai đoạn thành thục là giai đoạn từ hạt nảy mầm đến trước ra hoa lần thứ nhất.",
@@ -2729,7 +2656,7 @@
                                                 },
                                                 {
                                                             "text": "So với năm 2010, đến hết năm 2022 diện tích rừng của nước ta bị suy giảm khoảng 25 129 ha.",
-                                                            "answer": true
+                                                            "answer": false
                                                 },
                                                 {
                                                             "text": "Để diện tích rừng bị thiệt hại ngày càng giảm, cần tăng cường công tác trồng và chăm sóc rừng kết hợp với rừng cây phân tán ở khu vực thành thị và nông thôn.",
@@ -2788,7 +2715,7 @@
                                     ]
                         }
             ]
-};
+        };
 
         /**************************************************************************
          * 2. STATE QUẢN LÝ TRẠNG THÁI BÀI THI & CHẾ ĐỘ HỌC TỪNG GÓI 20 CÂU / DOCX
@@ -2806,7 +2733,6 @@
             showAnswers: true,
             resetNumberingFrom1: true // Đánh số 1..20 thay vì 21..40
         };
-
         let examState = {
             isActive: false,
             isSubmitted: false,
@@ -2837,7 +2763,6 @@
             }
             return copy;
         }
-
         function generateRandomExamCode() {
             return String(Math.floor(1000 + Math.random() * 9000));
         }
@@ -2853,10 +2778,8 @@
             const fullCard = document.getElementById('modeCardFull');
             const batchControls = document.getElementById('batchRangeControls');
             const customControls = document.getElementById('customCountControls');
-
             const activeCardClass = "cursor-pointer rounded-2xl border-2 border-amber-500 bg-amber-50/50 dark:bg-amber-950/20 p-4 transition flex items-start gap-3";
             const inactiveCardClass = "cursor-pointer rounded-2xl border-2 border-slate-200 dark:border-slate-700 hover:border-amber-400 p-4 transition flex items-start gap-3";
-
             if (batchCard) {
                 batchCard.className = mode === 'batch' ? activeCardClass : inactiveCardClass;
                 batchCard.querySelector('input').checked = (mode === 'batch');
@@ -2873,7 +2796,6 @@
                 fullCard.className = mode === 'full' ? activeCardClass : inactiveCardClass;
                 fullCard.querySelector('input').checked = (mode === 'full');
             }
-
             if (batchControls) batchControls.classList.toggle('hidden', mode !== 'batch');
             if (customControls) {
                 if (mode === 'custom') {
@@ -2884,7 +2806,6 @@
                     customControls.classList.remove('grid');
                 }
             }
-
             if (mode === 'batch') {
                 setDuration(15);
             } else if (mode === 'standard') {
@@ -2895,12 +2816,10 @@
             updateAvailableCounts();
             updateStartExamButtonLabel();
         }
-
         function getSelectedLessons() {
             const checkboxes = document.querySelectorAll('.lesson-cb:checked');
             return Array.from(checkboxes).map(cb => parseInt(cb.value, 10));
         }
-
         function getFilteredQuestionPool() {
             const selectedLessons = getSelectedLessons();
             return {
@@ -2908,31 +2827,26 @@
                 poolP2: QUESTION_BANK.part2.filter(q => selectedLessons.includes(q.lesson))
             };
         }
-
         function toggleAllLessons() {
             const allCbs = document.querySelectorAll('.lesson-cb');
             const allChecked = Array.from(allCbs).every(cb => cb.checked);
             allCbs.forEach(cb => cb.checked = !allChecked);
             updateAvailableCounts();
         }
-
         function updateAvailableCounts() {
             const { poolP1, poolP2 } = getFilteredQuestionPool();
             const availP1 = poolP1.length;
             const availP2 = poolP2.length;
-
             document.getElementById('maxP1Label').textContent = availP1;
             document.getElementById('maxP2Label').textContent = availP2;
             document.getElementById('batchTotalAvailP1').textContent = availP1;
             document.getElementById('batchTotalAvailP2').textContent = availP2;
-
             const p1Input = document.getElementById('customP1Input');
             const p2Input = document.getElementById('customP2Input');
             p1Input.max = availP1;
             p2Input.max = availP2;
             p1Input.value = availP1;
             p2Input.value = availP2;
-
             // Đảm bảo batchConfig nằm trong phạm vi hợp lệ
             if (availP1 > 0) {
                 if (batchConfig.p1Start > availP1) batchConfig.p1Start = 1;
@@ -2943,18 +2857,15 @@
             }
             document.getElementById('batchP1StartInput').value = batchConfig.p1Start;
             document.getElementById('batchP1EndInput').value = batchConfig.p1End;
-
             renderBatchRangeButtons();
             updateStartExamButtonLabel();
         }
-
         function renderBatchRangeButtons() {
             const { poolP1, poolP2 } = getFilteredQuestionPool();
             const totalP1 = poolP1.length;
             const totalP2 = poolP2.length;
             const containerP1 = document.getElementById('batchP1ButtonsContainer');
             const containerP2 = document.getElementById('batchP2ButtonsContainer');
-
             // 1. Tạo các nút gói 20 câu cho Phần I: 1-20, 21-40, 41-60...
             let htmlP1 = '';
             const step = 20;
@@ -2984,7 +2895,6 @@
                 </button>
             `;
             containerP1.innerHTML = htmlP1;
-
             // 2. Tạo các nút chọn Phần II (Đúng/Sai)
             const p2Options = [
                 { key: 'none', label: 'Không kèm Phần II (Chỉ làm 20 câu P.I)' },
@@ -2993,7 +2903,6 @@
                 { key: '7-9', label: `Câu 7 – ${totalP2} P.II (Chương III)`, hide: totalP2 < 7 },
                 { key: 'all', label: `Tất cả ${totalP2} câu P.II` }
             ];
-
             containerP2.innerHTML = p2Options.filter(o => !o.hide).map(opt => {
                 const active = batchConfig.p2RangeKey === opt.key;
                 return `
@@ -3006,7 +2915,6 @@
                 `;
             }).join('');
         }
-
         function selectBatchP1Range(start, end) {
             batchConfig.p1Start = start;
             batchConfig.p1End = end;
@@ -3015,7 +2923,6 @@
             renderBatchRangeButtons();
             updateStartExamButtonLabel();
         }
-
         function onManualBatchRangeChange() {
             const { poolP1 } = getFilteredQuestionPool();
             const maxP1 = poolP1.length;
@@ -3030,13 +2937,11 @@
             renderBatchRangeButtons();
             updateStartExamButtonLabel();
         }
-
         function selectBatchP2Range(key) {
             batchConfig.p2RangeKey = key;
             renderBatchRangeButtons();
             updateStartExamButtonLabel();
         }
-
         function updateStartExamButtonLabel() {
             const btnSpan = document.getElementById('startExamBtnText');
             if (!btnSpan) return;
@@ -3053,7 +2958,6 @@
                 btnSpan.textContent = `BẮT ĐẦU LÀM BÀI LUYỆN TẬP TÙY CHỈNH`;
             }
         }
-
         function setMaxQuestions(part) {
             const { poolP1, poolP2 } = getFilteredQuestionPool();
             if (part === 'p1') {
@@ -3062,7 +2966,6 @@
                 document.getElementById('customP2Input').value = poolP2.length;
             }
         }
-
         function setDuration(minutes) {
             document.getElementById('durationInput').value = minutes;
             document.querySelectorAll('.time-preset').forEach(btn => {
@@ -3081,25 +2984,21 @@
         function startExam() {
             const errorBox = document.getElementById('setupErrorBox');
             errorBox.classList.add('hidden');
-
             const selectedLessons = getSelectedLessons();
             if (selectedLessons.length === 0) {
                 errorBox.textContent = "Vui lòng chọn ít nhất 1 bài học trong đề cương để tạo đề kiểm tra!";
                 errorBox.classList.remove('hidden');
                 return;
             }
-
             const { poolP1, poolP2 } = getFilteredQuestionPool();
             const durationMinutes = Math.max(1, parseInt(document.getElementById('durationInput').value || 15, 10));
             const doShuffleQuestions = document.getElementById('shuffleQuestionsCb').checked;
             const doShuffleOptions = document.getElementById('shuffleOptionsCb').checked;
             const doShuffleSubItems = document.getElementById('shuffleSubItemsCb').checked;
             const showBoldHint = document.getElementById('showBoldHintCb').checked;
-
             let chosenRawP1 = [];
             let chosenRawP2 = [];
             let batchLabel = "Đề Chuẩn 28 Câu";
-
             if (currentMode === 'batch') {
                 // Lấy đúng khoảng câu (ví dụ 1-20 hoặc 21-40) từ poolP1
                 if (batchConfig.p1Start > 0 && batchConfig.p1End >= batchConfig.p1Start) {
@@ -3114,7 +3013,6 @@
                 } else if (batchConfig.p2RangeKey === '7-9') {
                     chosenRawP2 = poolP2.slice(6, 9);
                 }
-
                 if (chosenRawP1.length === 0 && chosenRawP2.length === 0) {
                     errorBox.textContent = "Vui lòng chọn ít nhất 1 gói câu hỏi ở Phần I hoặc Phần II!";
                     errorBox.classList.remove('hidden');
@@ -3145,13 +3043,11 @@
                 chosenRawP2 = (doShuffleQuestions ? shuffleArray(poolP2) : [...poolP2]).slice(0, countP2);
                 batchLabel = `Tùy chỉnh (${countP1} P.I + ${countP2} P.II)`;
             }
-
             // Nếu ở chế độ batch và bật Đảo thứ tự câu hỏi -> trộn ngẫu nhiên các câu TRONG GÓI 20 CÂU ĐÓ
             if (currentMode === 'batch' && doShuffleQuestions) {
                 chosenRawP1 = shuffleArray(chosenRawP1);
                 chosenRawP2 = shuffleArray(chosenRawP2);
             }
-
             // Chuẩn bị Phần I: Đảo đáp án A, B, C, D
             const preparedP1 = chosenRawP1.map((item) => {
                 const rawOptions = [
@@ -3167,7 +3063,6 @@
                     options: finalOptions
                 };
             });
-
             // Chuẩn bị Phần II: Đảo thứ tự a), b), c), d)
             const preparedP2 = chosenRawP2.map((item) => {
                 const rawSubItems = item.items.map(sub => ({ text: sub.text, answer: sub.answer }));
@@ -3181,7 +3076,6 @@
                     items: finalSubItems
                 };
             });
-
             if (examState.timerInterval) clearInterval(examState.timerInterval);
             examState = {
                 isActive: true,
@@ -3202,7 +3096,6 @@
                 flaggedP2: {},
                 reviewFilter: 'all'
             };
-
             // Chuyển sang màn hình làm bài
             document.getElementById('setupScreen').classList.add('hidden');
             document.getElementById('docxStudyWorkspace').classList.add('hidden');
@@ -3214,7 +3107,6 @@
             document.getElementById('backToConfigBtn').classList.add('flex');
             document.getElementById('headerSubmitBtn').classList.remove('hidden');
             document.getElementById('sidebarSubmitBtn').classList.remove('hidden');
-
             // Hiển thị thanh chuyển gói 20 câu nhanh nếu đang ở chế độ Batch
             const inExamBatchBar = document.getElementById('inExamBatchBar');
             const activeBatchBadge = document.getElementById('activeBatchHeaderBadge');
@@ -3228,7 +3120,6 @@
                 inExamBatchBar.classList.add('hidden');
                 activeBatchBadge.classList.add('hidden');
             }
-
             // Cập nhật thông tin tờ đề (vẫn đánh số từ Câu 1 đến Câu N)
             document.getElementById('examCodeDisplay').textContent = examState.examCode;
             document.getElementById('paperMainTitle').textContent = currentMode === 'batch'
@@ -3236,7 +3127,6 @@
                 : `ĐỀ KIỂM TRA GIỮA KỲ 1 (2026 - 2027)`;
             document.getElementById('paperSubInfo').textContent = `Thời gian: ${durationMinutes} phút • Gồm ${preparedP1.length} câu Phần I & ${preparedP2.length} câu Phần II`;
             document.getElementById('part1InstructionText').innerHTML = `Thí sinh trả lời từ <strong>Câu 1 đến Câu ${preparedP1.length}</strong> (đã được trộn ngẫu nhiên và đảo vị trí A, B, C, D). Mỗi câu chọn 1 phương án đúng.`;
-
             updateStudyBoldButtonUI();
             renderAllQuestions();
             renderQuestionPalette();
@@ -3244,7 +3134,6 @@
             startTimer();
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
-
         function renderInExamBatchSwitcher() {
             const { poolP1 } = getFilteredQuestionPool();
             const totalP1 = poolP1.length;
@@ -3265,7 +3154,6 @@
             }
             container.innerHTML = html;
         }
-
         function switchBatchDuringExam(start, end) {
             if (!examState.isSubmitted && Object.keys(examState.answersP1).length > 0) {
                 showCustomModal({
@@ -3284,7 +3172,6 @@
                 startExam();
             }
         }
-
         function startNextBatchExam() {
             const { poolP1 } = getFilteredQuestionPool();
             const totalP1 = poolP1.length;
@@ -3299,7 +3186,6 @@
                 startExam();
             }
         }
-
         function toggleStudyBoldMode() {
             examState.showBoldHint = !examState.showBoldHint;
             const setupCb = document.getElementById('showBoldHintCb');
@@ -3307,7 +3193,6 @@
             updateStudyBoldButtonUI();
             renderAllQuestions();
         }
-
         function updateStudyBoldButtonUI() {
             const btn = document.getElementById('headerStudyBoldBtn');
             const txt = document.getElementById('headerStudyBoldText');
@@ -3326,34 +3211,27 @@
          **************************************************************************/
         const OPTION_LABELS = ['A', 'B', 'C', 'D'];
         const SUB_ITEM_LABELS = ['a)', 'b)', 'c)', 'd)'];
-
         function renderAllQuestions() {
             const p1Wrapper = document.getElementById('part1SectionWrapper');
             const p2Wrapper = document.getElementById('part2SectionWrapper');
             const p1Container = document.getElementById('part1QuestionsList');
             const p2Container = document.getElementById('part2QuestionsList');
-
             p1Container.innerHTML = '';
             p2Container.innerHTML = '';
-
             p1Wrapper.classList.toggle('hidden', examState.part1Questions.length === 0);
             p2Wrapper.classList.toggle('hidden', examState.part2Questions.length === 0);
-
             const isSubmitted = examState.isSubmitted;
             const showBold = isSubmitted || examState.showBoldHint;
-
             // Render Phần I (Đánh số luôn bắt đầu từ Câu 1, Câu 2... bằng qIndex + 1)
             examState.part1Questions.forEach((qObj, qIndex) => {
                 const userSelected = examState.answersP1[qIndex];
                 const isFlagged = !!examState.flaggedP1[qIndex];
                 const correctIndex = qObj.options.findIndex(o => o.isCorrect);
                 const isQuestionCorrect = isSubmitted && userSelected === correctIndex;
-
                 if (isSubmitted) {
                     if (examState.reviewFilter === 'wrong' && isQuestionCorrect) return;
                     if (examState.reviewFilter === 'flagged' && !isFlagged) return;
                 }
-
                 let statusBadgeHTML = '';
                 if (isSubmitted) {
                     if (userSelected === undefined) {
@@ -3364,17 +3242,14 @@
                         statusBadgeHTML = `<span class="px-2.5 py-1 rounded-lg bg-rose-500/15 text-rose-700 dark:text-rose-300 border border-rose-500/30 text-xs font-bold"><i class="fa-solid fa-xmark mr-1"></i>Sai (0đ)</span>`;
                     }
                 }
-
                 const optionsHTML = qObj.options.map((opt, optIdx) => {
                     const isThisSelected = userSelected === optIdx;
                     let btnStyle = "border-slate-200 dark:border-slate-700 bg-slate-50/70 dark:bg-slate-800/50 hover:border-amber-400 dark:hover:border-amber-500 text-slate-700 dark:text-slate-200 font-normal";
                     let badgeStyle = "bg-white dark:bg-slate-700 text-slate-700 dark:text-slate-200 border border-slate-300 dark:border-slate-600 font-medium";
                     let feedbackNote = "";
-
                     const isBoldAnswer = showBold && opt.isCorrect;
                     const textWeightClass = isBoldAnswer ? "correct-bold-answer" : "font-normal";
                     const badgeBoldClass = isBoldAnswer && !isSubmitted && !isThisSelected ? "correct-bold-badge" : "";
-
                     if (!isSubmitted) {
                         if (isThisSelected) {
                             btnStyle = "border-2 border-amber-500 bg-amber-50 dark:bg-amber-950/30 text-navy-900 dark:text-amber-200 font-semibold shadow-xs";
@@ -3395,7 +3270,6 @@
                             btnStyle = "border-slate-200 dark:border-slate-800 bg-slate-50/40 dark:bg-slate-900/40 opacity-65";
                         }
                     }
-
                     return `
                         <button type="button"
                             ${isSubmitted ? 'disabled' : `onclick="selectPart1Answer(${qIndex}, ${optIdx})"`}
@@ -3408,14 +3282,12 @@
                         </button>
                     `;
                 }).join('');
-
                 const card = document.createElement('div');
                 card.id = `question_p1_${qIndex}`;
                 card.className = `scroll-mt-24 rounded-2xl border p-4 sm:p-5 transition ${isSubmitted
                     ? (isQuestionCorrect ? 'border-emerald-500/40 bg-white dark:bg-slate-900' : 'border-rose-500/40 bg-white dark:bg-slate-900')
                     : 'border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-slate-300 dark:hover:border-slate-700'
                     }`;
-
                 card.innerHTML = `
                     <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
                         <div class="flex items-center gap-2">
@@ -3447,23 +3319,19 @@
                 `;
                 p1Container.appendChild(card);
             });
-
             // Render Phần II (Đúng / Sai)
             examState.part2Questions.forEach((qObj, qIndex) => {
                 const userSubAnswers = examState.answersP2[qIndex] || {};
                 const isFlagged = !!examState.flaggedP2[qIndex];
-
                 let correctSubCount = 0;
                 qObj.items.forEach((sub, sIdx) => {
                     if (userSubAnswers[sIdx] === sub.answer) correctSubCount++;
                 });
                 const earnedPoints = getPart2QuestionScore(correctSubCount);
-
                 if (isSubmitted) {
                     if (examState.reviewFilter === 'wrong' && correctSubCount === 4) return;
                     if (examState.reviewFilter === 'flagged' && !isFlagged) return;
                 }
-
                 let scoreBadgeHTML = '';
                 if (isSubmitted) {
                     const badgeColor = correctSubCount === 4
@@ -3475,13 +3343,10 @@
                         </span>
                     `;
                 }
-
                 const formattedPassage = qObj.passage.split('\n').map(p => `<p class="mb-2 last:mb-0">${p}</p>`).join('');
-
                 const subRowsHTML = qObj.items.map((subItem, sIdx) => {
                     const userChoice = userSubAnswers[sIdx];
                     const isSubCorrect = userChoice === subItem.answer;
-
                     const isBoldStatement = showBold && subItem.answer === true;
                     const statementTextClass = isBoldStatement
                         ? "correct-bold-answer"
@@ -3489,11 +3354,9 @@
                     const labelClass = isBoldStatement
                         ? "correct-bold-answer mr-1.5"
                         : "font-semibold text-navy-800 dark:text-amber-400 mr-1.5";
-
                     let trueBtnClass = "border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:border-emerald-500";
                     let falseBtnClass = "border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:border-rose-500";
                     let resultInfoHTML = "";
-
                     if (!isSubmitted) {
                         if (userChoice === true) {
                             trueBtnClass = "border-2 border-emerald-600 bg-emerald-500 text-white font-extrabold shadow-xs";
@@ -3510,7 +3373,6 @@
                                 ? "border-2 border-emerald-600 bg-emerald-500 text-white font-extrabold"
                                 : "border-2 border-rose-600 bg-rose-500 text-white font-extrabold";
                         }
-
                         const correctText = subItem.answer ? 'ĐÚNG (In đậm)' : 'SAI';
                         if (userChoice === undefined) {
                             resultInfoHTML = `<div class="text-xs font-bold text-rose-500 mt-1"><i class="fa-solid fa-circle-exclamation mr-1"></i>Chưa chọn • Đáp án chuẩn: <span class="underline">${correctText}</span></div>`;
@@ -3520,7 +3382,6 @@
                             resultInfoHTML = `<div class="text-xs font-bold text-rose-600 dark:text-rose-400 mt-1"><i class="fa-solid fa-xmark mr-1"></i>Sai • Đáp án chuẩn: <span class="underline">${correctText}</span></div>`;
                         }
                     }
-
                     return `
                         <div class="p-3.5 rounded-xl border ${isSubmitted
                             ? (isSubCorrect ? 'border-emerald-500/40 bg-emerald-50/30 dark:bg-emerald-950/15' : 'border-rose-500/40 bg-rose-50/30 dark:bg-rose-950/15')
@@ -3548,14 +3409,12 @@
                         </div>
                     `;
                 }).join('');
-
                 const card = document.createElement('div');
                 card.id = `question_p2_${qIndex}`;
                 card.className = `scroll-mt-24 rounded-2xl border p-4 sm:p-6 bg-white dark:bg-slate-900 transition ${isSubmitted
                     ? (correctSubCount === 4 ? 'border-emerald-500/50' : 'border-amber-500/50')
                     : 'border-slate-200 dark:border-slate-800'
                     }`;
-
                 card.innerHTML = `
                     <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
                         <div class="flex items-center gap-2">
@@ -3578,18 +3437,15 @@
                             </button>
                         </div>
                     </div>
-
                     <p class="text-xs sm:text-sm font-semibold text-slate-600 dark:text-slate-300 mb-2">
                         Đọc đoạn tư liệu sau đây, trong mỗi ý <strong>a), b), c), d)</strong>, học sinh chọn <strong>Đúng</strong> hoặc <strong>Sai</strong>:
                     </p>
-
                     <div class="passage-box p-4 sm:p-5 rounded-2xl bg-amber-50/60 dark:bg-slate-800/80 border-l-4 border-amber-500 text-slate-800 dark:text-slate-200 text-sm italic mb-4 shadow-2xs">
                         ${formattedPassage}
                         <div class="text-right not-italic font-sans text-xs font-semibold text-slate-500 dark:text-slate-400 mt-2">
                             (${qObj.source})
                         </div>
                     </div>
-
                     <div class="space-y-2.5">
                         ${subRowsHTML}
                     </div>
@@ -3607,17 +3463,14 @@
             docxState.p2Mode = batchConfig.p2RangeKey;
             openDocxStudyView();
         }
-
         function openDocxStudyView() {
             if (examState.timerInterval) clearInterval(examState.timerInterval);
             examState.isActive = false;
-
             const { poolP1 } = getFilteredQuestionPool();
             if (poolP1.length > 0 && docxState.p1End === 0) {
                 docxState.p1Start = 1;
                 docxState.p1End = Math.min(20, poolP1.length);
             }
-
             document.getElementById('setupScreen').classList.add('hidden');
             document.getElementById('examWorkspace').classList.add('hidden');
             document.getElementById('examHeaderControls').classList.add('hidden');
@@ -3625,17 +3478,14 @@
             document.getElementById('backToConfigBtn').classList.remove('hidden');
             document.getElementById('backToConfigBtn').classList.add('flex');
             document.getElementById('docxStudyWorkspace').classList.remove('hidden');
-
             renderDocxBatchToolbar();
             renderDocxPaperContent();
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
-
         function renderDocxBatchToolbar() {
             const { poolP1, poolP2 } = getFilteredQuestionPool();
             const totalP1 = poolP1.length;
             const totalP2 = poolP2.length;
-
             // Nút chọn gói 20 câu Phần I trên thanh công cụ DOCX
             const p1Bar = document.getElementById('docxBatchButtonsP1');
             let htmlP1 = '';
@@ -3663,7 +3513,6 @@
                 </button>
             `;
             p1Bar.innerHTML = htmlP1;
-
             // Nút chọn Phần II trên thanh DOCX
             const p2Bar = document.getElementById('docxBatchButtonsP2');
             const p2Modes = [
@@ -3686,20 +3535,17 @@
                 `;
             }).join('');
         }
-
         function selectDocxBatchP1(start, end) {
             docxState.p1Start = start;
             docxState.p1End = end;
             renderDocxBatchToolbar();
             renderDocxPaperContent();
         }
-
         function selectDocxBatchP2(modeKey) {
             docxState.p2Mode = modeKey;
             renderDocxBatchToolbar();
             renderDocxPaperContent();
         }
-
         function navigateDocxBatch(direction) {
             const { poolP1 } = getFilteredQuestionPool();
             const totalP1 = poolP1.length;
@@ -3710,7 +3556,6 @@
             selectDocxBatchP1(newStart, newEnd);
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
-
         function toggleDocxShowAnswers() {
             docxState.showAnswers = !docxState.showAnswers;
             const btn = document.getElementById('docxToggleAnswerBtn');
@@ -3724,7 +3569,6 @@
             }
             renderDocxPaperContent();
         }
-
         function toggleDocxNumberingMode() {
             docxState.resetNumberingFrom1 = !docxState.resetNumberingFrom1;
             const txt = document.getElementById('docxToggleNumberingText');
@@ -3733,26 +3577,21 @@
                 : `Đánh số: Theo gốc (${docxState.p1Start}–${docxState.p1End})`;
             renderDocxPaperContent();
         }
-
         function renderDocxPaperContent() {
             const { poolP1, poolP2 } = getFilteredQuestionPool();
             const sliceP1 = poolP1.slice(docxState.p1Start - 1, docxState.p1End);
-
             let sliceP2 = [];
             if (docxState.p2Mode === 'all') sliceP2 = [...poolP2];
             else if (docxState.p2Mode === '1-3') sliceP2 = poolP2.slice(0, 3);
             else if (docxState.p2Mode === '4-6') sliceP2 = poolP2.slice(3, 6);
             else if (docxState.p2Mode === '7-9') sliceP2 = poolP2.slice(6, 9);
-
             document.getElementById('docxPaperTitle').textContent =
                 `TÀI LIỆU ÔN TẬP CÔNG NGHỆ LNTS 12 — CHẶNG CÂU ${docxState.p1Start} ĐẾN ${docxState.p1End}`;
             document.getElementById('docxPaperSubtitle').textContent = docxState.showAnswers
                 ? `(Chế độ Học Bài: Đáp án đúng đang được TÔ ĐẬM & GẠCH CHÂN giống file Word đề cương)`
                 : `(Chế độ Tự Dò Bài: Đáp án đúng đang được ẩn đi để bạn tự kiểm tra trí nhớ)`;
-
             const contentEl = document.getElementById('docxPaperContent');
             let html = '';
-
             // 1. Render Phần I dạng văn bản Word
             if (sliceP1.length > 0) {
                 html += `
@@ -3761,7 +3600,6 @@
                             PHẦN I. CÂU HỎI TRẮC NGHIỆM NHIỀU PHƯƠNG ÁN LỰA CHỌN (${sliceP1.length} CÂU)
                         </h3>
                 `;
-
                 sliceP1.forEach((item, idx) => {
                     const displayNum = docxState.resetNumberingFrom1 ? (idx + 1) : (docxState.p1Start + idx);
                     const opts = [
@@ -3770,14 +3608,12 @@
                         { letter: 'C', text: item.distractors[1], isCorrect: false },
                         { letter: 'D', text: item.distractors[2], isCorrect: false }
                     ];
-
                     const optionsDocxHTML = opts.map(o => {
                         if (docxState.showAnswers && o.isCorrect) {
                             return `<div class="py-0.5"><span class="docx-highlight">${o.letter}. ${o.text}</span></div>`;
                         }
                         return `<div class="py-0.5"><strong>${o.letter}.</strong> ${o.text}</div>`;
                     }).join('');
-
                     html += `
                         <div class="pb-3 border-b border-dashed border-slate-200 dark:border-slate-800 last:border-none">
                             <p class="mb-1.5">
@@ -3790,10 +3626,8 @@
                         </div>
                     `;
                 });
-
                 html += `</div>`;
             }
-
             // 2. Render Phần II dạng văn bản Word (nếu có bật)
             if (sliceP2.length > 0) {
                 html += `
@@ -3802,7 +3636,6 @@
                             PHẦN II. CÂU TRẮC NGHIỆM ĐÚNG / SAI (${sliceP2.length} CÂU)
                         </h3>
                 `;
-
                 sliceP2.forEach((item, idx) => {
                     const subHTML = item.items.map((sub, sIdx) => {
                         const letter = SUB_ITEM_LABELS[sIdx];
@@ -3816,7 +3649,6 @@
                             return `<div class="py-1"><strong>${letter}</strong> ${sub.text}</div>`;
                         }
                     }).join('');
-
                     html += `
                         <div class="pb-4 border-b border-dashed border-slate-300 dark:border-slate-700 last:border-none space-y-2">
                             <p class="font-bold">Câu ${idx + 1} (Phần II - ${item.lessonName}): Đọc đoạn tư liệu sau:</p>
@@ -3830,13 +3662,10 @@
                         </div>
                     `;
                 });
-
                 html += `</div>`;
             }
-
             contentEl.innerHTML = html;
         }
-
         function testCurrentDocxBatch() {
             currentMode = 'batch';
             batchConfig.p1Start = docxState.p1Start;
@@ -3858,7 +3687,6 @@
             renderQuestionPalette();
             updateProgressCounters();
         }
-
         function selectPart2Answer(qIndex, subIndex, booleanVal) {
             if (examState.isSubmitted) return;
             if (!examState.answersP2[qIndex]) {
@@ -3869,7 +3697,6 @@
             renderQuestionPalette();
             updateProgressCounters();
         }
-
         function toggleFlag(part, qIndex) {
             if (part === 'p1') {
                 examState.flaggedP1[qIndex] = !examState.flaggedP1[qIndex];
@@ -3879,21 +3706,17 @@
             renderAllQuestions();
             renderQuestionPalette();
         }
-
         function renderQuestionPalette() {
             const p1Grid = document.getElementById('palettePart1Grid');
             const p2Grid = document.getElementById('palettePart2Grid');
             const mobP1Grid = document.getElementById('mobilePalettePart1Grid');
             const mobP2Grid = document.getElementById('mobilePalettePart2Grid');
-
             document.getElementById('palettePart1Container').classList.toggle('hidden', examState.part1Questions.length === 0);
             document.getElementById('palettePart2Container').classList.toggle('hidden', examState.part2Questions.length === 0);
-
             const buildP1Buttons = (isMobile) => examState.part1Questions.map((qObj, idx) => {
                 const answered = examState.answersP1[idx] !== undefined;
                 const flagged = !!examState.flaggedP1[idx];
                 let colorClass = "bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-300 dark:border-slate-700 hover:border-amber-500";
-
                 if (!examState.isSubmitted) {
                     if (answered) {
                         colorClass = "bg-amber-500 text-navy-900 font-extrabold border-amber-500";
@@ -3906,7 +3729,6 @@
                         colorClass = "bg-rose-500 text-white font-extrabold border-rose-500";
                     }
                 }
-
                 const flagRing = flagged ? "ring-2 ring-rose-500 ring-offset-1 dark:ring-offset-slate-900" : "";
                 const chosenLetter = answered ? OPTION_LABELS[examState.answersP1[idx]] : '';
                 return `
@@ -3916,13 +3738,11 @@
                     </button>
                 `;
             }).join('');
-
             const buildP2Buttons = (isMobile) => examState.part2Questions.map((qObj, idx) => {
                 const subAns = examState.answersP2[idx] || {};
                 const answeredCount = Object.keys(subAns).length;
                 const flagged = !!examState.flaggedP2[idx];
                 let colorClass = "bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-300 dark:border-slate-700 hover:border-amber-500";
-
                 if (!examState.isSubmitted) {
                     if (answeredCount === 4) {
                         colorClass = "bg-amber-500 text-navy-900 font-extrabold border-amber-500";
@@ -3942,9 +3762,7 @@
                         colorClass = "bg-rose-500 text-white font-extrabold border-rose-500";
                     }
                 }
-
                 const flagRing = flagged ? "ring-2 ring-rose-500 ring-offset-1 dark:ring-offset-slate-900" : "";
-
                 return `
                     <button type="button" onclick="scrollToQuestion('p2', ${idx}, ${isMobile})"
                         class="h-10 rounded-lg text-xs font-bold flex flex-col items-center justify-center leading-tight transition ${colorClass} ${flagRing}">
@@ -3953,13 +3771,11 @@
                     </button>
                 `;
             }).join('');
-
             p1Grid.innerHTML = buildP1Buttons(false);
             p2Grid.innerHTML = buildP2Buttons(false);
             mobP1Grid.innerHTML = buildP1Buttons(true);
             mobP2Grid.innerHTML = buildP2Buttons(true);
         }
-
         function scrollToQuestion(part, index, closeMobile) {
             if (closeMobile) toggleMobilePalette();
             const el = document.getElementById(`question_${part}_${index}`);
@@ -3967,7 +3783,6 @@
                 el.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
         }
-
         function updateProgressCounters() {
             const totalQuestions = examState.part1Questions.length + examState.part2Questions.length;
             const completedP1 = Object.keys(examState.answersP1).length;
@@ -3978,17 +3793,14 @@
                 }
             });
             const doneTotal = completedP1 + completedP2;
-
             document.getElementById('headerProgressText').textContent = `${doneTotal}/${totalQuestions}`;
             document.getElementById('sidebarProgressBadge').textContent = `${doneTotal}/${totalQuestions}`;
             document.getElementById('mobileProgressBadge').textContent = `${doneTotal}`;
         }
-
         function toggleMobilePalette() {
             const modal = document.getElementById('mobilePaletteModal');
             modal.classList.toggle('hidden');
         }
-
         function startTimer() {
             updateTimerUI();
             examState.timerInterval = setInterval(() => {
@@ -3999,14 +3811,12 @@
                 examState.remainingSeconds--;
                 examState.elapsedSeconds++;
                 updateTimerUI();
-
                 if (examState.remainingSeconds <= 0) {
                     clearInterval(examState.timerInterval);
                     gradeExam(true);
                 }
             }, 1000);
         }
-
         function updateTimerUI() {
             const mins = Math.floor(Math.max(0, examState.remainingSeconds) / 60);
             const secs = Math.max(0, examState.remainingSeconds) % 60;
@@ -4014,7 +3824,6 @@
             const timerEl = document.getElementById('timerDisplay');
             const containerEl = document.getElementById('timerContainer');
             timerEl.textContent = display;
-
             if (examState.remainingSeconds <= 180 && !examState.isSubmitted) {
                 containerEl.classList.add('timer-warning', 'text-rose-400', 'border-rose-500');
                 containerEl.classList.remove('text-amber-400');
@@ -4036,7 +3845,6 @@
                 default: return 0.0;
             }
         }
-
         function checkExamCompletion(state) {
             state = state || examState;
             const totalP1 = (state.part1Questions && state.part1Questions.length) || 0;
@@ -4047,7 +3855,6 @@
                 }
             }
             const missingP1 = totalP1 - answeredP1;
-
             const totalP2 = (state.part2Questions && state.part2Questions.length) || 0;
             let totalSubP2 = 0;
             let answeredSubP2 = 0;
@@ -4063,11 +3870,9 @@
                 }
             }
             const missingSubP2 = totalSubP2 - answeredSubP2;
-
             const totalQuestions = totalP1 + totalP2;
             const totalMissing = missingP1 + missingSubP2;
             const isFullyCompleted = (totalQuestions > 0) && (totalMissing === 0);
-
             return {
                 totalP1, answeredP1, missingP1,
                 totalP2, totalSubP2, answeredSubP2, missingSubP2,
@@ -4075,14 +3880,11 @@
                 isFullyCompleted
             };
         }
-
         function openSubmitModal() {
             if (examState.isSubmitted) return;
-
             const completion = checkExamCompletion(examState);
             const isRankMode = (examState.examMode === 'standard' || examState.examMode === 'full');
             const modeName = examState.examMode === 'standard' ? 'Đề Thi Chuẩn Bộ GD&ĐT (28 câu)' : (examState.examMode === 'full' ? 'Full Toàn Bộ Đề Cương (135 câu)' : (examState.examMode === 'batch' ? 'Luyện Theo Chặng 20 câu' : 'Tùy chỉnh'));
-
             let messageHTML = '';
             if (isRankMode) {
                 if (completion.isFullyCompleted) {
@@ -4116,7 +3918,6 @@
                     </div>
                 `;
             }
-
             showCustomModal({
                 title: "Xác nhận nộp bài Công Nghệ LNTS 12",
                 subtitle: `Chế độ: ${modeName} • Mã đề: ${examState.examCode}`,
@@ -4131,11 +3932,9 @@
                 }
             });
         }
-
         function gradeExam(isAutoTimeout) {
             if (examState.timerInterval) clearInterval(examState.timerInterval);
             examState.isSubmitted = true;
-
             // 1. Chấm Phần I
             let correctP1Count = 0;
             examState.part1Questions.forEach((qObj, qIdx) => {
@@ -4145,12 +3944,10 @@
             });
             const rawScoreP1 = correctP1Count * 0.25;
             const maxScoreP1 = examState.part1Questions.length * 0.25;
-
             // 2. Chấm Phần II
             let rawScoreP2 = 0;
             let totalCorrectSubItems = 0;
             const subStats = { 0: 0, 1: 0, 2: 0, 3: 0, 4: 0 };
-
             examState.part2Questions.forEach((qObj, qIdx) => {
                 const userSub = examState.answersP2[qIdx] || {};
                 let correctSubsInQuestion = 0;
@@ -4164,15 +3961,12 @@
                 rawScoreP2 += getPart2QuestionScore(correctSubsInQuestion);
             });
             const maxScoreP2 = examState.part2Questions.length * 1.0;
-
             const totalRawScore = rawScoreP1 + rawScoreP2;
             const totalMaxPossible = maxScoreP1 + maxScoreP2;
             const scaledScore10 = totalMaxPossible > 0 ? (totalRawScore / totalMaxPossible) * 10 : 0;
-
             document.getElementById('resultSummaryPanel').classList.remove('hidden');
             document.getElementById('headerSubmitBtn').classList.add('hidden');
             document.getElementById('sidebarSubmitBtn').classList.add('hidden');
-
             const elapsedMins = Math.floor(examState.elapsedSeconds / 60);
             const elapsedSecs = examState.elapsedSeconds % 60;
             document.getElementById('resultBatchBadge').textContent = `KẾT QUẢ KIỂM TRA • ${examState.batchLabel.toUpperCase()}`;
@@ -4181,19 +3975,15 @@
                 : `Hoàn thành ${examState.batchLabel}!`;
             document.getElementById('resultTimeSpentText').textContent =
                 `Mã đề: ${examState.examCode} • Thời gian làm: ${elapsedMins} phút ${elapsedSecs} giây`;
-
             document.getElementById('finalScore10Display').textContent = scaledScore10.toFixed(2).replace('.', ',');
             document.getElementById('part1ScoreDisplay').textContent = `${rawScoreP1.toFixed(2).replace('.', ',')} / ${maxScoreP1.toFixed(2).replace('.', ',')}đ`;
             document.getElementById('part1CorrectCountDisplay').textContent = `Đúng ${correctP1Count}/${examState.part1Questions.length} câu`;
-
             document.getElementById('part2ScoreDisplay').textContent = `${rawScoreP2.toFixed(2).replace('.', ',')} / ${maxScoreP2.toFixed(2).replace('.', ',')}đ`;
             document.getElementById('part2SubCountDisplay').textContent = `Đúng ${totalCorrectSubItems}/${examState.part2Questions.length * 4} ý a, b, c, d`;
-
             document.getElementById('stat4Sub').textContent = `${subStats[4]} câu`;
             document.getElementById('stat3Sub').textContent = `${subStats[3]} câu`;
             document.getElementById('stat2Sub').textContent = `${subStats[2]} câu`;
             document.getElementById('stat1Sub').textContent = `${subStats[1]} câu`;
-
             // Hiển thị nút "Làm tiếp 20 câu tiếp theo (21-40...)" nếu đang ở chế độ Batch
             const nextBatchBtn = document.getElementById('nextBatchActionBtn');
             const nextBatchTxt = document.getElementById('nextBatchActionText');
@@ -4211,16 +4001,13 @@
             } else {
                 nextBatchBtn.classList.add('hidden');
             }
-
             renderAllQuestions();
             renderQuestionPalette();
             window.scrollTo({ top: 0, behavior: 'smooth' });
-
             // 🏆 Kiểm tra điều kiện đua top (Phải là Đề Chuẩn Bộ hoặc Full Đề, và phải làm 100% không bỏ ngang)
             const completion = checkExamCompletion(examState);
             const isEligibleMode = (examState.examMode === 'standard' || examState.examMode === 'full');
             const canSubmitLeaderboard = isEligibleMode && completion.isFullyCompleted;
-
             const lbBanner = document.getElementById('leaderboardStatusBanner');
             if (lbBanner) {
                 lbBanner.classList.remove('hidden');
@@ -4238,7 +4025,6 @@
                     lbBanner.innerHTML = `<i class="fa-solid fa-circle-info text-sky-500 text-2xl shrink-0"></i><div><strong>CHẾ ĐỘ LUYỆN TẬP / TÙY CHỈNH:</strong> Điểm số chế độ này không tính lên Bảng Xếp Hạng. Nếu muốn đua top, hãy chọn chế độ <strong>Đề Thi Chuẩn Bộ GD&ĐT (28 câu)</strong> hoặc <strong>Full Toàn Bộ Đề Cương</strong> và hoàn thành 100% câu hỏi!</div>`;
                 }
             }
-
             // 🔥 Gửi điểm lên Firebase nếu đủ điều kiện đua top
             (function () {
                 if (!canSubmitLeaderboard) {
@@ -4263,20 +4049,16 @@
                 }
             })();
         }
-
         function setReviewFilter(filterType) {
             examState.reviewFilter = filterType;
             const btnAll = document.getElementById('filterBtnAll');
             const btnWrong = document.getElementById('filterBtnWrong');
             const btnFlagged = document.getElementById('filterBtnFlagged');
-
             const activeClass = "px-3 py-1.5 rounded-xl text-xs font-bold bg-navy-800 text-white dark:bg-amber-500 dark:text-navy-900";
             const inactiveClass = "px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700";
-
             btnAll.className = filterType === 'all' ? activeClass : inactiveClass;
             btnWrong.className = filterType === 'wrong' ? activeClass : inactiveClass;
             btnFlagged.className = filterType === 'flagged' ? activeClass : inactiveClass;
-
             renderAllQuestions();
         }
 
@@ -4292,11 +4074,9 @@
             confirmBtn.onclick = onConfirm;
             document.getElementById('customModal').classList.remove('hidden');
         }
-
         function closeCustomModal() {
             document.getElementById('customModal').classList.add('hidden');
         }
-
         function confirmReshuffle() {
             if (examState.isSubmitted) {
                 reshuffleAndRestart();
@@ -4313,11 +4093,9 @@
                 }
             });
         }
-
         function reshuffleAndRestart() {
             startExam();
         }
-
         function confirmExitToSetup() {
             if (!examState.isActive || examState.isSubmitted) {
                 exitToSetup();
@@ -4334,7 +4112,6 @@
                 }
             });
         }
-
         function exitToSetup() {
             if (examState.timerInterval) clearInterval(examState.timerInterval);
             examState.isActive = false;
@@ -4347,7 +4124,6 @@
             updateAvailableCounts();
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
-
         function toggleDarkMode() {
             const htmlEl = document.documentElement;
             const icon = document.getElementById('themeIcon');
@@ -4358,15 +4134,12 @@
                 icon.className = "fa-solid fa-moon";
             }
         }
-
         // Khởi tạo ban đầu khi tải trang
         window.addEventListener('DOMContentLoaded', () => {
             selectExamMode('batch');
         });
     </script>
-
-    <!-- ========== FIREBASE HUB – LICHSU ========== -->
-
+    <!-- ========== FIREBASE HUB – CÔNG NGHỆ LNTS 12 ========== -->
     <!-- POPUP NHẬP TÊN -->
     <div id="hub-name-modal"
         style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.75);z-index:10000;align-items:center;justify-content:center;padding:16px;">
@@ -4386,7 +4159,6 @@
             </button>
         </div>
     </div>
-
     <!-- MODAL BẢNG XẾP HẠNG (TOP 10 CHUẨN BỘ & TOP BÁ KHÍ) -->
     <div id="hub-lb-modal"
         style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:9999;align-items:center;justify-content:center;padding:16px;">
@@ -4412,7 +4184,6 @@
                     <button onclick="document.getElementById('hub-lb-modal').style.display='none'"
                         style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);color:#fde68a;border-radius:8px;padding:6px 12px;cursor:pointer;font-size:14px;font-weight:700;flex-shrink:0;margin-left:12px;">✕</button>
                 </div>
-
                 <!-- 2 TABS CHỌN BẢNG XẾP HẠNG -->
                 <div
                     style="display:grid;grid-template-columns:1fr 1fr;gap:6px;background:rgba(0,0,0,0.3);padding:4px;border-radius:12px;border:1px solid rgba(255,255,255,0.08);">
@@ -4426,13 +4197,11 @@
                     </button>
                 </div>
             </div>
-
             <!-- Cột tiêu đề -->
             <div
                 style="padding:7px 20px;background:rgba(0,0,0,0.2);display:flex;justify-content:space-between;font-size:11px;color:rgba(200,200,200,0.5);font-weight:600;letter-spacing:.5px;border-bottom:1px solid rgba(245,158,11,0.1);flex-shrink:0;">
                 <span>HẠNG · THÍ SINH</span><span>ĐIỂM · THỜI GIAN</span>
             </div>
-
             <!-- Danh sách Top 10 -->
             <div id="hub-leaderboard" style="overflow-y:auto;padding:10px 14px;flex:1;">
                 <div style="color:rgba(200,200,200,0.5);text-align:center;padding:24px 0;font-size:13px;">⏳ Đang tải
@@ -4440,40 +4209,32 @@
             </div>
         </div>
     </div>
-
     <style>
         #hub-leaderboard::-webkit-scrollbar {
             width: 5px;
         }
-
         #hub-leaderboard::-webkit-scrollbar-track {
             background: rgba(0, 0, 0, 0.2);
         }
-
         #hub-leaderboard::-webkit-scrollbar-thumb {
             background: #f59e0b;
             border-radius: 4px;
         }
-
         #hub-name-input:focus {
             border-color: #fcd34d;
             box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.2);
         }
-
         @keyframes rainbowShift {
             0% {
                 background-position: 0% 50%;
             }
-
             50% {
                 background-position: 100% 50%;
             }
-
             100% {
                 background-position: 0% 50%;
             }
         }
-
         .rainbow-sieu-cap {
             background: linear-gradient(90deg, #ff1a1a, #ff7a00, #ffea00, #00e676, #00b0ff, #7c4dff, #e040fb, #ff1a1a);
             background-size: 300% 100%;
@@ -4485,12 +4246,10 @@
             letter-spacing: 1px;
         }
     </style>
-
     <!-- FIREBASE LOGIC -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
         import { getDatabase, ref, onValue, push, onDisconnect, set, get, update } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
-
         const firebaseConfig = { databaseURL: "https://ontap-hub-default-rtdb.asia-southeast1.firebasedatabase.app/" };
         const PAGE_ID = "congnghe12";
         const hexRgb = "245,158,11";
@@ -4498,19 +4257,15 @@
         const meColor = "#fcd34d";
         const meBg = "rgba(245,158,11,0.25)";
         const nc = ["#fbbf24", "#e2e8f0", "#fb923c", "#fde68a"];
-
         const app = initializeApp(firebaseConfig, "hub-" + PAGE_ID);
         const db = getDatabase(app);
-
         let activeLbTab = "standard"; // 'standard' | 'full'
         let currentLbData = { standard: [], full: [] };
-
         function formatTime(s) {
             const sec = Math.max(1, Math.round(Number(s) || 0));
             const m = Math.floor(sec / 60), r = sec % 60;
             return m > 0 ? `${m}p${r < 10 ? "0" : ""}${r}s` : `${sec}s`;
         }
-
         // Đóng modal khi bấm ra ngoài nền đen
         document.getElementById("hub-lb-modal").addEventListener("click", function (e) {
             if (e.target === this) this.style.display = "none";
@@ -4518,21 +4273,18 @@
         document.getElementById("hub-name-modal").addEventListener("click", function (e) {
             if (e.target === this && safeGetStorage("quiz_username")) this.style.display = "none";
         });
-
         function safeGetStorage(k) {
             try { return localStorage.getItem(k); } catch (e) { return null; }
         }
         function safeSetStorage(k, v) {
             try { localStorage.setItem(k, v); } catch (e) {}
         }
-
         // Device ID định danh máy
         let deviceId = safeGetStorage("quiz_device_id");
         if (!deviceId) {
             deviceId = "u_" + Math.random().toString(36).substring(2, 9) + "_" + Date.now();
             safeSetStorage("quiz_device_id", deviceId);
         }
-
         // ==========================================
         // THU THẬP THÔNG TIN THIẾT BỊ VÀ IP
         // ==========================================
@@ -4545,18 +4297,15 @@
             else if (/windows/i.test(ua)) os = "Windows";
             else if (/macintosh|mac os x/i.test(ua)) os = "macOS";
             else if (/linux/i.test(ua)) os = "Linux";
-
             let browser = "Khác";
             if (/coccoc/i.test(ua)) browser = "Cốc Cốc";
             else if (/edg/i.test(ua)) browser = "Edge";
             else if (/chrome|crios/i.test(ua)) browser = "Chrome";
             else if (/firefox|fxios/i.test(ua)) browser = "Firefox";
             else if (/safari/i.test(ua)) browser = "Safari";
-
             const isMobile = /mobile|android|iphone|ipad|ipod/i.test(ua);
             const formFactor = isMobile ? "Điện thoại / Tablet" : "Máy tính (PC/Laptop)";
             const screen = window.screen ? `${window.screen.width}x${window.screen.height}` : "Không rõ";
-
             return {
                 summary: `${os} • ${browser} (${formFactor})`,
                 os,
@@ -4567,7 +4316,6 @@
                 language: navigator.language || ""
             };
         }
-
         let cachedUserIP = "";
         async function fetchUserIP() {
             if (cachedUserIP) return cachedUserIP;
@@ -4597,7 +4345,6 @@
             }
             return cachedUserIP || "Không xác định";
         }
-
         // Đồng bộ Tên, IP, Thiết bị về Firebase
         async function syncUserInfoToFirebase(nameStr) {
             const n = (nameStr || currentName || safeGetStorage("quiz_username") || "").trim();
@@ -4607,7 +4354,6 @@
                 const ip = await fetchUserIP();
                 const now = Date.now();
                 const nowStr = new Date().toLocaleString("vi-VN");
-
                 // 1. Lưu thông tin hồ sơ theo mã thiết bị (users/{deviceId})
                 await set(ref(db, `users/${deviceId}`), {
                     deviceId: deviceId,
@@ -4619,7 +4365,6 @@
                     updatedAt: now,
                     time: nowStr
                 });
-
                 // 2. Ghi nhật ký vào user_logs
                 await push(ref(db, "user_logs"), {
                     deviceId: deviceId,
@@ -4630,42 +4375,34 @@
                     createdAt: now,
                     time: nowStr
                 });
-
                 // 3. Cập nhật kèm IP & thiết bị vào kỷ lục bảng xếp hạng hiện có (nếu có)
                 const refStd = ref(db, `leaderboards/${PAGE_ID}/standard/${deviceId}`);
                 const snapStd = await get(refStd);
                 if (snapStd.exists()) await update(refStd, { name: n, ip: ip, device: dev.summary });
-
                 const refFull = ref(db, `leaderboards/${PAGE_ID}/full/${deviceId}`);
                 const snapFull = await get(refFull);
                 if (snapFull.exists()) await update(refFull, { name: n, ip: ip, device: dev.summary });
-
                 console.log(`[Hub] ✅ Đã lưu thông tin về Firebase: Tên=${n}, IP=${ip}, Thiết bị=${dev.summary}`);
             } catch (err) {
                 console.warn("[Hub] Lỗi đồng bộ thông tin người dùng:", err);
             }
         }
-
         // Quản lý tên hiển thị
         const modal = document.getElementById("hub-name-modal");
         const nameInput = document.getElementById("hub-name-input");
         const startBtn = document.getElementById("hub-start-btn");
-
         let currentName = safeGetStorage("quiz_username") || "";
-
         function updateUserNameDisplays(name) {
             const d1 = document.getElementById("hub-user-display");
             if (d1) d1.textContent = name || "Chưa đặt tên";
             const d2 = document.getElementById("header-user-display");
             if (d2) d2.textContent = name || "Chưa đặt tên";
         }
-
         window.openNameModal = function () {
             nameInput.value = currentName;
             modal.style.display = "flex";
             setTimeout(() => nameInput.focus(), 120);
         };
-
         if (!currentName) {
             modal.style.display = "flex";
             setTimeout(() => nameInput.focus(), 150);
@@ -4673,7 +4410,6 @@
             updateUserNameDisplays(currentName);
             syncUserInfoToFirebase(currentName);
         }
-
         async function saveUsername(name) {
             const n = name.trim();
             if (!n) {
@@ -4685,14 +4421,11 @@
             currentName = n;
             updateUserNameDisplays(n);
             modal.style.display = "none";
-
             // 🔥 Gửi Tên, IP và Thiết bị về Firebase ngay khi đặt tên
             await syncUserInfoToFirebase(n);
         }
-
         startBtn.addEventListener("click", () => saveUsername(nameInput.value));
         nameInput.addEventListener("keydown", e => { if (e.key === "Enter") saveUsername(nameInput.value); });
-
         // Online count
         const connRef = ref(db, ".info/connected");
         const onlineRef = ref(db, "online_users");
@@ -4719,7 +4452,6 @@
             const c2 = document.getElementById("header-online-count");
             if (c2) c2.textContent = count;
         });
-
         // Nộp điểm lên Bảng xếp hạng (chỉ nhận 'standard' và 'full')
         window.hubSubmitScore = async function (score, timeSeconds, mode) {
             try {
@@ -4728,13 +4460,11 @@
                     console.log(`[Hub] Bỏ qua: Chế độ '${examMode}' không phải Chuẩn Bộ hoặc Full Đề.`);
                     return;
                 }
-
                 const name = safeGetStorage("quiz_username") || "Ẩn danh";
                 const sc = Number(score) || 0, t = Math.max(1, Math.round(Number(timeSeconds) || 0));
                 const dev = getDeviceInfo();
                 const ip = await fetchUserIP();
                 console.log(`[Hub] Submitting [${examMode}]: name=${name}, score=${sc}, time=${t}s, page=${PAGE_ID}, ip=${ip}, dev=${dev.summary}`);
-
                 const userRef = ref(db, `leaderboards/${PAGE_ID}/${examMode}/${deviceId}`);
                 const snap = await get(userRef);
                 let shouldWrite = !snap.exists();
@@ -4759,7 +4489,6 @@
                 console.error('[Hub] ❌ Error submitting score:', err);
             }
         };
-
         function parseBranch(branchVal) {
             if (!branchVal || typeof branchVal !== "object") return [];
             const list = [];
@@ -4777,7 +4506,6 @@
             list.sort((a, b) => b.score !== a.score ? b.score - a.score : (a.time || 999999) - (b.time || 999999));
             return list;
         }
-
         function updateLbDataFromSnap(snap) {
             if (!snap || !snap.exists()) {
                 currentLbData = { standard: [], full: [] };
@@ -4792,7 +4520,6 @@
                 currentLbData.full = [];
             }
         }
-
         window.switchLbTab = function (tab) {
             activeLbTab = tab;
             const btnStd = document.getElementById("tab-btn-standard");
@@ -4820,7 +4547,6 @@
             }
             renderLeaderboardView();
         };
-
         function renderLeaderboardView() {
             const el = document.getElementById("hub-leaderboard");
             if (!el) return;
@@ -4829,12 +4555,10 @@
             const emptyMsg = isFullTab
                 ? "Chưa có ai chinh phục Full Đề để lên Top Bá Khí!"
                 : "Chưa có ai lên Bảng Vàng Chuẩn Bộ GD&ĐT!";
-
             if (list.length === 0) {
                 el.innerHTML = `<div style="color:rgba(200,200,200,0.5);text-align:center;padding:28px 0;font-size:13px;">${emptyMsg}</div>`;
                 return;
             }
-
             const top10 = list.slice(0, 10);
             el.innerHTML = top10.map((p, i) => {
                 const isMe = p.id === deviceId;
@@ -4844,7 +4568,6 @@
                 const color = nc[Math.min(i, 3)];
                 const bg = isMe ? `background:${rowMe};border-radius:8px;` : "";
                 const meTag = isMe ? `<span style="color:${meColor};font-size:9px;font-weight:800;background:${meBg};padding:1px 6px;border-radius:4px;margin-left:5px;">BẠN</span>` : "";
-
                 if (isTop1) {
                     return `<div style="margin-bottom:8px;background:rgba(251,191,36,0.12);border:1.5px solid rgba(251,191,36,0.55);border-radius:12px;padding:9px 12px;box-shadow:0 0 20px rgba(251,191,36,0.22);${isMe ? `outline:2px solid ${meColor};` : ''}">
           <div style="text-align:center;margin-bottom:5px;display:flex;align-items:center;justify-content:center;gap:6px;">
@@ -4864,7 +4587,6 @@
           </div>
         </div>`;
                 }
-
                 return `<div style="display:flex;align-items:center;justify-content:space-between;padding:7px 8px;margin-bottom:2px;${bg}border-bottom:1px solid rgba(${hexRgb},0.1);">
         <div style="display:flex;align-items:center;gap:7px;min-width:0;flex:1;overflow:hidden;">
           <span style="min-width:24px;text-align:center;flex-shrink:0;">${badge}</span>
@@ -4877,14 +4599,12 @@
       </div>`;
             }).join("");
         }
-
         // Mở modal & reload bảng xếp hạng
         window.openLeaderboard = function () {
             const m = document.getElementById("hub-lb-modal");
             if (m) m.style.display = "flex";
             window.hubReloadLeaderboard();
         };
-
         // Reload thủ công
         window.hubReloadLeaderboard = function () {
             const el = document.getElementById("hub-leaderboard");
@@ -4897,7 +4617,6 @@
                 if (el) el.innerHTML = `<div style="color:#f87171;text-align:center;padding:16px 0;font-size:13px;">Lỗi tải dữ liệu</div>`;
             });
         };
-
         // Real-time listener
         onValue(ref(db, `leaderboards/${PAGE_ID}`), snap => {
             updateLbDataFromSnap(snap);
@@ -4905,5 +4624,4 @@
         });
     </script>
 </body>
-
 </html>
